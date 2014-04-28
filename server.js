@@ -30,7 +30,7 @@ app.use(logger('dev'));
 
 
 //connect to the db server:
-mongoose.connect('mongodb://localhost/Eventmarket');
+mongoose.connect(process.env.MONGODB_CONNECTION || 'mongodb://localhost/Eventmarket');
 mongoose.connection.on('open', function() {
     console.log("Connected to Mongoose...");
 
