@@ -1,0 +1,44 @@
+.ribbon
+  position: relative
+  width: 200px
+  height: 20px
+  background-color: #EB5D18
+  text-align: center
+  color: #FFFFFF
+  margin: 20px 20px 30px 20px
+  padding: 6px 10px 22px 10px
+  text-transform: uppercase
+  font-size: 0.8em
+
+.ribbon:after
+  height: 0px
+  width: 0px
+  border-top: 12px solid #6D2D00
+  border-left: 12px solid transparent
+  border-right: 12px solid #6D2D00
+  border-bottom: 12px solid transparent
+  content: " "
+  position: absolute
+  bottom: -24px
+  left: 0
+
+.conferenceribbon
+  background-color: $green-color
+
+.conferenceribbon:after
+  border-top-color: #2D5014 !important
+  border-right-color: #2D5014 !important
+
+.ticketribbon
+  background-color: $pink-color
+
+.ticketribbon:after
+  border-top-color: #6C0E35 !important
+  border-right-color: #6C0E35 !important
+
+.backstageribbon
+  background-color: $blue-color
+
+.backstageribbon:after
+  border-top-color: #084554 !important
+  border-right-color: #084554 !important

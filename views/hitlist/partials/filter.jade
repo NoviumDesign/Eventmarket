@@ -1,0 +1,432 @@
+.panelmargin.small-12.medium-12.large-9.columns
+  dl.accordion(data-accordion='data-accordion')
+    dd.nopadding
+      a(href='#entertainment')
+        .small-12.columns.filterpanel.borderbottom
+          .filterpanel.small-8.medium-8.large-4.columns
+            h2 Underhållning
+          .filterpanel.small-4.medium-4.large-8.columns.text-right
+            p.show-for-large-up
+              | Här hittar du underhållning till alla tillfällen. Du filtrerar listan genom att välja en eller flera kategorier.
+            p.hide-for-large-up
+              | Dölj/Visa
+              br
+              | filtrering
+      #entertainment.content
+        .small-12.columns.filterpanel
+          .filterpanel.small-12.medium-12.large-3.columns
+            ul.filtering
+              li
+                input#filreingAll(type='radio', name='filtering', value='All')
+                label(for='filteringAll') Alla
+              li
+                input#filreingCompany(type='radio', name='filtering', value='Company')
+                label(for='filteringCompany') Företagsevent
+              li
+                input#filreingPrivate(type='radio', name='filtering', value='Private')
+                label(for='filteringPrivate') Privat
+          hr.hide-for-large-up.whiteline
+          .filterpanel.small-12.medium-12.large-3.columns
+            ul.filtering.borderleft
+              li
+                input#artist(type='checkbox')
+                label(for='artist') Artistförmedling
+              li
+                input#family(type='checkbox')
+                label(for='family') Barn & Familj
+              li
+                input#cirkus(type='checkbox')
+                label(for='cirkus') Cirkus & Variete
+              li
+                input#imitation(type='checkbox')
+                label(for='imitation')
+                  | Imitation &
+                  br.show-for-large
+                  | Lookalike
+              li
+                input#broadcaster(type='checkbox')
+                label(for='broadcaster')
+                  | Konferencier /
+                  br.show-for-large-up
+                  | Programledare
+              li
+                input#magic(type='checkbox')
+                label(for='magic') Magi & Trolleri
+              span.hide-for-large-up
+                li
+                  input#mingle-entertainment(type='checkbox')
+                  label(for='mingle-entertainment') Middags- och Mingelunderhållning
+                li
+                  input#partyband(type='checkbox')
+                  label(for='partyband') Partyband & Orkestar
+                li
+                  input#pianobar(type='checkbox')
+                  label(for='pianobar') Pianobar
+                li
+                  input#pub-entertainment(type='checkbox')
+                  label(for='pub-entertainment') Pubunderhållning
+                li
+                  input#showtime(type='checkbox')
+                  label(for='showtime') Scenshow / Showtime
+                li
+                  input#showgroup(type='checkbox')
+                  label(for='showgroup') Showgrupper
+                li
+                  input#standup(type='checkbox')
+                  label(for='standup') Standup & Humor
+                li
+                  input#singers-female(type='checkbox')
+                  label(for='singers-female') Sångartister, Kvinnliga
+                li
+                  input#singers-male(type='checkbox')
+                  label(for='singers-male') Sångartister, Manliga
+                li
+                  input#troubadour(type='checkbox')
+                  label(for='troubadour') Trubadur & Vispop
+                li
+                  input#tv-personalities(type='checkbox')
+                  label(for='tv-personalities') TV-kända profiler
+          .large-3.columns.show-for-large-up
+            ul.filtering
+              li
+                input#magic(type='checkbox')
+                label(for='magic') Magi & Trolleri
+              li
+                input#mingle-entertainment(type='checkbox')
+                label(for='mingle-entertainment')
+                  | Middags- och
+                  br.show-for-large-up
+                  | Mingel
+                  span.show-for-large -
+                  br.show-for-large
+                  | underhållning
+              li
+                input#partyband(type='checkbox')
+                label(for='partyband')
+                  | Partyband &
+                  br.show-for-large
+                  | Orkestar
+              li
+                input#pianobar(type='checkbox')
+                label(for='pianobar') Pianobar
+              li
+                input#pub-entertainment(type='checkbox')
+                label(for='pub-entertainment')
+                  | Pub
+                  span.show-for-large -
+                  br.show-for-large
+                  | underhållning
+              li
+                input#showtime(type='checkbox')
+                label(for='showtime')
+                  | Scenshow /
+                  br.show-for-large-up
+                  | Showtime
+          .large-3.columns.show-for-large-up
+            ul.filtering
+              li
+                input#showgroup(type='checkbox')
+                label(for='showgroup') Showgrupper
+              li
+                input#standup(type='checkbox')
+                label(for='standup')
+                  | Standup &
+                  br.show-for-large
+                  | Humor
+              li
+                input#singers-female(type='checkbox')
+                label(for='singers-female')
+                  | Sångartister,
+                  br.show-for-large
+                  | Kvinnliga
+              li
+                input#singers-male(type='checkbox')
+                label(for='singers-male')
+                  | Sångartister,
+                  br.show-for-large
+                  | Manliga
+              li
+                input#troubadour(type='checkbox')
+                label(for='troubadour')
+                  | Trubadur &
+                  br.show-for-large
+                  | Vispop
+              li
+                input#tv-personalities(type='checkbox')
+                label(for='tv-personalities')
+                  | TV-kända
+                  br.show-for-large
+                  | profiler
+    dl
+.panelmargin.small-12.medium-12.large-9.columns
+  dl.accordion(data-accordion='data-accordion')
+    dd.nopadding
+      a(href='#arrangers')
+        .small-12.columns.filterpanel.borderbottom
+          .filterpanel.small-8.medium-8.large-4.columns
+            h2 Arrangörer
+          .filterpanel.small-4.medium-4.large-8.columns.text-right
+            p.show-for-large-up
+              | Här hittar du arrangörer som är proffs på att organisera, inspirera och administrera. Du filtrerar listan genom att välja en eller flera kategorier.
+            p.hide-for-large-up
+              | Dölj/Visa
+              br
+              | filtrering
+      #arrangers.content
+        .small-12.columns.filterpanel
+          .filterpanel.small-12.medium-12.large-4.columns
+            ul.filtering
+              li
+                input#artist(type='checkbox')
+                label(for='artist') Affärsresor
+              li
+                input#family(type='checkbox')
+                label(for='family') Aktivitetsarrangör
+              li
+                input#cirkus(type='checkbox')
+                label(for='cirkus')
+                  | Bröllpåskoordinator /
+                  br.show-for-large-up
+                  | Festarrangör
+              li
+                input#imitation(type='checkbox')
+                label(for='imitation') Eventarrangör / Strateg
+              span.hide-for-large-up
+                li
+                  input#broadcaster(type='checkbox')
+                  label(for='broadcaster') Externa Konferensarrangör / Programledare
+                li
+                  input#magic(type='checkbox')
+                  label(for='magic') Konsertarrangör
+                li
+                  input#mingle-entertainment(type='checkbox')
+                  label(for='mingle-entertainment') Management
+                li
+                  input#partyband(type='checkbox')
+                  label(for='partyband') Mässarrangör
+                li
+                  input#pianobar(type='checkbox')
+                  label(for='pianobar') Nöjesarrangör / Artistbokare
+                li
+                  input#pub-entertainment(type='checkbox')
+                  label(for='pub-entertainment') Virtuella möten / Onlineteknik
+          .large-4.columns.show-for-large-up
+            ul.filtering
+              li
+                input#broadcaster(type='checkbox')
+                label(for='broadcaster')
+                  | Externa
+                  br.show-for-large
+                  | Konferensarrangör /
+                  br
+                  | Programledare
+              li
+                input#magic(type='checkbox')
+                label(for='magic') Konsertarrangör
+              li
+                input#mingle-entertainment(type='checkbox')
+                label(for='mingle-entertainment') Management
+              li
+                input#partyband(type='checkbox')
+                label(for='partyband') Mässarrangör
+          .large-4.columns.show-for-large-up
+            ul.filtering
+              li
+                input#pianobar(type='checkbox')
+                label(for='pianobar')
+                  | Nöjesarrangör /
+                  br
+                  | Artistbokare
+              li
+                input#pub-entertainment(type='checkbox')
+                label(for='pub-entertainment')
+                  | Virtuella möten /
+                  br
+                  | Onlineteknik
+    dl
+.panelmargin.small-12.medium-12.large-9.columns
+  dl.accordion(data-accordion='data-accordion')
+    dd.nopadding
+      a(href='#activities')
+        .small-12.columns.filterpanel.borderbottom
+          .filterpanel.small-8.medium-8.large-4.columns
+            h2 Aktiviteter
+          .filterpanel.small-4.medium-4.large-8.columns.text-right
+            p.show-for-large-up
+              | Här hittar du aktiviteter till alla tillfällen. Du filtrerar listan genom att välja en eller flera kategorier.
+            p.hide-for-large-up
+              | Dölj/Visa
+              br
+              | filtrering
+      #activities.content
+        .small-12.columns.filterpanel
+          .filterpanel.small-12.medium-12.large-4.columns
+            ul.filtering
+              li
+                input#artist(type='checkbox')
+                label(for='artist') Aktivitetsarrangörer
+              li
+                input#family(type='checkbox')
+                label(for='family') Barn & Familj
+              li
+                input#cirkus(type='checkbox')
+                label(for='cirkus') Djur
+              li
+                input#imitation(type='checkbox')
+                label(for='imitation') Hav & Sjö
+              li
+                input#imitation(type='checkbox')
+                label(for='imitation') Kreativt Skapande
+              span.hide-for-large-up
+                li
+                  input#broadcaster(type='checkbox')
+                  label(for='broadcaster') Kroppo & Själ
+                li
+                  input#magic(type='checkbox')
+                  label(for='magic') Lek, Tävling & Uppdrag
+                li
+                  input#mingle-entertainment(type='checkbox')
+                  label(for='mingle-entertainment') Mat & Dryckesaktiviteter
+                li
+                  input#partyband(type='checkbox')
+                  label(for='partyband') Motor
+                li
+                  input#pianobar(type='checkbox')
+                  label(for='pianobar') Musik
+                li
+                  input#pub-entertainment(type='checkbox')
+                  label(for='pub-entertainment') Sport
+                li
+                  input#pub-entertainment(type='checkbox')
+                  label(for='pub-entertainment') Upplevelser i stan
+                li
+                  input#pub-entertainment(type='checkbox')
+                  label(for='pub-entertainment') Vi kommer till er-aktiviteter
+                li
+                  input#pub-entertainment(type='checkbox')
+                  label(for='pub-entertainment') Äventyr & Vildmark
+          .large-4.columns.show-for-large-up
+            ul.filtering
+              li
+                input#broadcaster(type='checkbox')
+                label(for='broadcaster') Kroppo & Själ
+              li
+                input#magic(type='checkbox')
+                label(for='magic') Lek, Tävling & Uppdrag
+              li
+                input#mingle-entertainment(type='checkbox')
+                label(for='mingle-entertainment') Mat & Dryckesaktiviteter
+              li
+                input#partyband(type='checkbox')
+                label(for='partyband') Motor
+              li
+                input#pianobar(type='checkbox')
+                label(for='pianobar') Musik
+          .large-4.columns.show-for-large-up
+            ul.filtering
+              li
+                input#pub-entertainment(type='checkbox')
+                label(for='pub-entertainment') Sport
+              li
+                input#pub-entertainment(type='checkbox')
+                label(for='pub-entertainment') Upplevelser i stan
+              li
+                input#pub-entertainment(type='checkbox')
+                label(for='pub-entertainment')
+                  | Vi kommer till
+                  br.show-for-large
+                  | er-aktiviteter
+              li
+                input#pub-entertainment(type='checkbox')
+                label(for='pub-entertainment') Äventyr & Vildmark
+    dl
+.panelmargin.small-12.medium-12.large-9.columns
+  dl.accordion(data-accordion='data-accordion')
+    dd.nopadding
+      a(href='#speeches')
+        .small-12.columns.filterpanel.borderbottom
+          .filterpanel.small-8.medium-8.large-4.columns
+            h2 Föreläsare & Talare
+          .filterpanel.small-4.medium-4.large-8.columns.text-right
+            p.show-for-large-up
+              | Här hittar du talare och förelasare samt tips på föreläsningar inom alla områden. Du filtrerar listan genom att välja en eller flera kategorier.
+            p.hide-for-large-up
+              | Dölj/Visa
+              br
+              | filtrering
+      #speeches.content
+        .small-12.columns.filterpanel
+          .filterpanel.small-12.medium-12.large-3.columns
+            ul.filtering
+              li
+                input#filreingLecturer(type='radio', name='filtering', value='Lecturer')
+                label(for='filteringLecturer') Föreläsare
+              li
+                input#filreingLecturingTips(type='radio', name='filtering', value='LecturingTips')
+                label(for='filteringLecturingTips') Föreläsnings-Tips
+              li
+                input#filreingSpeechMediation(type='radio', name='filtering', value='SpeechMediation')
+                label(for='filteringSpeechMediation') Talarförmedling
+              li
+                input#filreingModerator(type='radio', name='filtering', value='Moderator')
+                label(for='filteringModerator') Moderator
+          hr.hide-for-large-up.whiteline
+          .filterpanel.small-12.medium-12.large-3.columns
+            ul.filtering.borderleft
+              li
+                input#artist(type='checkbox')
+                label(for='artist') Affärsutveckling
+              li
+                input#family(type='checkbox')
+                label(for='family') Friskvård & Hälsa
+              li
+                input#cirkus(type='checkbox')
+                label(for='cirkus') Kommunikation
+              li
+                input#imitation(type='checkbox')
+                label(for='imitation')
+                  | Personlig
+                  br.show-for-large
+                  | Utveckling
+              span.hide-for-large-up
+                li
+                  input#mingle-entertainment(type='checkbox')
+                  label(for='mingle-entertainment') På Engelska
+                li
+                  input#partyband(type='checkbox')
+                  label(for='partyband') Stress & Konflikthantering
+                li
+                  input#pianobar(type='checkbox')
+                  label(for='pianobar') Utbildning
+                li
+                  input#pub-entertainment(type='checkbox')
+                  label(for='pub-entertainment') Äventyr & Resor
+                li
+                  input#showtime(type='checkbox')
+                  label(for='showtime') Övrigt
+          .large-3.columns.show-for-large-up
+            ul.filtering
+              li
+                input#mingle-entertainment(type='checkbox')
+                label(for='mingle-entertainment') På Engelska
+              li
+                input#partyband(type='checkbox')
+                label(for='partyband')
+                  | Stress &
+                  br.show-for-large
+                  | Konflikthantering
+              li
+                input#pianobar(type='checkbox')
+                label(for='pianobar') Utbildning
+              li
+                input#pub-entertainment(type='checkbox')
+                label(for='pub-entertainment')
+                  | Äventyr &
+                  br.show-for-large
+                  | Resor
+          .large-3.columns.show-for-large-up
+            ul.filtering
+              li
+                input#showtime(type='checkbox')
+                label(for='showtime') Övrigt
+    dl

@@ -1,0 +1,231 @@
+// General
+
+@import variables
+@import ribbons
+@import footer
+@import panels
+@import index
+@import profileside
+@import conference
+@import filteringpanels
+@import photoarchive
+@import tickets
+@import backstage
+@import editor
+
+.off-canvas-wrap,
+.inner-wrap
+  height: 100%
+  min-height: 100%
+
+@media (max-width:1024px)
+  .editorial
+    margin: 0px !important
+
+@media (max-width:768px)
+  .hero
+
+    h1
+      font-size: 2.8em !important
+      top: 15px !important
+      left: 30px !important
+
+@media (max-width:640px)
+  .photo
+    margin: 15px 0px 15px 0px !important
+
+.hero
+  background: $orange-color
+
+  h1
+    position: absolute
+    top: 20px
+    left: 40px
+    font-size: 5.5em
+    font-weight: 700
+    line-height: 1em
+    color: #FFFFFF
+    line-height: 0.9em
+
+  p
+    position: absolute
+    top: 180px
+    left: 45px
+    padding-top: 20px
+    font-size: 1.4em
+    font-weight: 300
+    color: #FFFFFF
+    line-height: 1.2em
+
+h1
+  font-size: 3em
+  font-weight: 700
+
+.uc
+  text-transform: uppercase
+
+// Content
+
+.main-content
+  margin-top: 30px
+  margin-bottom: 30px
+
+.gradientbg
+  background: -webkit-linear-gradient($grey-color, $darkgrey-color) /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($grey-color, $darkgrey-color) /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($grey-color, $darkgrey-color) /* For Firefox 3.6 to 15 */
+  background: linear-gradient($grey-color, $darkgrey-color) /* Standard syntax (must be last) */
+  padding-bottom: 30px
+
+p.tagline
+  font-size: 1.2em
+  font-weight: 300
+  line-height: 1.4em
+
+  a
+    color: black
+
+.topmargin
+  margin-top: 30px
+
+h1.results
+  font-size: 1.2em
+  font-weight: 300
+
+.sort
+  height: 30px
+  padding: 5px
+  background-color: white
+  border: 1px solid $lightgrey-color
+  color: black
+  margin: 0
+
+.sort:hover
+  background-color: $lightgrey-color
+  color: black
+
+.dropdown.button:before, button.dropdown:before
+  position: absolute
+  border-top-color: $orange-color
+  right: 10px
+
+a.hits
+
+  h2
+    font-size: 1.6em
+    color: $grey-color
+    margin: 20px 0px 0px 0px
+
+  p
+    color: black
+    margin: 0
+
+a.hits:hover
+  
+  h2
+    text-decoration: underline
+
+  p
+    text-decoration: underline
+
+.rightsidecontent
+  margin: 0px 10px 0px 30px
+
+.sidelist
+  margin-right: 30px
+  margin-left: 10px
+  background: $grey-color
+  padding: 0px
+  padding-bottom: 150px
+
+  h2
+    padding-top: 5px
+    margin-left: 20px
+    font-weight: 700
+    font-size: 2em
+    color: #FFFFFF
+
+  li
+    a
+      color: white !important
+      text-transform: none
+
+  .sidenav
+    text-align: left
+    padding: 5px 0px 25px 25px
+    width: 100%
+    margin-bottom: 5px
+    left: -40px
+    font-size: 1em
+    font-weight: 500
+
+  .sidenav:after
+    border-top: 10px solid $orangelight-color
+    border-left: 10px solid transparent
+    border-right: 10px solid $orangelight-color
+    border-bottom: 10px solid transparent
+    bottom: -20px
+
+dl.accordion, dl.tabs
+
+
+
+  a.gradientbutton
+    color: white
+    font-size: 1em
+    text-transform: uppercase
+    height: 60px
+    padding-left: 25px
+    padding-right: 25px
+    background: -webkit-linear-gradient($grey-color, $darkgrey-color) !important /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($grey-color, $darkgrey-color) !important /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($grey-color, $darkgrey-color) !important /* For Firefox 3.6 to 15 */
+    background: linear-gradient($grey-color, $darkgrey-color) !important /* Standard syntax (must be last) */
+
+div.searchsettings
+  padding-left: 25px !important
+  padding-right: 25px !important
+
+.arrow
+  position: absolute
+  margin-top: -10px
+  width: 0
+  height: 0
+  border-top: 10px solid transparent
+  border-bottom: 10px solid transparent
+  border-left: 10px solid $pink-color
+
+.photo
+  margin: 15px
+
+.contentrow
+  padding: 10px 0px 10px 0px
+
+  p
+    margin-bottom: 10px
+
+.contactrow
+  padding: 20px 0px 15px 0px
+  border-top: 1px solid black
+
+.vcard
+  padding: 0
+  border: none
+
+i
+  color: black
+  font-style: normal
+  margin-right: 10px
+
+  .icon-text
+    position: relative
+    top: -8px
+
+.icon
+  display: inline-block
+  width: 32px
+  height: 32px
+  fill: #000000
+
+.icon-sallskap, .icon-privat, .icon-motesplatser, .icon-moteslokal, .icon-mingel, .icon-mat, .icon-logi, .icon-foretagsevent
+  fill: #000000

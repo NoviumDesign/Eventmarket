@@ -1,0 +1,40 @@
+header#header.header
+  .upper-nav.clearfix
+    .row
+      .small-12.large-8.columns
+        a(href='/')
+          img.logo(src='/images/logo-white.svg')
+      .large-3.columns
+        form#desktop-search
+          .row.collapse
+            .small-10.columns
+              input(type='text', placeholder='Sök inom eventbranchen')
+            .small-2.columns
+              a.button.postfix(href='#') Sök
+  .nav-wrap
+    .container
+      nav.top-bar(data-topbar='data-topbar')
+        ul.title-area.hide
+          li.name
+            h1
+              a(href='#') My Site
+        a.left-off-canvas-toggle.category-icon.left.hide-for-large-up
+          span
+        section.top-bar-section.show-for-large-up
+          ul.left
+            li
+              a.eventbutton(href='#') Event
+            li
+              a.conferencebutton(href='/conference.html') Konferens
+            li
+              a.ticketbutton(href='/tickets.html') Biljett
+            li.has-dropdown.last
+              a.backstagebutton(href='/backstage.html') Backstage
+              ul.dropdown
+                li
+                  a(href='#') First link in dropdown
+        div.left-small
+          ul
+            li
+              a.right-off-canvas-toggle.menu-icon.right.nav-icon
+                span

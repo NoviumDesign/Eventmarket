@@ -1,0 +1,61 @@
+=transition($value)
+  -webkit-transition: ($value)
+  -moz-transition: ($value)
+  -o-transition: ($value)
+  -ms-transition: ($value)
+  transition: ($value)
+
+.panelrow
+  margin: 0 !important
+
+.panel
+  background-color: white
+  position: relative
+  padding: 0
+  margin: 0 !important
+  margin-top: 10px !important
+  margin-bottom: 10px !important
+  border: 1px solid $lightgrey-color
+
+  h2
+    font-size: 1.6em
+    color: $grey-color
+    margin: 0
+
+  p
+    color: black
+
+  p.location
+    color: $grey-color
+    margin: 0
+
+  .arrowcontainer
+    position: absolute
+    background-color: $grey-color
+    height: 100%
+    width: 25px
+    top: 0
+    right: 0
+
+    .arrow
+      top: 50%
+      left: 8px
+      border-left: 10px solid white !important
+
+  .thumbnail
+    padding: 15px
+    vertical-align: middle
+
+  .thumbnailsmall
+    padding: 5px
+
+  .informationbox
+    padding: 15px
+    padding-right: 35px
+
+    h2
+      line-height: 1.2em
+
+.panel:hover
+  background-color: $lightgrey-color
+  +transition(background-color 250ms linear)

@@ -1,0 +1,313 @@
+// Model id
+div(id="profileside#{_id}").reveal-modal(data-reveal='data-reveal')
+  // Large content
+  section.profileside.show-for-large-up
+    .row
+      .small-12.columns
+        h2.profileheader #{profileHeader}
+    .row
+      .small-3.columns
+        img.profilephoto(src='#{profilePhoto}', alt='')
+        h4 Kontakt
+        ul.companyinformation
+          li World Trade Center
+          li Mikael Karlsson
+          li Citygatan 1
+          li 123 45 Stockholm
+          li Stockholms Län
+          li Sverige
+        ul.companyinformation
+          li.phonenumber 079-324 03 97
+          li.phonenumber.paddingbottom 8-500 12 34
+          li
+            a.button.expand(href='#') Hemsida
+          li
+            a.button.expand(href='#') E-post
+        hr
+        h4 Fakta
+        p Sundbyberg, Stockholm
+        ul.companyinformation
+          li
+            i
+              svg.icon.icon-sallskap(viewbox='0 0 32 32')
+                use(xlink:href='#icon-sallskap')
+              span.icon-text Största sällskap: 450
+          li
+            i
+              svg.icon.icon-motesplatser(viewbox='0 0 32 32')
+                use(xlink:href='#icon-motesplatser')
+              span.icon-text Antal mötesrum: 5
+          li
+            i
+              svg.icon.icon-moteslokal(viewbox='0 0 32 32')
+                use(xlink:href='#icon-moteslokal')
+              span.icon-text Största möteslokal: 450
+          li
+            i
+              svg.icon.icon-mat(viewbox='0 0 32 32')
+                use(xlink:href='#icon-mat')
+              span.icon-text Sittande matgäster
+          li
+            i
+              svg.icon.icon-mingel(viewbox='0 0 32 32')
+                use(xlink:href='#icon-mingel')
+              span.icon-text Mingel/stående: 500
+          li
+            i
+              svg.icon.icon-logi(viewbox='0 0 32 32')
+                use(xlink:href='#icon-logi')
+              span.icon-text Logi, antal bäddar: 45
+        hr
+        h4 Kategorier
+        dl
+          dt
+            | Aktiviteter
+            .listarrow
+          dd Mat & Dryckesaktiviteter
+          dd Motor
+          dt
+            | Event & Möteslokaler
+            .listarrow
+          dd Fest & Bröllopslokaler
+          dd Konferens
+          dt
+            | Konferenslokaler
+            .listarrow
+          dd Konferens
+          dd Fest/event
+          dt
+            | Underhållning
+            .listarrow
+          dd Magi/Trolleri
+          dd Standup
+      .small-9.columns
+        ul.profile-orbit(data-orbit='data-orbit', data-options='bullets:false; timer: false; slide_number: false;')
+          li
+            img(src='http://placehold.it/1440x400', alt='slide 1')
+            .orbit-caption.text-right
+              | Caption One.
+          li
+            img(src='http://placehold.it/1440x400', alt='slide 2')
+            .orbit-caption.text-right
+              | Caption Two.
+          li
+            img(src='http://placehold.it/1440x400', alt='slide 3')
+            .orbit-caption.text-right
+              | Caption Three.
+        dl.tabs.profilenav(data-tab='data-tab')
+          dd.active
+            a.text-center(href='#presentation') Presentation
+          dd
+            a.text-center(href='#extraheader') Extra
+          dd
+            a.text-center(href='#offer') Erbjudanden
+          dd
+            a.text-center(href='#map') Karta
+          dd
+            a.text-center(href='#media') Media
+        .tabs-content
+          #presentation.content.active
+            h2 Om World Trade Center
+            p
+              | World Trade Center Stockgolm strävar efter det perfekta. Det perfekta läget. Det perfekta mötet. Det perfekta serviceutbudet.
+            p
+              | Mitt i Stockholm city, 20 minuter från Arlandas landnings-och startbanor och på tröskeln till storstadens utbud, finns World Trade Center med kontor i toppklass och nyrenoverade effektiva konferenslokaler och eventlokaler. Med personal, service och faciliteter i perfekt anda
+            p
+              | Med ambitionen att vara en av landets ledande arrangör av konferenser och möten erbjuder vi också välkompenerade menyer - dag som kväll. Från Piazzan, den perfekta lunchrestaurangen, till WTC Restaurang som serverar á la carte och affärslunch. För sittningar på tu man hand eller fest för många.
+          #extraheader.content
+            p Second panel content goes here...
+          #offer.content
+            img(src='http://placehold.it/900x300', alt='')
+            p
+              | World Trade Center Stockgolm strävar efter det perfekta. Det perfekta läget. Det perfekta mötet. Det perfekta serviceutbudet.
+            p
+              | Mitt i Stockholm city, 20 minuter från Arlandas landnings-och startbanor och på tröskeln till storstadens utbud, finns World Trade Center med kontor i toppklass och nyrenoverade effektiva konferenslokaler och eventlokaler. Med personal, service och faciliteter i perfekt anda
+            p
+              | Med ambitionen att vara en av landets ledande arrangör av konferenser och möten erbjuder vi också välkompenerade menyer - dag som kväll. Från Piazzan, den perfekta lunchrestaurangen, till WTC Restaurang som serverar á la carte och affärslunch. För sittningar på tu man hand eller fest för många.
+            p
+              | För bokning, ring 079-324 03 97 eller
+              a(href='#') maila oss
+              | .
+            hr
+            img(src='http://placehold.it/900x300', alt='')
+            p
+              | World Trade Center Stockgolm strävar efter det perfekta. Det perfekta läget. Det perfekta mötet. Det perfekta serviceutbudet.
+            p
+              | Mitt i Stockholm city, 20 minuter från Arlandas landnings-och startbanor och på tröskeln till storstadens utbud, finns World Trade Center med kontor i toppklass och nyrenoverade effektiva konferenslokaler och eventlokaler. Med personal, service och faciliteter i perfekt anda
+            p
+              | Med ambitionen att vara en av landets ledande arrangör av konferenser och möten erbjuder vi också välkompenerade menyer - dag som kväll. Från Piazzan, den perfekta lunchrestaurangen, till WTC Restaurang som serverar á la carte och affärslunch. För sittningar på tu man hand eller fest för många.
+            p
+              | För bokning, ring 079-324 03 97 eller
+              a(href='#') maila oss
+              | .
+          #map.content
+            p Fourth panel content goes here...
+          #media.content
+            p Fourth panel content goes here...
+  // Small & Medium content
+  section.hide-for-large-up
+    section.hero
+      .row.main-content
+        .container
+          ul.hero-orbit(data-orbit='data-orbit', data-options='bullets:false; timer: false; slide_number: false;')
+            li
+              img(src='http://placehold.it/1440x400', alt='slide 1')
+            li
+              img(src='http://placehold.it/1440x400', alt='slide 2')
+            li
+              img(src='http://placehold.it/1440x400', alt='slide 3')
+    section.profileside
+      .row
+        .small-12.columns
+          h2 World Trade Center
+      .row
+        .small-6.columns
+          h4 Kontakt
+          ul.companyinformation
+            li World Trade Center
+            li Mikael Karlsson
+            li Citygatan 1
+            li 123 45 Stockholm
+            li Stockholms Län
+            li Sverige
+        .small-6.columns
+          ul.companyinformation
+            li.phonenumber 079-324 03 97
+            li.phonenumber.paddingbottom 8-500 12 34
+            li
+              a.button.expand(href='#') Hemsida
+            li
+              a.button.expand(href='#') E-post
+        .small-12.columns
+          hr
+        .small-12.columns
+          h4 Fakta
+          p Sundbyberg, Stockholm
+          ul.companyinformation
+            li
+              i
+                svg.icon.icon-sallskap(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-sallskap')
+                span.icon-text Största sällskap: 450
+            li
+              i
+                svg.icon.icon-motesplatser(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-motesplatser')
+                span.icon-text Antal mötesrum: 5
+            li
+              i
+                svg.icon.icon-moteslokal(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-moteslokal')
+                span.icon-text Största möteslokal: 450
+            li
+              i
+                svg.icon.icon-mat(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-mat')
+                span.icon-text Sittande matgäster
+            li
+              i
+                svg.icon.icon-mingel(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-mingel')
+                span.icon-text Mingel/stående: 500
+            li
+              i
+                svg.icon.icon-logi(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-logi')
+                span.icon-text Logi, antal bäddar: 45
+      .row
+        .small-12.columns.profileinformation
+          dl.accordion(data-accordion='data-accordion')
+            dd.active
+              a(href='#presentation') Presentation
+              #presentation.content
+                h2 Om World Trade Center
+                p
+                  | World Trade Center Stockgolm strävar efter det perfekta. Det perfekta läget. Det perfekta mötet. Det perfekta serviceutbudet.
+                p
+                  | Mitt i Stockholm city, 20 minuter från Arlandas landnings-och startbanor och på tröskeln till storstadens utbud, finns World Trade Center med kontor i toppklass och nyrenoverade effektiva konferenslokaler och eventlokaler. Med personal, service och faciliteter i perfekt anda
+                p
+                  | Med ambitionen att vara en av landets ledande arrangör av konferenser och möten erbjuder vi också välkompenerade menyer - dag som kväll. Från Piazzan, den perfekta lunchrestaurangen, till WTC Restaurang som serverar á la carte och affärslunch. För sittningar på tu man hand eller fest för många.
+            dd
+              a(href='#extraheader') Extra Rubrik
+              #extraheader.content
+                h2 Om World Trade Center
+                p
+                  | World Trade Center Stockgolm strävar efter det perfekta. Det perfekta läget. Det perfekta mötet. Det perfekta serviceutbudet.
+                p
+                  | Mitt i Stockholm city, 20 minuter från Arlandas landnings-och startbanor och på tröskeln till storstadens utbud, finns World Trade Center med kontor i toppklass och nyrenoverade effektiva konferenslokaler och eventlokaler. Med personal, service och faciliteter i perfekt anda
+                p
+                  | Med ambitionen att vara en av landets ledande arrangör av konferenser och möten erbjuder vi också välkompenerade menyer - dag som kväll. Från Piazzan, den perfekta lunchrestaurangen, till WTC Restaurang som serverar á la carte och affärslunch. För sittningar på tu man hand eller fest för många.
+            dd
+              a(href='#offer') Erbjudanden
+              #offer.content
+                img(src='http://placehold.it/900x300', alt='')
+                p
+                  | World Trade Center Stockgolm strävar efter det perfekta. Det perfekta läget. Det perfekta mötet. Det perfekta serviceutbudet.
+                p
+                  | Mitt i Stockholm city, 20 minuter från Arlandas landnings-och startbanor och på tröskeln till storstadens utbud, finns World Trade Center med kontor i toppklass och nyrenoverade effektiva konferenslokaler och eventlokaler. Med personal, service och faciliteter i perfekt anda
+                p
+                  | Med ambitionen att vara en av landets ledande arrangör av konferenser och möten erbjuder vi också välkompenerade menyer - dag som kväll. Från Piazzan, den perfekta lunchrestaurangen, till WTC Restaurang som serverar á la carte och affärslunch. För sittningar på tu man hand eller fest för många.
+                p
+                  | För bokning, ring 079-324 03 97 eller
+                  a(href='#') maila oss
+                  | .
+                hr
+                img(src='http://placehold.it/900x300', alt='')
+                p
+                  | World Trade Center Stockgolm strävar efter det perfekta. Det perfekta läget. Det perfekta mötet. Det perfekta serviceutbudet.
+                p
+                  | Mitt i Stockholm city, 20 minuter från Arlandas landnings-och startbanor och på tröskeln till storstadens utbud, finns World Trade Center med kontor i toppklass och nyrenoverade effektiva konferenslokaler och eventlokaler. Med personal, service och faciliteter i perfekt anda
+                p
+                  | Med ambitionen att vara en av landets ledande arrangör av konferenser och möten erbjuder vi också välkompenerade menyer - dag som kväll. Från Piazzan, den perfekta lunchrestaurangen, till WTC Restaurang som serverar á la carte och affärslunch. För sittningar på tu man hand eller fest för många.
+                p
+                  | För bokning, ring 079-324 03 97 eller
+                  a(href='#') maila oss
+                  | .
+            dd
+              a(href='#map') Karta
+              #map.content
+                h2 Om World Trade Center
+                p
+                  | World Trade Center Stockgolm strävar efter det perfekta. Det perfekta läget. Det perfekta mötet. Det perfekta serviceutbudet.
+                p
+                  | Mitt i Stockholm city, 20 minuter från Arlandas landnings-och startbanor och på tröskeln till storstadens utbud, finns World Trade Center med kontor i toppklass och nyrenoverade effektiva konferenslokaler och eventlokaler. Med personal, service och faciliteter i perfekt anda
+                p
+                  | Med ambitionen att vara en av landets ledande arrangör av konferenser och möten erbjuder vi också välkompenerade menyer - dag som kväll. Från Piazzan, den perfekta lunchrestaurangen, till WTC Restaurang som serverar á la carte och affärslunch. För sittningar på tu man hand eller fest för många.
+            dd
+              a(href='#media') Media
+              #media.content
+                h2 Om World Trade Center
+                p
+                  | World Trade Center Stockgolm strävar efter det perfekta. Det perfekta läget. Det perfekta mötet. Det perfekta serviceutbudet.
+                p
+                  | Mitt i Stockholm city, 20 minuter från Arlandas landnings-och startbanor och på tröskeln till storstadens utbud, finns World Trade Center med kontor i toppklass och nyrenoverade effektiva konferenslokaler och eventlokaler. Med personal, service och faciliteter i perfekt anda
+                p
+                  | Med ambitionen att vara en av landets ledande arrangör av konferenser och möten erbjuder vi också välkompenerade menyer - dag som kväll. Från Piazzan, den perfekta lunchrestaurangen, till WTC Restaurang som serverar á la carte och affärslunch. För sittningar på tu man hand eller fest för många.
+      .row
+        .small-12.columns
+          h4 Kategorier
+          dl
+            dt
+              | Aktiviteter
+              .listarrow
+            dd Mat & Dryckesaktiviteter
+            dd Motor
+            dt
+              | Event & Möteslokaler
+              .listarrow
+            dd Fest & Bröllopslokaler
+            dd Konferens
+            dt
+              | Konferenslokaler
+              .listarrow
+            dd Konferens
+            dd Fest/event
+            dt
+              | Underhållning
+              .listarrow
+            dd Magi/Trolleri
+            dd Standup
+  a.close-reveal-modal
+    .rightribbon.ribbon.closeribbon.show-for-medium-up × Stäng
+  a.close-reveal-modal
+    .close.hide-for-medium-up ×

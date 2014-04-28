@@ -1,0 +1,63 @@
+=box-shadow($value)
+  -webkit-box-shadow: $value
+  -moz-box-shadow: $value
+  box-shadow: $value
+
+=rotate($value)
+  -webkit-transform: rotate($value)
+  -moz-transform: rotate($value)
+  -o-transform: rotate($value)
+  -ms-transform: rotate($value)
+  transform: rotate($value)
+
+.stack
+  margin: 10px auto 0
+  margin-left: 8%
+  padding: 15px !important
+  position: relative
+  width: 80%
+  +box-shadow(2px 2px 10px black)
+  +rotate(0deg)
+
+  h2
+    font-size: 1em
+    padding-top: 15px
+
+.stack:before, .stack:after
+  content: ""
+  height: 98%
+  position: absolute
+  width: 100%
+  z-index: -1
+
+.stack:before
+  background: #fafafa
+  left: 3px
+  top: 4px
+  +box-shadow(2px 2px 10px black)
+  +rotate(-3deg)
+
+.stack:after
+  background: #f6f6f6
+  right: -3px
+  top: 1px
+  +box-shadow(2px 2px 10px black)
+  +rotate(0deg)
+
+.clearing-container
+  .stack, .stack:before, .stack:after
+    margin: 0px
+    padding: 0
+    position: relative
+    width: 100%
+    +box-shadow(none)
+    +rotate(0deg)
+
+    h2
+      display: none
+
+.clearing-blackout
+  background: rgba(0,0,0,0.9)
+
+.visible-img, .carousel, p.clearing-caption
+  background: none !important

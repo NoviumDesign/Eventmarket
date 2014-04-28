@@ -1,0 +1,37 @@
+div(data-equalizer='data-equalizer')
+  .panel.small-12.medium-6.large-12.columns(data-equalizer-watch='data-equalizer-watch')
+    a(data-reveal-id='profileside#{_id}')
+      .thumbnail.large-2.columns.show-for-large-up
+        img(src='#{profilePhoto}', alt='')
+      .informationbox.small-12.medium-12.large-10.columns
+        img.thumbnailsmall.show-for-medium-only.right(src='#{profilePhoto}', alt='')
+        h2 #{profileHeader}
+        p.location #{companyInformation.location}
+        p.
+          | #{companyInformation.presentation}
+        i
+          svg.icon.icon-sallskap(viewbox='0 0 32 32')
+            use(xlink:href='#icon-sallskap')
+          span.icon-text 450
+        i
+          svg.icon.icon-motesplatser(viewbox='0 0 32 32')
+            use(xlink:href='#icon-motesplatser')
+          span.icon-text 6
+        i
+          svg.icon.icon-moteslokal(viewbox='0 0 32 32')
+            use(xlink:href='#icon-moteslokal')
+          span.icon-text 350
+        i
+          svg.icon.icon-mat(viewbox='0 0 32 32')
+            use(xlink:href='#icon-mat')
+          span.icon-text 450
+        i
+          svg.icon.icon-mingel(viewbox='0 0 32 32')
+            use(xlink:href='#icon-mingel')
+          span.icon-text 450
+        i
+          svg.icon.icon-logi(viewbox='0 0 32 32')
+            use(xlink:href='#icon-logi')
+          span.icon-text 50
+      .arrowcontainer.show-for-medium-up
+        .arrow
