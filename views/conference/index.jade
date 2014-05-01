@@ -1,0 +1,271 @@
+extends ../layout
+
+block content
+  section.hero
+    .row
+      .container
+        ul.hero-orbit(data-orbit='', data-options='bullets:false; timer: false; slide_number: false;')
+          li
+            img(src='http://placehold.it/1440x400', alt='slide 1')
+            h1
+              | Boka
+              br
+              | Biljetter
+            p.show-for-large-up
+              | Sökportal inom event, möte,
+              br
+              | upplevelse och expo
+          li
+            img(src='http://placehold.it/1440x400', alt='slide 2')
+            h1
+              | Hej
+              br
+              | San
+          li
+            img(src='http://placehold.it/1440x400', alt='slide 3')
+  // Mobile filtering
+  .row.hide-for-large-up
+    .small-12.columns.profileinformation
+      dl.accordion(data-accordion='')
+        dd.active
+          a.gradientbutton(href='#presentation') Så här går det till...
+          #presentation.searchsettings.content
+            p
+              | Från start visas alla konferens-anläggningar som finns med på eventmarket. Du filtrerar listan genom att välja enm eller flera kategorier som passar er.
+            p
+              strong Du kan även söka fram
+              | anläggningarna geografiskt och/eller ange antal. Kontakt sker direkt med anläggningen Lycka till!
+        dd
+          a.gradientbutton(href='#extraheader') Välj en eller flera kategorier
+          #extraheader.searchsettings.content
+            form
+              input#dayconference(type='checkbox')
+              label(for='dayconference') Dagkonferens
+              br
+              input#sleepoverconference(type='checkbox')
+              label(for='sleepoverconference') Konferens m. övernattning
+              br
+              input#mansionconference(type='checkbox')
+              label(for='mansionconference') Slott &- Gårdsskonferens
+              br
+              input#congress(type='checkbox')
+              label(for='congress') Kongress
+              br
+              input#lecture(type='checkbox')
+              label(for='lecture') Hörsal/Föreläsning
+              br
+              input#event(type='checkbox')
+              label(for='event') Kvällsfest/Event
+        dd
+          a.gradientbutton(href='#offer') Fyll i önskad ort
+          #offer.searchsettings.content
+            form
+              label
+                | Välj önskad ort
+                select
+                  option Hela Sverige
+                  option Stockholm
+                  option Göteborg
+        dd
+          a.gradientbutton(href='#map') Välj antal
+          #map.searchsettings.content
+            form
+              label
+                | Fyll i antal
+                input#amount(type='text')
+        dd
+          a.gradientbutton(href='#media') Eller...
+          #media.searchsettings.content
+            p
+              | Vill du istället kontakta en extern konferensarrangör? En extern arrangör är ej knuten till en specifik anläåggning. I samråd med kunden ansvarar arrangören för helheten som programupplägg, logistik, bokning av lokal, föreläsare, genomförande & uppföljning.
+            form
+              input#showexternal(type='checkbox')
+              label(for='showexternal') Dölj anläggningar och visa endast externa konferens-arrangörer.
+  // Main content
+  section.main-content.container
+    .row
+      .small-12.medium-12.large-9.columns
+        h1.results Resultat: X träffar
+      .small-12.medium-12.large-9.columns
+        div(data-equalizer='')
+          .panel.small-12.medium-6.large-12.columns(data-equalizer-watch='')
+            a(href='#', data-reveal-id='profileside')
+              .thumbnail.large-2.columns.show-for-large-up
+                img(src='http://placehold.it/150x150', alt='')
+              .informationbox.small-12.medium-12.large-10.columns
+                img.thumbnailsmall.show-for-medium-only.right(src='http://placehold.it/100x100', alt='')
+                h2 Carola
+                p.location Stockholm, Sweden
+                p
+                  | Carola lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ipsum lorem ipsum lorem ipsum lorem ipsum.
+                i
+                  svg.icon.icon-sallskap(viewBox='0 0 32 32')
+                    use(xlink:href='#icon-sallskap')
+                  span.icon-text 450
+                i
+                  svg.icon.icon-motesplatser(viewBox='0 0 32 32')
+                    use(xlink:href='#icon-motesplatser')
+                  span.icon-text 6
+                i
+                  svg.icon.icon-moteslokal(viewBox='0 0 32 32')
+                    use(xlink:href='#icon-moteslokal')
+                  span.icon-text 350
+                i
+                  svg.icon.icon-mat(viewBox='0 0 32 32')
+                    use(xlink:href='#icon-mat')
+                  span.icon-text 450
+                i
+                  svg.icon.icon-mingel(viewBox='0 0 32 32')
+                    use(xlink:href='#icon-mingel')
+                  span.icon-text 450
+                i
+                  svg.icon.icon-logi(viewBox='0 0 32 32')
+                    use(xlink:href='#icon-logi')
+                  span.icon-text 50
+              .arrowcontainer.show-for-medium-up
+                .arrow
+        .row
+          .small-12.columns
+            a.sort.button.dropdown(href='#', data-dropdown='sort') Sortera
+            br
+            ul#sort.f-dropdown(data-dropdown-content='')
+              li
+                a(href='#') Från start
+              li
+                a(href='#') Från start
+              li
+                a(href='#') Från start
+        div(data-equalizer='')
+          .panel.small-12.medium-6.large-12.columns(data-equalizer-watch='')
+            a(href='#', data-reveal-id='profileside')
+              .thumbnail.large-2.columns.show-for-large-up
+                img(src='http://placehold.it/150x150', alt='')
+              .informationbox.small-12.medium-12.large-10.columns
+                img.thumbnailsmall.show-for-medium-only.right(src='http://placehold.it/100x100', alt='')
+                h2 Carola
+                p.location Stockholm, Sweden
+                p
+                  | Carola lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ipsum lorem ipsum lorem ipsum lorem ipsum.
+                i
+                  svg.icon.icon-foretagsevent(viewBox='0 0 32 32')
+                    use(xlink:href='#icon-foretagsevent')
+                  span.icon-text JA
+                i
+                  svg.icon.icon-privat(viewBox='0 0 32 32')
+                    use(xlink:href='#icon-privat')
+                  span.icon-text NEJ
+              .arrowcontainer.show-for-medium-up
+                .arrow
+          .panel.small-12.medium-6.large-12.columns(data-equalizer-watch='')
+            a(href='#', data-reveal-id='profileside')
+              .thumbnail.large-2.columns.show-for-large-up
+                img(src='http://placehold.it/150x150', alt='')
+              .informationbox.small-12.medium-12.large-10.columns
+                img.thumbnailsmall.show-for-medium-only.right(src='http://placehold.it/100x100', alt='')
+                h2 Carola
+                p.location Stockholm, Sweden
+                p
+                  | Carola lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ipsum lorem ipsum lorem ipsum lorem ipsum.
+              .arrowcontainer.show-for-medium-up
+                .arrow
+        div(data-equalizer='')
+          // Halv kolumn (large)
+          .panel.small-12.medium-6.large-6.columns(data-equalizer-watch='')
+            a(href='#', data-reveal-id='profileside')
+              .informationbox.small-12.medium-12.large-12.columns
+                img.thumbnailsmall.show-for-medium-up.right(src='http://placehold.it/100x100', alt='')
+                h2 Carola
+                p.location Stockholm, Sweden
+                p
+                  | Carola lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ipsum lorem ipsum lorem ipsum lorem ipsum.
+              .arrowcontainer.show-for-medium-up
+                .arrow
+          // Halv kolumn (large)
+          .panel.small-12.medium-6.large-6.columns(data-equalizer-watch='')
+            a(href='#', data-reveal-id='profileside')
+              .informationbox.small-12.medium-12.large-12.columns
+                img.thumbnailsmall.show-for-medium-up.right(src='http://placehold.it/100x100', alt='')
+                h2 Carola
+                p.location Stockholm, Sweden
+                p
+                  | Carola lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ipsum lorem ipsum lorem ipsum lorem ipsum.
+                i
+                  svg.icon.icon-foretagsevent(viewBox='0 0 32 32')
+                    use(xlink:href='#icon-foretagsevent')
+                  span.icon-text JA
+                i
+                  svg.icon.icon-privat(viewBox='0 0 32 32')
+                    use(xlink:href='#icon-privat')
+                  span.icon-text NEJ
+              .arrowcontainer.show-for-medium-up
+                .arrow
+        .row
+          .small-12.columns
+            a.hits(href='#')
+              h2 Carola
+              p
+                | Carola lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ipsum lorem ipsum lorem ipsum lorem ipsum.
+        .row
+          .small-12.columns
+            a.hits(href='#')
+              h2 Carola
+              p
+                | Carola lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ipsum lorem ipsum lorem ipsum lorem ipsum.
+      .large-3.columns.show-for-large-up
+        section.sidelist
+          h2 Konferens
+          ul.tutorial
+            li
+              dl.accordion(data-accordion='')
+                dd.conferencetutorial
+                  a(href='#tutorial')
+                    .rightribbon.sidenav.ribbon Så här går det till
+                  #tutorial.content
+                    p
+                      | Från start visas alla konferens-anläggningar som finns med på eventmarket. Du filtrerar listan genom att välja enm eller flera kategorier som passar er.
+                      br
+                      strong Du kan även söka fram
+                      | anläggningarna geografiskt och/eller ange antal. Kontakt sker direkt med anläggningen Lycka till!
+            li
+              .rightribbon.ribbon.sidenav Kategori
+              form.conferenceform
+                h5 Välj en eller flera kategorier
+                input#dayconference(type='checkbox')
+                label(for='dayconference') Dagkonferens
+                br
+                input#sleepoverconference(type='checkbox')
+                label(for='sleepoverconference') Konferens m. övernattning
+                br
+                input#mansionconference(type='checkbox')
+                label(for='mansionconference') Slott &- Gårdsskonferens
+                br
+                input#congress(type='checkbox')
+                label(for='congress') Kongress
+                br
+                input#lecture(type='checkbox')
+                label(for='lecture') Hörsal/Föreläsning
+                br
+                input#event(type='checkbox')
+                label(for='event') Kvällsfest/Event
+            li
+              .rightribbon.ribbon.sidenav Ort
+              form.conferenceform
+                label
+                  | Fyll i önskad ort
+                  input#position(type='text')
+            li
+              .rightribbon.ribbon.sidenav Antal
+              form.conferenceform
+                label
+                  | Fyll i antal
+                  input#position(type='text')
+            li
+              .rightribbon.ribbon.sidenav Eller...
+              .row
+                .large-12.columns
+                  p.externalconference
+                    | Vill du istället kontakta en extern konferensarrangör? En extern arrangör är ej knuten till en specifik anläåggning. I samråd med kunden ansvarar arrangören för helheten som programupplägg, logistik, bokning av lokal, föreläsare, genomförande & uppföljning.
+                  form.conferenceform
+                    input#showexternal(type='radio')
+                    label(for='showexternal') Dölj anläggningar och visa endast externa konferens-arrangörer.
+  // Main content end

@@ -1,6 +1,6 @@
 # Eventmarket
 
-Based on Jason Krol's boilerplate:
+Grunt file based on Jason Krol's boilerplate:
 http://kroltech.com/2013/12/boilerplate-web-app-using-backbone-js-expressjs-node-js-mongodb/
 
 ## Requirements

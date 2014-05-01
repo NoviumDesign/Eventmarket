@@ -2,12 +2,8 @@ extends ../layout
   
 block content
   h1 Login
-  form#login(method="post", action="/dologin")
+  form#login(method="post", action="/auth/local")
     ul
-      li
-        span Logga in med google
-        br
-        a(href="/auth/google") Sign In with Google
       li
         span Användarnamn
         br
@@ -15,6 +11,6 @@ block content
       li
         span Lösenord
         br
-        input(type="password" name="passw")
+        input(type="password" name="password")
       li
         button(type="submit") Logga in

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId;
+    ObjectId = Schema.ObjectId,
+    bcrypt = require('bcrypt');
 
 var Event = new Schema({
     profileHeader:  { type: String },
@@ -42,26 +43,22 @@ var User = new Schema({
     created : String,
     status  : String,
     access  : String,
-    mainEmail : String,
-    profile : {
-        provider    : String,
-        id          : String,
-        displayName : String,
-        name : {
-            familyName : String,
-            givenName  : String,
-            middleName : String
-        },
-        emails : [{
-            value : String
-        }],
-        photos : [{
-            value : String
-        }]
-    }
-
+    username: String,
+    password: String,
+    mainEmail : String
 });
+//console.log(User);
 
+/**User.methods.validPassword = function (password, cb) {
+  bcrypt.compare(password, this.password, function(err, res) {
+    if (res == true) {
+      console.log('Was correct!');
+    } else {
+      console.log('')
+    }
+  });
+  
+}*/
 
 module.exports = {
     Event: mongoose.model('Event', Event),

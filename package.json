@@ -21,7 +21,8 @@
     "handlebars-runtime": "~1.0.12",
     "MD5": "~1.2.0",
     "passport": "0.2.0",
-    "passport-google": "*"
+    "passport-local": "1.0.0",
+    "bcrypt": "0.7.8"
   },
   "devDependencies": {
     "bower": "~1.2.8",

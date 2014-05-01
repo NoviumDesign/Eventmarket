@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     models = require('./models'),
+    bcrypt = require('bcrypt'),
     md5 = require('MD5');
 
 var pres1 = 'Att vara artist är inte bara ett jobb för Labero, det är en livslång passion. Hans livsfilosofi är att förverkliga sina drömmar. “Jag tror att som artist kan man aldrig bli helt tillfredsställd, det finns alltid någonting som kan bli bättre, det finns alltid rum för utveckling. Jag tror på att alltid förbereda sig för nästa steg. ”Joe Labero är idag en av världens största magiker. Han är hjärnan bakom några av de mest häpnadsväckande illusionerna du någonsin kommer att se! Joe Labero startade sin karriär redan som tolvåring då han fick en trollerilåda av sina föräldrar. Hans magiska shower blev ett populärt inslag på barnkalas och skoldanser. 1978 kom Joe, som då hade artistnamnet Magino, med i organisationen Svensk Magisk Cirkel. När han uppträdde första gången i Svenska juniormästerskapen 1980, så vann han. Ett år senare vann han en talangjakt och fick som pris att åka till USA och underhålla vid den svensk-amerikanska nationaldagen. Detta följdes upp med hans första tv-debut, som leddes av den kända cirkusdirektören Trolle Rhodin. Joe jobbade hårt och blev anlitad som underhållare av flera stora svenska företag. Han blev även anlitad utomlands och arbetade på flera olika platser runt om i världen, bland annat framförde han13 gala-shower för Magic Hands i Tyskland, underhöll på Sunwing-hotellen på Kanarieöarna och på lyxkryssaren M/S Funchal. Mellan varven höll han även i en trolleriskola på TV2 som det totalt sändes 19 program av. Det verkligt stora genombrottet kom när Joe Labero 1991 satte upp ”A Magic Night” på Berns Salonger i Stockholm. Denna produktion lovordades i pressen och succén var ett faktum. Under de senaste åren har han gjort mer än 200 shower i sitt nya hemland Australien. Under hösten 2013 kommer han göra en exklusiv Sverige-turné med namnet: ”20 år senare”. Utöver sin otroliga popularitet har Labero blivit ärad av sina magikerkollegor med det prestigefyllda Merlin Award, jämförbart med en Oscar. Priset fick han med motiveringen: ” for continuing achievement in the art of magic”.';
@@ -72,6 +73,25 @@ module.exports = {
                     console.log(events);
                 });
             }
+        });
+        
+        models.User.find({}, function(err, users) {
+          if (users.length === 0) {
+            console.log('no users found, seeding...');
+            var newUser = new models.User({
+              created : new Date().getTime(),
+              status  : 'a',
+              access  : 'sometoken',
+              username: 'matte.f@gmail.com',
+              mainEmail : 'matte.f@gmail.com'
+            });
+            bcrypt.genSalt(10, function(err, salt) {
+                bcrypt.hash("password", salt, function(err, hash) {
+                    newUser.password = hash;
+                    newUser.save(function(err, user) {});
+                });
+            });
+          }
         });
 
         models.Contact.find({}, function(err, contacts) {
