@@ -1,5 +1,6 @@
 var home = require('../controllers/home'),
     contacts = require('../controllers/contacts'),
+    tickets = require('../controllers/tickets'),
     api = require('../controllers/api'),
     hitlist = require('../controllers/hitlist'),
     conference = require('../controllers/conference'),
@@ -13,12 +14,20 @@ module.exports.initialize = function(app) {
     app.get('/annonsera', home.advertising);
     app.get('/annonsera', home.advertising);
     app.get('/kontakta-oss', home.contact);
-    
+    app.get('/redaktionen', home.editor);
+    app.get('/tips', home.tips);
+    app.get('/bildarkiv', home.photoarchive);
+    app.get('/erbjudanden', home.offers);
+
     // Event pages
     app.get('/event', hitlist.index);
     
     // Conference pages
     app.get('/konferens', conference.index);
+
+    // Ticket pages
+    app.get('/biljett', tickets.index);
+    app.get('/biljett/teater-underhallning', tickets.theaterentertainment);
 
     // API 
     app.get('/api/events', api.events);
@@ -58,6 +67,7 @@ module.exports.initialize = function(app) {
     });
 
     app.get("/backstage/start", backstage.start);
+    app.get("/backstage/medlems-tips", backstage.membertips);
 
     
     

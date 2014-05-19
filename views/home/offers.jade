@@ -1,0 +1,54 @@
+extends ../layout
+
+block content
+  section.hero
+  .row
+    .container
+      ul.hero-orbit(data-orbit='', data-options='bullets:false; timer: false; slide_number: false;')
+        li
+          img(src='http://placehold.it/1440x400', alt='slide 1')
+          h1 Erbjudanden
+        li
+          img(src='http://placehold.it/1440x400', alt='slide 2')
+          h1
+            | Hej
+            br
+            | San
+        li
+          img(src='http://placehold.it/1440x400', alt='slide 3')
+  // Main content
+  section.main-content.container
+    .row
+      .small-12.columns
+        a.sort.button.dropdown(href='#', data-dropdown='sort') Sortera
+        br
+        ul#sort.f-dropdown(data-dropdown-content='')
+          li
+            a(href='#') Från start
+          li
+            a(href='#') Senast inlagda
+          li
+            a(href='#') Mest visade
+    .row
+      .large-12.columns
+        ul.small-block-grid-1.medium-block-grid-3.large-block-grid-4
+          li
+            a.th.blocklink(href='#')
+              img(src='http://placehold.it/700x700')
+              .description
+                p Eventmarket.com erbjuder enkla sökmotorer.
+          li
+            a.th.blocklink(href='#')
+              img(src='http://placehold.it/700x700')
+              .description
+                p Eventmarket.com erbjuder enkla sökmotorer.
+          li
+            a.th.blocklink(href='#')
+              img(src='http://placehold.it/700x700')
+              .description
+                p Eventmarket.com erbjuder enkla sökmotorer.
+          li
+            a.th.blocklink(href='#')
+              img(src='http://placehold.it/700x700')
+              .description
+                p Eventmarket.com erbjuder enkla sökmotorer.

@@ -1,0 +1,96 @@
+extends ../layout
+
+block content
+  .row.hide-for-large-up
+  .small-12.columns.profileinformation
+    dl.accordion
+      dd
+        a.gradientbutton(href='/backstage/start') Backstage Startsida
+      dd.active
+        a.gradientbutton(href='/backstage/medlems-tips') Medlems-Tips
+  // Main content
+  section.main-content.container
+    .row
+      #listaside.large-3.columns.show-for-large-up
+        section.sidelist
+          h2 Event
+          ul.side-nav.event
+            li
+              .ribbon.sidenav
+                a(href='/backstage/start') Backstage Startsida
+            li
+              .ribbon.sidenav
+                a(href='/backstage/medlems-tips') Medlems-Tips
+            li
+              .ribbon.sidenav
+                a(href='#') Öppna Förfrågningar
+            li
+              .ribbon.sidenav
+                a(href='#') Exponering
+            li
+              .ribbon.sidenav
+                a(href='#') Uppdatera / Logga In
+            li
+              .ribbon.sidenav
+                a(href='#') Statistik
+            li
+              .ribbon.sidenav
+                a(href='#') Medlemsuppgifter
+      .small-12.medium-12.large-9.columns
+        h1 Medlemstips
+        p
+          | Här samlar vi bra tips för dig som är medlem på eventmarket. Tips på extra exponering, kampanjer, mässor och annat värdefullt för dig som är aktör inom event, mötes & upplevelse industrin.
+        .panel.small-12.columns
+          a(href='#')
+            .headercontainer.small-12.columns
+              h5 Påsk-lotteriet efterlyser vinster
+          .informationbox.small-12.medium-12.large-12.columns
+            a(href='#')
+              img.thumbnail.right(src='http://placehold.it/80x80')
+              p
+                | Påsken närmar sig! Efter julens succé med Julklapps-lotteri i Eventmarkets online Julkalender, så känner vi att det är dags igen! Denna gång kommer vi lotta ut fina priser...
+            a(href='#') » Läs mer
+        .panel.small-12.columns
+          a(href='#')
+            .headercontainer.small-12.columns
+              h5 Boka ett partnermail
+          .informationbox.small-12.medium-12.large-12.columns
+            a(href='#')
+              p Dur når drygt 20.000 mottagare med 100% fokus på endast ditt egna budskap...
+            a(href='#') » Läs mer
+        .panel.small-12.columns
+          a(href='#')
+            .headercontainer.small-12.columns
+              h5 Tipsa oss om nyheter
+          .informationbox.small-12.medium-12.large-12.columns
+            a(href='#')
+              img.thumbnail.right(src='http://placehold.it/80x80')
+              p
+                | Tipsa oss om era nyheter och händelser. Inläggen visas i Redaktionen och visas gratis i en månad. Bra exponering!
+            a(href='#') » Läs mer
+        .panel.small-12.columns
+          a(href='#')
+            .headercontainer.small-12.columns
+              h5 Gilla oss på facebook
+          .informationbox.small-12.medium-12.large-12.columns
+            a(href='#')
+              img.thumbnail.right(src='http://placehold.it/80x80')
+              p
+                | Följ oss gärna på vår facebooksida och glöm inte att gilla oss! På vår facebooksida kan du delta i tävlingar, utlottningar och se aktuella händelser.
+            a(href='#') » Läs mer
+  // Main content end
+  .row.hide-for-large-up
+    .small-12.columns.profileinformation
+      dl.accordion
+        dd
+          a.gradientbutton(href='#') Öppna Förfrågningar
+        dd
+          a.gradientbutton(href='#') Exponering
+        dd
+          a.gradientbutton(href='#') Uppdatera / Logga In
+        dd
+          a.gradientbutton(href='#') Statistik
+        dd
+          a.gradientbutton(href='#') Medlemstuppgifter
+    .logout.small-12.columns
+      a.logout(href='#') » Logga ut

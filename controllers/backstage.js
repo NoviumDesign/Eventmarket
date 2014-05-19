@@ -10,7 +10,9 @@
 
 module.exports = {
     start: function(req, res) {
-        console.log('Start rendering backstage start page...');
         res.render('backstage/start', {pageClass: 'backstage', title: 'Start'});
-    }
+    },
+    membertips: function(req, res) {
+        res.render('backstage/membertips', {pageClass: 'membertips', title: 'Medlems-tips'});
+    },
 };

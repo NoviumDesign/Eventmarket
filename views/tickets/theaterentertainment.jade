@@ -1,0 +1,289 @@
+extends ../layout
+
+block content
+  .row.hide-for-large-up
+  .small-12.columns.profileinformation
+    dl.accordion
+      dd
+        a.gradientbutton(href='/biljett') Biljett Startsida
+      dd
+        a.gradientbutton(href='#') Musik
+      dd
+        a.gradientbutton(href='#') Sport
+      dd.active
+        a.gradientbutton(href='/biljett/teater-underhallning') Teater & underhållning
+  // Main content
+  section.main-content.container
+    .row
+      #listaside.large-3.columns.show-for-large-up
+        section.sidelist
+          ul.side-nav.event
+            li
+              .ribbon.sidenav
+                a(href='/biljett') Biljett Startsida
+            li
+              .ribbon.sidenav
+                a(href='#') Musik
+            li
+              .ribbon.sidenav
+                a(href='#') Sport
+            li
+              .ribbon.sidenav
+                a(href='/biljett/teater-underhallning') Teater & Underhållning
+            li
+              .ribbon.sidenav
+                a(href='#') Familj
+            li
+              .ribbon.sidenav
+                a(href='#') Festivaler
+            li
+              .ribbon.sidenav
+                a(href='#') Mässor & Utställningar
+      .small-12.large-9.columns
+        form#ticket-search
+          .row.collapse
+            .small-10.columns
+              input(type='text')
+            .small-2.columns
+              a.button.postfix.ticketsearch(href='#') Sök
+      .small-12.medium-12.large-9.columns
+        .filteringbar.row
+          .small-7.medium-3.large-6.columns
+            h5
+              | Filtrera:
+              br.hide-for-medium-up
+              | Teater & Underhållning
+          .buttoncontainer.small-5.medium-3.large-2.columns.text-right
+            a.sort.button.dropdown(href='#', data-dropdown='sort') Teater...
+            br
+            ul#sort.f-dropdown(data-dropdown-content='')
+              li
+                a(href='#') Från start
+              li
+                a(href='#') Från start
+              li
+                a(href='#') Från start
+          .buttoncontainer.small-5.medium-3.large-2.columns.text-right
+            a.sort.button.dropdown(href='#', data-dropdown='date') Datum
+            br
+            ul#date.f-dropdown(data-dropdown-content='')
+              li
+                a(href='#') Från start
+              li
+                a(href='#') Från start
+              li
+                a(href='#') Från start
+          .buttoncontainer.small-5.medium-3.large-2.columns.text-right
+            a.sort.button.dropdown(href='#', data-dropdown='location') Orter
+            br
+            ul#location.f-dropdown(data-dropdown-content='')
+              li
+                a(href='#') Från start
+              li
+                a(href='#') Från start
+              li
+                a(href='#') Från start
+      .small-12.medium-12.large-9.columns
+        table
+          thead
+            tr
+              th(width='200') Datum
+              th Evenemang
+              th(width='350') Plats
+              th(width='100') Läs mer / Boka
+          tbody
+            tr
+              td
+                .row
+                  .small-12.medium-4.columns
+                    h3 23
+                  .small-12.medium-4.columns
+                    b
+                      | Okt
+                      br
+                      | 2013
+                  .small-12.medium-4.columns
+                    b
+                      | Ons
+                      br
+                      | 19:00
+              td
+                .row
+                  .small-12.columns
+                    b Ladies Night
+              td
+                .row
+                  .small-12.columns
+                    b Aros Congress Center
+                    br
+                    span.uc Västerås
+                    br
+                    | Sweden
+              td
+                .row
+                  .small-12.columns
+                    a(href='#', data-reveal-id='ticketModal')
+                      .arrow
+            tr
+              td
+                .row
+                  .small-12.medium-4.columns
+                    h3 23
+                  .small-12.medium-4.columns
+                    b
+                      | Okt
+                      br
+                      | 2013
+                  .small-12.medium-4.columns
+                    b
+                      | Ons
+                      br
+                      | 19:00
+                  .moredates.small-12.columns.text-center
+                    | Fler datum finns
+              td
+                .row
+                  .small-12.columns
+                    b Ladies Night
+              td
+                .row
+                  .small-12.columns
+                    b Aros Congress Center
+                    br
+                    span.uc Västerås
+                    br
+                    | Sweden
+              td
+                .row
+                  .small-12.columns
+                    a(href='#', data-reveal-id='ticketModal')
+                      .arrow
+            tr
+              td
+                .row
+                  .small-12.medium-4.columns
+                    h3 23
+                  .small-12.medium-4.columns
+                    b
+                      | Okt
+                      br
+                      | 2013
+                  .small-12.medium-4.columns
+                    b
+                      | Ons
+                      br
+                      | 19:00
+              td
+                .row
+                  .small-12.columns
+                    b Ladies Night
+              td
+                .row
+                  .small-12.columns
+                    b Aros Congress Center
+                    br
+                    span.uc Västerås
+                    br
+                    | Sweden
+              td
+                .row
+                  .small-12.columns
+                    a(href='#', data-reveal-id='ticketModal')
+                      .arrow
+            tr
+              td
+                .row
+                  .small-12.medium-4.columns
+                    h3 23
+                  .small-12.medium-4.columns
+                    b
+                      | Okt
+                      br
+                      | 2013
+                  .small-12.medium-4.columns
+                    b
+                      | Ons
+                      br
+                      | 19:00
+              td
+                .row
+                  .small-12.columns
+                    b Ladies Night
+              td
+                .row
+                  .small-12.columns
+                    b Aros Congress Center
+                    br
+                    span.uc Västerås
+                    br
+                    | Sweden
+              td
+                .row
+                  .small-12.columns
+                    a(href='#', data-reveal-id='ticketModal')
+                      .arrow
+            tr
+              td
+                .row
+                  .small-12.medium-4.columns
+                    h3 23
+                  .small-12.medium-4.columns
+                    b
+                      | Okt
+                      br
+                      | 2013
+                  .small-12.medium-4.columns
+                    b
+                      | Ons
+                      br
+                      | 19:00
+              td
+                .row
+                  .small-12.columns
+                    b Ladies Night
+              td
+                .row
+                  .small-12.columns
+                    b Aros Congress Center
+                    br
+                    span.uc Västerås
+                    br
+                    | Sweden
+              td
+                .row
+                  .small-12.columns
+                    a(href='#', data-reveal-id='ticketModal')
+                      .arrow
+            tr
+              td
+                .row
+                  .small-12.medium-4.columns
+                    h3 23
+                  .small-12.medium-4.columns
+                    b
+                      | Okt
+                      br
+                      | 2013
+                  .small-12.medium-4.columns
+                    b
+                      | Ons
+                      br
+                      | 19:00
+              td
+                .row
+                  .small-12.columns
+                    b Ladies Night
+              td
+                .row
+                  .small-12.columns
+                    b Aros Congress Center
+                    br
+                    span.uc Västerås
+                    br
+                    | Sweden
+              td
+                .row
+                  .small-12.columns
+                    a(href='#', data-reveal-id='ticketModal')
+                      .arrow
+  include ../partials/ticketmodal

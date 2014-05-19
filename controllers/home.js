@@ -14,5 +14,17 @@ module.exports = {
     },
     contact: function (req, res) {
       res.render('home/contact', {pageClass:'contact', title: 'Kontakta Oss'});
+    },
+    editor: function (req, res) {
+      res.render('home/editor', {pageClass:'editor', title: 'Redaktionen'});
+    },
+    tips: function (req, res) {
+      res.render('home/tips', {pageClass:'tips', title: 'Tips & Råd'});
+    },
+    photoarchive: function (req, res) {
+      res.render('home/photoarchive', {pageClass:'photoarchive', title: 'Bildarkiv'});
+    },
+    offers: function (req, res) {
+      res.render('home/offers', {pageClass:'offers', title: 'Erbjudanden'});
     }
 };

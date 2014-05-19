@@ -1,0 +1,91 @@
+extends ../layout
+
+block content
+  .row.hide-for-large-up
+  .small-12.columns.profileinformation
+    dl.accordion
+      dd.active
+        a.gradientbutton(href='/biljett') Biljett Startsida
+  // Main content
+  section.main-content.container
+    .row
+      #listaside.large-3.columns.show-for-large-up
+        section.sidelist
+          ul.side-nav.event
+            li
+              .ribbon.sidenav
+                a(href='/biljett') Biljett Startsida
+            li
+              .ribbon.sidenav
+                a(href='#') Musik
+            li
+              .ribbon.sidenav
+                a(href='#') Sport
+            li
+              .ribbon.sidenav
+                a(href='/biljett/teater-underhallning') Teater & Underhållning
+            li
+              .ribbon.sidenav
+                a(href='#') Familj
+            li
+              .ribbon.sidenav
+                a(href='#') Festivaler
+            li
+              .ribbon.sidenav
+                a(href='#') Mässor & Utställningar
+      .small-12.large-9.columns
+        form#ticket-search
+          .row.collapse
+            .small-10.columns
+              input(type='text')
+            .small-2.columns
+              a.button.postfix.ticketsearch(href='#') Sök
+      .small-12.medium-12.large-9.columns
+        h2 Välkommen till Eventmarket Biljett
+        p.tagline
+          | I samarbete med Ticnet presenterar vi här 1000-tals bokningsbara nöjen och evenemang. Förutom Ticnets biljetter hittar du även andra event som eventmarkets medlemmar ebjuder. Sök i sökrutan eller välj kategori för att lista aktuella nöjen.
+        ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3
+          li
+            a.th.blocklink(href='#')
+              .title
+                h2 Event
+              img(src='http://placehold.it/700x700')
+              .description
+                p Eventmarket.com erbjuder enkla sökmotorer.
+          li
+            a.th.blocklink(href='#')
+              .title.conference
+                h2 Konferens
+              img(src='http://placehold.it/700x700')
+              .description
+                p Eventmarket.com erbjuder enkla sökmotorer.
+          li
+            a.th.blocklink(href='#')
+              .title.ticket
+                h2 Biljett
+              img(src='http://placehold.it/700x700')
+              .description
+                p Eventmarket.com erbjuder enkla sökmotorer.
+          li
+            a.th.blocklink(href='#')
+              .title.backstage
+                h2 Backstage
+              img(src='http://placehold.it/700x700')
+              .description
+                p Eventmarket.com erbjuder enkla sökmotorer.
+  // Main content end
+  .row.hide-for-large-up
+    .small-12.columns.profileinformation
+      dl.accordion
+        dd
+          a.gradientbutton(href='#') Musik
+        dd
+          a.gradientbutton(href='#') Sport
+        dd
+          a.gradientbutton(href='biljett/teater-underhallning') Teater & underhållning
+        dd
+          a.gradientbutton(href='#') Familj
+        dd
+          a.gradientbutton(href='#') Festivaler
+        dd
+          a.gradientbutton(href='#') Mässor & utställningar
