@@ -74,6 +74,28 @@ views.Events = Backbone.View.extend({
 $(function ()
 {
     // Pages
+    // Admin-list
+    if ($('body').hasClass('admin-list')) {
+      $('#list-table').dynatable({
+        dataset: {
+          ajax: true,
+          ajaxUrl: '/api/prstpage',
+          ajaxOnLoad: true,
+          records: []
+        },
+        writers: {
+          _cellWriter: function (index, rowData) {
+            console.log(rowData[index.id]);
+            if (index.id == "Title") {
+              return '<td><a href="/admin/prstpage/id/'+rowData['PageICID']+'">'+rowData[index.id]+'</a></td>';
+            } else {
+              return '<td>'+rowData[index.id]+'</td>';
+            }
+          }
+        }
+      });
+    }
+    // Hitlist / Events
     if ($('body').hasClass('hitlist'))
     {
         var call = function(params) {
@@ -115,6 +137,5 @@ $(function ()
         $('[name="filtering"], input[type="checkbox"]').on('change', function() {
             call(getParams());   
         });
-        
     }
 });

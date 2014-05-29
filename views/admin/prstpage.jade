@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  section.main-content.container
+    .row
+      .small-2.columns
+        ul
+          li
+            a(href="/admin") Admin start
+          li
+            a(href="/admin/prstpage") PRSTPage
+      .small-10.columns
+        table#list-table
+          thead
+            th(data-dynatable-column="Title") Title
+            //th(data-dynatable-column="OwnerID") Owner Id
+            th(data-dynatable-column="Visible") Visible
+            th(data-dynatable-column="CreatedDate") Created
+            th(data-dynatable-column="TextField1") Name
+            th(data-dynatable-column="Email") Email
+          tbody

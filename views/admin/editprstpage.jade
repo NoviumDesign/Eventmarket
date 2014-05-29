@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  section.main-content.container
+    .row
+      .small-2.columns
+        ul
+          li
+            a(href="/admin") Admin start
+          li
+            a(href="/admin/prstpage") PRSTPage
+      .small-10.columns
+        form(method="post")
+          input.button.small(type="submit", value="Save")
+          div.row
+            - for (var key in locals.page) {
+              div.large-6.columns
+                label
+                  | #{key}
+                  - if (key == '_id') {
+                    br
+                    span #{locals.page[key]}
+                    input(type="hidden", name="#{key}", value="#{locals.page[key]}")
+                  - } else {
+                    textarea(name="#{key}") #{locals.page[key]}
+                  - }
+
+            - }
+          input.button.small(type="submit", value="Save")
+        //#{locals.page._id}
+        

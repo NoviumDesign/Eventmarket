@@ -91,6 +91,7 @@ module.exports = function(grunt) {
                 'client/requires/underscore/js/underscore.js',
                 'client/requires/backbone/js/backbone.js',
                 'client/requires/foundation/foundation.js',
+                'client/requires/dynatable/jquery.dynatable.js',
                 'client/src/isotope.pkgd.min.js', 
                 'client/src/stickySidebar.js',
                 'client/src/runtime.js',

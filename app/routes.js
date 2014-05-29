@@ -5,6 +5,7 @@ var home = require('../controllers/home'),
     hitlist = require('../controllers/hitlist'),
     conference = require('../controllers/conference'),
     backstage = require('../controllers/backstage'),
+    admin = require('../controllers/admin'),
     passport = require('passport');
 
 module.exports.initialize = function(app) {
@@ -29,8 +30,15 @@ module.exports.initialize = function(app) {
     app.get('/biljett', tickets.index);
     app.get('/biljett/teater-underhallning', tickets.theaterentertainment);
 
+    // Admin pages 
+    // @todo Protection
+    app.get('/admin', admin.start);
+    app.get('/admin/prstpage', admin.prstpage);
+    app.get('/admin/prstpage/id/:PageICID', admin.editprstpage);
+
     // API 
     app.get('/api/events', api.events);
+    app.get('/api/prstpage', api.prstpage);
 
 
     // Protected pages
