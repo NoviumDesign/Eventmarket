@@ -47,6 +47,42 @@ var User = new Schema({
     password: String,
     mainEmail : String
 });
+var Person = new Schema({
+  PersonID : String,
+  PersonCreated : String,
+  CultureID : String,
+  Hidden : String,
+  LastUpdated : String,
+  NewAutoReg : String,
+  FirstName : String,
+  LastName : String,
+  PersonalTitle : String,
+  Address1 : String,
+  Address2 : String,
+  Zipcode : String,
+  City : String,
+  Phone : String,
+  Fax : String,
+  Mobile : String,
+  Email : String,
+  Url : String,
+  Attribute1 : String,
+  Attribute2 : String,
+  Attribute3 : String,
+  CountryID : String,
+  RegionID : String,
+  Notes : String,
+  IDNumber : String,
+  BoolField1 : String,
+  InfoText1 : String,
+  InfoText2 : String,
+  InfoText3 : String,
+  IntField1 : String,
+  IntField2 : String,
+  BoolField2 : String,
+  NotificationTypePrstRqstOpen : String,
+  NotificationTypePrstRqstDirect : String
+}, { collection: 'Person' });
 
 var PRSTPage = new Schema({
   PageICID : String,
@@ -153,5 +189,6 @@ module.exports = {
     Event: mongoose.model('Event', Event),
     Contact: mongoose.model('Contact', Contact),
     User: mongoose.model('User', User),
-    PRSTPage: mongoose.model('PRSTPage', PRSTPage)
+    PRSTPage: mongoose.model('PRSTPage', PRSTPage),
+    Person: mongoose.model('Person', Person)
 };

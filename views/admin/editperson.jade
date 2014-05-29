@@ -9,19 +9,16 @@ block content
         form(method="post")
           input.button.small(type="submit", value="Save")
           div.row
-            - for (var key in locals.page) {
+            - for (var key in locals.person) {
               div.large-6.columns
                 label
                   | #{key}
                   - if (key == '_id') {
                     br
-                    span #{locals.page[key]}
-                    input(type="hidden", name="#{key}", value="#{locals.page[key]}")
-                  - } else if (key == 'OwnerID') {
-                    br
-                    a(href="/admin/person/id/#{locals.page[key]}") #{locals.page[key]}
+                    span #{locals.person[key]}
+                    input(type="hidden", name="#{key}", value="#{locals.person[key]}")
                   - } else {
-                    textarea(name="#{key}") #{locals.page[key]}
+                    textarea(name="#{key}") #{locals.person[key]}
                   - }
 
             - }

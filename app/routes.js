@@ -35,10 +35,13 @@ module.exports.initialize = function(app) {
     app.get('/admin', admin.start);
     app.get('/admin/prstpage', admin.prstpage);
     app.get('/admin/prstpage/id/:PageICID', admin.editprstpage);
-
+    app.get('/admin/person', admin.person);
+    app.get('/admin/person/id/:PersonID', admin.editperson);
+    
     // API 
     app.get('/api/events', api.events);
     app.get('/api/prstpage', api.prstpage);
+    app.get('/api/person', api.person);
 
 
     // Protected pages

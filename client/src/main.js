@@ -74,7 +74,7 @@ views.Events = Backbone.View.extend({
 $(function ()
 {
     // Pages
-    // Admin-list
+    // Admin-PRSTPage
     if ($('body').hasClass('admin-list')) {
       $('#list-table').dynatable({
         dataset: {
@@ -88,6 +88,27 @@ $(function ()
             console.log(rowData[index.id]);
             if (index.id == "Title") {
               return '<td><a href="/admin/prstpage/id/'+rowData['PageICID']+'">'+rowData[index.id]+'</a></td>';
+            } else {
+              return '<td>'+rowData[index.id]+'</td>';
+            }
+          }
+        }
+      });
+    }
+    // Person
+    if ($('body').hasClass('admin-person')) {
+      $('#list-table').dynatable({
+        dataset: {
+          ajax: true,
+          ajaxUrl: '/api/person',
+          ajaxOnLoad: true,
+          records: []
+        },
+        writers: {
+          _cellWriter: function (index, rowData) {
+            console.log(rowData[index.id]);
+            if (index.id == "FirstName" || index.id == "LastName") {
+              return '<td><a href="/admin/person/id/'+rowData['PersonID']+'">'+rowData[index.id]+'</a></td>';
             } else {
               return '<td>'+rowData[index.id]+'</td>';
             }
