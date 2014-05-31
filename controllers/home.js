@@ -1,11 +1,13 @@
 module.exports = {
     index: function(req, res) {
-        res.render('home/home', {pageClass: 'home', title: 'Home'});
+      res.render('home/home', {pageClass: 'home', title: 'Home'});
     },
     login: function(req, res) {
-        res.render('home/login', {pageClass:'login', title: 'Logga in'});
+      res.render('home/login', {pageClass:'login', title: 'Logga in'});
     },
-
+    admlogin: function(req, res) {
+      res.render('home/admlogin', {pageClass:'login', title: 'Logga in'});
+    },
     about: function(req, res) {
       res.render('home/about', {pageClass:'about', title: 'Om Eventmarket'});
     },

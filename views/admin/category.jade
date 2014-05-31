@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  section.main-content.container
+    .row
+      .small-2.columns
+        include ../partials/adminmenu
+      .small-10.columns
+        table#list-categories
+          thead
+            th(data-dynatable-column="Name") Name
+            th(data-dynatable-column="DisplayName") DisplayName
+            th(data-dynatable-column="EnableSubCats") Subcat
+            th(data-dynatable-column="PublicCategory") Publ.
+            th(data-dynatable-column="Visible") Visible
+            th(data-dynatable-column="CategoryType") Type
+          tbody

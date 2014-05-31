@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  section.main-content.container
+    .row
+      .small-2.columns
+        include ../partials/adminmenu
+      .small-10.columns
+        table#list-banners
+          thead
+            th(data-dynatable-column="BannerName") BannerName
+            th(data-dynatable-column="OwnerID") Owner Id
+            th(data-dynatable-column="FormatID") FormatID
+            th(data-dynatable-column="StartDate") StartDate
+            th(data-dynatable-column="EndDate") EndDate
+          tbody

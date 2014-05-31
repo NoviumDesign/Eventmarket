@@ -6,6 +6,9 @@ block content
       .small-2.columns
         include ../partials/adminmenu
       .small-10.columns
+        .row
+          .small-12.columns
+            a.button.small.right(href="/admin/person/id/new") Create new
         table#list-table
           thead
             th(data-dynatable-column="FirstName") FirstName
@@ -13,3 +16,6 @@ block content
             th(data-dynatable-column="LastName") LastName
             th(data-dynatable-column="Email") Email
           tbody
+
+
+        

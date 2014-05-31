@@ -6,20 +6,69 @@ block content
       .small-2.columns
         include ../partials/adminmenu
       .small-10.columns
-        form(method="post")
-          input.button.small(type="submit", value="Save")
-          div.row
-            - for (var key in locals.person) {
-              div.large-6.columns
-                label
-                  | #{key}
-                  - if (key == '_id') {
-                    br
-                    span #{locals.person[key]}
-                    input(type="hidden", name="#{key}", value="#{locals.person[key]}")
-                  - } else {
-                    textarea(name="#{key}") #{locals.person[key]}
-                  - }
+        
+        dl.tabs(data-tab='')
+          dd.active
+            a(href='#panel2-1') Person
+          dd
+            a(href='#panel2-2') Login
+          dd
+            a(href='#panel2-3') Banner
+          dd
+            a(href='#panel2-4') Tab 4
 
-            - }
-          input.button.small(type="submit", value="Save")
+        .tabs-content
+          #panel2-1.content.active
+            form(method="post")
+              input(type="hidden", name="personId", value="#{locals.person.PersonID}")
+              input.button.small(type="submit", value="Save")
+              div.row
+                - for (var key in locals.person) {
+                  div.large-6.columns
+                    label
+                      | #{key}
+                      - if (key == '_id') {
+                        br
+                        span #{locals.person[key]}
+                        input(type="hidden", name="#{key}", value="#{locals.person[key]}")
+                      - } else {
+                        textarea(name="#{key}") #{locals.person[key]}
+                      - }
+
+                - }
+              input.button.small(type="submit", value="Save")
+          #panel2-2.content
+            // Login
+            // 
+            form(method="post")
+              input.button.small(type="submit", value="Save", name="editLogin")
+              div.row
+                - for (var key in locals.login) {
+                  div.large-6.columns
+                    label
+                      | #{key}
+                      - if (key == '_id') {
+                        br
+                        span #{locals.login[key]}
+                        input(type="hidden", name="#{key}", value="#{locals.login[key]}")
+                      - } else if (key == 'Pwd') {
+                        label
+                        | Enter new password 
+                        input(name='newpwd', type='password')
+
+                      - } else {
+                        textarea(name="#{key}") #{locals.login[key]}
+                      - }
+                - }
+              input.button.small(type="submit", value="Save", name="editLogin")  
+          #panel2-3.content
+            table#list-banners
+              thead
+                th(data-dynatable-column="BannerName") BannerName
+                th(data-dynatable-column="StartDate") StartDate
+                th(data-dynatable-column="EndDate") EndDate
+                th(data-dynatable-column="LastUpdated") LastUpdated
+              tbody
+          #panel2-4.content
+            p Fourth panel content goes here...
+

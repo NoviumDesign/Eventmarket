@@ -1,0 +1,18 @@
+extends ../layout
+  
+block content
+  .row
+    .small-12.columns
+      h1 Admin Login
+      form#login(method="post", action="/adm/local")
+        ul
+          li
+            span Användarnamn
+            br
+            input(type="text", name="username", placeholder="Din epostadress")
+          li
+            span Lösenord
+            br
+            input(type="password" name="password")
+          li
+            button(type="submit") Logga in

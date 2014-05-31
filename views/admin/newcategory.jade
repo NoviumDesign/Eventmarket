@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  section.main-content.container
+    .row
+      .small-2.columns
+        include ../partials/adminmenu
+      .small-10.columns
+        .row
+          .small-12.columns
+            a.button.small.right(href="/admin/editnewcategory/id/new") Create new
+        table#list-categories
+          thead
+            th(data-dynatable-column="name") Name
+            th(data-dynatable-column="displayName") DisplayName
+            th(data-dynatable-column="visible") Visible
+            th(data-dynatable-column="lastUpdate") lastUpdate
+          tbody

@@ -1,0 +1,123 @@
+extends ../layout
+
+block content
+  section.main-content.container
+    .row
+      .small-2.columns
+        include ../partials/adminmenu
+      .small-10.columns
+        form(method="post")
+          input(type="hidden", name="personId", value="#{locals.banner.BannerICID}")
+          input.button.small(type="submit", value="Save")
+          .row
+            .large-6.columns
+              fieldset
+                legend Banner data
+                .row
+                  .large-12.columns
+                    label
+                      | BannerName
+                      input(name='BannerName', type="text", value=locals.banner.BannerName)
+                  .large-12.columns
+                    label
+                      | Url
+                      input(name='Url', type="text", value=locals.banner.Url)
+                  .large-6.columns
+                    label
+                      | StartDate
+                      input(name='StartDate', type="text", value=locals.banner.StartDate)
+                  .large-6.columns
+                    label
+                      | EndDate
+                      input(name='EndDate', type="text", value=locals.banner.StartDate)
+                  .large-6.columns
+                    label
+                      | FormatID
+                      textarea(name='FormatID') 
+                  .large-6.columns
+                    label
+                      | ImageID
+                      textarea(name='ImageID') 
+                  .large-6.columns
+                    label
+                      | Lang
+                      textarea(name='Lang') swe
+                  .large-12.columns
+                    label
+                      | AltText
+                      textarea(name='AltText')
+                  
+                  .large-12.columns
+                    label
+                      | Notes
+                      textarea(name='Notes')
+            .large-6.columns
+                fieldset
+                  legend Categories
+                  div#event_result
+                  input(type="hidden", id="newCategory", name="newCategory", value="#{locals.banner.newCategory}")
+                  div#cat-tree(style="background:#EEE;")
+                  div#cat-data(style="display:none;")
+                    !{locals.cats}
+          .row
+            .large-12.columns
+              .large-12.columns
+                label
+                  | _id
+                span #{locals.banner._id}
+                input(type='hidden', name='_id', value=locals.banner._id)
+              .large-12.columns
+                label
+                  | OwnerID
+                a(href='/admin/person/id/#{locals.banner.OwnerID}') #{locals.banner.OwnerID}
+                //a(href="/admin/person/id/#{locals.category[key]}") #{locals.category[key]}
+                input(type='hidden', name='OwnerID', value=locals.banner.OwnerID)
+              .large-6.columns
+                label
+                  | BannerICID
+                span #{locals.banner.BannerICID}
+                input(type='hidden', name='BannerICID', value=locals.banner.BannerICID)
+              .large-6.columns
+                label
+                  | ModInstanceICID
+                span #{locals.banner.ModInstanceICID}
+                input(type='hidden', name='ModInstanceICID', value=locals.banner.ModInstanceICID)
+              .large-6.columns
+                label
+                  | ClickCounterID
+                span #{locals.banner.ClickCounterID}
+                input(type='hidden', name='ClickCounterID', value=locals.banner.ClickCounterID)
+              
+              .large-6.columns
+                label
+                  | LastUpdated
+                span #{locals.banner.LastUpdated}
+                input(type='hidden', name='LastUpdated', value=locals.banner.LastUpdated)
+              .large-6.columns
+                label
+                  | OwnerEmail
+                span #{locals.banner.OwnerEmail}
+                input(type='hidden', name='OwnerEmail', value=locals.banner.OwnerEmail)
+              .large-6.columns
+                label
+                  | OwnerOrg
+                span #{locals.banner.OwnerOrg}
+                input(type='hidden', name='OwnerOrg', value=locals.banner.OwnerOrg)
+              .large-6.columns
+                label
+                  | ExpCounterID
+                span #{locals.banner.ExpCounterID}
+                input(type='hidden', name='ExpCounterID', value=locals.banner.ExpCounterID)
+              .large-6.columns
+                label
+                  | Completed
+                span #{locals.banner.Completed}
+                input(type='hidden', name='Completed', value=locals.banner.Completed)
+              .large-6.columns
+                label
+                  | OwnerName
+                span #{locals.banner.OwnerName}
+                input(type='hidden', name='OwnerName', value=locals.banner.OwnerName)
+
+          input.button.small(type="submit", value="Save")
+          

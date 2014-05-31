@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  section.main-content.container
+    .row
+      .small-2.columns
+        include ../partials/adminmenu
+      .small-10.columns
+        form(method="post")
+          input.button.small(type="submit", value="Save")
+          div.row
+            - for (var key in locals.category) {
+              div.large-6.columns
+                label
+                  | #{key}
+                  - if (key == '_id') {
+                    br
+                    span #{locals.category[key]}
+                    input(type="hidden", name="#{key}", value="#{locals.category[key]}")
+                  - } else if (key == 'OwnerID') {
+                    br
+                    a(href="/admin/person/id/#{locals.category[key]}") #{locals.category[key]}
+                  - } else {
+                    textarea(name="#{key}") #{locals.category[key]}
+                  - }
+
+            - }
+          input.button.small(type="submit", value="Save")

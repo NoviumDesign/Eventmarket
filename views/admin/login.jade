@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  section.main-content.container
+    .row
+      .small-2.columns
+        include ../partials/adminmenu
+      .small-10.columns
+        table#list-login
+          thead
+            th(data-dynatable-column="LoginName") LoginName
+            th(data-dynatable-column="SuperUser") SuperUser
+            th(data-dynatable-column="RootAdmin") RootAdmin
+            th(data-dynatable-column="LastOKLogin") LastOKLogin
+          tbody

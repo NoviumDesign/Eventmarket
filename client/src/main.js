@@ -95,6 +95,128 @@ $(function ()
         }
       });
     }
+    // admin-newcategory
+    if ($('body').hasClass('admin-newcategory')) {
+      $('#list-categories').dynatable({
+        dataset: {
+          ajax: true,
+          ajaxUrl: '/api/newcategory',
+          ajaxOnLoad: true,
+          records: []
+        },
+        features: {
+          paginate: true,
+          search: true,
+          recordCount: true,
+          perPageSelect: true
+        },
+        writers: {
+          _cellWriter: function (index, rowData) {
+            console.log(rowData[index.id]);
+            if (index.id == "name") {
+              return '<td><a href="/admin/editnewcategory/id/'+rowData['_id']+'">'+rowData[index.id]+'</a></td>';
+            } else {
+              return '<td>'+rowData[index.id]+'</td>';
+            }
+          }
+        }
+      });
+    }
+    // admin-category
+    if ($('body').hasClass('admin-category')) {
+      $('#list-categories').dynatable({
+        dataset: {
+          ajax: true,
+          ajaxUrl: '/api/category',
+          ajaxOnLoad: true,
+          records: []
+        },
+        features: {
+          paginate: true,
+          search: true,
+          recordCount: true,
+          perPageSelect: true
+        },
+        writers: {
+          _cellWriter: function (index, rowData) {
+            console.log(rowData[index.id]);
+            if (index.id == "Name") {
+              return '<td><a href="/admin/category/id/'+rowData['CategoryICID']+'">'+rowData[index.id]+'</a></td>';
+            } else {
+              return '<td>'+rowData[index.id]+'</td>';
+            }
+          }
+        }
+      });
+    }
+    // admin-editbanner
+    if ($('body').hasClass('admin-editbanner')) {
+      $('#cat-tree')
+        .on('changed.jstree', function (e, data) {
+          var i, j, r = [];
+          for(i = 0, j = data.selected.length; i < j; i++) {
+            r.push(data.instance.get_node(data.selected[i]).id);
+          }
+          $('#newCategory').val(JSON.stringify(r));
+        })
+        .jstree({ 'core' : {'data' : JSON.parse($('#cat-data').html()) }, "plugins" : [ "checkbox" ] });
+    }
+    // admin-banner
+    if ($('body').hasClass('admin-banner')) {
+      $('#list-banners').dynatable({
+        dataset: {
+          ajax: true,
+          ajaxUrl: '/api/banner',
+          ajaxOnLoad: true,
+          records: []
+        },
+        features: {
+          paginate: true,
+          search: false,
+          recordCount: true,
+          perPageSelect: true
+        },
+        writers: {
+          _cellWriter: function (index, rowData) {
+            console.log(rowData[index.id]);
+            if (index.id == "BannerName") {
+              return '<td><a href="/admin/editbanner/id/'+rowData['BannerICID']+'">'+rowData[index.id]+'</a></td>';
+            } else {
+              return '<td>'+rowData[index.id]+'</td>';
+            }
+          }
+        }
+      });
+    }
+    // admin-editperson
+    if ($('body').hasClass('admin-editperson')) {
+      var pId = $('input[name="personId"]').val();
+      $('#list-banners').dynatable({
+        dataset: {
+          ajax: true,
+          ajaxUrl: '/api/banner',
+          ajaxOnLoad: true,
+          records: [],
+          queries: { 'PersonID': pId }
+        },
+        features: {
+          paginate: true,
+          search: false,
+          recordCount: true,
+          perPageSelect: true
+        },
+        writers: {
+          _cellWriter: function (index, rowData) {
+            console.log(rowData[index.id]);
+            if (index.id == "BannerName") {
+              return '<td><a href="/admin/banner/id/'+rowData['BannerICID']+'">'+rowData[index.id]+'</a></td>';
+            } else {
+              return '<td>'+rowData[index.id]+'</td>';
+            }
+          }
+        }
+      });
+    }
     // Person
     if ($('body').hasClass('admin-person')) {
       $('#list-table').dynatable({

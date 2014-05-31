@@ -5,12 +5,19 @@ html.no-js(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/css/eventmarket.css')
     script(src="/js/modernizr.js")
-    title Eventmarket
+    title Eventmarket - #{locals.title}
   body(class="#{locals.pageClass}")
     .off-canvas-wrap
       .inner-wrap
         include partials/sidemenus
         include partials/header
+        - if (locals.messages) {
+          each item in locals.messages
+            .alert-box(data-alert='')
+              div #{item}
+              a.close(href='#') &times;
+        - }
+
         block content
         include partials/footer
     script(src="/js/eventmarket.js")

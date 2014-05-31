@@ -9,7 +9,7 @@ block content
           ul.side-nav.event
             li
               .ribbon.sidenav
-                a(href='#') Aktviteter
+                a(href='/event/aktiviteter') Aktviteter
             li
               .ribbon.sidenav
                 a(href='#') Arrangörer
@@ -47,7 +47,10 @@ block content
               .ribbon.sidenav
                 a(href='#') Övrigt
 
-      include partials/filter
+      - if (locals.filter == 'aktiviteter')
+        include partials/aktiviteter
+      - if (locals.filter == 'filter')
+        include partials/filter
 
       .small-12.medium-12.large-9.columns#resultrows
         h1.results Resultat: X träffar

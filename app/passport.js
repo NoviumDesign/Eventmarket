@@ -10,12 +10,12 @@ module.exports.initialize = function(app) {
 
   passport.use(new localStrategy(
     function(username, password, done) {
-      models.User.findOne({ username: username }, function(err, usr) {
+      models.Login.findOne({ LoginName: username }, function(err, usr) {
         if (err) { return done(err); }
         if (!usr) {
           return done(null, false, { message: 'Incorrect details.' });
         }
-        bcrypt.compare(password, usr.password, function(err, res) {
+        bcrypt.compare(password, usr.Pwd, function(err, res) {
           if (res == true) {
             return done(null, usr);
           } else {
@@ -31,7 +31,7 @@ module.exports.initialize = function(app) {
   });
 
   passport.deserializeUser(function(id, done) {
-    models.User.findById(id, function (err, user) {
+    models.Login.findById(id, function (err, user) {
       done(err, user);  
     });
   });

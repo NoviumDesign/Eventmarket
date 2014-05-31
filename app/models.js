@@ -1,7 +1,10 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
+    autoIncrement = require('mongoose-auto-increment'),
     ObjectId = Schema.ObjectId,
     bcrypt = require('bcrypt');
+
+autoIncrement.initialize(mongoose.connection);
 
 var Event = new Schema({
     profileHeader:  { type: String },
@@ -48,7 +51,7 @@ var User = new Schema({
     mainEmail : String
 });
 var Person = new Schema({
-  PersonID : String,
+  PersonID : { type: Number },
   PersonCreated : String,
   CultureID : String,
   Hidden : String,
@@ -84,6 +87,97 @@ var Person = new Schema({
   NotificationTypePrstRqstDirect : String
 }, { collection: 'Person' });
 
+var Login = new Schema({
+  LoginID : { type: Number },
+  LoginName : String,
+  DisabledUntil : String,
+  Pwd : String,
+  PwdCreated : String,
+  SuperUser : String,
+  RootAdmin : String,
+  LastUpdated : String,
+  Disabled : String,
+  PersonID : { type: Number },
+  CreatedBy : String,
+  LastOKLogin : String,
+  NoOfFailedLogins : String,
+  AutoLogin : String,
+  ValidUntil : String
+}, { collection: 'Login'});
+Login.methods.logSomething = function (item, next) {
+  console.log(item);
+  next();
+}
+Login.methods.addPostData = function (post, next) {
+  if (post._id) {
+    this.findById(post._id, function (err, login) {
+      console.log(login);
+      next();
+    });
+  }
+  //console.log(this);
+  next();  
+}
+var BANRBanner = new Schema({
+  category: [{ value: String }],
+  subCategory: [{ value: String }],
+  BannerICID : String,
+  ModInstanceICID : String,
+  BannerName : String,
+  StartDate : String,
+  EndDate : String,
+  FormatID : String,
+  ImageID : String,
+  ExpCounterID : String,
+  ClickCounterID : String,
+  Url : String,
+  AltText : String,
+  OwnerID : String,
+  OwnerName : String,
+  OwnerOrg : String,
+  Notes : String,
+  Completed : String,
+  Lang : String,
+  LastUpdated : String,
+  OwnerEmail : String
+}, { collection: 'BANRBanner'});
+var Category = new Schema({
+  CategoryICID : String,
+  ModInstanceICID : String,
+  Name : String,
+  DisplayName : String,
+  Lang : String,
+  EnableItems : String,
+  EnableSubCats : String,
+  PublicCategory : String,
+  Visible : String,
+  SortOrder : String,
+  CategoryType : String,
+  SysCategory : String,
+  Price : String,
+  PriceScaleFactor : String,
+  DateField1 : String,
+  IntField1 : String,
+  BoolField1 : String,
+  InfoText1 : String,
+  TechName : String,
+  PersonID : String,
+  LastUpdated : String,
+  OnlyShowInFilter : String,
+  TextField1 : String,
+  FileID1 : String,
+  TextField2 : String,
+  TextField3 : String,
+  TextField4 : String,
+  TextField5 : String,
+  TextField6 : String,
+  TextField7 : String,
+  TextField8 : String,
+  TextField9 : String,
+  TextField10 : String,
+  FileID2 : String,
+  InfoText2 : String
+}, { collection: 'Category'});
 var PRSTPage = new Schema({
   PageICID : String,
   Title : String,
@@ -173,7 +267,19 @@ var PRSTPage = new Schema({
   TextField14 : String
 }, { collection: 'PRSTPage' });
 //console.log(User);
-
+var newCategory = new Schema({
+  topLevel: String,
+  parent : String,
+  name : String,
+  displayName : String,
+  visible : String,
+  sortOrder: String,
+  createdDate: String,
+  createdBy: String,
+  lastUpdate: String,
+  notes: String,
+  icon : String
+}, {collection:'newCategory'});
 /**User.methods.validPassword = function (password, cb) {
   bcrypt.compare(password, this.password, function(err, res) {
     if (res == true) {
@@ -190,5 +296,9 @@ module.exports = {
     Contact: mongoose.model('Contact', Contact),
     User: mongoose.model('User', User),
     PRSTPage: mongoose.model('PRSTPage', PRSTPage),
-    Person: mongoose.model('Person', Person)
+    Person: mongoose.model('Person', Person),
+    Login: mongoose.model('Login', Login),
+    BANRBanner: mongoose.model('BANRBanner', BANRBanner),
+    Category: mongoose.model('Category', Category),
+    newCategory: mongoose.model('newCategory', newCategory)
 };
