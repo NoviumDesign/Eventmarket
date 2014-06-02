@@ -1,6 +1,6 @@
 // login.js
 //var models('require')
-var objectModel, _data = {}, _originalData = {}, bcrypt = require('bcrypt'), models = require('../models');
+var objectModel, _data = {}, _originalData = {}, bcrypt = require('bcrypt'), models = require('../models'), helpers = require('../helpers');
 
 module.exports.addPostData = function(post, next) {
   _data = post;

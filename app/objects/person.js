@@ -58,11 +58,12 @@ module.exports.save = function(next) {
   } else {
     console.log('Creating new PERSON!');
     // new Number(per.PersonID);
-    Person.plugin(autoIncrement.plugin, { model: 'Person', field: 'PersonID' });
+    models.Person.schema.plugin(autoIncrement.plugin, { model: 'Person', field: 'PersonID' });
     person = new models.Person(_data);
-    person.PersonCreated = new Date();
+    console.log(models.Person);
+    person.PersonCreated = helpers.sqlDateFormat(new Date());
     person.Hidden = 0;
-    person.LastUpdated = new Date();
+    person.LastUpdated = helpers.sqlDateFormat(new Date());
     person.NewAutoReg = 0;
     person.PersonalTitle = '';
     person.CountryID = 1;

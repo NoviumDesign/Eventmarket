@@ -88,7 +88,7 @@ module.exports = {
             console.log('Loading PersonID ' + req.param("PersonID"));
             models.Person.findOne({ PersonID: req.param("PersonID") }, function (err, person) {
               if (err) {
-                next(err);
+                console.log(err);
               }
               if (person) {
                 models.Login.findOne({PersonID: req.param("PersonID")}, function (err, login) {
