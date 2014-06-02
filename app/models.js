@@ -86,7 +86,25 @@ var Person = new Schema({
   NotificationTypePrstRqstOpen : String,
   NotificationTypePrstRqstDirect : String
 }, { collection: 'Person' });
-
+var Country = new Schema({
+  CountryID : { type: Number },
+  EntityName : String,
+  EntityOwnerICID : { type: Number },
+  TechName : String
+}, {collection: 'Country'});
+var Culture = new Schema({
+  CultureID : { type: Number },
+  CultureName : String,
+  AdminCulture : String,
+  PublicCulture : String,
+  Lang : String
+}, {collection:'Culture'});
+var Region = new Schema({
+  RegionID : { type: Number },
+  RegionName : String,
+  CountryID : { type: Number },
+  SortOrder : { type: Number }
+}, {collection:'Region'});
 var Login = new Schema({
   LoginID : { type: Number },
   LoginName : String,
@@ -300,5 +318,8 @@ module.exports = {
     Login: mongoose.model('Login', Login),
     BANRBanner: mongoose.model('BANRBanner', BANRBanner),
     Category: mongoose.model('Category', Category),
-    newCategory: mongoose.model('newCategory', newCategory)
+    newCategory: mongoose.model('newCategory', newCategory),
+    Country: mongoose.model('Country', Country),
+    Culture: mongoose.model('Culture', Culture),
+    Region: mongoose.model('Region', Region)
 };

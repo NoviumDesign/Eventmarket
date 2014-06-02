@@ -209,7 +209,7 @@ $(function ()
           _cellWriter: function (index, rowData) {
             console.log(rowData[index.id]);
             if (index.id == "BannerName") {
-              return '<td><a href="/admin/banner/id/'+rowData['BannerICID']+'">'+rowData[index.id]+'</a></td>';
+              return '<td><a href="/admin/editbanner/id/'+rowData['BannerICID']+'">'+rowData[index.id]+'</a></td>';
             } else {
               return '<td>'+rowData[index.id]+'</td>';
             }

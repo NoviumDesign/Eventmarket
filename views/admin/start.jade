@@ -7,6 +7,11 @@ block content
         include ../partials/adminmenu
       .small-10.columns
         h1 Admin pages
+        - for (var key in locals.usr) {
+          span #{key} : #{locals.usr[key]}
+          br
+
+        - }
         br
         br
         br

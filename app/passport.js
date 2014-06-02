@@ -17,6 +17,7 @@ module.exports.initialize = function(app) {
         }
         bcrypt.compare(password, usr.Pwd, function(err, res) {
           if (res == true) {
+            usr.Pwd = undefined;
             return done(null, usr);
           } else {
             return done(null, false, { message: 'Incorrect details.' });
@@ -32,6 +33,7 @@ module.exports.initialize = function(app) {
 
   passport.deserializeUser(function(id, done) {
     models.Login.findById(id, function (err, user) {
+      user.Pwd = undefined;
       done(err, user);  
     });
   });

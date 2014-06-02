@@ -6,7 +6,8 @@ block content
       .small-2.columns
         include ../partials/adminmenu
       .small-10.columns
-        
+        // For loading banners with AJAX (frontend)
+        input(type="hidden", name="personId", value=locals.person.PersonID)
         dl.tabs(data-tab='')
           dd.active
             a(href='#panel2-1') Person
@@ -15,28 +16,208 @@ block content
           dd
             a(href='#panel2-3') Banner
           dd
-            a(href='#panel2-4') Tab 4
+            a(href='#panel2-4') Presentation
 
         .tabs-content
           #panel2-1.content.active
             form(method="post")
-              input(type="hidden", name="personId", value="#{locals.person.PersonID}")
-              input.button.small(type="submit", value="Save")
-              div.row
-                - for (var key in locals.person) {
-                  div.large-6.columns
+              input.button.small(type="submit", name="editperson", value="Save")
+              fieldset
+                legend Personal data
+                .row
+                  .large-2.columns
                     label
-                      | #{key}
-                      - if (key == '_id') {
-                        br
-                        span #{locals.person[key]}
-                        input(type="hidden", name="#{key}", value="#{locals.person[key]}")
-                      - } else {
-                        textarea(name="#{key}") #{locals.person[key]}
-                      - }
+                      | PersonalTitle
+                      input(type="text", name='PersonalTitle', value=locals.person.PersonalTitle)
+                  .large-5.columns
+                    label
+                      | FirstName
+                      input(type="text", name='FirstName', value=locals.person.FirstName)
+                  .large-5.columns
+                    label
+                      | LastName
+                      input(type="text", name='LastName', value=locals.person.LastName)
+                  .large-12.columns
+                    label
+                      | Email
+                      input(type="text", name='Email', value=locals.person.Email)
+                  .large-12.columns
+                    label
+                      | Url
+                      input(type="text", name='Url', value=locals.person.Url)
+                  .large-12.columns
+                    label
+                      | Address1
+                      input(type="text", name='Address1', value=locals.person.Address1)
+                  .large-12.columns
+                    label
+                      | Address2
+                      input(type="text", name='Address2', value=locals.person.Address2)
+                  .large-4.columns
+                    label
+                      | Zipcode
+                      input(type="text", name='Zipcode', value=locals.person.Zipcode)
+                  .large-4.columns
+                    label
+                      | City
+                      input(type="text", name='City', value=locals.person.City)
+                  .large-4.columns
+                    label
+                      | CountryID
+                      select(name="CountryID")
+                        each item in locals.country
+                          option(value="#{item.CountryID}", selected=locals.person.CountryID == item.CountryID) #{item.TechName}
+                      
 
-                - }
-              input.button.small(type="submit", value="Save")
+                  .large-4.columns
+                    label
+                      | Mobile
+                      input(type="text", name='Mobile', value=locals.person.Mobile)
+                  .large-4.columns
+                    label
+                      | Phone
+                      input(type="text", name='Phone', value=locals.person.Phone)
+                  .large-4.columns
+                    label
+                      | Fax
+                      input(type="text", name='Fax', value=locals.person.Fax)
+                  .large-6.columns
+                    label
+                      | CultureID
+                      select(name="CultureID")
+                        each item in locals.culture
+                          option(value="#{item.CultureID}", selected=locals.person.CultureID == item.CultureID) #{item.Lang}
+                  .large-6.columns
+                    label
+                      | Hidden
+                      select(name="Hidden")
+                        option(value="1", selected=locals.person.Hidden == '1') Yes
+                        option(value="0", selected=locals.person.Hidden == '0') No
+                  .large-6.columns
+                    label
+                      | Attribute1
+                      input(type="text", name='Attribute1', value=locals.person.Attribute1)
+                  .large-6.columns
+                    label
+                      | RegionID
+                      select(name="RegionID")
+                        option(value="", selected=locals.person.RegionID == '') Select...
+                        each item in locals.region
+                          option(value="#{item.RegionID}", selected=locals.person.RegionID == item.RegionID) #{item.RegionName}
+                      
+                  .large-6.columns
+                    label
+                      | NotificationTypePrstRqstOpen
+                      select(name="NotificationTypePrstRqstOpen")
+                        option(value="Mail", selected=locals.person.NotificationTypePrstRqstOpen == 'Mail') Mail
+                  .large-6.columns
+                    label
+                      | NotificationTypePrstRqstDirect
+                      select(name="NotificationTypePrstRqstDirect")
+                        option(value="Mail", selected=locals.person.NotificationTypePrstRqstDirect == 'Mail') Mail
+                  .large-6.columns
+                    label
+                      | IDNumber
+                      input(type="text", name='IDNumber', value=locals.person.IDNumber)
+                  .large-12.columns
+                    label
+                      | Notes
+                      textarea(name='Notes') #{locals.person.Notes}
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+              .row
+                .large-6.columns
+                  label
+                    | _id
+                  br
+                  span #{locals.person._id}
+                  input(type='hidden', name='_id', value=locals.person._id)
+                .large-6.columns
+                  label
+                    | PersonCreated
+                  br
+                  span #{locals.person.PersonCreated}
+                  input(type='hidden', name='PersonCreated', value=locals.person.PersonCreated)
+                .large-6.columns
+                  label
+                    | LastUpdated
+                  br
+                  span #{locals.person.LastUpdated}
+                  input(type='hidden', name='LastUpdated', value=locals.person.LastUpdated)
+                .large-6.columns
+                  label
+                    | Attribute3
+                  br
+                  span #{locals.person.Attribute3}
+                  input(type='hidden', name='Attribute3', value=locals.person.Attribute3)
+                .large-6.columns
+                  label
+                    | BoolField2
+                  br
+                  span #{locals.person.BoolField2}
+                  input(type='hidden', name='BoolField2', value=locals.person.BoolField2)
+                .large-6.columns
+                  label
+                    | PersonID
+                  br
+                  span #{locals.person.PersonID}
+                  input(type='hidden', name='PersonID', value=locals.person.PersonID)
+                .large-6.columns
+                  label
+                    | IntField1
+                  br
+                  span #{locals.person.IntField1}
+                  input(type='hidden', name='IntField1', value=locals.person.IntField1)
+                .large-6.columns
+                  label
+                    | BoolField1
+                  br
+                  span #{locals.person.BoolField1}
+                  input(type='hidden', name='BoolField1', value=locals.person.BoolField1)
+                .large-6.columns
+                  label
+                    | IntField2
+                  br
+                  span #{locals.person.IntField2}
+                  input(type='hidden', name='IntField2', value=locals.person.IntField2)
+                .large-6.columns
+                  label
+                    | InfoText1
+                  br
+                  span #{locals.person.InfoText1}
+                  input(type='hidden', name='InfoText1', value=locals.person.InfoText1)
+                .large-6.columns
+                  label
+                    | InfoText3
+                  br
+                  span #{locals.person.InfoText3}
+                  input(type='hidden', name='InfoText3', value=locals.person.InfoText3)
+                .large-6.columns
+                  label
+                    | InfoText2
+                  br
+                  span #{locals.person.InfoText2}
+                  input(type='hidden', name='InfoText2', value=locals.person.InfoText2)
+                .large-6.columns
+                  label
+                    | Attribute2
+                  br
+                  span #{locals.person.Attribute2}
+                  input(type='hidden', name='Attribute2', value=locals.person.Attribute2)
+                .large-6.columns
+                  label
+                    | NewAutoReg
+                  br
+                  span #{locals.person.NewAutoReg}
+                  input(type='hidden', name='NewAutoReg', value=locals.person.NewAutoReg)
+
+              input.button.small(type="submit", name="editperson", value="Save")
           #panel2-2.content
             // Login
             // 
@@ -70,5 +251,5 @@ block content
                 th(data-dynatable-column="LastUpdated") LastUpdated
               tbody
           #panel2-4.content
-            p Fourth panel content goes here...
+            p Presentation
 

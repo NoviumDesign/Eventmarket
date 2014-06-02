@@ -4,6 +4,7 @@ var objectModel, _data = {},
 _originalData = {}, 
 models = require('../models'),
 autoIncrement = require('mongoose-auto-increment'),
+helpers = require('../helpers'),
 loginObject = require('../objects/login');
 
 module.exports.addPostData = function(post, next) {
@@ -12,41 +13,48 @@ module.exports.addPostData = function(post, next) {
 }
 module.exports.save = function(next) {
   if (_data._id) {
-    /*models.Login.findById(_data._id, function (err, login) {
+    console.log('Saving existing person...');
+    models.Person.findById(_data._id, function (err, person) {
       if (!err) {
-        login.LoginID          = _data.LoginID;
-        login.DisabledUntil    = _data.DisabledUntil;
-        login.Disabled         = _data.Disabled;
-        //login.LastOKLogin      =_data.LastOKLogin;
-        login.LoginName        = _data.LoginName;
-        login.SuperUser        = _data.SuperUser;
-        //login.NoOfFailedLogins =_data.NoOfFailedLogins;
-        login.PersonID         = _data.PersonID;
-        login.ValidUntil       = _data.ValidUntil;
-        login.AutoLogin        = _data.AutoLogin;
-        //login.CreatedBy        =_data.CreatedBy;
-        login.RootAdmin        = _data.RootAdmin;
-
-        login.LastUpdated      = new Date();
-        // login.Pwd = _data.Pwd: 'w4/t/pJRX5qqo09fMVdSSm4HdAU¯',
-        // login.PwdCreated=_data.PwdCreated;
-        if (_data.newpwd != '') {
-          bcrypt.genSalt(10, function(err, salt) {
-                bcrypt.hash(_data.newpwd, salt, function(err, hash) {
-                    login.password   = hash;
-                    login.PwdCreated = new Date();
-                    login.save(function(err, user) {
-                      next(err, user);
-                    });
-                });
-            });
-        } else {
-          login.save(function(err, user) {
-            next(err, user);
-          });  
-        }
+        //PersonID : { type: Number },
+        //PersonCreated : String,
+        person.CultureID                      = _data.CultureID;
+        person.Hidden                         = _data.Hidden;
+        person.LastUpdated                    = helpers.sqlDateFormat(new Date());
+        person.NewAutoReg                     = _data.NewAutoReg;
+        person.FirstName                      = _data.FirstName;
+        person.LastName                       = _data.LastName;
+        person.PersonalTitle                  = _data.PersonalTitle;
+        person.Address1                       = _data.Address1;
+        person.Address2                       = _data.Address2;
+        person.Zipcode                        = _data.Zipcode;
+        person.City                           = _data.City;
+        person.Phone                          = _data.Phone;
+        person.Fax                            = _data.Fax;
+        person.Mobile                         = _data.Mobile;
+        person.Email                          = _data.Email;
+        person.Url                            = _data.Url;
+        person.Attribute1                     = _data.Attribute1;
+        person.Attribute2                     = _data.Attribute2;
+        person.Attribute3                     = _data.Attribute3;
+        person.CountryID                      = _data.CountryID;
+        person.RegionID                       = _data.RegionID;
+        person.Notes                          = _data.Notes;
+        person.IDNumber                       = _data.IDNumber;
+        person.BoolField1                     = _data.BoolField1;
+        person.InfoText1                      = _data.InfoText1;
+        person.InfoText2                      = _data.InfoText2;
+        person.InfoText3                      = _data.InfoText3;
+        person.IntField1                      = _data.IntField1;
+        person.IntField2                      = _data.IntField2;
+        person.BoolField2                     = _data.BoolField2;
+        person.NotificationTypePrstRqstOpen   = _data.NotificationTypePrstRqstOpen;
+        person.NotificationTypePrstRqstDirect = _data.NotificationTypePrstRqstDirect;
+        person.save(function(err, person) {
+          next(err, person);
+        });
       }
-    });*/
+    });
   } else {
     console.log('Creating new PERSON!');
     // new Number(per.PersonID);

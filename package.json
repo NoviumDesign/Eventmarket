@@ -25,7 +25,8 @@
     "bcrypt": "0.7.8",
     "async": "0.9.0",
     "connect-flash": "0.1.1",
-    "mongoose-auto-increment" : "3.0.2"
+    "mongoose-auto-increment" : "3.0.2",
+    "nodemailer": "0.6.5"
   },
   "devDependencies": {
     "bower": "~1.2.8",

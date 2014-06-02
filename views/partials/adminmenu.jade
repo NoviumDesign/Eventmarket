@@ -1,15 +1,17 @@
 ul.side-nav  
   li
     a(href="/admin") Admin start
+  li.divider
   li
     a(href="/admin/newcategory") Categories
   li
     a(href="/admin/person") Person
-  li
-    a(href="/admin/banner") Banner
-  li
-    a(href="/admin/prstpage") PRSTPage
-  
+    ul(style="list-style:none;")
+      li
+        a(href="/admin/banner") Banner
+      li
+        a(href="/admin/prstpage") PRSTPage
+      
   
   li.divider
   li

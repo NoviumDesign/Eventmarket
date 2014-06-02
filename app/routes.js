@@ -97,10 +97,10 @@ module.exports.initialize = function(app) {
      * Automatically apply the `requireLogin` middleware to all
      * backstage routes
      */
-    /*app.all("/admin/*", requireAdminLogin, function(req, res, next) {
+    app.all("/admin/*", requireAdminLogin, function(req, res, next) {
       console.log('Protected route.');
       next();
-    });*/
+    });
     
     // Admin pages 
     app.get('/admin', requireAdminLogin, admin.start);
