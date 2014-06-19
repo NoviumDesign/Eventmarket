@@ -1,0 +1,44 @@
+ul.dynatable-pagination-links
+  list-style-type: none
+  margin: 20px 0 20px 0
+  text-align: right
+
+  li
+    display: inline
+    margin-right: 20px
+
+    &:last-child
+      margin-right: 0px
+
+    a
+      padding: 5px
+
+      &.dynatable-active-page
+        background-color: $active-grey-color
+
+table.dynamic-table
+  width: 100%
+
+.dynatable-search, .dynatable-per-page, .dynatable-custom-select
+  margin-left: 10px
+  
+  input, select
+    margin-top: 5px
+
+.dynatable-search, .dynatable-record-count, .dynatable-custom-select
+  float: right
+
+.clickableRow
+  cursor: pointer
+
+.green-ball, .yellow-ball
+  margin: 0 auto
+  height: 20px
+  width: 20px
+  border-radius: 20px
+
+.yellow-ball
+  background-color: yellow
+
+.green-ball
+  background-color: green

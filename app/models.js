@@ -105,6 +105,22 @@ var Region = new Schema({
   CountryID : { type: Number },
   SortOrder : { type: Number }
 }, {collection:'Region'});
+var AccessGroup = new Schema({
+  GroupID         : String,
+  EntityName      : String,
+  EntityOwnerICID : String,
+  AutoReg         : String,
+  TechName        : String
+}, {collection: 'AccessGroup'});
+var AccessMembership = new Schema({
+  GroupID : String,
+  LoginID : String
+}, {collection: 'AccessMembership'});
+var CRMObjectResponsibility = new Schema({
+  ContactObjectID : String,
+  LoginID : String
+}, {collection: 'CRMObjectResponsibility'});
+
 var Login = new Schema({
   LoginID : { type: Number },
   LoginName : String,
@@ -120,7 +136,8 @@ var Login = new Schema({
   LastOKLogin : String,
   NoOfFailedLogins : String,
   AutoLogin : String,
-  ValidUntil : String
+  ValidUntil : String,
+  AccessMembership: Number
 }, { collection: 'Login'});
 Login.methods.logSomething = function (item, next) {
   console.log(item);
@@ -321,5 +338,8 @@ module.exports = {
     newCategory: mongoose.model('newCategory', newCategory),
     Country: mongoose.model('Country', Country),
     Culture: mongoose.model('Culture', Culture),
-    Region: mongoose.model('Region', Region)
+    Region: mongoose.model('Region', Region),
+    AccessMembership: mongoose.model('AccessMembership', AccessMembership),
+    CRMObjectResponsibility: mongoose.model('CRMObjectResponsibility', CRMObjectResponsibility),
+    AccessGroup: mongoose.model('AccessGroup', AccessGroup)
 };

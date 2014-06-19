@@ -1,0 +1,48 @@
+include includes/head
+body(class="#{locals.pageClass}")
+  include includes/nav
+
+  .row
+    include includes/sidenav
+
+    .large-9.columns.medium-8.columns
+      h3 Kundkortslista
+      .row
+        .small-12.columns
+          span.dynatable-custom-select Grupptillhörighet
+            select#search-group(name='AccessGroupFullText')
+              option
+                option Alla
+                option Medlem
+                option Prospect
+                option Privat
+                option Företag
+          span.dynatable-custom-select Kundansvarig
+            select#search-responsible(name='ResponsibleFullText')
+              option
+                option Jennie Sterner
+                option Johnny Sterner
+                option Toni Lahtinen
+          span.dynatable-custom-select Aktivitet
+            select#search-activity(name='Active')
+              option
+                option 0-12 mån
+                option 12-36 mån
+                option 36+ mån
+          table#group-table.dynamic-table
+            thead
+              tr
+                th(data-dynatable-column="PersonFullText") Företag / Kontaktperson
+                th(data-dynatable-column="AccessGroupFullText") Grupptillhörighet
+                th(data-dynatable-column="LogTimeIndexed") Senaste Aktivitet
+                th(data-dynatable-column="ResponsibleFullText") Kundansvarig
+                th(data-dynatable-column="quickInfo") Snabbinfo 
+            tbody
+              tr
+                td
+                td
+                td
+                td
+                td
+
+  include includes/footer

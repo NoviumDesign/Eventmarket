@@ -95,7 +95,6 @@ $(function ()
         }
       });
     }
-    // admin-newcategory
     if ($('body').hasClass('admin-newcategory')) {
       $('#list-categories').dynatable({
         dataset: {

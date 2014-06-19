@@ -8,15 +8,44 @@
 
 'use strict';
 var models = require('../app/models'),
-  async            = require("async"),
+  async            = require('async'),
   helpers          = require('../app/helpers'),
   loginObject      = require('../app/objects/login'),
   personObject     = require('../app/objects/person'),
-  personController = require('../controllers/admin/person');
+  personController = require('../controllers/admin/person'),
+  crmModels        = require('../app/CRMModels'),
+  indexer          = require('../app/indexer');
 
 module.exports = {
   start: function (req, res) {
-    res.render('admin/start', {usr: req.user.toObject(), pageClass: 'admin-start', title: 'ADMIN'});
+    res.render('admin/index', {usr: req.user.toObject(), pageClass: 'admin-start', title: 'ADMIN'});
+  },
+
+  kundkortlista: function (req, res) {
+    res.render('admin/kundkortlista', {usr: req.user.toObject(), pageClass: 'admin-kundkortlista', title: 'ADMIN'});
+  },
+
+  /**
+   * Load person >> load login >> load group name >> save group name as fulltext to CRMContactObject
+   * @return {void}     
+   * @deprecated See indexer.js
+   */
+  parsecrmlogingroup: function (req, res) {
+    indexer.parseLogTimes();
+  },
+  
+  
+  
+  loadkundkort: function(req, res) {
+    // Söka på företag / kontaktperson: 
+    //  - ladda personer som matchar >> ladda CRMContactObjects med dessa personer
+    //
+    /*crmModels.CRMContactObject.find({'PersonObject.City' : 'STOCKHOLM'}).populate('PersonObject').exec(function (err, crm) {
+      console.log(crm);
+    });*/
+    crmModels.CRMContactObject.findById('53a2cfd14e77b2375819706c').populate('PersonObject').exec(function (err, crm) {
+      console.log(crm);
+    });
   },
   /**
    * Person stuff

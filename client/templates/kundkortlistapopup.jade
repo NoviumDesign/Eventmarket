@@ -1,0 +1,77 @@
+//kundkortlistapopup.jade
+div(id="quickInfo#{_id}").reveal-modal(data-reveal='data-reveal', data-options='close_on_background_click: true')
+  .row
+    .small-12.columns
+      h2 Snabbinfo
+    .small-12.columns
+      h4 Profilsidor
+      table#customer-table.dynamic-table
+        thead
+          tr
+            th Sidans namn
+            th Kontaktperson
+            th Giltig t.o.m.
+            th Storlek
+            th Synlig / Släckt
+        tbody
+          tr
+            td Lindaus bokningssida
+            td Anders Lundin
+            td 2013-06-05
+            td Small
+            td 
+              .green-ball
+          tr
+            td Inlands bussbiljetter
+            td Kalle Kanin
+            td 2013-06-06
+            td Medium
+            td
+              .red-ball
+          tr
+            td Lindaus bokningssida
+            td Anders Lundin
+            td 2013-06-05
+            td Large
+            td
+              .green-ball
+          tr
+            td Inlands bussbiljetter
+            td Kalle Kanin
+            td 2013-06-06
+            td Medium
+            td
+              .red-ball
+    .small-12.columns
+      h4 Erbjudanden
+      table#my-table.dynamic-table
+        thead
+            tr
+              th Rubrik
+              th Aktiv fr.o.m.
+              th Slutdatum
+              th Publikt
+          tbody
+            tr
+              td Julbord från 99:-
+              td 2013-02-12
+              td 2014-12-31
+              td
+                .red-ball
+            tr
+              td Bananer 98:-/styck
+              td 2010-12-23
+              td 2015-12-12
+              td
+                .green-ball
+            tr
+              td Gaffel 1:-/styck
+              td 2010-11-23
+              td 2010-12-24
+              td 
+                .red-ball
+            tr
+              td Gaffel 1:-/styck
+              td 2010-11-23
+              td 2010-12-24
+              td 

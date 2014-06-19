@@ -25342,6 +25342,13 @@ var locals_ = (locals || {}),_id = locals_._id,profilePhoto = locals_.profilePho
 buf.push("<div data-equalizer=\"data-equalizer\"><div data-equalizer-watch=\"data-equalizer-watch\" class=\"panel small-12 medium-6 large-12 columns\"><a" + (jade.attr("data-reveal-id", 'profileside' + (_id) + '', true, false)) + "><div class=\"thumbnail large-2 columns show-for-large-up\"><img" + (jade.attr("src", '' + (profilePhoto) + '', true, false)) + " alt=\"\"/></div><div class=\"informationbox small-12 medium-12 large-10 columns\"><img" + (jade.attr("src", '' + (profilePhoto) + '', true, false)) + " alt=\"\" class=\"thumbnailsmall show-for-medium-only right\"/><h2>" + (jade.escape((jade.interp = BannerName) == null ? '' : jade.interp)) + "</h2><p class=\"location\"></p><p>| Presentation</p><i><svg viewbox=\"0 0 32 32\" class=\"icon icon-sallskap\"><use xlink:href=\"#icon-sallskap\"></use></svg><span class=\"icon-text\">450</span></i><i><svg viewbox=\"0 0 32 32\" class=\"icon icon-motesplatser\"><use xlink:href=\"#icon-motesplatser\"></use></svg><span class=\"icon-text\">6</span></i><i><svg viewbox=\"0 0 32 32\" class=\"icon icon-moteslokal\"><use xlink:href=\"#icon-moteslokal\"></use></svg><span class=\"icon-text\">350</span></i><i><svg viewbox=\"0 0 32 32\" class=\"icon icon-mat\"><use xlink:href=\"#icon-mat\"></use></svg><span class=\"icon-text\">450</span></i><i><svg viewbox=\"0 0 32 32\" class=\"icon icon-mingel\"><use xlink:href=\"#icon-mingel\"></use></svg><span class=\"icon-text\">450</span></i><i><svg viewbox=\"0 0 32 32\" class=\"icon icon-logi\"><use xlink:href=\"#icon-logi\"></use></svg><span class=\"icon-text\">50</span></i></div><div class=\"arrowcontainer show-for-medium-up\"><div class=\"arrow\"></div></div></a></div></div>");;return buf.join("");
 };
 
+this["JST"]["client/templates/kundkortlistapopup"] = function template(locals) {
+var buf = [];
+var jade_mixins = {};
+var locals_ = (locals || {}),_id = locals_._id;
+buf.push("<!--kundkortlistapopup.jade--><div" + (jade.attr("id", "quickInfo" + (_id) + "", true, false)) + " data-reveal=\"data-reveal\" data-options=\"close_on_background_click: true\" class=\"reveal-modal\"><div class=\"row\"><div class=\"small-12 columns\"><h2>Snabbinfo</h2></div><div class=\"small-12 columns\"><h4>Profilsidor</h4><table id=\"customer-table\" class=\"dynamic-table\"><thead><tr><th>Sidans namn</th><th>Kontaktperson</th><th>Giltig t.o.m.</th><th>Storlek</th><th>Synlig / Släckt</th></tr></thead><tbody><tr><td>Lindaus bokningssida</td><td>Anders Lundin</td><td>2013-06-05</td><td>Small</td><td><div class=\"green-ball\"></div></td></tr><tr><td>Inlands bussbiljetter</td><td>Kalle Kanin</td><td>2013-06-06</td><td>Medium</td><td><div class=\"red-ball\"></div></td></tr><tr><td>Lindaus bokningssida</td><td>Anders Lundin</td><td>2013-06-05</td><td>Large</td><td><div class=\"green-ball\"></div></td></tr><tr><td>Inlands bussbiljetter</td><td>Kalle Kanin</td><td>2013-06-06</td><td>Medium</td><td><div class=\"red-ball\"></div></td></tr></tbody></table></div><div class=\"small-12 columns\"><h4>Erbjudanden</h4><table id=\"my-table\" class=\"dynamic-table\"><thead><tr><th>Rubrik</th><th>Aktiv fr.o.m.</th><th>Slutdatum</th><th>Publikt</th></tr></thead><tbody><tr><td>Julbord från 99:-</td><td>2013-02-12</td><td>2014-12-31</td><td><div class=\"red-ball\"></div></td></tr><tr><td>Bananer 98:-/styck</td><td>2010-12-23</td><td>2015-12-12</td><td><div class=\"green-ball\"></div></td></tr><tr><td>Gaffel 1:-/styck</td><td>2010-11-23</td><td>2010-12-24</td><td><div class=\"red-ball\"></div></td></tr><tr><td>Gaffel 1:-/styck</td><td>2010-11-23</td><td>2010-12-24</td><td></td></tr></tbody></table></div></div></div>");;return buf.join("");
+};
+
 this["JST"]["client/templates/profileside"] = function template(locals) {
 var buf = [];
 var jade_mixins = {};
@@ -25446,7 +25453,6 @@ $(function ()
         }
       });
     }
-    // admin-newcategory
     if ($('body').hasClass('admin-newcategory')) {
       $('#list-categories').dynatable({
         dataset: {

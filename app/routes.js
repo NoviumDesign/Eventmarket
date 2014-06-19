@@ -39,6 +39,7 @@ module.exports.initialize = function(app) {
     app.get('/api/banner', api.banner);
     app.get('/api/category', api.category);
     app.get('/api/newcategory', api.newcategory);
+    app.get('/api/customercards', api.customercards);
 
     // Protected pages
     app.get('/login', home.login);
@@ -97,13 +98,22 @@ module.exports.initialize = function(app) {
      * Automatically apply the `requireLogin` middleware to all
      * backstage routes
      */
-    app.all("/admin/*", requireAdminLogin, function(req, res, next) {
+    /*app.all("/admin/*", requireAdminLogin, function(req, res, next) {
       console.log('Protected route.');
       next();
-    });
+    });*/
     
     // Admin pages 
     app.get('/admin', requireAdminLogin, admin.start);
+    app.get('/admin/kundkortlista', admin.kundkortlista);
+    app.get('/admin/loadkundkort', admin.loadkundkort);
+    
+    // Parse database stuff
+    app.get('/admin/parsecrmlogingroup', admin.parsecrmlogingroup);
+    //app.get('/admin/accessmembership', admin.accessmembership);
+    //app.get('/admin/kundkort', admin.kundkort);
+    //app.get('/admin/crmobjectresponsibility', admin.crmobjectresponsibility);
+
     app.get('/admin/prstpage', admin.prstpage);
     app.get('/admin/prstpage/id/:PageICID', admin.editprstpage);
     
