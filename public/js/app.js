@@ -99,16 +99,16 @@ if ($('body').hasClass('admin-kundkortlista')) {
       _cellWriter: function (index, rowData) {
         if (index.id == 'ResponsibleFullText') {
           if (rowData[index.id] == undefined) {
-            return '<td>-- Ingen --</td>';
+            return '<td onclick="window.location.href=\'/admin/kundkort/id/'+rowData._id+'\'; return false;">-- Ingen --</td>';
           } else {
-            return '<td>'+rowData[index.id]+'</td>';
+            return '<td onclick="window.location.href=\'/admin/kundkort/id/'+rowData._id+'\'; return false;">'+rowData[index.id]+'</td>';
           }
         }
         if (index.id == 'LogTimeIndexed') {
           if (rowData[index.id] == undefined) {
-            return '<td>Aldrig</td>';
+            return '<td onclick="window.location.href=\'/admin/kundkort/id/'+rowData._id+'\'; return false;">Aldrig</td>';
           } else {
-            return '<td>'+rowData[index.id]+'</td>';
+            return '<td onclick="window.location.href=\'/admin/kundkort/id/'+rowData._id+'\'; return false;">'+rowData[index.id]+'</td>';
           }
         }
         if (index.id == 'quickInfo') {
@@ -120,7 +120,7 @@ if ($('body').hasClass('admin-kundkortlista')) {
         if (index.id == "name") {
           return '<td><a href="/admin/editnewcategory/id/'+rowData['_id']+'">'+rowData[index.id]+'</a></td>';
         } else {
-          return '<td>'+rowData[index.id]+'</td>';
+          return '<td onclick="window.location.href=\'/admin/kundkort/id/'+rowData._id+'\'; return false;">'+rowData[index.id]+'</td>';
         }
       }
     }

@@ -2,11 +2,12 @@
  * indexer
  *
  * after import from old mysql, run in sequence:
- * 1. accessmembership
- * 2. CRMContactObjectsWithPersonID
- * 3. crmobjectresponsibility
- * 4. parsecrmlogingroup
- * 5. parseLogTimes
+ * 1. orgmembership
+ * 2. accessmembership
+ * 3. CRMContactObjectsWithPersonID
+ * 4. crmobjectresponsibility
+ * 5. parsecrmlogingroup
+ * 6. parseLogTimes
  * 
  */
 'use strict';
@@ -34,8 +35,8 @@ module.exports = {
   //     - PersonID
   //     - PersonID
 
-  parseLogTimes: function() {
-    crmModels.CRMContactObject.find({}, function (err, crmObjects){
+  parseLogTimes: function () {
+    crmModels.CRMContactObject.find({}, function (err, crmObjects) {
       console.log('found contact objects');
       if (err) console.log(err);
       async.each(
@@ -63,18 +64,25 @@ module.exports = {
     });
   },
   // Parse CRMContactObjects with Person ID schema
-  CRMContactObjectsWithPersonID: function (req, res) {
+  CRMContactObjectsWithPersonID: function (next) {
     crmModels.CRMContactObject.find({}, function (err, crmObjects){
       console.log('found contact objects');
       if (err) console.log(err);
       async.each(
         crmObjects,
         function(crm, callback){
-          models.Person.findOne({PersonID : crm.PersonID}, function(err, person){
+          //crmModels.CRMContactObject.find({'PersonObject.City' : 'STOCKHOLM'}).populate('PersonObject').exec(function (err, crm) {
+          //  console.log(crm);
+          //});
+          models.Person.findOne({PersonID : crm.PersonID}).populate('OrgMembership').exec(function(err, person){
             if (err) console.log(err);
             if (person) {
-              console.log('found corresponding person');
-              crm.PersonFullText = person.FirstName+' '+person.LastName;
+              //console.log(person.OrgMembership[0]);
+              if (person.OrgMembership[0] !== undefined) {
+                crm.PersonFullText = person.OrgMembership[0].OrgName +'<br/>'+ person.FirstName+' '+person.LastName;
+              } else {
+                crm.PersonFullText = person.FirstName+' '+person.LastName;
+              }
               crm.PersonObject = person._id;
               crm.save(function (err, cat) {
                 if (err) console.log(err);
@@ -89,6 +97,7 @@ module.exports = {
         function(err){
           if (err) console.log(err);
           console.log('Done!');
+          next();
         }
       );
     });
@@ -222,4 +231,42 @@ module.exports = {
       );
     });
   },
+
+  orgmembership: function (next) {
+    models.Person.find({}, function(err, persons) {
+      console.log('Finding persons...');
+      if (err) console.log(err);
+      async.each(
+        persons,
+        function (person, callback) {
+          models.OrgMembership.find({PersonID: person.PersonID}, function (err, memships) {
+            if (memships.length > 0 && memships.length < 2) {
+              // Found 1 org membership
+              models.Organization.findOne({OrgID: memships[0].OrgID}, function (err, org) {
+                person.OrgMembership = [];
+                person.OrgMembership.push(org._id);
+                
+                // Clean up person schema
+                person.set('InfoText1', undefined, { strict: false });
+                person.save(function (err) {
+                  callback();
+                });
+              });
+            }
+            if (memships.length > 1) {
+              console.log('Found more than one orgmembership for person id '+person._id);
+              callback();
+            }
+            if (memships.length < 1) {
+              callback();
+            }
+          });
+        },
+        function (err) {
+          console.log('Done!');
+          next();
+        }
+      );
+    });
+  }
 };

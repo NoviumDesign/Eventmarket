@@ -24,14 +24,36 @@ module.exports = {
   kundkortlista: function (req, res) {
     res.render('admin/kundkortlista', {usr: req.user.toObject(), pageClass: 'admin-kundkortlista', title: 'ADMIN'});
   },
-
+  kundkort: function (req, res) {
+    crmModels.CRMContactObject.findById(req.param("KundkortID")).populate('PersonObject').exec(function (err, page) {
+      console.log(page);
+      if (page) {
+        models.Organization.findOne({_id: page.PersonObject.OrgMembership[0]}, function (err, org) {
+            //console.log(org);
+            if (org) {
+              var kundtitle = org.OrgName;
+            } else {
+              var kundtitle = page.PersonObject.FirstName +' '+page.PersonObject.LastName;
+            }
+            
+            res.render('admin/kundkort', { contactObject: page.toObject(), kundtitle: kundtitle, pageClass: 'admin-kundkort', title: 'ADMIN'});
+            
+        });
+      }
+    });
+  },
   /**
    * Load person >> load login >> load group name >> save group name as fulltext to CRMContactObject
    * @return {void}     
    * @deprecated See indexer.js
    */
-  parsecrmlogingroup: function (req, res) {
-    indexer.parseLogTimes();
+  reindexall: function (req, res) {
+    //indexer.orgmembership(function(){
+      indexer.CRMContactObjectsWithPersonID(function() {
+        console.log('All done!');
+        //die();
+      });
+    //});
   },
   
   

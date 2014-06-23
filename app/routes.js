@@ -106,10 +106,12 @@ module.exports.initialize = function(app) {
     // Admin pages 
     app.get('/admin', requireAdminLogin, admin.start);
     app.get('/admin/kundkortlista', admin.kundkortlista);
+    app.get('/admin/kundkort/id/:KundkortID', admin.kundkort);
+    
     app.get('/admin/loadkundkort', admin.loadkundkort);
     
     // Parse database stuff
-    app.get('/admin/parsecrmlogingroup', admin.parsecrmlogingroup);
+    app.get('/admin/reindexall', admin.reindexall);
     //app.get('/admin/accessmembership', admin.accessmembership);
     //app.get('/admin/kundkort', admin.kundkort);
     //app.get('/admin/crmobjectresponsibility', admin.crmobjectresponsibility);

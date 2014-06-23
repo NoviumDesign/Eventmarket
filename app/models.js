@@ -76,8 +76,9 @@ var Person = new Schema({
   RegionID : String,
   Notes : String,
   IDNumber : String,
+  OrgMembership : [{ type: Schema.Types.ObjectId, ref: 'Organization' }],
   BoolField1 : String,
-  InfoText1 : String,
+  /* InfoText1 : String, */
   InfoText2 : String,
   InfoText3 : String,
   IntField1 : String,
@@ -120,6 +121,19 @@ var CRMObjectResponsibility = new Schema({
   ContactObjectID : String,
   LoginID : String
 }, {collection: 'CRMObjectResponsibility'});
+// Unused in production
+var OrgMembership = new Schema({
+  PersonID : String,
+  OrgID : String
+}, {collection:'OrgMembership'});
+var Organization = new Schema({
+  OrgID       : String,
+  OrgName     : String,
+  OrgCreated  : String,
+  LastUpdated : String,
+  CountryID   : String,
+  OrgIDNumber : String
+}, {collection:'Organization'});
 
 var Login = new Schema({
   LoginID : { type: Number },
@@ -341,5 +355,7 @@ module.exports = {
     Region: mongoose.model('Region', Region),
     AccessMembership: mongoose.model('AccessMembership', AccessMembership),
     CRMObjectResponsibility: mongoose.model('CRMObjectResponsibility', CRMObjectResponsibility),
-    AccessGroup: mongoose.model('AccessGroup', AccessGroup)
+    AccessGroup: mongoose.model('AccessGroup', AccessGroup),
+    OrgMembership: mongoose.model('OrgMembership', OrgMembership),
+    Organization: mongoose.model('Organization', Organization)
 };
