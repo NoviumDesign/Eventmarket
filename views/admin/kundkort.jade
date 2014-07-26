@@ -1,336 +1,408 @@
 include includes/head
 body
   include includes/nav
-
+  - if (locals.messages) {
+    each item in locals.messages
+      .alert-box(data-alert='')
+        div #{item}
+        a.close(href='#') &times;
+  - }
   .row
     include includes/sidenav
+    
+    form(method="POST", action="/admin/savekundkort")
+      input(type="hidden", name="_id", value=locals.contactObject._id)
 
-    .large-9.columns.medium-8.columns
-      h3 #{locals.kundtitle}
-      .row.administration-content
-        .large-2.columns.medium-6.columns
-          label Kundansvarig
-            select(name="CultureID")
-              option(value="", selected=locals.contactObject.ResponsibleFullText == undefined) Ingen
-              option(value="") Alla
-              option(value="538a04a0e492b29f3ef1c506", selected=locals.contactObject.ResponsibleFullText == 'Jennie Sterner') Jennie Sterner
-              option(value="538a04a0e492b29f3ef1c995", selected=locals.contactObject.ResponsibleFullText == 'Johnny Sterner') Johnny Sterner
-              option(value="538a04a0e492b29f3ef1ccbd", selected=locals.contactObject.ResponsibleFullText == 'Toni Lahtinen') Toni Lahtinen
-        .large-2.columns.medium-6.columns.end
-          label Tilldelad grupp
-            select
-              option(value='medlem') Medlem
-              option(value='prospect') Prospect
-              option(value='bransch') Bransch
-              option(value='privatkund') Privatkund
-              option(value='foretagskund') Företagskund
-      .row.administration-content
-        .large-12.medium-12.columns
-          dl.accordion(data-accordion='data-accordion')
-            dd
-              a(href='#content1') Kontakt och Personal
-              #content1.content
-                .row
-                  .large-12.columns
-                    ul.large-block-grid-3.medium-block-grid-2.small-block-grid-1
-                      li
-                        h5 Kontakta vid förnyelse
-                        .panel
-                          img.profile(src='http://placehold.it/64x64')
-                          ul.personnel
-                            li Kalle Kanin
-                            li VD
-                            li
-                              a(href='#') kalle.kanin@kanincatering.se
-                            li 0706 27 29 12
-                      li
-                        h5 Medarbetare
-                        .panel
-                          img.profile(src='http://placehold.it/64x64')
-                          ul.personnel
-                            li Kalle Kanin
-                            li Teknisk Chef
-                            li
-                              a(href='#') kalle.kanin@kanincatering.se
-                            li 0706 27 29 12
-                      li
-                        h5 Medarbetare
-                        .panel
-                          img.profile(src='http://placehold.it/64x64')
-                          ul.personnel
-                            li Kalle Kanin
-                            li Kattskötare
-                            li
-                              a(href='#') kalle.kanin@kanincatering.se
-                            li 0706 27 29 12
-                      li
-                        h5 Medarbetare
-                        .panel
-                          img.profile(src='http://placehold.it/64x64')
-                          ul.personnel
-                            li Kalle Kanin
-                            li Kattskötare
-                            li
-                              a(href='#') kalle.kanin@kanincatering.se
-                            li 0706 27 29 12
-                  .small-12.columns
-                    a.button.expand(href='#' data-reveal-id="newEmployee") Skapa ny kontakt
-                    #newEmployee.reveal-modal(data-reveal='data-reveal')
-                      h2 Skapa ny personal
-                        .row
-                          .small-12.medium-6.columns
-                            label
-                              | Rubrik (t.ex. Medarbetare)
-                              input(type='text')
-                            label
-                              | Namn
-                              input(type='text')
-                            label
-                              | Titel
-                              input(type='text')
-                            label
-                              | E-post
-                              input(type='text')
-                            label
-                              | Telefonnummer
-                              input(type='text')
-                          .small-12.medium-6.columns
-                            a.button.expand Ladda upp profilbild
-                        .row
-                          .small-12.columns
-                            a.button Spara ny personal
-                        a.close-reveal-modal ×
-            dd
-              a(href='#content2') Addresser
-              #content2.content
-                | Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor indidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            dd
-              a(href='#content3b') Profilsidor
-              #content3b.content
-                a.button Skapa ny profilsida
-                table#customer-table.dynamic-table
-                  thead
-                    tr
-                      th Sidans namn
-                      th Kontaktperson
-                      th Giltig t.o.m.
-                      th Storlek
-                      th Synlig / Släckt
-                  tbody
-                    tr
-                      td Lindaus bokningssida
-                      td Anders Lundin
-                      td 2013-06-05
-                      td Small
-                      td 
-                        .green-ball
-                    tr
-                      td Inlands bussbiljetter
-                      td Kalle Kanin
-                      td 2013-06-06
-                      td Medium
-                      td
-                        .red-ball
-                    tr
-                      td Lindaus bokningssida
-                      td Anders Lundin
-                      td 2013-06-05
-                      td Large
-                      td
-                        .green-ball
-                    tr
-                      td Inlands bussbiljetter
-                      td Kalle Kanin
-                      td 2013-06-06
-                      td Medium
-                      td
-                        .red-ball
-            dd
-                  a(href='#panel4b') Statistik
-                  #panel4b.content
-                    .row
-                      .small-12.medium-12.columns
-                        h6 Profilsidor
-                        table#my-table.dynamic-table
-                          thead
-                            tr
-                              th Sidans namn
-                              th Antal visningar
-                              th Anta klick
-                          tbody
-                            tr
-                              td Lindaus bokningssida
-                              td 213
-                              td 111
-                            tr
-                              td Inlands bussbiljetter
-                              td 432
-                              td 321
-                            tr
-                              td Lindaus bokningssida
-                              td 5234
-                              td 3213
-                            tr
-                              td Inlands bussbiljetter
-                              td 532
-                              td 232
-                      .small-12.medium-12.columns
-                        h6 Erbjudanden
-                        table#my-table.dynamic-table
-                          thead
-                            tr
-                              th Erbjudandets namn
-                              th Antal visningar från profilsida
-                              th Anta klick från profilsida
-                              th Antal visningar från erbjudandesida
-                              th Anta klick från erbjudandesida
-                          tbody
-                            tr
-                              td Gaffel 1kr/styck
-                              td 213
-                              td 111
-                              td 213
-                              td 111
-                            tr
-                              td Bilknyckning 300kr/timme
-                              td 432
-                              td 321
-                              td 432
-                              td 321
-                            tr
-                              td Banan 32kr/kg
-                              td 5234
-                              td 3213
-                              td 5234
-                              td 3213
-                            tr
-                              td Gaffel 1kr/styck
-                              td 532
-                              td 232
-                              td 532
-                              td 232
-                      .small-12.medium-6
-        .large-12.medium-12.columns
-          ul.small-block-grid-1.large-block-grid-2
-            li
-              dl.accordion(data-accordion='myAccordionGroup')
-                dd
-                  a(href='#panel2b') Erbjudanden
-                  #panel2b.content
-                    table#my-table.dynamic-table
-                      thead
-                          tr
-                            th Rubrik
-                            th Aktiv fr.o.m.
-                            th Slutdatum
-                            th Publikt
-                        tbody
-                          tr
-                            td Julbord från 99:-
-                            td 2013-02-12
-                            td 2014-12-31
-                            td
-                              .red-ball
-                          tr
-                            td Bananer 98:-/styck
-                            td 2010-12-23
-                            td 2015-12-12
-                            td
-                              .green-ball
-                          tr
-                            td Gaffel 1:-/styck
-                            td 2010-11-23
-                            td 2010-12-24
-                            td 
-                              .red-ball
-                          tr
-                            td Gaffel 1:-/styck
-                            td 2010-11-23
-                            td 2010-12-24
-                            td 
-                              .red-ball
-                    a.button.expand Nytt erbjudande
-            li
-              dl.accordion(data-accordion='myAccordionGroup')
-                dd
-                  a(href='#panel5b') Intresselista
-                  #panel5b.content
-                    #jstree
-                      ul
+      .large-9.columns.medium-8.columns
+        h3 #{locals.kundtitle}
+        .row.administration-content
+          .large-2.columns.medium-6.columns
+            label Kundansvarig
+              select(name="CultureID")
+                option(value="", selected=locals.contactObject.ResponsibleFullText == undefined) Ingen
+                option(value="") Alla
+                option(value="538a04a0e492b29f3ef1c506", selected=locals.contactObject.ResponsibleFullText == 'Jennie Sterner') Jennie Sterner
+                option(value="538a04a0e492b29f3ef1c995", selected=locals.contactObject.ResponsibleFullText == 'Johnny Sterner') Johnny Sterner
+                option(value="538a04a0e492b29f3ef1ccbd", selected=locals.contactObject.ResponsibleFullText == 'Toni Lahtinen') Toni Lahtinen
+          .large-2.columns.medium-6.columns.end
+            label Tilldelad grupp
+              select
+                option(value='medlem') Medlem
+                option(value='prospect') Prospect
+                option(value='bransch') Bransch
+                option(value='privatkund') Privatkund
+                option(value='foretagskund') Företagskund
+        .row.administration-content
+          .large-12.medium-12.columns
+            dl.accordion(data-accordion='data-accordion')
+              dd
+                a(href='#content1') Kontakt och Personal
+                #content1.content
+                  .row
+                    .large-12.columns
+                      ul.large-block-grid-3.medium-block-grid-2.small-block-grid-1
                         li
-                          | Annonser
-                          ul
-                            li#child_node_1 Julannonser
-                            li Påskannonser
-                        li Mässor
-      .row
-        .large-10.medium-8.columns
-          h3 Historik
-        .large-2.medium-4.columns
-          select
-            option(value='all-history') All historik
-            option(value='billing') Fakturering
-            option(value='other') Övrigt
-      .row.administration-content
-        .large-12.medium-12.columns
-          dl.accordion(data-accordion='data-accordion')
-            dd
-              a(href='#content1c') Samtal: förnyelse
-                span.date datum
-              #content1c.content
-                .row
-                  .small-12.columns
-                    p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                  .small-12.columns
-                    a.button.alert Radera
-            dd
-              a(href='#content2c') Faktura 1239 betald
-                span.date datum
-              #content2c.content
-                .row
-                  .small-12.columns
-                    p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                  .small-12.columns
-                    a.button.alert Radera
-            dd
-              a(href='#content3c') Faktura 1239 skapad
-                span.date datum
-              #content3c.content
-                .row
-                  .small-12.columns
-                    p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                  .small-12.columns
-                    a.button.alert Radera
-          a.button(data-reveal-id='newHistory') Skapa ny historik
-          #newHistory.reveal-modal(data-reveal='data-reveal')
-            h2 Awesome. I have it.
-              p.lead Your couch.  It is mine.
-              p Im a cool paragraph that lives inside of an even cooler modal. Wins
-              a.close-reveal-modal ×
-      .row
-        .large-12.medium-12.columns
-          h3 Kommande kontakter
-      .row.administration-content
-        .large-12.medium-12.columns
-          dl.accordion(data-accordion='data-accordion')
-            dd
-              a(href='#content1d') Samtal: förnya profilsida Lindaus Bokningssida
-                span.date datum + klockslag
-              #content1d.content
-                .row
-                  .small-12.columns
-                    p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                  .small-12.columns
-                    a.button Klar
-            dd
-              a(href='#content2d') Byt logotyp
-                span.date datum + klockslag
-              #content2d.content
-                .row
-                  .small-12.columns
-                    p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                  .small-12.columns
-                    a.button Klar
-          a.button(href='#') Skapa ny
+                          h5 Kontakta vid förnyelse
+                          .panel
+                            img.profile(src='http://placehold.it/64x64')
+                            ul.personnel
+                              li Kalle Kanin
+                              li VD
+                              li
+                                a(href='#') kalle.kanin@kanincatering.se
+                              li 0706 27 29 12
+                        li
+                          h5 Medarbetare
+                          .panel
+                            img.profile(src='http://placehold.it/64x64')
+                            ul.personnel
+                              li Kalle Kanin
+                              li Teknisk Chef
+                              li
+                                a(href='#') kalle.kanin@kanincatering.se
+                              li 0706 27 29 12
+                        li
+                          h5 Medarbetare
+                          .panel
+                            img.profile(src='http://placehold.it/64x64')
+                            ul.personnel
+                              li Kalle Kanin
+                              li Kattskötare
+                              li
+                                a(href='#') kalle.kanin@kanincatering.se
+                              li 0706 27 29 12
+                        li
+                          h5 Medarbetare
+                          .panel
+                            img.profile(src='http://placehold.it/64x64')
+                            ul.personnel
+                              li Kalle Kanin
+                              li Kattskötare
+                              li
+                                a(href='#') kalle.kanin@kanincatering.se
+                              li 0706 27 29 12
+                    .small-12.columns
+                      a.button.expand(href='#' data-reveal-id="newEmployee") Skapa ny kontakt
+                      #newEmployee.reveal-modal(data-reveal='data-reveal')
+                        h2 Skapa ny personal
+                          .row
+                            .small-12.medium-6.columns
+                              label
+                                | Rubrik (t.ex. Medarbetare)
+                                input(type='text')
+                              label
+                                | Namn
+                                input(type='text')
+                              label
+                                | Titel
+                                input(type='text')
+                              label
+                                | E-post
+                                input(type='text')
+                              label
+                                | Telefonnummer
+                                input(type='text')
+                            .small-12.medium-6.columns
+                              a.button.expand Ladda upp profilbild
+                          .row
+                            .small-12.columns
+                              a.button Spara ny personal
+                          a.close-reveal-modal ×
+              dd
+                a(href='#content2') Addresser
+                #content2.content
+                  .row
+                    .large-6.small-12.columns
+                      h4 Företagsuppgifter
+                      .row
+                        .small-12.columns
+                          label
+                            | Företag
+                            input(type="text", name='Organization.OrgName', value=locals.contactObject.Organization.OrgName)
+                          label
+                            | Postadress
+                            input(type="text", name='Organization.PostAddress', value=locals.contactObject.Organization.PostAddress)
+                          label
+                            | Postnummer
+                            input(type="text", name='Organization.PostNumber', value=locals.contactObject.Organization.PostNumber)
+                          label 
+                            | Postort
+                            input(type="text", name='Organization.PostOrt', value=locals.contactObject.Organization.PostOrt)
+                          label 
+                            | Telefon 1
+                            input(type="text", name='Organization.Tel1', value=locals.contactObject.Organization.Tel1)
+                          label 
+                            | Telefon 2
+                            input(type="text", name='Organization.Tel2', value=locals.contactObject.Organization.Tel2)
+                          label 
+                            | Webb-adress
+                            input(type="text", name='Organization.WWW', value=locals.contactObject.Organization.WWW)
+                          label 
+                            | Org. nummer
+                            input(type="text", name='Organization.OrgNumber', value=locals.contactObject.Organization.OrgNumber)
+                          label 
+                            | Län
+                            select(name="Organization.Lan")
+                              option(value="", selected=locals.contactObject.Organization.Lan == '') Välj...
+                              each item in locals.region
+                                option(value="#{item.RegionID}", selected=locals.contactObject.Organization.Lan == item.RegionID) #{item.RegionName}
+                          label 
+                            | Land
+                            select(name="Organization.Country")
+                              option(value="", selected=locals.contactObject.Organization.Country == '') Välj...
+                              each item in locals.country
+                                option(value="#{item.TechName}", selected=locals.contactObject.Organization.Country == item.TechName) #{item.TechName}
+                          label 
+                            | * Kundkortstaggar (specifika sökord som beskriver företaget, tex. eventarrangör, ansiktsmålning..) (Nytt fält!)
+                    .large-6.small-12.columns
+                      h4 Fakturauppgifter
+                      .row
+                        .small-12.columns
+                          label
+                            | Företag
+                            input(type="text", name='Invoice.OrgName', value=locals.contactObject.Invoice.OrgName)
+                          label
+                            | Postadress
+                            input(type="text", name='Invoice.RefName', value=locals.contactObject.Invoice.RefName)
+                          label
+                            | Postnummer
+                            input(type="text", name='Invoice.PostAddress', value=locals.contactObject.Invoice.PostAddress)
+                          label 
+                            | Postort
+                            input(type="text", name='Invoice.PostOrt', value=locals.contactObject.Invoice.PostOrt)
+                          label 
+                            | Telefon 1
+                            input(type="text", name='Invoice.OrgNumber', value=locals.contactObject.Invoice.OrgNumber)
+                          label 
+                            | Telefon 2
+                            input(type="text", name='Invoice.InvoiceEmail', value=locals.contactObject.Invoice.InvoiceEmail)
+              dd
+                a(href='#content3b') Profilsidor
+                #content3b.content
+                  a.button Skapa ny profilsida
+                  table#customer-table.dynamic-table
+                    thead
+                      tr
+                        th Sidans namn
+                        th Kontaktperson
+                        th Giltig t.o.m.
+                        th Storlek
+                        th Synlig / Släckt
+                    tbody
+                      tr
+                        td Lindaus bokningssida
+                        td Anders Lundin
+                        td 2013-06-05
+                        td Small
+                        td 
+                          .green-ball
+                      tr
+                        td Inlands bussbiljetter
+                        td Kalle Kanin
+                        td 2013-06-06
+                        td Medium
+                        td
+                          .red-ball
+                      tr
+                        td Lindaus bokningssida
+                        td Anders Lundin
+                        td 2013-06-05
+                        td Large
+                        td
+                          .green-ball
+                      tr
+                        td Inlands bussbiljetter
+                        td Kalle Kanin
+                        td 2013-06-06
+                        td Medium
+                        td
+                          .red-ball
+              dd
+                    a(href='#panel4b') Statistik
+                    #panel4b.content
+                      .row
+                        .small-12.medium-12.columns
+                          h6 Profilsidor
+                          table#my-table.dynamic-table
+                            thead
+                              tr
+                                th Sidans namn
+                                th Antal visningar
+                                th Anta klick
+                            tbody
+                              tr
+                                td Lindaus bokningssida
+                                td 213
+                                td 111
+                              tr
+                                td Inlands bussbiljetter
+                                td 432
+                                td 321
+                              tr
+                                td Lindaus bokningssida
+                                td 5234
+                                td 3213
+                              tr
+                                td Inlands bussbiljetter
+                                td 532
+                                td 232
+                        .small-12.medium-12.columns
+                          h6 Erbjudanden
+                          table#my-table.dynamic-table
+                            thead
+                              tr
+                                th Erbjudandets namn
+                                th Antal visningar från profilsida
+                                th Anta klick från profilsida
+                                th Antal visningar från erbjudandesida
+                                th Anta klick från erbjudandesida
+                            tbody
+                              tr
+                                td Gaffel 1kr/styck
+                                td 213
+                                td 111
+                                td 213
+                                td 111
+                              tr
+                                td Bilknyckning 300kr/timme
+                                td 432
+                                td 321
+                                td 432
+                                td 321
+                              tr
+                                td Banan 32kr/kg
+                                td 5234
+                                td 3213
+                                td 5234
+                                td 3213
+                              tr
+                                td Gaffel 1kr/styck
+                                td 532
+                                td 232
+                                td 532
+                                td 232
+                        .small-12.medium-6
+          .large-12.medium-12.columns
+            ul.small-block-grid-1.large-block-grid-2
+              li
+                dl.accordion(data-accordion='myAccordionGroup')
+                  dd
+                    a(href='#panel2b') Erbjudanden
+                    #panel2b.content
+                      table#my-table.dynamic-table
+                        thead
+                            tr
+                              th Rubrik
+                              th Aktiv fr.o.m.
+                              th Slutdatum
+                              th Publikt
+                          tbody
+                            tr
+                              td Julbord från 99:-
+                              td 2013-02-12
+                              td 2014-12-31
+                              td
+                                .red-ball
+                            tr
+                              td Bananer 98:-/styck
+                              td 2010-12-23
+                              td 2015-12-12
+                              td
+                                .green-ball
+                            tr
+                              td Gaffel 1:-/styck
+                              td 2010-11-23
+                              td 2010-12-24
+                              td 
+                                .red-ball
+                            tr
+                              td Gaffel 1:-/styck
+                              td 2010-11-23
+                              td 2010-12-24
+                              td 
+                                .red-ball
+                      a.button.expand Nytt erbjudande
+              li
+                dl.accordion(data-accordion='myAccordionGroup')
+                  dd
+                    a(href='#panel5b') Intresselista
+                    #panel5b.content
+                      #jstree
+                        ul
+                          li
+                            | Annonser
+                            ul
+                              li#child_node_1 Julannonser
+                              li Påskannonser
+                          li Mässor
+        .row
+          .large-10.medium-8.columns
+            h3 Historik
+          .large-2.medium-4.columns
+            select
+              option(value='all-history') All historik
+              option(value='billing') Fakturering
+              option(value='other') Övrigt
+        .row.administration-content
+          .large-12.medium-12.columns
+            dl.accordion(data-accordion='data-accordion')
+              dd
+                a(href='#content1c') Samtal: förnyelse
+                  span.date datum
+                #content1c.content
+                  .row
+                    .small-12.columns
+                      p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    .small-12.columns
+                      a.button.alert Radera
+              dd
+                a(href='#content2c') Faktura 1239 betald
+                  span.date datum
+                #content2c.content
+                  .row
+                    .small-12.columns
+                      p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    .small-12.columns
+                      a.button.alert Radera
+              dd
+                a(href='#content3c') Faktura 1239 skapad
+                  span.date datum
+                #content3c.content
+                  .row
+                    .small-12.columns
+                      p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    .small-12.columns
+                      a.button.alert Radera
+            a.button(data-reveal-id='newHistory') Skapa ny historik
+            #newHistory.reveal-modal(data-reveal='data-reveal')
+              h2 Awesome. I have it.
+                p.lead Your couch.  It is mine.
+                p Im a cool paragraph that lives inside of an even cooler modal. Wins
+                a.close-reveal-modal ×
+        .row
+          .large-12.medium-12.columns
+            h3 Kommande kontakter
+        .row.administration-content
+          .large-12.medium-12.columns
+            dl.accordion(data-accordion='data-accordion')
+              dd
+                a(href='#content1d') Samtal: förnya profilsida Lindaus Bokningssida
+                  span.date datum + klockslag
+                #content1d.content
+                  .row
+                    .small-12.columns
+                      p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    .small-12.columns
+                      a.button Klar
+              dd
+                a(href='#content2d') Byt logotyp
+                  span.date datum + klockslag
+                #content2d.content
+                  .row
+                    .small-12.columns
+                      p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    .small-12.columns
+                      a.button Klar
+            button(type='Submit') Spara
 
   include includes/footer

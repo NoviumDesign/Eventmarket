@@ -312,8 +312,6 @@ module.exports = {
 
       sortObj[sortKey] = parseInt(sortDir, 10);
 
-      console.log(url_parts);
-      
       crmModels.CRMContactObject.count(q, function(err, c) {
         if (err) console.log(err);
         if (c) {

@@ -24,7 +24,30 @@ var CRMContactObject = new Schema({
   LastContact     : String,
   Summary         : String,
   PersonID        : Number,
-  OrgName         : String,
+  LastUpdated     : String,
+  Organization : {
+    OrgName : String,
+    PostAddress: String,
+    PostNumber: String,
+    PostOrt : String,
+    Tel1 : String,
+    Tel2 : String,
+    WWW: String,
+    OrgNumber: String,
+    Lan: String,
+    Country: String
+  },
+  Invoice: {
+    OrgName: String,
+    RefName: String,
+    PostAddress: String,
+    PostNumber: String,
+    PostOrt: String,
+    OrgNumber: String,
+    InvoiceEmail: String
+  },
+  Tags : [{ value: String }]
+  /*OrgName         : String,
   FirstName       : String,
   LastName        : String,
   PersonalTitle   : String,
@@ -38,14 +61,13 @@ var CRMContactObject = new Schema({
   Email           : String,
   Url             : String,
   CountryID       : Number,
-  ObjectTypeID    : Number,
-  LastUpdated     : String,
+  ObjectTypeID    : Number, 
   ShortOrgName    : String,
   TextField1      : String,
   TextField2      : String,
   TextField3      : String,
   UniquePhone     : String,
-  OrgNumber       : String
+  OrgNumber       : String*/
 }, { collection: 'CRMContactObject'});
 
 module.exports = {

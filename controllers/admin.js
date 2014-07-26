@@ -25,23 +25,74 @@ module.exports = {
     res.render('admin/kundkortlista', {usr: req.user.toObject(), pageClass: 'admin-kundkortlista', title: 'ADMIN'});
   },
   kundkort: function (req, res) {
-    crmModels.CRMContactObject.findById(req.param("KundkortID")).populate('PersonObject').exec(function (err, page) {
-      console.log(page);
-      if (page) {
-        models.Organization.findOne({_id: page.PersonObject.OrgMembership[0]}, function (err, org) {
-            //console.log(org);
-            if (org) {
-              var kundtitle = org.OrgName;
-            } else {
-              var kundtitle = page.PersonObject.FirstName +' '+page.PersonObject.LastName;
-            }
-            
-            res.render('admin/kundkort', { contactObject: page.toObject(), kundtitle: kundtitle, pageClass: 'admin-kundkort', title: 'ADMIN'});
-            
+    models.Country.find({}, function (err, country) {
+      models.Region.find({}, function (err, region) {
+        crmModels.CRMContactObject.findById(req.param("KundkortID")).populate('PersonObject').exec(function (err, page) {
+          //console.log(page);
+          if (page) {
+            models.Organization.findOne({_id: page.PersonObject.OrgMembership[0]}, function (err, org) {
+                /**
+                 * Parse in org details on customer card and save
+                 */
+                if (org) {
+                  var kundtitle = org.OrgName;
+                } else {
+                  var kundtitle = page.PersonObject.FirstName +' '+page.PersonObject.LastName;
+                }
+                
+                res.render('admin/kundkort', {
+                  contactObject: page.toObject(),
+                  region: region,
+                  country: country,
+                  kundtitle: kundtitle,
+                  pageClass: 'admin-kundkort', title: 'ADMIN',
+                  messages: req.flash('info'),
+                });
+                
+            });
+          }
         });
+      });
+    });
+  },
+  /**
+   * Save posted data from kundkort
+   * 
+   * @param  {[type]} req [description]
+   * @param  {[type]} res [description]
+   * @return {[type]}     [description]
+   */
+  savekundkort: function(req, res) {
+    crmModels.CRMContactObject.findById(req.body._id, function (err, crmObj) {
+      if(crmObj) {
+        crmObj.Organization.OrgName     = req.body['Organization.OrgName'];
+        crmObj.Organization.PostAddress = req.body['Organization.PostAddress'];
+        crmObj.Organization.PostNumber  = req.body['Organization.PostNumber'];
+        crmObj.Organization.PostOrt     = req.body['Organization.PostOrt'];
+        crmObj.Organization.Tel1        = req.body['Organization.Tel1'];
+        crmObj.Organization.Tel2        = req.body['Organization.Tel2'];
+        crmObj.Organization.WWW         = req.body['Organization.WWW'];
+        crmObj.Organization.OrgNumber   = req.body['Organization.OrgNumber'];
+        crmObj.Organization.Lan         = req.body['Organization.Lan'];
+        crmObj.Organization.Country     = req.body['Organization.Country'];
+        crmObj.Invoice.OrgName          = req.body['Invoice.OrgName'];
+        crmObj.Invoice.RefName          = req.body['Invoice.RefName'];
+        crmObj.Invoice.PostAddress      = req.body['Invoice.PostAddress'];
+        crmObj.Invoice.PostNumber       = req.body['Invoice.PostNumber'];
+        crmObj.Invoice.PostOrt          = req.body['Invoice.PostOrt'];
+        crmObj.Invoice.OrgNumber        = req.body['Invoice.OrgNumber'];
+        crmObj.Invoice.InvoiceEmail     = req.body['Invoice.InvoiceEmail'];
+
+        crmObj.save(function(err){
+          req.flash('info', 'Kundkort uppdaterat!');
+          res.redirect('/admin/kundkort/id/' + req.body._id);
+        });
+      } else {
+        res.redirect('/admin/kundkort/id/' + req.body._id);
       }
     });
   },
+
   /**
    * Load person >> load login >> load group name >> save group name as fulltext to CRMContactObject
    * @return {void}     
@@ -49,14 +100,12 @@ module.exports = {
    */
   reindexall: function (req, res) {
     //indexer.orgmembership(function(){
-      indexer.CRMContactObjectsWithPersonID(function() {
+      indexer.CRMContactObjectsWithOrg(function() {
         console.log('All done!');
         //die();
       });
     //});
   },
-  
-  
   
   loadkundkort: function(req, res) {
     // Söka på företag / kontaktperson: 

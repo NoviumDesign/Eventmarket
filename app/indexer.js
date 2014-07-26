@@ -8,7 +8,7 @@
  * 4. crmobjectresponsibility
  * 5. parsecrmlogingroup
  * 6. parseLogTimes
- * 
+ * 7. CRMContactObjectsWithOrg
  */
 'use strict';
 
@@ -63,6 +63,90 @@ module.exports = {
       );
     });
   },
+
+  CRMContactObjectsWithOrg: function (next) {
+    console.log('Starting job "CRMContactObjectsWithOrg"');
+    crmModels.CRMContactObject.find({}).populate('PersonObject').exec(function (err, page) {
+      async.each(
+        page,
+        function (crmObj, callback) {
+          if (crmObj.PersonObject !== null) {
+
+            models.Organization.findOne({_id: crmObj.PersonObject.OrgMembership[0]}, function (err, org) {
+              /**
+               * Parse in org details on customer card and save
+               */
+              //console.log(crmObj.PersonObject);
+              if (org) {
+                crmObj.Organization.OrgName                     = org.OrgName;
+                crmObj.Organization.PostAddress                 = crmObj.PersonObject.Address1;
+                crmObj.Organization.PostNumber                  = crmObj.PersonObject.Zipcode;
+                crmObj.Organization.PostOrt                     = crmObj.PersonObject.City;
+                crmObj.Organization.Tel1                        = crmObj.PersonObject.Phone;
+                crmObj.Organization.Tel2                        = crmObj.PersonObject.Mobile;
+                crmObj.Organization.WWW                         = crmObj.PersonObject.Url;
+                // Does not exist crmObj.Organization.OrgNumber = org.OrgName,
+                // Does not exist crmObj.Organization.Lan       = String,
+                crmObj.Organization.Country                     = crmObj.PersonObject.CountryID;
+                
+                crmObj.Invoice.OrgName                          = org.OrgName;
+                //crmObj.Invoice.RefName: String,
+                crmObj.Invoice.PostAddress                      = crmObj.PersonObject.Address1;
+                crmObj.Invoice.PostNumber                       = crmObj.PersonObject.Zipcode;
+                crmObj.Invoice.PostOrt                          = crmObj.PersonObject.City;
+                crmObj.Invoice.OrgNumber                        = crmObj.PersonObject.City;
+                //crmObj.Invoice.InvoiceEmail: String
+                
+                // Clean up schema
+                crmObj.set('OrgName'       , undefined, { strict: false });
+                crmObj.set('FirstName'     , undefined, { strict: false });
+                crmObj.set('LastName'      , undefined, { strict: false });
+                crmObj.set('PersonalTitle' , undefined, { strict: false });
+                crmObj.set('Address1'      , undefined, { strict: false });
+                crmObj.set('Address2'      , undefined, { strict: false });
+                crmObj.set('Zipcode'       , undefined, { strict: false });
+                crmObj.set('City'          , undefined, { strict: false });
+                crmObj.set('Phone'         , undefined, { strict: false });
+                crmObj.set('Fax'           , undefined, { strict: false });
+                crmObj.set('Mobile'        , undefined, { strict: false });
+                crmObj.set('Email'         , undefined, { strict: false });
+                crmObj.set('Url'           , undefined, { strict: false });
+                crmObj.set('CountryID'     , undefined, { strict: false });
+                crmObj.set('ObjectTypeID'  , undefined, { strict: false });
+                crmObj.set('ShortOrgName'  , undefined, { strict: false });
+                crmObj.set('TextField1'    , undefined, { strict: false });
+                crmObj.set('TextField2'    , undefined, { strict: false });
+                crmObj.set('TextField3'    , undefined, { strict: false });
+                crmObj.set('UniquePhone'   , undefined, { strict: false });
+                crmObj.set('OrgNumber'     , undefined, { strict: false });
+
+                crmObj.save(function (err, cat) {
+                  if (err) console.log(err);
+                  callback();
+                });
+              } else {
+                callback();
+              }
+              // else {
+              //   var kundtitle = page.PersonObject.FirstName +' '+page.PersonObject.LastName;
+              // }
+              
+              //res.render('admin/kundkort', { contactObject: page.toObject(), kundtitle: kundtitle, pageClass: 'admin-kundkort', title: 'ADMIN'});
+            });
+
+          } else {
+            callback();
+          }
+        },
+        function (err) {
+          if (err) console.log(err);
+          console.log('Done!');
+          next();
+        }
+      );
+    });
+  },
+
   // Parse CRMContactObjects with Person ID schema
   CRMContactObjectsWithPersonID: function (next) {
     crmModels.CRMContactObject.find({}, function (err, crmObjects){
