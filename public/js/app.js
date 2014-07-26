@@ -74,6 +74,33 @@ $('#customer-table').dynatable({
     perPageSelect: false
   },
 });
+// Söka personer under kundkort
+if ($('body').hasClass('admin-kundkort')) {
+  function appendPersonal(personalId) {
+    console.log('wooot!');
+    var hidPers = $('#hiddenPersonal').val().split(',');
+    hidPers.push(personalId);
+    $('#hiddenPersonal').val(hidPers.join(','));
+    $('#kundkort').submit();
+  };
+  $('#person-table').dynatable({
+    dataset: {
+      ajax: true,
+      ajaxUrl: '/api/person',
+      ajaxOnLoad: true,
+      records: []
+    },
+    writers: {
+      _cellWriter: function (index, rowData) {
+        if (index.id == "FirstName" || index.id == "LastName") {
+          return '<td><a onclick="appendPersonal(\''+rowData['_id']+'\');">'+rowData[index.id]+'</a></td>';
+        } else {
+          return '<td>'+rowData[index.id]+'</td>';
+        }
+      }
+    }
+  });
+}
 // Kundkortlistan
 if ($('body').hasClass('admin-kundkortlista')) {
   var afterLoadHook = function(){

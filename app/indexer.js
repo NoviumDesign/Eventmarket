@@ -95,47 +95,101 @@ module.exports = {
                 crmObj.Invoice.PostNumber                       = crmObj.PersonObject.Zipcode;
                 crmObj.Invoice.PostOrt                          = crmObj.PersonObject.City;
                 crmObj.Invoice.OrgNumber                        = crmObj.PersonObject.City;
-                //crmObj.Invoice.InvoiceEmail: String
                 
-                // Clean up schema
-                crmObj.set('OrgName'       , undefined, { strict: false });
-                crmObj.set('FirstName'     , undefined, { strict: false });
-                crmObj.set('LastName'      , undefined, { strict: false });
-                crmObj.set('PersonalTitle' , undefined, { strict: false });
-                crmObj.set('Address1'      , undefined, { strict: false });
-                crmObj.set('Address2'      , undefined, { strict: false });
-                crmObj.set('Zipcode'       , undefined, { strict: false });
-                crmObj.set('City'          , undefined, { strict: false });
-                crmObj.set('Phone'         , undefined, { strict: false });
-                crmObj.set('Fax'           , undefined, { strict: false });
-                crmObj.set('Mobile'        , undefined, { strict: false });
-                crmObj.set('Email'         , undefined, { strict: false });
-                crmObj.set('Url'           , undefined, { strict: false });
-                crmObj.set('CountryID'     , undefined, { strict: false });
-                crmObj.set('ObjectTypeID'  , undefined, { strict: false });
-                crmObj.set('ShortOrgName'  , undefined, { strict: false });
-                crmObj.set('TextField1'    , undefined, { strict: false });
-                crmObj.set('TextField2'    , undefined, { strict: false });
-                crmObj.set('TextField3'    , undefined, { strict: false });
-                crmObj.set('UniquePhone'   , undefined, { strict: false });
-                crmObj.set('OrgNumber'     , undefined, { strict: false });
-
-                crmObj.save(function (err, cat) {
-                  if (err) console.log(err);
-                  callback();
-                });
               } else {
+                crmObj.Organization.OrgName                     = '';
+                crmObj.Organization.PostAddress                 = '';
+                crmObj.Organization.PostNumber                  = '';
+                crmObj.Organization.PostOrt                     = '';
+                crmObj.Organization.Tel1                        = '';
+                crmObj.Organization.Tel2                        = '';
+                crmObj.Organization.WWW                         = '';
+                // Does not exist crmObj.Organization.OrgNumber = org.OrgName,
+                // Does not exist crmObj.Organization.Lan       = String,
+                crmObj.Organization.Country                     = '';
+                
+                crmObj.Invoice.OrgName                          = '';
+                //crmObj.Invoice.RefName: String,
+                crmObj.Invoice.PostAddress                      = '';
+                crmObj.Invoice.PostNumber                       = '';
+                crmObj.Invoice.PostOrt                          = '';
+                crmObj.Invoice.OrgNumber                        = '';
+                
+              } 
+              // Clean up schema
+              crmObj.set('OrgName'       , undefined, { strict: false });
+              crmObj.set('FirstName'     , undefined, { strict: false });
+              crmObj.set('LastName'      , undefined, { strict: false });
+              crmObj.set('PersonalTitle' , undefined, { strict: false });
+              crmObj.set('Address1'      , undefined, { strict: false });
+              crmObj.set('Address2'      , undefined, { strict: false });
+              crmObj.set('Zipcode'       , undefined, { strict: false });
+              crmObj.set('City'          , undefined, { strict: false });
+              crmObj.set('Phone'         , undefined, { strict: false });
+              crmObj.set('Fax'           , undefined, { strict: false });
+              crmObj.set('Mobile'        , undefined, { strict: false });
+              crmObj.set('Email'         , undefined, { strict: false });
+              crmObj.set('Url'           , undefined, { strict: false });
+              crmObj.set('CountryID'     , undefined, { strict: false });
+              crmObj.set('ObjectTypeID'  , undefined, { strict: false });
+              crmObj.set('ShortOrgName'  , undefined, { strict: false });
+              crmObj.set('TextField1'    , undefined, { strict: false });
+              crmObj.set('TextField2'    , undefined, { strict: false });
+              crmObj.set('TextField3'    , undefined, { strict: false });
+              crmObj.set('UniquePhone'   , undefined, { strict: false });
+              crmObj.set('OrgNumber'     , undefined, { strict: false });
+
+              crmObj.save(function (err, cat) {
+                if (err) console.log(err);
                 callback();
-              }
-              // else {
-              //   var kundtitle = page.PersonObject.FirstName +' '+page.PersonObject.LastName;
-              // }
-              
-              //res.render('admin/kundkort', { contactObject: page.toObject(), kundtitle: kundtitle, pageClass: 'admin-kundkort', title: 'ADMIN'});
+              });
             });
 
           } else {
-            callback();
+            // Person object is null!
+            crmObj.Organization.OrgName                     = '';
+            crmObj.Organization.PostAddress                 = '';
+            crmObj.Organization.PostNumber                  = '';
+            crmObj.Organization.PostOrt                     = '';
+            crmObj.Organization.Tel1                        = '';
+            crmObj.Organization.Tel2                        = '';
+            crmObj.Organization.WWW                         = '';
+            // Does not exist crmObj.Organization.OrgNumber = org.OrgName,
+            // Does not exist crmObj.Organization.Lan       = String,
+            crmObj.Organization.Country                     = '';
+            
+            crmObj.Invoice.OrgName                          = '';
+            //crmObj.Invoice.RefName: String,
+            crmObj.Invoice.PostAddress                      = '';
+            crmObj.Invoice.PostNumber                       = '';
+            crmObj.Invoice.PostOrt                          = '';
+            crmObj.Invoice.OrgNumber                        = '';
+            // Clean up schema
+            crmObj.set('OrgName'       , undefined, { strict: false });
+            crmObj.set('FirstName'     , undefined, { strict: false });
+            crmObj.set('LastName'      , undefined, { strict: false });
+            crmObj.set('PersonalTitle' , undefined, { strict: false });
+            crmObj.set('Address1'      , undefined, { strict: false });
+            crmObj.set('Address2'      , undefined, { strict: false });
+            crmObj.set('Zipcode'       , undefined, { strict: false });
+            crmObj.set('City'          , undefined, { strict: false });
+            crmObj.set('Phone'         , undefined, { strict: false });
+            crmObj.set('Fax'           , undefined, { strict: false });
+            crmObj.set('Mobile'        , undefined, { strict: false });
+            crmObj.set('Email'         , undefined, { strict: false });
+            crmObj.set('Url'           , undefined, { strict: false });
+            crmObj.set('CountryID'     , undefined, { strict: false });
+            crmObj.set('ObjectTypeID'  , undefined, { strict: false });
+            crmObj.set('ShortOrgName'  , undefined, { strict: false });
+            crmObj.set('TextField1'    , undefined, { strict: false });
+            crmObj.set('TextField2'    , undefined, { strict: false });
+            crmObj.set('TextField3'    , undefined, { strict: false });
+            crmObj.set('UniquePhone'   , undefined, { strict: false });
+            crmObj.set('OrgNumber'     , undefined, { strict: false });
+            crmObj.save(function (err, cat) {
+              if (err) console.log(err);
+              callback();
+            });
           }
         },
         function (err) {
@@ -149,25 +203,35 @@ module.exports = {
 
   // Parse CRMContactObjects with Person ID schema
   CRMContactObjectsWithPersonID: function (next) {
+    console.log('Starting job "CRMContactObjectsWithPersonID"');
     crmModels.CRMContactObject.find({}, function (err, crmObjects){
-      console.log('found contact objects');
       if (err) console.log(err);
       async.each(
         crmObjects,
         function(crm, callback){
-          //crmModels.CRMContactObject.find({'PersonObject.City' : 'STOCKHOLM'}).populate('PersonObject').exec(function (err, crm) {
-          //  console.log(crm);
-          //});
           models.Person.findOne({PersonID : crm.PersonID}).populate('OrgMembership').exec(function(err, person){
             if (err) console.log(err);
             if (person) {
-              //console.log(person.OrgMembership[0]);
               if (person.OrgMembership[0] !== undefined) {
                 crm.PersonFullText = person.OrgMembership[0].OrgName +'<br/>'+ person.FirstName+' '+person.LastName;
               } else {
                 crm.PersonFullText = person.FirstName+' '+person.LastName;
               }
+              // @deprecated
               crm.PersonObject = person._id;
+              // Clear personal
+              crm.Personal = [];
+              var pers = { 
+                img: '',
+                fullName: person.FirstName+' '+person.LastName,
+                title: person.PersonalTitle,
+                email: person.Email,
+                phone: person.Phone,
+                rank: 1,
+                personObject: person._id
+              }
+              crm.Personal.push(pers);
+
               crm.save(function (err, cat) {
                 if (err) console.log(err);
                 callback();

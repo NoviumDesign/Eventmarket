@@ -1,5 +1,5 @@
 include includes/head
-body
+body(class=locals.pageClass)
   include includes/nav
   - if (locals.messages) {
     each item in locals.messages
@@ -10,7 +10,7 @@ body
   .row
     include includes/sidenav
     
-    form(method="POST", action="/admin/savekundkort")
+    form(method="POST", action="/admin/savekundkort", id="kundkort")
       input(type="hidden", name="_id", value=locals.contactObject._id)
 
       .large-9.columns.medium-8.columns
@@ -40,74 +40,31 @@ body
                 #content1.content
                   .row
                     .large-12.columns
-                      ul.large-block-grid-3.medium-block-grid-2.small-block-grid-1
-                        li
-                          h5 Kontakta vid förnyelse
-                          .panel
-                            img.profile(src='http://placehold.it/64x64')
-                            ul.personnel
-                              li Kalle Kanin
-                              li VD
-                              li
-                                a(href='#') kalle.kanin@kanincatering.se
-                              li 0706 27 29 12
-                        li
-                          h5 Medarbetare
-                          .panel
-                            img.profile(src='http://placehold.it/64x64')
-                            ul.personnel
-                              li Kalle Kanin
-                              li Teknisk Chef
-                              li
-                                a(href='#') kalle.kanin@kanincatering.se
-                              li 0706 27 29 12
-                        li
-                          h5 Medarbetare
-                          .panel
-                            img.profile(src='http://placehold.it/64x64')
-                            ul.personnel
-                              li Kalle Kanin
-                              li Kattskötare
-                              li
-                                a(href='#') kalle.kanin@kanincatering.se
-                              li 0706 27 29 12
-                        li
-                          h5 Medarbetare
-                          .panel
-                            img.profile(src='http://placehold.it/64x64')
-                            ul.personnel
-                              li Kalle Kanin
-                              li Kattskötare
-                              li
-                                a(href='#') kalle.kanin@kanincatering.se
-                              li 0706 27 29 12
+                      input(type="hidden", id="hiddenPersonal", name="hiddenPersonal", value=locals.hiddenPersonal)
+                      ul.large-block-grid-3.medium-block-grid-2.small-block-grid-1#personal
+                        - var c = 0;
+                        each item in locals.contactObject.Personal
+                          li
+                            - if (c === 0) {
+                              h5 Kontakta vid förnyelse
+                            - } else {
+                              h5 Medarbetare
+                            - }
+                            .panel
+                              - if (item.img.length > 0) {
+                                img.profile(src=item.img)
+                              - } else {
+                                img.profile(src='http://placehold.it/64x64')
+                              - }
+                              ul.personnel
+                                li #{item.fullName}
+                                li #{item.title}
+                                li
+                                  a(href='mailto:#{item.email}') #{item.email}
+                                li #{item.phone}
+                          - c++;
                     .small-12.columns
-                      a.button.expand(href='#' data-reveal-id="newEmployee") Skapa ny kontakt
-                      #newEmployee.reveal-modal(data-reveal='data-reveal')
-                        h2 Skapa ny personal
-                          .row
-                            .small-12.medium-6.columns
-                              label
-                                | Rubrik (t.ex. Medarbetare)
-                                input(type='text')
-                              label
-                                | Namn
-                                input(type='text')
-                              label
-                                | Titel
-                                input(type='text')
-                              label
-                                | E-post
-                                input(type='text')
-                              label
-                                | Telefonnummer
-                                input(type='text')
-                            .small-12.medium-6.columns
-                              a.button.expand Ladda upp profilbild
-                          .row
-                            .small-12.columns
-                              a.button Spara ny personal
-                          a.close-reveal-modal ×
+                      a.button.expand(href='#' data-reveal-id="newEmployee") Lägg till person
               dd
                 a(href='#content2') Addresser
                 #content2.content
@@ -404,5 +361,43 @@ body
                     .small-12.columns
                       a.button Klar
             button(type='Submit') Spara
-
+    
+    #newEmployee.reveal-modal(data-reveal='data-reveal')
+      .row
+        .small-12.columns
+          table#person-table(style="width:100%")
+            thead
+              th(data-dynatable-column="FirstName") FirstName
+              //th(data-dynatable-column="OwnerID") Owner Id
+              th(data-dynatable-column="LastName") LastName
+              th(data-dynatable-column="Email") Email
+            tbody
+      .row
+        .small-12.columns
+          a.button.small.right(href="/admin/person/id/new") Skapa ny
+          
+      // h2 Ny personal
+        .row
+          .small-12.medium-6.columns
+            label
+              | Rubrik (t.ex. Medarbetare)
+              input(type='text')
+            label
+              | Namn
+              input(type='text')
+            label
+              | Titel
+              input(type='text')
+            label
+              | E-post
+              input(type='text')
+            label
+              | Telefonnummer
+              input(type='text')
+          .small-12.medium-6.columns
+            a.button.expand Ladda upp profilbild
+        .row
+          .small-12.columns
+            a.button Spara ny personal
+        a.close-reveal-modal ×
   include includes/footer

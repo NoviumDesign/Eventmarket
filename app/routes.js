@@ -109,7 +109,7 @@ module.exports.initialize = function(app) {
     app.get('/admin/kundkort/id/:KundkortID', admin.kundkort);
     app.post('/admin/savekundkort', admin.savekundkort);
 
-    app.get('/admin/loadkundkort', admin.loadkundkort);
+    //app.get('/admin/loadkundkort', admin.loadkundkort);
     
     // Parse database stuff
     app.get('/admin/reindexall', admin.reindexall);

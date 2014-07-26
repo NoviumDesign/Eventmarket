@@ -237,6 +237,7 @@ $(function ()
         }
       });
     }
+    
     // Hitlist / Events
     if ($('body').hasClass('hitlist'))
     {

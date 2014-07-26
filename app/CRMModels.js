@@ -46,6 +46,15 @@ var CRMContactObject = new Schema({
     OrgNumber: String,
     InvoiceEmail: String
   },
+  Personal:[{
+    img: String,
+    fullName: String,
+    title: String,
+    email: String,
+    phone: String,
+    rank: String,
+    personObject: { type: Schema.Types.ObjectId, ref: 'Person' } 
+  }],
   Tags : [{ value: String }]
   /*OrgName         : String,
   FirstName       : String,

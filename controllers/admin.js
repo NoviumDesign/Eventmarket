@@ -34,18 +34,30 @@ module.exports = {
                 /**
                  * Parse in org details on customer card and save
                  */
-                if (org) {
+                /*if (org) {
                   var kundtitle = org.OrgName;
                 } else {
                   var kundtitle = page.PersonObject.FirstName +' '+page.PersonObject.LastName;
+                }*/
+                var kundtitle = page.PersonFullText.replace('<br/>', ' | ');
+                // Setup person hidden input
+                var hiddenPersonal = '';
+                for(var i = 0; i < page.Personal.length; i++){
+                  if (i === 0) {
+                    hiddenPersonal += page.Personal[i].personObject;
+                  } else {
+                    hiddenPersonal += ','+page.Personal[i].personObject;
+                  }
                 }
                 
                 res.render('admin/kundkort', {
                   contactObject: page.toObject(),
+                  hiddenPersonal: hiddenPersonal,
                   region: region,
                   country: country,
                   kundtitle: kundtitle,
-                  pageClass: 'admin-kundkort', title: 'ADMIN',
+                  pageClass: 'admin-kundkort', 
+                  title: 'ADMIN',
                   messages: req.flash('info'),
                 });
                 
@@ -83,10 +95,40 @@ module.exports = {
         crmObj.Invoice.OrgNumber        = req.body['Invoice.OrgNumber'];
         crmObj.Invoice.InvoiceEmail     = req.body['Invoice.InvoiceEmail'];
 
-        crmObj.save(function(err){
-          req.flash('info', 'Kundkort uppdaterat!');
-          res.redirect('/admin/kundkort/id/' + req.body._id);
-        });
+        // Personal
+        crmObj.Personal = [];
+        var personal = req.body.hiddenPersonal.split(',');
+        async.eachSeries(
+          personal,
+          function (personId, callback) {
+            models.Person.findById(personId).exec(function(err, prs){
+              var pers = { 
+                img: '',
+                fullName: prs.FirstName+' '+prs.LastName,
+                title: prs.PersonalTitle,
+                email: prs.Email,
+                phone: prs.Phone,
+                rank: 1,
+                personObject: prs._id
+              }
+              crmObj.Personal.push(pers);
+              callback();
+            });
+          },
+          function (err) {
+            // Setup fulltext for search
+            if (crmObj.Organization.OrgName.length > 0) {
+              crmObj.PersonFullText = crmObj.Organization.OrgName +'<br/>'+ crmObj.Personal[0].fullName;
+            } else {
+              crmObj.PersonFullText = crmObj.Personal[0].fullName;
+            }
+            crmObj.save(function(err){
+              req.flash('info', 'Kundkort uppdaterat!');
+              res.redirect('/admin/kundkort/id/' + req.body._id);
+            });
+          }
+        );
+        
       } else {
         res.redirect('/admin/kundkort/id/' + req.body._id);
       }
@@ -100,24 +142,21 @@ module.exports = {
    */
   reindexall: function (req, res) {
     //indexer.orgmembership(function(){
-      indexer.CRMContactObjectsWithOrg(function() {
+      indexer.CRMContactObjectsWithPersonID(function() {
         console.log('All done!');
         //die();
       });
     //});
   },
   
-  loadkundkort: function(req, res) {
-    // Söka på företag / kontaktperson: 
-    //  - ladda personer som matchar >> ladda CRMContactObjects med dessa personer
-    //
-    /*crmModels.CRMContactObject.find({'PersonObject.City' : 'STOCKHOLM'}).populate('PersonObject').exec(function (err, crm) {
-      console.log(crm);
-    });*/
-    crmModels.CRMContactObject.findById('53a2cfd14e77b2375819706c').populate('PersonObject').exec(function (err, crm) {
-      console.log(crm);
-    });
-  },
+  // loadkundkort: function(req, res) {
+  //   // Söka på företag / kontaktperson: 
+  //   //  - ladda personer som matchar >> ladda CRMContactObjects med dessa personer
+  //   //
+  //   crmModels.CRMContactObject.findById('53a2cfd14e77b2375819706c').populate('PersonObject').exec(function (err, crm) {
+  //     console.log(crm);
+  //   });
+  // },
   /**
    * Person stuff
    * 
