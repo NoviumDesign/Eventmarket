@@ -7,8 +7,13 @@ module.exports = {
     prstpage: function (req, res) {
       var q = {}, sortKey = "Title", sortDir = 1, searchTerm = '', sortObj = {};
       var url_parts = url.parse(req.url, true);
+      console.log('Searching for prstpage');
+      //console.log(url_parts);
       console.log(url_parts.query);
-
+      if (req.param('OwnerCard')) {
+        q.OwnerCard = req.param('OwnerCard');
+      }
+      // @deprecated
       q.IsStructural = "0";
       
       for( var key in url_parts.query){

@@ -34,6 +34,7 @@ module.exports.initialize = function(app) {
     // API 
     app.get('/api/events', api.events);
     app.get('/api/prstpage', api.prstpage);
+    app.get('/api/prstpage/OwnerCard/:OwnerCard', api.prstpage);
     app.get('/api/person', api.person);
     app.get('/api/login', api.login);
     app.get('/api/banner', api.banner);
@@ -109,6 +110,9 @@ module.exports.initialize = function(app) {
     app.get('/admin/kundkort/id/:KundkortID', admin.kundkort);
     app.post('/admin/savekundkort', admin.savekundkort);
 
+    // Profilsidor
+    app.get('/admin/profilsida/id/:profilSidaId', admin.profilsida);
+    app.post('/admin/saveprofilsida', admin.saveprofilsida);
     //app.get('/admin/loadkundkort', admin.loadkundkort);
     
     // Parse database stuff

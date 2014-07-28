@@ -1,0 +1,294 @@
+include includes/head
+body(class=locals.pageClass)
+  include includes/nav
+  - if (locals.messages) {
+    each item in locals.messages
+      .alert-box(data-alert='')
+        div #{item}
+        a.close(href='#') &times;
+  - }
+  .row
+    include includes/sidenav
+    form(id="profilsida", method="POST", action="/admin/saveprofilsida")
+      input(type="hidden", name="_id", value=locals.page._id)
+      .large-9.columns.medium-8.columns
+        h3 Skapa Profilsida
+        .row.administration-content
+          .large-12.medium-12.columns
+            dl.accordion(data-accordion='data-accordion')
+              dd
+                a(href='#content1') Företagsinfo
+                #content1.content.active
+                  .row
+                    .small-8.columns
+                      label
+                        | Sidans namn
+                        input(type='text', name="Title", value=locals.page.Title)
+                      hr
+                      .row
+                        .small-6.columns
+                          label
+                            | Företag
+                            input(type='text', name="OrgName", value=locals.page.OrgName)
+                        .small-6.columns
+                          label
+                            | Kontaktperson
+                            input(type='text', name="TextField1", value=locals.page.TextField1)
+                        .small-6.columns
+                          label
+                            | Postadress
+                            input(type='text', name="Address1", value=locals.page.Address1)
+                        .small-6.columns
+                          label
+                            | Postnummer
+                            input(type='text', name="Zipcode", value=locals.page.Zipcode)
+                        .small-6.columns
+                          label
+                            | Ort
+                            input(type='text', name="City", value=locals.page.City)
+                        .small-6.columns
+                          label
+                            | Län
+                            select(name="RegionID")
+                              option(value="", selected=locals.page.RegionID == '') Välj...
+                              each item in locals.region
+                                option(value="#{item.RegionID}", selected=locals.page.RegionID == item.RegionID) #{item.RegionName}
+                        .small-6.columns.end
+                          label
+                            | Land
+                            select(name="CountryID")
+                              option(value="", selected=locals.page.CountryID == '') Välj...
+                              each item in locals.country
+                                option(value="#{item.CountryID}", selected=locals.page.CountryID == item.CountryID) #{item.TechName}
+                      .row
+                        .small-12.columns
+                          hr
+                        .small-6.columns
+                          label
+                            | Telefon 1
+                            input(type='text', name="Phone", value=locals.page.Phone)
+                        .small-6.columns
+                          label
+                            | Telefon 2
+                            input(type='text', name="Mobile", value=locals.page.Mobile)
+                        .small-6.columns.end
+                          label
+                            | E-postadress
+                            input(type='text', name="Email", value=locals.page.Email)
+                      .row
+                        .small-12.columns
+                          hr
+                        .small-6.columns
+                          label
+                            | Länk till Facebook
+                            input(type='url', name="FacebookURL", value=locals.page.FacebookURL)
+                        .small-6.columns
+                          label
+                            | Länk till Twitter
+                            input(type='url', name="TwitterURL", value=locals.page.TwitterURL)
+                        .small-6.columns.end
+                          label
+                            | Länk till Instagram
+                            input(type='url', name="InstaURL", value=locals.page.InstaURL)
+                    .small-4.columns
+                      - if(locals.page.LogoImg == '') {
+                        img(src="http://placehold.it/350x350")
+                      - } else {
+                        img(src=locals.page.LogoImg)
+                      - }
+                      a.button.expand(href='#') Ladda upp logotyp
+              dd
+                a(href='#content2') Eventinfo
+                #content2.content.active
+                  .row
+                    .small-12.columns
+                      label
+                        | Fri text (max 35 tecken)
+                        textarea(maxlength='35') #{locals.page.EventText}
+                      hr
+                    .small-6.columns
+                      label
+                        | Största sällskap
+                        input(type='number', name="LargestCompany", value=locals.page.LargestCompany)
+                    .small-6.columns
+                      label
+                        | Antal mötesrum
+                        input(type='number', name="NoMeetingRooms", value=locals.page.NoMeetingRooms)
+                    .small-6.columns
+                      label
+                        | Största möteslokal
+                        input(type='number', name="LargestMeetingRoom", value=locals.page.LargestMeetingRoom)
+                    .small-6.columns
+                      label
+                        | Sittande matgäster
+                        input(type='number', name="SittingGuests", value=locals.page.SittingGuests)
+                    .small-6.columns
+                      label
+                        | Mingel/stående
+                        input(type='number', name="MingleGuests", value=locals.page.MingleGuests)
+                    .small-6.columns
+                      label
+                        | Logi, antal bäddar
+                        input(type='number', name="NoBeds", value=locals.page.NoBeds)
+                    .small-12.columns
+                      label Artistpris
+                        br
+                        input#input1(type='radio', name='price', value='0-30', checked=locals.page.price == '0-30')
+                        label(for='input1') 0-15 tkr
+                        input#input2(type='radio', name='price', value='30-60', checked=locals.page.price == '30-60')
+                        label(for='input2') 15-50 tkr
+                        input#input3(type='radio', name='price', value='60-90', checked=locals.page.price == '60-90')
+                        label(for='input3') 50-100 tkr
+                        input#input4(type='radio', name='price', value='90-120', checked=locals.page.price == '90-120')
+                        label(for='input4') över 100 tkr
+                      hr
+                    .small-12.columns
+                      h6 Kategorier
+                      div
+                        input(type="hidden", id="newCategory", name="newCategory", value="#{locals.page.newCategory}")
+                        div#cat-tree
+                        div#cat-data(style="display:none;")
+                          | #{locals.cats}
+              dd
+                a(href='#content3') Flikar
+                #content3.content.active
+                  .row
+                    .small-12.columns
+                      h6 Presentations-flik
+                      label
+                        | Rubrik
+                        input(type='text', name="presTitle", value=locals.page.presTitle)
+                      label
+                        | Text
+                        textarea(name="InfoText1", rows="30") #{locals.page.InfoText1}
+                    .small-12.columns
+                      h6 Extra-flik
+                      label
+                        | Fliknamn
+                        input(type='text', name="extraTabName", value=locals.page.extraTabName)
+                      label
+                        | Rubrik
+                        input(type='text', name="extraTitle", value=locals.page.extraTitle)
+                      label
+                        | Text
+                        textarea(name="extraText") #{locals.page.extraText}
+              dd
+                a(href='#content4') Media
+                #content4.content.active
+                  .row
+                    .small-12.columns
+                      - if(locals.page.media950 == '') {
+                        img(src="http://placehold.it/950x250")
+                      - } else {
+                        img(src=locals.page.media950)
+                      - }
+                      a.button.expand(href='#') Ladda upp bild
+                      label
+                        | Bildtext
+                        textarea(name="text950") #{locals.page.text950}
+                      hr
+                    .small-4.columns
+                      a.button.expand(href='#') Ladda upp filmklipp
+                    .small-4.columns
+                      a.button.expand(href='#') Ladda upp ljudfiler
+                    .small-4.columns
+                      a.button.expand(href='#') Ladda upp pdf-filer
+              dd
+                a(href='#content5') Karta
+                #content5.content.active
+                  .row
+                    .small-12.columns
+                      label
+                        | Adress för karta
+                        input(type='text', name="mapAddress", value=locals.page.mapAddress)
+              dd
+                a(href='#content6') Sidinställningar
+                #content6.content.active
+                  .row
+                    .small-12.columns
+                      label
+                        | Sidtyp
+                        select(name="pageType")
+                          option(value='small', selected=locals.page.pageType == 'small') Small
+                          option(value='medium', selected=locals.page.pageType == 'medium') Medium
+                          option(value='large', selected=locals.page.pageType == 'large') Large
+                      hr
+                    .small-12.columns
+                      h6 Periodinformation
+                      .row
+                        .small-3.columns
+                          label
+                            | Startperiod
+                            - var aDate = new Date(locals.page.ActivatedDate);
+                            - var pad = '';
+                            - if (aDate.getMonth() < 10) {
+                              - pad = '0';
+                            -  }
+                            - var ActivatedDate = aDate.getFullYear() +'-'+pad+aDate.getMonth() +'-'+ aDate.getDate();
+                            input#profile-period-start.datepicker(name="ActivatedDate", value=ActivatedDate)
+                        .small-3.columns.end
+                          label
+                            | Slutperiod
+                            - var eDate = new Date(locals.page.ExpiryDate);
+                            - var pad = '';
+                            - if (eDate.getMonth() < 10) {
+                              - pad = '0';
+                            -  }
+                            - var ExpiryDate = eDate.getFullYear() +'-'+pad+eDate.getMonth() +'-'+ eDate.getDate();
+                            input#profile-period-end.datepicker(name="ExpiryDate", value=ExpiryDate)
+                    .small-12.columns
+                      h6 Topplacering
+                      .row
+                        .small-3.columns
+                          label
+                            | Startperiod
+                            - var tDate = new Date(locals.page.TopDate), TopDate = '';
+                            - if (tDate.getFullYear()) {
+                              - var pad = '';
+                              - if (tDate.getMonth() < 10) {
+                                - pad = '0';
+                              -  }
+                              - TopDate = tDate.getFullYear() +'-'+pad+tDate.getMonth() +'-'+ tDate.getDate();
+                            - }
+                            input#top-placement-start.datepicker(name="TopDate", value=TopDate)
+                        .small-3.columns.end
+                          label
+                            | Slutperiod
+                            - var tEDate = new Date(locals.page.TopEndDate), TopEndDate = '';
+                            - if (tEDate.getFullYear()) {
+                              - var pad = '';
+                              - if (tEDate.getMonth() < 10) {
+                                - pad = '0';
+                              -  }
+                              - TopEndDate = tEDate.getFullYear() +'-'+pad+tEDate.getMonth() +'-'+ tEDate.getDate();
+                            - }
+                            input#top-placement-end.datepicker(name="TopEndDate", value=TopEndDate)
+                      hr
+                    .small-12.columns
+                      label Synlighetsinställningar
+                        br
+                        input#show(type='radio', name='Visible', value='1', checked=locals.page.Visible == '1')
+                        label(for='show') Synlig
+                        input#hidden(type='radio', name='Visible', value='0', checked=locals.page.Visible == '0')
+                        label(for='hidden') Släckt
+              dd
+                a(href='#content7') SEO
+                #content7.content.active
+                  .row
+                    .small-12.columns
+                        label
+                          | Profilsidans URL-adress
+                          input(type='text', name="seoUrl", value=locals.page.seoUrl)
+                        label
+                          | Titel (max 70 tecken)
+                          input(type='text', maxlength='70', name="seoTitle", value=locals.page.seoTitle)
+                        label
+                          | Beskrivning (max 150 tecken)
+                          textarea(maxlength='150', name="seoDescription", value=locals.page.seoDescription)
+                        label
+                          | Sökord/taggar
+                          input(type='text', name="seoTags", value=locals.page.seoTags)
+
+            button(type='submit') Spara
+
+  include includes/footer

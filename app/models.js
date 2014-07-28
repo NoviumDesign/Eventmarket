@@ -153,10 +153,12 @@ var Login = new Schema({
   ValidUntil : String,
   AccessMembership: Number
 }, { collection: 'Login'});
+// @deprecated
 Login.methods.logSomething = function (item, next) {
   console.log(item);
   next();
 }
+// @deprecated
 Login.methods.addPostData = function (post, next) {
   if (post._id) {
     this.findById(post._id, function (err, login) {
@@ -229,36 +231,75 @@ var Category = new Schema({
 }, { collection: 'Category'});
 var PRSTPage = new Schema({
   PageICID : String,
-  Title : String,
-  OwnerID : Number,
-  IsStructural : String,
+  Title : String, // Used
+  OwnerID : String, // Used
+  IsStructural : String, // Used
+  // Relates to CRMContactObject
+  OwnerCard: { type: Schema.Types.ObjectId, ref: 'CRMContactObject' },
+  // Fetch from CrmContactObject if empty
+  OrgName : String,
+  // Contact name
+  TextField1 : String,
+  Address1 : String,
+  Zipcode : String,
+  City : String,
+  RegionID : Number,
+  CountryID : Number,
+  Phone : String,
+  Mobile : String,
+  Email : String,
+  FacebookURL: String,
+  TwitterURL: String,
+  InstaURL: String,
+  LogoImg: String,
+
+  EventText: String,
+  LargestCompany: String,
+  NoMeetingRooms: String,
+  LargestMeetingRoom: String,
+  SittingGuests: String,
+  MingleGuests: String,
+  NoBeds: String,
+  price: String,
+  newCategory: [{ value: String }],
+
+  presTitle: String,
+  // Presentation text
+  InfoText1 : String,
+  extraTabName: String,
+  extraTitle: String,
+  extraText: String,
+  media950: String,
+  text950: String,
+  mapAddress: String,
+
+  pageType: String,
+  ActivatedDate : String,
+  ExpiryDate : String,
+  TopDate: String,
+  TopEndDate: String,
+  Visible : String,
+  seoUrl: String,
+  seoTitle: String,
+  seoDescription: String,
+  seoTags: String,
+  CreatedDate : String,
+  LastUpdated : String,
+  // Mostly not used below :
+  // 
+  // 
   IsMainPage : Number,
   ModInstanceICID : Number,
   Completed : Number,
-  Visible : Number,
   Lang : String,
-  CreatedDate : String,
-  ActivatedDate : String,
-  LastUpdated : String,
-  ExpiryDate : String,
   Notes : String,
-  InfoText1 : String,
   InfoText2 : String,
   InfoText3 : String,
-  OrgName : String,
-  FirstName : String,
-  LastName : String,
-  Address1 : String,
-  Address2 : String,
-  Zipcode : String,
-  City : String,
-  Phone : String,
-  Fax : String,
-  Mobile : String,
-  Email : String,
+  // replaced with ContactName FirstName : String,
+  // replaced with ContactName LastName : String,
+  // deprecated Address2 : String,
+  // deprecated Fax : String,
   Url : String,
-  RegionID : Number,
-  CountryID : Number,
   FileID1 : Number,
   FileID2 : Number,
   FileID3 : Number,
@@ -268,7 +309,6 @@ var PRSTPage = new Schema({
   CounterID3 : Number,
   CounterID4 : Number,
   CounterID5 : Number,
-  TextField1 : String,
   TextField2 : String,
   TextField3 : String,
   TextField4 : String,

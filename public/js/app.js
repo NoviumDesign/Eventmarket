@@ -69,11 +69,33 @@ $('#my-table').dynatable({
     paginate: false
   }
 });
-$('#customer-table').dynatable({
-  features: {
-    perPageSelect: false
-  },
-});
+// Profilsida
+if ($('body').hasClass('admin-profilsida')) {
+  function convertToSlug(Text)
+  {
+      return Text
+          .toLowerCase()
+          .replace(/-+/g,' ')
+          .replace(new RegExp('å', 'g'), 'a')
+          .replace(new RegExp('ä', 'g'), 'a')
+          .replace(new RegExp('ö', 'g'), 'o')
+          .replace(/[^\w ]+/g,'')
+          .replace(/ +/g,'-')
+          ;
+  }
+  $('input[name="seoUrl"]').on('keyup change', function() {
+    $(this).val(convertToSlug($(this).val()));
+  });
+  $('#cat-tree')
+    .on('changed.jstree', function (e, data) {
+      var i, j, r = [];
+      for(i = 0, j = data.selected.length; i < j; i++) {
+        r.push(data.instance.get_node(data.selected[i]).id);
+      }
+      $('#newCategory').val(JSON.stringify(r));
+    })
+    .jstree({ 'core' : {'data' : JSON.parse($('#cat-data').html()) }, "plugins" : [ "checkbox" ] });
+}
 // Söka personer under kundkort
 if ($('body').hasClass('admin-kundkort')) {
   function appendPersonal(personalId) {
@@ -100,7 +122,34 @@ if ($('body').hasClass('admin-kundkort')) {
       }
     }
   });
-}
+  var OwnerCard = $('#OwnerCard').val();
+  //console.log(OwnerCard);
+  $('#customer-table').dynatable({
+    dataset: {
+      ajax: true,
+      ajaxUrl: '/api/prstpage/OwnerCard/'+OwnerCard,
+      ajaxOnLoad: true,
+      records: [],
+      queries: { 'OwnerCard': OwnerCard }
+    },
+    features: {
+      perPageSelect: false
+    },
+    writers: {
+      _cellWriter: function (index, rowData) {
+        if (index.id == "Visible") {
+          if (rowData[index.id] == '1') {
+            return '<td><div class="green-ball"></div></td>';
+          } else {
+            return '<td><div class="red-ball"></div></td>';
+          }
+        } else {
+          return '<td onclick="window.location.href=\'/admin/profilsida/id/'+rowData._id+'\'; return false;">'+rowData[index.id]+'</td>';
+        }
+      }
+    }
+  });
+} // Endif kundkort
 // Kundkortlistan
 if ($('body').hasClass('admin-kundkortlista')) {
   var afterLoadHook = function(){

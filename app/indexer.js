@@ -63,6 +63,50 @@ module.exports = {
       );
     });
   },
+  PRSTPageWithOwnerCard: function(next) {
+    console.log('Starting job "PRSTPageWithOwnerCard"');
+    models.PRSTPage.find({}, function(err, pages) {
+      async.each(
+        pages,
+        function(page, callback) {
+          if (page.IsStructural == '0') {
+            if (parseInt(page.OwnerID, 10) > 0) {
+              console.log(page.OwnerID);
+              
+              crmModels.CRMContactObject.find({ PersonID: page.OwnerID.toString() }, function(err, crmObj) {
+                if (err) console.log(err);
+                if (crmObj.length === 1) {
+                  page.OwnerCard = crmObj[0]._id;
+                  page.save(function(err){
+                    if (err) console.log(err);
+                    callback();
+                  });  
+                
+                } else {
+                  console.log('Crm c obj length was '+crmObj.length);
+                  callback();
+                }
+                
+              });
+            } else {
+              console.log('Owner ID is null, continuing...');
+              callback();
+            }
+          } else {
+            page.remove(function(err){
+              if (err) console.log(err);
+              callback();
+            });
+          }
+        },
+        function(err) {
+          if (err) console.log(err);
+          console.log('Done!');
+          next();
+        }
+      );
+    });
+  },
 
   CRMContactObjectsWithOrg: function (next) {
     console.log('Starting job "CRMContactObjectsWithOrg"');

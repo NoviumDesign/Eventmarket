@@ -23,7 +23,7 @@ var CRMContactObject = new Schema({
   ModInstanceICID : Number,
   LastContact     : String,
   Summary         : String,
-  PersonID        : Number,
+  PersonID        : String,
   LastUpdated     : String,
   Organization : {
     OrgName : String,

@@ -136,13 +136,150 @@ module.exports = {
   },
 
   /**
+   * Edit profile page
+   * @param  {[type]} req [description]
+   * @param  {[type]} res [description]
+   * @return {[type]}     [description]
+   */
+  profilsida: function(req, res) {
+    var massagedCats = [];
+
+    models.Country.find({}, function (err, country) {
+      models.Region.find({}, function (err, region) {
+        models.PRSTPage.findById(req.param('profilSidaId'), function (err, page) {
+          if (page) {
+            // Fetch from CrmContactObject if empty
+            // page.OrgName : String,
+            
+
+            var checked = page.newCategory.map(
+              function (elem) {
+                return elem.value;
+              }
+            );
+            models.newCategory.find({}, function (err, cats) {
+              async.each(
+                cats,
+                function (cat, callback) {
+                  cat = cat.toObject();
+                  var ncat = {};
+                  ncat.id = cat._id;
+                  ncat.text = cat.displayName;
+                  ncat.parent = cat.parent === '' ? '#' : cat.parent;
+                  ncat.icon = '';
+                  ncat.state = {};
+                  if (checked.indexOf(cat._id.toString()) !== -1) {
+                    ncat.state.selected = true;
+                  }
+
+                  massagedCats.push(ncat);
+                  callback();
+                },
+                function (err) {
+                  res.render('admin/profilsida', {
+                    page: page.toObject(),
+                    region: region,
+                    country: country,
+                    cats: JSON.stringify(massagedCats),
+                    pageClass: 'admin-profilsida',
+                    title: 'ADMIN',
+                    messages: req.flash('info')
+                  });
+                }
+              );
+            }); // new category find
+
+
+
+          }
+        });
+      });
+    });
+  },
+  saveprofilsida: function(req, res) {
+    if (req.body._id !== '') {
+      // Sort cats
+      
+      var cats = [];
+      if (req.body.newCategory.length > 0) {
+        cats = JSON.parse(req.body.newCategory);
+      } 
+      var reCats = [];
+      async.each(
+        cats,
+        function (cat, callback) {
+          reCats.push({ value : cat });
+          callback();
+        },
+        function (err) {
+          if (err) console.log(err);
+
+          models.PRSTPage.findById(req.body._id, function (err, bnr) {
+            bnr.Title = req.body.Title;
+            bnr.OrgName = req.body.OrgName;
+            bnr.TextField1 = req.body.TextField1;
+            bnr.Address1 = req.body.Address1;
+            bnr.Zipcode = req.body.Zipcode;
+            bnr.City = req.body.City;
+            bnr.RegionID = req.body.RegionID;
+            bnr.CountryID = req.body.CountryID;
+            bnr.Phone = req.body.Phone;
+            bnr.Mobile = req.body.Mobile;
+            bnr.Email = req.body.Email;
+            bnr.FacebookURL = req.body.FacebookURL;
+            bnr.TwitterURL = req.body.TwitterURL;
+            bnr.InstaURL = req.body.InstaURL;
+            bnr.LogoImg = req.body.LogoImg;
+            bnr.EventText = req.body.EventText;
+            bnr.LargestCompany = req.body.LargestCompany;
+            bnr.NoMeetingRooms = req.body.NoMeetingRooms;
+            bnr.LargestMeetingRoom = req.body.LargestMeetingRoom;
+            bnr.SittingGuests = req.body.SittingGuests;
+            bnr.MingleGuests = req.body.MingleGuests;
+            bnr.NoBeds = req.body.NoBeds;
+            bnr.price = req.body.price;
+            bnr.newCategory = reCats;
+            bnr.presTitle = req.body.presTitle;
+            bnr.InfoText1 = req.body.InfoText1;
+            bnr.extraTabName = req.body.extraTabName;
+            bnr.extraTitle = req.body.extraTitle;
+            bnr.extraText = req.body.extraText;
+            bnr.media950 = req.body.media950;
+            bnr.text950 = req.body.text950;
+            bnr.mapAddress = req.body.mapAddress;
+            bnr.pageType = req.body.pageType;
+            bnr.ActivatedDate = req.body.ActivatedDate;
+            bnr.ExpiryDate = req.body.ExpiryDate;
+            bnr.TopDate = req.body.TopDate;
+            bnr.TopEndDate = req.body.TopEndDate;
+            bnr.Visible = req.body.Visible;
+            bnr.seoUrl = req.body.seoUrl;
+            bnr.seoTitle = req.body.seoTitle;
+            bnr.seoDescription = req.body.seoDescription;
+            bnr.seoTags = req.body.seoTags;
+            bnr.CreatedDate = req.body.CreatedDate;
+            bnr.LastUpdated = req.body.LastUpdated;
+            
+            bnr.save(function (err, bnr) {
+              console.log(err);
+              res.redirect('/admin/profilsida/id/' + req.body._id);
+            });
+          });
+        }
+      );
+    } else {
+      // New page
+      
+    }
+  },
+  /**
    * Load person >> load login >> load group name >> save group name as fulltext to CRMContactObject
    * @return {void}     
    * @deprecated See indexer.js
    */
   reindexall: function (req, res) {
     //indexer.orgmembership(function(){
-      indexer.CRMContactObjectsWithPersonID(function() {
+      indexer.PRSTPageWithOwnerCard(function() {
         console.log('All done!');
         //die();
       });

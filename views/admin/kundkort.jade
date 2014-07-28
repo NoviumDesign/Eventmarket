@@ -137,43 +137,44 @@ body(class=locals.pageClass)
                 a(href='#content3b') Profilsidor
                 #content3b.content
                   a.button Skapa ny profilsida
+                  input(type="hidden", id="OwnerCard", name="OwnerCard", value=locals.contactObject._id)
                   table#customer-table.dynamic-table
                     thead
                       tr
-                        th Sidans namn
+                        th(data-dynatable-column="Title") Sidans namn
                         th Kontaktperson
                         th Giltig t.o.m.
                         th Storlek
-                        th Synlig / Släckt
+                        th(data-dynatable-column="Visible") Synlig / Släckt
                     tbody
-                      tr
-                        td Lindaus bokningssida
-                        td Anders Lundin
-                        td 2013-06-05
-                        td Small
-                        td 
-                          .green-ball
-                      tr
-                        td Inlands bussbiljetter
-                        td Kalle Kanin
-                        td 2013-06-06
-                        td Medium
-                        td
-                          .red-ball
-                      tr
-                        td Lindaus bokningssida
-                        td Anders Lundin
-                        td 2013-06-05
-                        td Large
-                        td
-                          .green-ball
-                      tr
-                        td Inlands bussbiljetter
-                        td Kalle Kanin
-                        td 2013-06-06
-                        td Medium
-                        td
-                          .red-ball
+                      //- tr
+                      //-   td Lindaus bokningssida
+                      //-   td Anders Lundin
+                      //-   td 2013-06-05
+                      //-   td Small
+                      //-   td 
+                      //-     .green-ball
+                      //- tr
+                      //-   td Inlands bussbiljetter
+                      //-   td Kalle Kanin
+                      //-   td 2013-06-06
+                      //-   td Medium
+                      //-   td
+                      //-     .red-ball
+                      //- tr
+                      //-   td Lindaus bokningssida
+                      //-   td Anders Lundin
+                      //-   td 2013-06-05
+                      //-   td Large
+                      //-   td
+                      //-     .green-ball
+                      //- tr
+                      //-   td Inlands bussbiljetter
+                      //-   td Kalle Kanin
+                      //-   td 2013-06-06
+                      //-   td Medium
+                      //-   td
+                      //-     .red-ball
               dd
                     a(href='#panel4b') Statistik
                     #panel4b.content
