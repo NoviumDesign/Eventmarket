@@ -358,9 +358,16 @@ body(class=locals.pageClass)
                 #content2d.content
                   .row
                     .small-12.columns
-                      p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                    .small-12.columns
-                      a.button Klar
+                      input#LogoURLname(type="hidden", name="LogoURLname", value="kundkortlogo#{locals.contactObject._id}")
+                      input#LogoURL(type="hidden", name="LogoURL", value=locals.contactObject.LogoURL)
+                      input#logofile(type="file")
+                      p#status Please select a file
+                      #preview(style="border:1px solid gray;width:300px;")
+                        - if (locals.contactObject.LogoURL.length > 0) {
+                          img(src=locals.contactObject.LogoURL, style='width:300px;')
+                        - } else { 
+                          img(src='http://placehold.it/300x300', style='width:300px;')
+                        - }
             button(type='Submit') Spara
     
     #newEmployee.reveal-modal(data-reveal='data-reveal')

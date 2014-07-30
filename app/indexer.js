@@ -9,6 +9,8 @@
  * 5. parsecrmlogingroup
  * 6. parseLogTimes
  * 7. CRMContactObjectsWithOrg
+ * 8. PRSTPageWithOwnerCard
+ * 
  */
 'use strict';
 

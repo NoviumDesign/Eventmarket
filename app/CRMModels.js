@@ -25,6 +25,7 @@ var CRMContactObject = new Schema({
   Summary         : String,
   PersonID        : String,
   LastUpdated     : String,
+  LogoURL : String,
   Organization : {
     OrgName : String,
     PostAddress: String,
