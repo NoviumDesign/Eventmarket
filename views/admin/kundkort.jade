@@ -363,7 +363,7 @@ body(class=locals.pageClass)
                       input#logofile(type="file")
                       p#status Please select a file
                       #preview(style="border:1px solid gray;width:300px;")
-                        - if (locals.contactObject.LogoURL.length > 0) {
+                        - if (locals.contactObject.LogoURL) {
                           img(src=locals.contactObject.LogoURL, style='width:300px;')
                         - } else { 
                           img(src='http://placehold.it/300x300', style='width:300px;')

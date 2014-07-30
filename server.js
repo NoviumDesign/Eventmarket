@@ -23,7 +23,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(methodOverride());
 app.use(cookieParser('some-secret-value-here'));
-app.use(session({ secret: 'morphing through time', key: 'sid', cookie: { secure: false }}));
+app.use(session({
+  secret: 'morphing through time', 
+  key: 'sid', 
+  cookie: { secure: false }, 
+  saveUninitialized: true,
+  resave: true
+}));
 app.use(flash());
 app.use(logger('dev'));
 
