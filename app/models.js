@@ -285,6 +285,10 @@ var PRSTPage = new Schema({
   seoTags: String,
   CreatedDate : String,
   LastUpdated : String,
+  // Geo
+  lat: String,
+  lon: String,
+  
   // Mostly not used below :
   // 
   // 

@@ -53,13 +53,21 @@ body(class=locals.pageClass)
                               option(value="", selected=locals.page.RegionID == '') Välj...
                               each item in locals.region
                                 option(value="#{item.RegionID}", selected=locals.page.RegionID == item.RegionID) #{item.RegionName}
-                        .small-6.columns.end
+                        .small-6.columns
                           label
                             | Land
                             select(name="CountryID")
                               option(value="", selected=locals.page.CountryID == '') Välj...
                               each item in locals.country
                                 option(value="#{item.CountryID}", selected=locals.page.CountryID == item.CountryID) #{item.TechName}
+                        .small-6.columns
+                          label
+                            | Latitud
+                            input(type='text', readonly=true, name="lat", value=locals.geo[0].latitude)
+                        .small-6.columns.end
+                          label
+                            | Longitud
+                            input(type='text', readonly=true, name="lat", value=locals.geo[0].longitude)
                       .row
                         .small-12.columns
                           hr

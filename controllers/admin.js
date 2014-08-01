@@ -179,15 +179,29 @@ module.exports = {
                   callback();
                 },
                 function (err) {
-                  res.render('admin/profilsida', {
-                    page: page.toObject(),
-                    region: region,
-                    country: country,
-                    cats: JSON.stringify(massagedCats),
-                    pageClass: 'admin-profilsida',
-                    title: 'ADMIN',
-                    messages: req.flash('info')
+                  var geocoderProvider = 'google';
+                  var httpAdapter = 'http';
+                  // optionnal
+                  /*var extra = {
+                      apiKey: 'YOUR_API_KEY', // for map quest
+                      formatter: null         // 'gpx', 'string', ...
+                  };
+                  */
+                  var geocoder = require('node-geocoder').getGeocoder(geocoderProvider, httpAdapter);
+                  geocoder.geocode(page.Address1 + ' '+ page.Zipcode + ' ' + page.City, function(err, geo) {
+                    res.render('admin/profilsida', {
+                      page: page.toObject(),
+                      region: region,
+                      country: country,
+                      geo: geo,
+                      cats: JSON.stringify(massagedCats),
+                      pageClass: 'admin-profilsida',
+                      title: 'ADMIN',
+                      messages: req.flash('info')
+                    });
                   });
+
+                  
                 }
               );
             }); // new category find
@@ -262,7 +276,9 @@ module.exports = {
             bnr.seoTags = req.body.seoTags;
             bnr.CreatedDate = req.body.CreatedDate;
             bnr.LastUpdated = req.body.LastUpdated;
-            
+            bnr.lat = req.body.lat;
+            bnr.lon = req.body.lon;
+
             bnr.save(function (err, bnr) {
               console.log(err);
               res.redirect('/admin/profilsida/id/' + req.body._id);
