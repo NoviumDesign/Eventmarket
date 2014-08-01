@@ -91,12 +91,23 @@ body(class=locals.pageClass)
                             | Länk till Instagram
                             input(type='url', name="InstaURL", value=locals.page.InstaURL)
                     .small-4.columns
-                      - if(locals.page.LogoImg == '') {
-                        img(src="http://placehold.it/350x350")
-                      - } else {
-                        img(src=locals.page.LogoImg)
-                      - }
-                      a.button.expand(href='#') Ladda upp logotyp
+                      input#LogoURLname(type="hidden", name="LogoImgName", value="profilsidaLogo#{locals.page._id}")
+                      input#LogoURL(type="hidden", name="LogoImg", value=locals.page.LogoImg)
+                      input#logofile(type="file")
+                      p#status Välj en fil för att ladda upp logotyp
+                      #preview(style="border:1px solid gray;width:100%;")
+                        - if (locals.page.LogoImg) {
+                          img(src=locals.page.LogoImg, style='width:100%;')
+                        - } else { 
+                          img(src='http://placehold.it/350x350', style='width:100%;')
+                        - }
+
+                      //- - if(locals.page.LogoImg == '') {
+                      //-   img(src="http://placehold.it/350x350")
+                      //- - } else {
+                      //-   img(src=locals.page.LogoImg)
+                      //- - }
+                      //- a.button.expand(href='#') Ladda upp logotyp
               dd
                 a(href='#content2') Eventinfo
                 #content2.content.active
@@ -133,13 +144,13 @@ body(class=locals.pageClass)
                     .small-12.columns
                       label Artistpris
                         br
-                        input#input1(type='radio', name='price', value='0-30', checked=locals.page.price == '0-30')
-                        label(for='input1') 0-15 tkr
-                        input#input2(type='radio', name='price', value='30-60', checked=locals.page.price == '30-60')
-                        label(for='input2') 15-50 tkr
-                        input#input3(type='radio', name='price', value='60-90', checked=locals.page.price == '60-90')
-                        label(for='input3') 50-100 tkr
-                        input#input4(type='radio', name='price', value='90-120', checked=locals.page.price == '90-120')
+                        input#input1(type='radio', name='price', value='1-10', checked=locals.page.price == '1-10')
+                        label(for='input1') 1-10 tkr
+                        input#input2(type='radio', name='price', value='10-30', checked=locals.page.price == '10-30')
+                        label(for='input2') 10-30 tkr
+                        input#input3(type='radio', name='price', value='30-100', checked=locals.page.price == '30-100')
+                        label(for='input3') 30-100 tkr
+                        input#input4(type='radio', name='price', value='100', checked=locals.page.price == '100')
                         label(for='input4') över 100 tkr
                       hr
                     .small-12.columns

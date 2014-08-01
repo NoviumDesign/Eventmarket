@@ -71,6 +71,31 @@ $('#my-table').dynatable({
 });
 // Profilsida
 if ($('body').hasClass('admin-profilsida')) {
+  function s3_upload(){
+    var s3upload = new S3Upload({
+        file_dom_selector: 'logofile',
+        s3_sign_put_url: '/sign_s3',
+        s3_object_name: $('#LogoURLname').val(),
+        onProgress: function(percent, message) {
+            $('#status').html('Upload progress: ' + percent + '% ' + message);
+        },
+        onFinishS3Put: function(public_url) {
+            $('#status').html('Upload completed. Uploaded to: '+ public_url);
+            $("#LogoURL").val(public_url);
+            $("#preview").html('<img src="'+public_url+'" style="width:300px;" />');
+        },
+        onError: function(status) {
+            $('#status').html('Upload error: ' + status);
+        }
+    });
+  }
+  /*
+  * Listen for file selection:
+  */
+  $(document).ready(function() {
+      $('#logofile').on("change", s3_upload);
+  });
+  
   function convertToSlug(Text)
   {
       return Text
@@ -98,30 +123,6 @@ if ($('body').hasClass('admin-profilsida')) {
 }
 // Söka personer under kundkort
 if ($('body').hasClass('admin-kundkort')) {
-  function s3_upload(){
-    var s3upload = new S3Upload({
-        file_dom_selector: 'logofile',
-        s3_sign_put_url: '/sign_s3',
-        s3_object_name: $('#LogoURLname').val(),
-        onProgress: function(percent, message) {
-            $('#status').html('Upload progress: ' + percent + '% ' + message);
-        },
-        onFinishS3Put: function(public_url) {
-            $('#status').html('Upload completed. Uploaded to: '+ public_url);
-            $("#LogoURL").val(public_url);
-            $("#preview").html('<img src="'+public_url+'" style="width:300px;" />');
-        },
-        onError: function(status) {
-            $('#status').html('Upload error: ' + status);
-        }
-    });
-  }
-  /*
-  * Listen for file selection:
-  */
-  $(document).ready(function() {
-      $('#logofile').on("change", s3_upload);
-  });
   /**
    * Add personal
    * @param  {[type]} personalId [description]
