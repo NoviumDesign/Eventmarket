@@ -252,6 +252,9 @@ $(function ()
         }
         var getParams = function() {
             var params = {};
+            // Main category we are looking under
+            params['mainCat'] = $('#mainCat').val();
+            console.log(params);
             if ($('input[name=filtering]:checked').val()) {
                 params.filtering = $('input[name=filtering]:checked').val();
             }

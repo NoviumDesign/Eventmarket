@@ -2,13 +2,12 @@ div(data-equalizer='data-equalizer')
   .panel.small-12.medium-6.large-12.columns(data-equalizer-watch='data-equalizer-watch')
     a(data-reveal-id='profileside#{_id}')
       .thumbnail.large-2.columns.show-for-large-up
-        img(src='#{profilePhoto}', alt='')
+        img(src='#{LogoImg}', alt='')
       .informationbox.small-12.medium-12.large-10.columns
-        img.thumbnailsmall.show-for-medium-only.right(src='#{profilePhoto}', alt='')
-        h2 #{BannerName}
+        img.thumbnailsmall.show-for-medium-only.right(src='#{LogoImg}', alt='')
+        h2 #{Title}
         p.location 
-        p.
-          | Presentation
+        p #{InfoText1}
         i
           svg.icon.icon-sallskap(viewbox='0 0 32 32')
             use(xlink:href='#icon-sallskap')

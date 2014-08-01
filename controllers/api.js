@@ -1,6 +1,7 @@
 var models = require('../app/models'),
   crmModels = require('../app/CRMModels'),
   helpers = require('../app/helpers'),
+  async = require('async'),
   url    = require('url');
 
 module.exports = {
@@ -392,24 +393,103 @@ module.exports = {
         var q = {};
 
         var url_parts = url.parse(req.url, true);
-        q["$or"] = [];
         
+        // Main category
+        var mainCat = null;
+        if (url_parts.query['mainCat']) {
+          var mainCat = url_parts.query['mainCat'];
+          delete url_parts.query['mainCat'];
+        }
+        // Build coins, if any
+        var coins = [];
+        for (var key in url_parts.query) {
+          if (key == '1-10' || key == '10-30' || key == '30-100' || key == '100') {
+            coins.push({ price: key });
+            delete url_parts.query[key];
+          }
+        }
+
+        var catSelected = false;
         for (var key in url_parts.query) {
             if (key == 'filtering') {
                 if (url_parts.query[key] !== 'All') {
-                    q["$and"] = [];
-                    q["$and"].push( { subCategory: { $elemMatch: { value: url_parts.query[key] } } } );
+                    if (typeof q["$and"] !== 'object') {
+                      q["$and"] = [];
+                    }
+                    q["$and"].push( { newCategory: { $elemMatch: { value: url_parts.query[key] } } } );
                 } 
             } else {
-                q["$or"].push( { subCategory: { $elemMatch: { value: key } } } );
+                catSelected = true;
+                if (typeof q["$or"] !== 'object') {
+                  q["$or"] = [];
+                }
+                q["$or"].push( { newCategory: { $elemMatch: { value: key } } } );
             }
         }
 
-        console.log(q);
+        // Add coins
+        console.log(coins);
+        if (coins.length > 0) {
+          if (typeof q["$and"] !== 'object') {
+            q["$and"] = [];
+          }
+          q["$and"].push({ $or: coins } );
+        } else {
+
+        }
         
-        models.BANRBanner.find(q, function(err, data) {
-            console.log(data);
-            res.json(data);
-        });
+        // Maincat?
+        if (mainCat && !catSelected) {
+          models.newCategory.find({ parent: mainCat}, function(err, cats) {
+            async.each(
+              cats,
+              function(cat, callback) {
+                if (typeof q["$or"] !== 'object') {
+                  q["$or"] = [];
+                }
+                q["$or"].push( { newCategory: { $elemMatch: { value: cat._id } } } );
+                callback();
+              },
+              function (err) {
+                models.PRSTPage.find(q, function(err, data) {
+                    if (err) console.log(err);
+                    console.log('Maincat select');
+                    console.log(q);
+                    console.log(data.length);
+                    res.json(data);
+                });
+              }
+            );
+          });
+        } else {
+          console.log(q);
+          models.PRSTPage.find(q, function(err, data) {
+              console.log(data.length);
+              res.json(data);
+          });
+        }
+        // Randomize!
+        function shuffle(array) {
+          var currentIndex = array.length
+            , temporaryValue
+            , randomIndex
+            ;
+
+          // While there remain elements to shuffle...
+          while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+          }
+
+          return array;
+        }
+        //shuffle(arr);
     }
 }
