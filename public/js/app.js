@@ -216,6 +216,16 @@ if ($('body').hasClass('admin-kundkortlista')) {
             return '<td onclick="window.location.href=\'/admin/kundkort/id/'+rowData._id+'\'; return false;">'+rowData[index.id]+'</td>';
           }
         }
+        if (index.id == 'AccessGroupFullText') {
+          var accGrp = {
+            prospect : 'Prospect',
+            registeredVisitor: 'Privatkund',
+            memberColleague: 'Medlem',
+            bransch: 'Bransch',
+            guldklubben: 'Företagskund',
+          }
+          return '<td onclick="window.location.href=\'/admin/kundkort/id/'+rowData._id+'\'; return false;">'+accGrp[rowData[index.id]]+'</td>'
+        }
         if (index.id == 'quickInfo') {
           var ret = '<td><a class="button" data-reveal-id="quickInfo'+rowData['_id']+'">Snabbinfo</a>';
           ret += JST['client/templates/kundkortlistapopup'](rowData);

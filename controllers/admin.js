@@ -78,8 +78,9 @@ module.exports = {
     crmModels.CRMContactObject.findById(req.body._id, function (err, crmObj) {
       if(crmObj) {
         // Logo url
-        crmObj.LogoURL = req.body.LogoURL;
-        
+        crmObj.LogoURL             = req.body.LogoURL;
+        crmObj.AccessGroupFullText = req.body.AccessGroupFullText;
+
         crmObj.Organization.OrgName     = req.body['Organization.OrgName'];
         crmObj.Organization.PostAddress = req.body['Organization.PostAddress'];
         crmObj.Organization.PostNumber  = req.body['Organization.PostNumber'];

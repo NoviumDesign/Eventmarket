@@ -26,12 +26,17 @@ body(class=locals.pageClass)
                 option(value="538a04a0e492b29f3ef1ccbd", selected=locals.contactObject.ResponsibleFullText == 'Toni Lahtinen') Toni Lahtinen
           .large-2.columns.medium-6.columns.end
             label Tilldelad grupp
-              select
-                option(value='medlem') Medlem
-                option(value='prospect') Prospect
-                option(value='bransch') Bransch
-                option(value='privatkund') Privatkund
-                option(value='foretagskund') Företagskund
+              select(name="AccessGroupFullText")
+                option(value="registeredVisitor" selected=locals.contactObject.AccessGroupFullText == 'registeredVisitor') Privatkund
+                option(value="memberColleague" selected=locals.contactObject.AccessGroupFullText == 'memberColleague') Medlem
+                option(value="prospect" selected=locals.contactObject.AccessGroupFullText == 'prospect') Prospect
+                option(value="bransch" selected=locals.contactObject.AccessGroupFullText == 'bransch') Bransch
+                option(value="guldklubben" selected=locals.contactObject.AccessGroupFullText == 'guldklubben') Företagskund
+                //- option(value='medlem') Medlem
+                //- option(value='prospect') Prospect
+                //- option(value='bransch') Bransch
+                //- option(value='privatkund') Privatkund
+                //- option(value='foretagskund') Företagskund
         .row.administration-content
           .large-12.medium-12.columns
             dl.accordion(data-accordion='data-accordion')

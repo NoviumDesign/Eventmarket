@@ -12,11 +12,12 @@ body(class="#{locals.pageClass}")
           span.dynatable-custom-select Grupptillhörighet
             select#search-group(name='AccessGroupFullText')
               option
-                option Alla
-                option Medlem
-                option Prospect
-                option Privat
-                option Företag
+                option(value="") Alla
+                option(value="memberColleague") Medlem
+                option(value="prospect") Prospect
+                option(value="bransch") Bransch
+                option(value="guldklubben") Företagskund
+                option(value="registeredVisitor") Privatkund
           span.dynatable-custom-select Kundansvarig
             select#search-responsible(name='ResponsibleFullText')
               option
