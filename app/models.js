@@ -151,7 +151,8 @@ var Login = new Schema({
   NoOfFailedLogins : String,
   AutoLogin : String,
   ValidUntil : String,
-  AccessMembership: Number
+  AccessMembership: Number,
+  PersonData: []
 }, { collection: 'Login'});
 // @deprecated
 Login.methods.logSomething = function (item, next) {
@@ -288,7 +289,7 @@ var PRSTPage = new Schema({
   // Geo
   lat: String,
   lon: String,
-  
+
   // Mostly not used below :
   // 
   // 

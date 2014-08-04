@@ -18,7 +18,15 @@ module.exports.initialize = function(app) {
         bcrypt.compare(password, usr.Pwd, function(err, res) {
           if (res == true) {
             usr.Pwd = undefined;
-            return done(null, usr);
+            // Load person data and attach to object
+            models.Person.find({PersonID: parseInt(usr.PersonID, 10)}, function(err, bla){
+              if (err) {
+                console.log(err);
+              } else {
+                usr.PersonData = bla[0];
+              }
+              return done(null, usr);
+            });
           } else {
             return done(null, false, { message: 'Incorrect details.' });
           }
@@ -34,7 +42,16 @@ module.exports.initialize = function(app) {
   passport.deserializeUser(function(id, done) {
     models.Login.findById(id, function (err, user) {
       user.Pwd = undefined;
-      done(err, user);  
+      // Load person data and attach to object
+      models.Person.find({PersonID: parseInt(user.PersonID, 10)}, function(err, bla){
+        if (err) {
+          console.log(err);
+        } else {
+          user.PersonData = bla[0];
+        }
+        done(err, user);  
+      });
+      
     });
   });
 }
