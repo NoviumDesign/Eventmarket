@@ -1,7 +1,23 @@
 $(document).foundation();
 
-$('.reveal-modal').on('opened', function(){
-    $(window).trigger('resize');
+$(document).on('opened', '[data-reveal]', function (evt) {
+  $(window).trigger('resize');
+  var modalId = evt.target.id.replace('profileside', '');
+  var lat = $('#maplarge'+modalId).attr('lat');
+  var lon = $('#maplarge'+modalId).attr('lon');
+  //div#maplarge#{_id}
+  //div#mapmed
+  var pos = new google.maps.LatLng(lat,lon);
+  var mapOptions = {
+    zoom: 16,
+    center: pos,
+    disableDefaultUI: true
+  }
+  var map1 = new google.maps.Map(document.getElementById('maplarge'+modalId), mapOptions);
+  var map2 = new google.maps.Map(document.getElementById('mapmed'+modalId), mapOptions);
+  $('#maplarge'+modalId).css({'width':'100%', 'height': '300px'});
+  $('#mapmed'+modalId).css({'width':'100%', 'height': '300px'});
+
 });
 
 $(document).ready(function() {
