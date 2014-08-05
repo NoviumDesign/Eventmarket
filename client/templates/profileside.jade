@@ -4,61 +4,64 @@ div(id="profileside#{_id}").reveal-modal(data-reveal='data-reveal')
   section.profileside.show-for-large-up
     .row
       .small-12.columns
-        h2.profileheader #{profileHeader}
+        h2.profileheader #{Title}
     .row
       .small-3.columns
-        img.profilephoto(src='#{profilePhoto}', alt='')
+        img.profilephoto(src='#{LogoImg}', alt='')
         h4 Kontakt
         ul.companyinformation
-          li World Trade Center
-          li Mikael Karlsson
-          li Citygatan 1
-          li 123 45 Stockholm
-          li Stockholms Län
-          li Sverige
+          li #{OrgName}
+          li #{TextField1}
+          li #{Address1}
+          li #{Zipcode} #{City}
+          li #{RegionID}
+          li #{CountryID}
         ul.companyinformation
-          li.phonenumber 079-324 03 97
-          li.phonenumber.paddingbottom 8-500 12 34
+          li.phonenumber #{Phone}
+          li.phonenumber.paddingbottom #{Mobile}
           li
             a.button.expand(href='#') Hemsida
           li
-            a.button.expand(href='#') E-post
+            a.button.expand(href='mailto:#{Email}') #{Email}
         hr
-        h4 Fakta
-        p Sundbyberg, Stockholm
-        ul.companyinformation
-          li
-            i
-              svg.icon.icon-sallskap(viewbox='0 0 32 32')
-                use(xlink:href='#icon-sallskap')
-              span.icon-text Största sällskap: 450
-          li
-            i
-              svg.icon.icon-motesplatser(viewbox='0 0 32 32')
-                use(xlink:href='#icon-motesplatser')
-              span.icon-text Antal mötesrum: 5
-          li
-            i
-              svg.icon.icon-moteslokal(viewbox='0 0 32 32')
-                use(xlink:href='#icon-moteslokal')
-              span.icon-text Största möteslokal: 450
-          li
-            i
-              svg.icon.icon-mat(viewbox='0 0 32 32')
-                use(xlink:href='#icon-mat')
-              span.icon-text Sittande matgäster
-          li
-            i
-              svg.icon.icon-mingel(viewbox='0 0 32 32')
-                use(xlink:href='#icon-mingel')
-              span.icon-text Mingel/stående: 500
-          li
-            i
-              svg.icon.icon-logi(viewbox='0 0 32 32')
-                use(xlink:href='#icon-logi')
-              span.icon-text Logi, antal bäddar: 45
-        hr
+        //- alla profilsidor som ligger med under minst 1 st lokalkategori skall ha föl- jande ikon-fakta ifyllda)
+        - if (isRoom) {
+          h4 Fakta
+          ul.companyinformation
+            li
+              i
+                svg.icon.icon-sallskap(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-sallskap')
+                span.icon-text Största sällskap: 450
+            li
+              i
+                svg.icon.icon-motesplatser(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-motesplatser')
+                span.icon-text Antal mötesrum: 5
+            li
+              i
+                svg.icon.icon-moteslokal(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-moteslokal')
+                span.icon-text Största möteslokal: 450
+            li
+              i
+                svg.icon.icon-mat(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-mat')
+                span.icon-text Sittande matgäster
+            li
+              i
+                svg.icon.icon-mingel(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-mingel')
+                span.icon-text Mingel/stående: 500
+            li
+              i
+                svg.icon.icon-logi(viewbox='0 0 32 32')
+                  use(xlink:href='#icon-logi')
+                span.icon-text Logi, antal bäddar: 45
+          hr
+        - }
         h4 Kategorier
+        p #{categoriesToText(newCategory)}
         dl
           dt
             | Aktiviteter

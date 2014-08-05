@@ -400,6 +400,7 @@ module.exports = {
           var mainCat = url_parts.query['mainCat'];
           delete url_parts.query['mainCat'];
         }
+
         // Build coins, if any
         var coins = [];
         for (var key in url_parts.query) {
@@ -428,7 +429,6 @@ module.exports = {
         }
 
         // Add coins
-        console.log(coins);
         if (coins.length > 0) {
           if (typeof q["$and"] !== 'object') {
             q["$and"] = [];
@@ -453,6 +453,8 @@ module.exports = {
               function (err) {
                 models.PRSTPage.find(q, function(err, data) {
                     if (err) console.log(err);
+                    // @todo Async each (add view data such as isRoom etc)
+                    // @todo isRoom
                     console.log('Maincat select');
                     console.log(q);
                     console.log(data.length);
@@ -464,6 +466,8 @@ module.exports = {
         } else {
           console.log(q);
           models.PRSTPage.find(q, function(err, data) {
+              // @todo Async each (add view data such as isRoom etc)
+              // @todo isRoom
               console.log(data.length);
               res.json(data);
           });

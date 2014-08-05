@@ -8,6 +8,14 @@ $(document).ready(function() {
     $('#listaside').stickySidebar();
 });
 
+function registerClick(pageId, clickType) {
+  // Ajax bla bla bla
+  console.log('Click saved.');
+  return true;
+}
+function categoriesToText(cat) {
+  return 'hello'+cat;
+}
 var views = {};
 views.EventItem = Backbone.View.extend({
   tagName: 'div',
@@ -22,9 +30,23 @@ views.EventItem = Backbone.View.extend({
   render: function() {
     // Clear existing row data if needed
     $(this.el).empty();
-    
-    $(this.el).append(JST['client/templates/hitlist'](this.model.toJSON()));
-    $(this.el).append(JST['client/templates/profileside'](this.model.toJSON()));
+    var lcls = this.model.toJSON();
+    console.log(lcls);
+    lcls.categoriesToText = categoriesToText;
+    switch(this.model.get('pageType')) {
+      case 'small': 
+        //$(this.el).append(JST['client/templates/hitlist-small'](this.model.toJSON()));
+        $(this.el).append(JST['client/templates/hitlist-medium'](lcls));
+        break;
+      case 'medium':
+        //
+        break;
+      case 'large':
+        $(this.el).append(JST['client/templates/hitlist'](lcls));
+        break;
+    };
+    // Popup
+    $(this.el).append(JST['client/templates/profileside'](lcls));
     
     return this;
   }
