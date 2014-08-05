@@ -152,4 +152,34 @@ module.exports = {
         });
       });
     },
+    uthyrning: function(req, res) {
+      models.newCategory.find({ parent: '53e1535b53ad117471805f88'}, function(err, cats) {  
+        models.newCategory.find({}, function(err, allCats) {  
+        
+          res.render('hitlist/index', {
+            filter: 'uthyrning', 
+            cats: cats,
+            allCats: JSON.stringify(allCats),
+            mainCat: '53e1535b53ad117471805f88',
+            title: 'Hitlist - Uthyrning', 
+            pageClass: 'hitlist hitlist-uthyrning'
+          });
+        });
+      });
+    },
+    ovrigt: function(req, res) {
+      models.newCategory.find({ parent: '53e1557d9897c8f17b215c06'}, function(err, cats) {  
+        models.newCategory.find({}, function(err, allCats) {  
+        
+          res.render('hitlist/index', {
+            filter: 'ovrigt', 
+            cats: cats,
+            allCats: JSON.stringify(allCats),
+            mainCat: '53e1557d9897c8f17b215c06',
+            title: 'Hitlist - Övrigt', 
+            pageClass: 'hitlist hitlist-ovrigt'
+          });
+        });
+      });
+    },
 };

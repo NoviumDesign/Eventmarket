@@ -42,10 +42,10 @@ block content
                 a(href='/event/teknik') Teknik
             li
               .ribbon.sidenav
-                a(href='#') Uthyrning
+                a(href='/event/uthyrning') Uthyrning
             li
               .ribbon.sidenav
-                a(href='#') Övrigt
+                a(href='/event/ovrigt') Bransch-relaterat
 
       - if (locals.filter == 'aktiviteter')
         include partials/aktiviteter
@@ -67,6 +67,10 @@ block content
         include partials/transporter
       - if (locals.filter == 'teknik')
         include partials/teknik
+      - if (locals.filter == 'uthyrning')
+        include partials/uthyrning
+      - if (locals.filter == 'ovrigt')
+        include partials/ovrigt
       
       - if (locals.filter == 'filter')
         //- include partials/filter
