@@ -354,5 +354,8 @@ $(function ()
         $('[name="filtering"], input[type="checkbox"]').on('change', function() {
             call(getParams());   
         });
+        $(document).ready(function() {
+          call(getParams());
+        });
     }
 });

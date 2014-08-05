@@ -63,11 +63,19 @@ body(class=locals.pageClass)
                         .small-6.columns
                           label
                             | Latitud
-                            input(type='text', readonly=true, name="lat", value=locals.geo[0].latitude)
+                            - if(locals.geo) {
+                              input(type='text', readonly=true, name="lat", value=locals.geo[0].latitude)
+                            - } else {
+                              input(type='text', readonly=true, name="lat")
+                            - }
                         .small-6.columns.end
                           label
                             | Longitud
-                            input(type='text', readonly=true, name="lon", value=locals.geo[0].longitude)
+                            - if(locals.geo) {
+                              input(type='text', readonly=true, name="lon", value=locals.geo[0].longitude)
+                            - } else {
+                              input(type='text', readonly=true, name="lon")
+                            - }
                       .row
                         .small-12.columns
                           hr
