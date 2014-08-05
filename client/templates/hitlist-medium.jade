@@ -6,5 +6,38 @@
       h2 #{Title}
       p.location #{City}
       p #{InfoText1}
+      - var lokaler = ['53e1126ddf7d890000809785', '53e1127adf7d890000809786', '53e1128cdf7d890000809787', '53e1129edf7d890000809788', '53e112afdf7d890000809789', '53e112c0df7d89000080978a', '53e112dbdf7d89000080978b', '53e112eadf7d89000080978c', '53e112f9df7d89000080978d', '53e11308df7d89000080978e', '53e11316df7d89000080978f']; 
+      - var isConf = false;
+      - for (var cKey in newCategory) {
+          - if (lokaler.indexOf(newCategory[cKey]['value']) !== -1) {
+            - isConf = true;
+          - }
+      - }
+      - if (isConf) {
+        i
+          svg.icon.icon-sallskap(viewbox='0 0 32 32')
+            use(xlink:href='#icon-sallskap')
+          span.icon-text #{LargestCompany}
+        i
+          svg.icon.icon-motesplatser(viewbox='0 0 32 32')
+            use(xlink:href='#icon-motesplatser')
+          span.icon-text #{NoMeetingRooms}
+        i
+          svg.icon.icon-moteslokal(viewbox='0 0 32 32')
+            use(xlink:href='#icon-moteslokal')
+          span.icon-text #{LargestMeetingRoom}
+        i
+          svg.icon.icon-mat(viewbox='0 0 32 32')
+            use(xlink:href='#icon-mat')
+          span.icon-text #{SittingGuests}
+        i
+          svg.icon.icon-mingel(viewbox='0 0 32 32')
+            use(xlink:href='#icon-mingel')
+          span.icon-text #{MingleGuests}
+        i
+          svg.icon.icon-logi(viewbox='0 0 32 32')
+            use(xlink:href='#icon-logi')
+          span.icon-text #{NoBeds}
+      - }
     .arrowcontainer.show-for-medium-up
       .arrow
