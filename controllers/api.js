@@ -457,9 +457,9 @@ module.exports = {
                     // @todo isRoom
                     console.log('Maincat select');
                     console.log('OR:');
-                    console.log(q['$or'][0]);
+                    //console.log(q['$or'][0]);
                     console.log('and: ');
-                    console.log(q['$and'][0]);
+                    //console.log(q['$and'][0]);
                     console.log(data.length);
                     res.json(data);
                 });
@@ -467,8 +467,8 @@ module.exports = {
             );
           });
         } else {
-          console.log(q['$or'][0]);
-          console.log(q['$and'][0]);
+          //console.log(q['$or'][0]);
+          //console.log(q['$and'][0]);
           
           models.PRSTPage.find(q, function(err, data) {
               // @todo Async each (add view data such as isRoom etc)

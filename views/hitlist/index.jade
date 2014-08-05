@@ -21,7 +21,7 @@ block content
                 a(href='/event/forelasare-talare') Föreläsare & Talare
             li
               .ribbon.sidenav
-                a(href='#') Catering
+                a(href='/event/catering') Catering
             li
               .ribbon.sidenav
                 a(href='#') Event & Mötesplatser
@@ -55,6 +55,8 @@ block content
         include partials/underhallning
       - if (locals.filter == 'forelasaretalare')
         include partials/forelasaretalare
+      - if (locals.filter == 'catering')
+        include partials/catering
       - if (locals.filter == 'filter')
         //- include partials/filter
       div#allCats(style="display:none;") #{locals.allCats}

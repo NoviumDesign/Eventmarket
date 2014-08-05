@@ -27,7 +27,8 @@ module.exports.initialize = function(app) {
     app.get('/event/arrangorer', hitlist.arrangorer);
     app.get('/event/underhallning', hitlist.underhallning);
     app.get('/event/forelasare-talare', hitlist.forelasaretalare);
-    
+    app.get('/event/catering', hitlist.catering);
+
     // Conference pages
     app.get('/konferens', conference.index);
 

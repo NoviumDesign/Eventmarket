@@ -62,4 +62,19 @@ module.exports = {
         });
       });
     },
+    catering: function(req, res) {
+      models.newCategory.find({ parent: '53e103aa452922000057f9c4'}, function(err, cats) {  
+        models.newCategory.find({}, function(err, allCats) {  
+        
+          res.render('hitlist/index', {
+            filter: 'catering', 
+            cats: cats,
+            allCats: JSON.stringify(allCats),
+            mainCat: '53e103aa452922000057f9c4',
+            title: 'Hitlist - Catering', 
+            pageClass: 'hitlist hitlist-catering'
+          });
+        });
+      });
+    },
 };
