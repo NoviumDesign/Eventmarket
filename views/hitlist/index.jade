@@ -25,12 +25,12 @@ block content
             li
               .ribbon.sidenav
                 a(href='/event/event-motesplatser') Event & Mötesplatser
+            //- li
+            //-   .ribbon.sidenav
+            //-     a(href='#') Konferenslokaler
             li
               .ribbon.sidenav
-                a(href='#') Konferenslokaler
-            li
-              .ribbon.sidenav
-                a(href='#') Personal & Tjänster
+                a(href='/event/personal-tjanster') Personal & Tjänster
             li
               .ribbon.sidenav
                 a(href='#') Expo
@@ -59,6 +59,8 @@ block content
         include partials/catering
       - if (locals.filter == 'eventmotesplatser')
         include partials/eventmotesplatser
+      - if (locals.filter == 'personaltjanster')
+        include partials/personaltjanster
       - if (locals.filter == 'filter')
         //- include partials/filter
       script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false')

@@ -92,4 +92,19 @@ module.exports = {
         });
       });
     },
+    personaltjanster: function(req, res) {
+      models.newCategory.find({ parent: '53e149685c6f056e4d6f0b50'}, function(err, cats) {  
+        models.newCategory.find({}, function(err, allCats) {  
+        
+          res.render('hitlist/index', {
+            filter: 'personaltjanster', 
+            cats: cats,
+            allCats: JSON.stringify(allCats),
+            mainCat: '53e149685c6f056e4d6f0b50',
+            title: 'Hitlist - Personal & Tjänster', 
+            pageClass: 'hitlist hitlist-personaltjanster'
+          });
+        });
+      });
+    },
 };
