@@ -29,7 +29,7 @@ module.exports.save = function(next) {
         if (_data.newpwd != '') {
           bcrypt.genSalt(10, function(err, salt) {
                 bcrypt.hash(_data.newpwd, salt, function(err, hash) {
-                    login.password   = hash;
+                    login.Pwd   = hash;
                     login.PwdCreated = helpers.sqlDateFormat(new Date());
                     login.save(function(err, user) {
                       next(err, user);

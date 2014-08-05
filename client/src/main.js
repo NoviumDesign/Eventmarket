@@ -59,11 +59,10 @@ views.EventItem = Backbone.View.extend({
     lcls.categoriesToText = window.categoriesToText;
     switch(this.model.get('pageType')) {
       case 'small': 
-        //$(this.el).append(JST['client/templates/hitlist-small'](this.model.toJSON()));
-        $(this.el).append(JST['client/templates/hitlist-medium'](lcls));
+        $(this.el).append(JST['client/templates/hitlist-small'](lcls));
         break;
       case 'medium':
-        //
+        $(this.el).append(JST['client/templates/hitlist-medium'](lcls));
         break;
       case 'large':
         $(this.el).append(JST['client/templates/hitlist'](lcls));
