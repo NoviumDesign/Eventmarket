@@ -123,6 +123,61 @@ if ($('body').hasClass('admin-profilsida')) {
 }
 // Söka personer under kundkort
 if ($('body').hasClass('admin-kundkort')) {
+  var afterLoadHook = function(){
+    $(document).foundation('reflow');
+  };
+  function nl2br (str, is_xhtml) {
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+  }
+  var records = JSON.parse($('#historikJSON').val());
+  function dlWriter(rowIndex, record, columns, cellWriter) {
+    dd = '<dd><a class="typ" href="#contentC'+record._id+'">'+record.typ+'<span class="date datum">'+record.datum+'</span></a>';
+    dd += '<div id="contentC'+record._id+'" class="content"><div class="row"><div class="small-12 columns">';
+    dd += '<p class="freeContent">'+nl2br(record.freeContent)+'</p>';
+    dd += '</div><div class="small-12 columns"><a class="button alert">Radera</a></div></div></div></dd>';
+    return dd;
+  }
+  function dlReader(index, dl, record) {
+    var $dl = $(dl);
+     record.typ = $dl.find('.typ').text();
+     record.datum = $dl.find('.datum').html();
+     record.freeContent = $dl.find('.freeContent').html();
+     console.log(record);
+  }
+  var historyTable = $('#history-list').dynatable({
+    features: {
+      paginate: false,
+      sort: false,
+      search: false,
+      perPageSelect: false
+    },
+    dataset: {
+      records: records
+    },
+    table: {
+      bodyRowSelector: 'dd'
+    },
+    writers: {
+      _rowWriter: dlWriter
+    },
+    readers: {
+      _rowReader: dlReader
+    },
+    inputs: {
+      queries: $('#historyFilter')
+    }
+  }).bind('dynatable:afterUpdate', afterLoadHook).data('historyTable');
+  $('#historyFilter').change( function() {
+    console.log(historyTable);
+  //   var value = $(this).val();
+  //   if (value === "") {
+  //     historyTable.queries.remove('typ');
+  //   } else {
+  //     historyTable.queries.add('typ',value);
+  //   }
+  //   historyTable.process();
+  });
   /**
    * Add personal
    * @param  {[type]} personalId [description]
@@ -198,7 +253,7 @@ if ($('body').hasClass('admin-kundkortlista')) {
       perPageSelect: false
     },
     inputs: {
-      queries: $('#search-group, #search-activity, #search-responsible') //, $('#search-activity'), $('#search-responsible')]
+      queries: $('#search-group, #search-activity, #search-responsible')
     },
     writers: {
       _cellWriter: function (index, rowData) {

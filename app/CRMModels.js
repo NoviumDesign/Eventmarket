@@ -23,6 +23,13 @@ var CRMContactObject = new Schema({
   ModInstanceICID : Number,
   LastContact     : String,
   Summary         : String,
+  // Replaces summary
+  Historik : [{
+    typ: String,
+    datum: String,
+    freeContent: String,
+    createdBy: String
+  }],
   PersonID        : String,
   LastUpdated     : String,
   LogoURL : String,

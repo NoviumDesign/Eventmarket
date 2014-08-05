@@ -302,40 +302,33 @@ body(class=locals.pageClass)
           .large-10.medium-8.columns
             h3 Historik
           .large-2.medium-4.columns
-            select
+            select#historyFilter(data-dynatable-query="typ")
               option(value='all-history') All historik
-              option(value='billing') Fakturering
+              option(value='billing') Ekonomi
+              option(value='crm') CRM
               option(value='other') Övrigt
         .row.administration-content
           .large-12.medium-12.columns
-            dl.accordion(data-accordion='data-accordion')
-              dd
-                a(href='#content1c') Samtal: förnyelse
-                  span.date datum
-                #content1c.content
-                  .row
-                    .small-12.columns
-                      p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                    .small-12.columns
-                      a.button.alert Radera
-              dd
-                a(href='#content2c') Faktura 1239 betald
-                  span.date datum
-                #content2c.content
-                  .row
-                    .small-12.columns
-                      p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                    .small-12.columns
-                      a.button.alert Radera
-              dd
-                a(href='#content3c') Faktura 1239 skapad
-                  span.date datum
-                #content3c.content
-                  .row
-                    .small-12.columns
-                      p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                    .small-12.columns
-                      a.button.alert Radera
+            input#historikJSON(type="hidden", value=locals.historik)
+            dl#history-list.accordion(data-accordion='data-accordion')
+              //- dd
+              //-   a(href='#content2c') Faktura 1239 betald
+              //-     span.date datum
+              //-   #content2c.content
+              //-     .row
+              //-       .small-12.columns
+              //-         p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
+              //-       .small-12.columns
+              //-         a.button.alert Radera
+              //- dd
+              //-   a(href='#content3c') Faktura 1239 skapad
+              //-     span.date datum
+              //-   #content3c.content
+              //-     .row
+              //-       .small-12.columns
+              //-         p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
+              //-       .small-12.columns
+              //-         a.button.alert Radera
             a.button(data-reveal-id='newHistory') Skapa ny historik
             #newHistory.reveal-modal(data-reveal='data-reveal')
               h2 Awesome. I have it.

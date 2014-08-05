@@ -110,6 +110,48 @@ module.exports = {
     });
   },
 
+  /**
+   * Create history as an array on the CRMContactObject instead of a text block
+   *
+   * option(value='all-history') All historik
+   * option(value='billing') Ekonomi
+   * option(value='crm') CRM
+   * option(value='other') Övrigt
+   *
+   * @param {Function} next Next action to perform
+   */
+  CRMContactObjectsWithHistory: function (next) {
+    console.log('Starting job "CRMContactObjectsWithHistory"');
+    crmModels.CRMContactObject.find({}).exec(function (err, page) {
+      if (err) console.log(err);
+      async.each(
+        page,
+        function (crmObj, callback) {
+          crmObj.Historik = [];
+          //crmObj.set('Historik'       , undefined, { strict: false });
+          var history = {
+            typ: 'other',
+            datum: helpers.sqlDateFormat(new Date()),
+            freeContent: crmObj.Summary,
+            createdBy: 'System'
+          };
+          crmObj.Historik.push(history);
+          
+          crmObj.save(function(err) {
+            if (err) console.log(err);
+            callback();
+          });
+        },
+        function (err) {
+          if (err) console.log(err);
+          console.log('Done!');
+          next();
+        }
+      );
+    });
+
+  },
+
   CRMContactObjectsWithOrg: function (next) {
     console.log('Starting job "CRMContactObjectsWithOrg"');
     crmModels.CRMContactObject.find({}).populate('PersonObject').exec(function (err, page) {

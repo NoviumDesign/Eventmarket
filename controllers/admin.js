@@ -49,11 +49,12 @@ module.exports = {
                     hiddenPersonal += ','+page.Personal[i].personObject;
                   }
                 }
-                
+                var historik = JSON.stringify(page.Historik);
                 res.render('admin/kundkort', {
                   contactObject: page.toObject(),
                   hiddenPersonal: hiddenPersonal,
                   region: region,
+                  historik: historik,
                   country: country,
                   kundtitle: kundtitle,
                   pageClass: 'admin-kundkort', 
@@ -299,7 +300,7 @@ module.exports = {
    */
   reindexall: function (req, res) {
     //indexer.orgmembership(function(){
-      indexer.PRSTPageWithOwnerCard(function() {
+      indexer.CRMContactObjectsWithHistory(function() {
         console.log('All done!');
         //die();
       });
