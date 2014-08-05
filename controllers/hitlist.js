@@ -122,4 +122,20 @@ module.exports = {
         });
       });
     },
+    transporter: function(req, res) {
+      models.newCategory.find({ parent: '53e14eda312cac53640666ae'}, function(err, cats) {  
+        models.newCategory.find({}, function(err, allCats) {  
+        
+          res.render('hitlist/index', {
+            filter: 'transporter', 
+            cats: cats,
+            allCats: JSON.stringify(allCats),
+            mainCat: '53e14eda312cac53640666ae',
+            title: 'Hitlist - Transporter', 
+            pageClass: 'hitlist hitlist-transporter'
+          });
+        });
+      });
+    },
+    //
 };
