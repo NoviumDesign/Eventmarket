@@ -32,6 +32,8 @@ module.exports.initialize = function(app) {
     app.get('/event/personal-tjanster', hitlist.personaltjanster);
     app.get('/event/reklam-expo', hitlist.reklamexpo);
     app.get('/event/transporter', hitlist.transporter);
+    app.get('/event/teknik', hitlist.teknik);
+
     // Conference pages
     app.get('/konferens', conference.index);
 

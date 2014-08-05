@@ -39,7 +39,7 @@ block content
                 a(href='/event/transporter') Transporter
             li
               .ribbon.sidenav
-                a(href='#') Teknik
+                a(href='/event/teknik') Teknik
             li
               .ribbon.sidenav
                 a(href='#') Uthyrning
@@ -65,6 +65,8 @@ block content
         include partials/reklamexpo
       - if (locals.filter == 'transporter')
         include partials/transporter
+      - if (locals.filter == 'teknik')
+        include partials/teknik
       
       - if (locals.filter == 'filter')
         //- include partials/filter

@@ -137,5 +137,19 @@ module.exports = {
         });
       });
     },
-    //
+    teknik: function(req, res) {
+      models.newCategory.find({ parent: '53e151efe05855fe6dea8f10'}, function(err, cats) {  
+        models.newCategory.find({}, function(err, allCats) {  
+        
+          res.render('hitlist/index', {
+            filter: 'teknik', 
+            cats: cats,
+            allCats: JSON.stringify(allCats),
+            mainCat: '53e151efe05855fe6dea8f10',
+            title: 'Hitlist - Teknik', 
+            pageClass: 'hitlist hitlist-teknik'
+          });
+        });
+      });
+    },
 };
