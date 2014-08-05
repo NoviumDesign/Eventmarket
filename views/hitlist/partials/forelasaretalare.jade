@@ -1,0 +1,64 @@
+//- forelasaretalare.jade
+input#mainCat(type="hidden", value=locals.mainCat)
+.panelmargin.small-12.medium-12.large-9.columns
+  dl.accordion(data-accordion='data-accordion')
+    dd.nopadding
+      a(href='#speeches')
+        .small-12.columns.filterpanel.borderbottom
+          .filterpanel.small-8.medium-8.large-4.columns
+            h2 Föreläsare & Talare
+          .filterpanel.small-4.medium-4.large-8.columns.text-right
+            p.show-for-large-up
+              | Här hittar du talare och förelasare samt tips på föreläsningar inom alla områden. Du filtrerar listan genom att välja en eller flera kategorier.
+            p.hide-for-large-up
+              | Dölj/Visa
+              br
+              | filtrering
+      #speeches.content
+        .small-12.columns.filterpanel
+          .filterpanel.small-12.medium-12.large-3.columns
+            ul.filtering
+              - var res = 0;
+              - for (i=0 ; i<4; i++) {
+                - var item = locals.cats[i];
+                - res = i+1;
+                li
+                  input(id="#{item._id}", value="#{item._id}", type='radio', name='filtering', class="talareRadio")
+                  label(for='#{item._id}') #{item.displayName}
+              - }
+          hr.hide-for-large-up.whiteline
+          #showTalare1.filterpanel.small-12.medium-12.large-3.columns
+            ul.filtering.borderleft
+              - for (i=res ; i<9; i++) {
+                - var item = locals.cats[i];
+                - res = i+1;
+                li
+                  input(id="#{item._id}", type='checkbox')
+                  label(for='#{item._id}') #{item.displayName}
+              - }
+              span.hide-for-large-up
+                - for (i=res; i<locals.cats.length; i++) {
+                  - var item = locals.cats[i];
+                  li
+                    input(id="#{item._id}", type='checkbox')
+                    label(for='#{item._id}') #{item.displayName}
+                - }
+          #showTalare2.large-3.columns.show-for-large-up
+            ul.filtering
+              - for (i=res ; i<12; i++) {
+                - var item = locals.cats[i];
+                - res = i+1;
+                li
+                  input(id="#{item._id}", type='checkbox')
+                  label(for='#{item._id}') #{item.displayName}
+              - }
+          #showTalare3.large-3.columns.show-for-large-up
+            ul.filtering
+              - for (i=res ; i<13; i++) {
+                - var item = locals.cats[i];
+                - res = i+1;
+                li
+                  input(id="#{item._id}", type='checkbox')
+                  label(for='#{item._id}') #{item.displayName}
+              - }
+    dl

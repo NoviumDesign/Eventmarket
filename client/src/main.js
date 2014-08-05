@@ -6,6 +6,16 @@ $('.reveal-modal').on('opened', function(){
 
 $(document).ready(function() {
     $('#listaside').stickySidebar();
+
+    window.categoriesToText = function(cat) {
+      var allCats = JSON.parse($('#allCats').html());
+      var ret = '';
+      for (var key in allCats) {
+        // 
+        // 
+      }
+      return 'hello'+cat;
+    }
 });
 
 function registerClick(pageId, clickType) {
@@ -13,9 +23,7 @@ function registerClick(pageId, clickType) {
   console.log('Click saved.');
   return true;
 }
-function categoriesToText(cat) {
-  return 'hello'+cat;
-}
+
 var views = {};
 views.EventItem = Backbone.View.extend({
   tagName: 'div',
@@ -32,7 +40,7 @@ views.EventItem = Backbone.View.extend({
     $(this.el).empty();
     var lcls = this.model.toJSON();
     console.log(lcls);
-    lcls.categoriesToText = categoriesToText;
+    lcls.categoriesToText = window.categoriesToText;
     switch(this.model.get('pageType')) {
       case 'small': 
         //$(this.el).append(JST['client/templates/hitlist-small'](this.model.toJSON()));
@@ -263,6 +271,21 @@ $(function ()
     // Hitlist / Events
     if ($('body').hasClass('hitlist'))
     {
+      if ($('body').hasClass('hitlist-forelasaretalare')) {
+        $('#showTalare1>.filtering, #showTalare2>.filtering, #showTalare3>.filtering').hide();
+        // Show/hide checkboxes // #showTalare
+        $('.talareRadio').on('click', function(){
+          if ($(this).is(':checked')) {
+            if ($(this).attr('id') == '53e0f507198b7b00003ba174' || $(this).attr('id') == '53e0f517198b7b00003ba175') {
+              $('#showTalare1>.filtering, #showTalare2>.filtering, #showTalare3>.filtering').show();
+            } else {
+              $('#showTalare1>.filtering, #showTalare2>.filtering, #showTalare3>.filtering').hide();
+              // Clear all checked boxes
+              $('input[type="checkbox"]').prop('checked', false);
+            }
+          }
+        });
+      }
         var call = function(params) {
             console.log(params);
             eventCollection.fetch({
