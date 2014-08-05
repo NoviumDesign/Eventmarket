@@ -24,7 +24,7 @@ block content
                 a(href='/event/catering') Catering
             li
               .ribbon.sidenav
-                a(href='#') Event & Mötesplatser
+                a(href='/event/event-motesplatser') Event & Mötesplatser
             li
               .ribbon.sidenav
                 a(href='#') Konferenslokaler
@@ -57,11 +57,14 @@ block content
         include partials/forelasaretalare
       - if (locals.filter == 'catering')
         include partials/catering
+      - if (locals.filter == 'eventmotesplatser')
+        include partials/eventmotesplatser
       - if (locals.filter == 'filter')
         //- include partials/filter
       div#allCats(style="display:none;") #{locals.allCats}
       .small-12.medium-12.large-9.columns#resultrows
-        h1.results Resultat: X träffar
+        h1.results 
+          &nbsp;
         div(data-equalizer='data-equalizer')
           .panel.small-12.medium-6.large-12.columns(data-equalizer-watch='data-equalizer-watch')
             a(href='#', data-reveal-id='profileside')

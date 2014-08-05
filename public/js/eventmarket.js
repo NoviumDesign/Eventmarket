@@ -25666,10 +25666,20 @@ $(function ()
       }
         var call = function(params) {
             console.log(params);
+            $('h1.results').html('Söker...');
             eventCollection.fetch({
                 data: $.param(params),
-                success: function(){
-                    //console.log(eventCollection);
+                success: function(data){
+                    if (data.length == 0) {
+                      $('h1.results').html('Inga träffar');
+                    }
+                    if (data.length == 1) {
+                      $('h1.results').html('Resultat: 1 träff');
+                    }
+                    if (data.length > 1) {
+                      $('h1.results').html('Resultat: '+data.length+' träffar');
+                    }
+                    
                 }
             });    
         }

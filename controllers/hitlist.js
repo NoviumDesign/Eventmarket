@@ -77,4 +77,19 @@ module.exports = {
         });
       });
     },
+    eventmotesplatser: function(req, res) {
+      models.newCategory.find({ parent: '53e11260df7d890000809784'}, function(err, cats) {  
+        models.newCategory.find({}, function(err, allCats) {  
+        
+          res.render('hitlist/index', {
+            filter: 'eventmotesplatser', 
+            cats: cats,
+            allCats: JSON.stringify(allCats),
+            mainCat: '53e11260df7d890000809784',
+            title: 'Hitlist - Event & Mötesplatser', 
+            pageClass: 'hitlist hitlist-eventmotesplatser'
+          });
+        });
+      });
+    },
 };
