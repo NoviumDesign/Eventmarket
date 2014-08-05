@@ -33,7 +33,7 @@ block content
                 a(href='/event/personal-tjanster') Personal & Tjänster
             li
               .ribbon.sidenav
-                a(href='#') Expo
+                a(href='/event/reklam-expo') Reklam & Expo
             li
               .ribbon.sidenav
                 a(href='#') Transporter
@@ -61,6 +61,9 @@ block content
         include partials/eventmotesplatser
       - if (locals.filter == 'personaltjanster')
         include partials/personaltjanster
+      - if (locals.filter == 'reklamexpo')
+        include partials/reklamexpo
+      
       - if (locals.filter == 'filter')
         //- include partials/filter
       script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false')

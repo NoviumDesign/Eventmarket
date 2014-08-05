@@ -30,6 +30,8 @@ module.exports.initialize = function(app) {
     app.get('/event/catering', hitlist.catering);
     app.get('/event/event-motesplatser', hitlist.eventmotesplatser);
     app.get('/event/personal-tjanster', hitlist.personaltjanster);
+    app.get('/event/reklam-expo', hitlist.reklamexpo);
+    
     // Conference pages
     app.get('/konferens', conference.index);
 

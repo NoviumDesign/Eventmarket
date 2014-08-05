@@ -107,4 +107,19 @@ module.exports = {
         });
       });
     },
+    reklamexpo: function(req, res) {
+      models.newCategory.find({ parent: '53e14b57d5827f555179ee2a'}, function(err, cats) {  
+        models.newCategory.find({}, function(err, allCats) {  
+        
+          res.render('hitlist/index', {
+            filter: 'reklamexpo', 
+            cats: cats,
+            allCats: JSON.stringify(allCats),
+            mainCat: '53e14b57d5827f555179ee2a',
+            title: 'Hitlist - Reklam & Expo', 
+            pageClass: 'hitlist hitlist-reklamexpo'
+          });
+        });
+      });
+    },
 };
