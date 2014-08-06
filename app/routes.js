@@ -53,7 +53,9 @@ module.exports.initialize = function(app) {
     app.get('/api/category', api.category);
     app.get('/api/newcategory', api.newcategory);
     app.get('/api/customercards', api.customercards);
-
+    app.get('/api/kundkorthistorik/kid/:kundkortid', api.kundkorthistorik);
+    app.post('/api/kundkorthistorik/spara/kid/:kid', api.kundkorthistorikspara);
+    app.post('/api/kundkorthistorik/tabort/kid/:kid', api.kundkorthistoriktabort);
     // Protected pages
     app.get('/login', home.login);
     app.get('/admlogin', home.admlogin);

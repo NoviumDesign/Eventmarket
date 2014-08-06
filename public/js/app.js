@@ -162,54 +162,88 @@ if ($('body').hasClass('admin-kundkort')) {
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
   }
-  var records = JSON.parse($('#historikJSON').val());
+  
+  var kid = $('input[name="_id"]').val();
+  var cuser = $('input[name="currentUser"]').val();
   function dlWriter(rowIndex, record, columns, cellWriter) {
-    dd = '<dd><a class="typ" href="#contentC'+record._id+'">'+record.typ+'<span class="date datum">'+record.datum+'</span></a>';
+    dd = '<dd><a class="typ" href="#contentC'+record._id+'">';
+    switch(record.typ) {
+      case 'billing':
+        dd += 'Ekonomi'; break;
+      case 'crm':
+        dd += 'CRM'; break;
+      case 'other':
+        dd += 'Övrigt'; break;
+    }
+    dd += '<span class="date datum">'+record.datum+' | '+record.createdBy+'</span></a>';
     dd += '<div id="contentC'+record._id+'" class="content"><div class="row"><div class="small-12 columns">';
     dd += '<p class="freeContent">'+nl2br(record.freeContent)+'</p>';
-    dd += '</div><div class="small-12 columns"><a class="button alert">Radera</a></div></div></div></dd>';
+    dd += '</div><div class="small-12 columns"><a class="button alert deleteHistory" data-kid="'+kid+'" data-rid="'+record._id+'">Radera</a></div></div></div></dd>';
     return dd;
   }
-  function dlReader(index, dl, record) {
-    var $dl = $(dl);
-     record.typ = $dl.find('.typ').text();
-     record.datum = $dl.find('.datum').html();
-     record.freeContent = $dl.find('.freeContent').html();
-     console.log(record);
-  }
-  var historyTable = $('#history-list').dynatable({
+  
+  $('#history-list').bind('dynatable:afterUpdate', function(e, dynatable) {
+    $('.deleteHistory').on('click', function() {
+      var idToDelete = $(this).attr('data-rid');
+      console.log(idToDelete);
+      // Ajax bla bla bla
+      $.ajax({
+        url: '/api/kundkorthistorik/tabort/kid/'+kid,
+        type: 'post',
+        data: { idToDelete: idToDelete },
+        success: function(data){
+          console.log($('#history-list'));
+          //dynatable.process();
+        }
+      });
+    });
+  });
+  $('#history-list').bind('dynatable:init', function(e, dynatable) {
+
+    $('#saveNyHistorik').on('click', function() {
+      // Spara, bla bla
+      $.ajax({
+        url: '/api/kundkorthistorik/spara/kid/'+kid,
+        type: 'post',
+        data: { typ: $('#nyHistorikTyp').val(), freeContent: $('#nyHistorikText').val(), createdBy: cuser },
+        success: function(data){
+          dynatable.process();
+          $('a.close-reveal-modal').trigger('click');
+        }
+      });
+    });
+  });
+  $('#history-list').dynatable({
+    dataset: {
+      ajax: true,
+      ajaxUrl: '/api/kundkorthistorik/kid/'+kid,
+      ajaxOnLoad: true,
+      records: []
+    },
     features: {
       paginate: false,
-      sort: false,
       search: false,
+      recordCount: false,
       perPageSelect: false
-    },
-    dataset: {
-      records: records
     },
     table: {
       bodyRowSelector: 'dd'
     },
-    writers: {
-      _rowWriter: dlWriter
-    },
-    readers: {
-      _rowReader: dlReader
-    },
     inputs: {
       queries: $('#historyFilter')
+    },
+    writers: {
+      _rowWriter: dlWriter 
     }
-  }).bind('dynatable:afterUpdate', afterLoadHook).data('historyTable');
-  $('#historyFilter').change( function() {
-    console.log(historyTable);
-  //   var value = $(this).val();
-  //   if (value === "") {
-  //     historyTable.queries.remove('typ');
-  //   } else {
-  //     historyTable.queries.add('typ',value);
-  //   }
-  //   historyTable.process();
   });
+  
+  //historyList();
+  
+  /**
+   * Spara ny historik
+   * 
+   */
+  
   /**
    * Add personal
    * @param  {[type]} personalId [description]

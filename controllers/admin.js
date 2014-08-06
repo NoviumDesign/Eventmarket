@@ -50,9 +50,11 @@ module.exports = {
                   }
                 }
                 var historik = JSON.stringify(page.Historik);
+                console.log(req.user);
                 res.render('admin/kundkort', {
                   contactObject: page.toObject(),
                   hiddenPersonal: hiddenPersonal,
+                  currentUser: req.user,
                   region: region,
                   historik: historik,
                   country: country,

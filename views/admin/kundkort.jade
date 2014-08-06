@@ -12,7 +12,8 @@ body(class=locals.pageClass)
     
     form(method="POST", action="/admin/savekundkort", id="kundkort")
       input(type="hidden", name="_id", value=locals.contactObject._id)
-
+      input(type="hidden", name="currentUser", value=locals.currentUser.LoginName)
+      
       .large-9.columns.medium-8.columns
         h3 #{locals.kundtitle}
         .row.administration-content
@@ -309,9 +310,9 @@ body(class=locals.pageClass)
               option(value='other') Övrigt
         .row.administration-content
           .large-12.medium-12.columns
-            input#historikJSON(type="hidden", value=locals.historik)
+            //- input#historikJSON(type="hidden", value=locals.historik)
             dl#history-list.accordion(data-accordion='data-accordion')
-              //- dd
+              dd
               //-   a(href='#content2c') Faktura 1239 betald
               //-     span.date datum
               //-   #content2c.content
@@ -331,10 +332,15 @@ body(class=locals.pageClass)
               //-         a.button.alert Radera
             a.button(data-reveal-id='newHistory') Skapa ny historik
             #newHistory.reveal-modal(data-reveal='data-reveal')
-              h2 Awesome. I have it.
-                p.lead Your couch.  It is mine.
-                p Im a cool paragraph that lives inside of an even cooler modal. Wins
-                a.close-reveal-modal ×
+              h2 Ny historik
+              select#nyHistorikTyp(name="nyHistorikTyp")
+                option(value='') Välj typ
+                option(value='billing') Ekonomi
+                option(value='crm') CRM
+                option(value='other') Övrigt
+              textarea#nyHistorikText(name="nyHistorikText")
+              a#saveNyHistorik.button Spara
+              a.close-reveal-modal(onclick="$('#nyHistorikTyp').val(''); $('#nyHistorikText').val('');") ×
         .row
           .large-12.medium-12.columns
             h3 Kommande kontakter

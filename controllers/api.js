@@ -389,6 +389,76 @@ module.exports = {
         );
       });
     },
+    kundkorthistorikspara: function(req, res) {
+      crmModels.CRMContactObject.findById(req.param('kid'), function(err, kkort){
+        if (kkort) {
+          var hist = {
+            typ : req.body.typ,
+            freeContent: req.body.freeContent,
+            datum: helpers.sqlDateFormat(new Date()),
+            createdBy: req.body.createdBy
+          };
+          kkort.Historik.push(hist);
+          kkort.save(function(err) {
+            if (err) console.log(err);
+            res.json('Tack');
+          });
+        }
+      });
+    },
+    kundkorthistoriktabort: function(req, res) {
+      crmModels.CRMContactObject.findById(req.param('kid'), function(err, kkort){
+        if (kkort) {
+          var hist = kkort.Historik;
+          kkort.Historik = [];
+          for (var hKey in hist) {
+            console.log(hist[hKey]);
+            if (hist[hKey]._id != req.body.idToDelete) {
+              kkort.Historik.push(hist[hKey]);
+            }
+          }
+          kkort.save(function(err) {
+            if (err) console.log(err);
+            res.json('Tack');
+          });
+        }
+      });
+    },
+    kundkorthistorik: function(req, res) {
+      var q = {}, sortKey = "_id", sortDir = 1, searchTerm = '', sortObj = {};
+      var url_parts = url.parse(req.url, true);
+      
+      for( var key in url_parts.query){
+        var sp = key.split('[');
+        if(sp[0] == 'sorts'){
+            sortKey = sp[1].replace(']', '');
+            sortDir = url_parts.query[key];
+        }
+        if(sp[0] == 'queries'){
+            searchTerm = url_parts.query[key];
+        }
+      }
+      
+      // Load actual customer card
+      crmModels.CRMContactObject.findById(req.param('kundkortid'), function(err, kkort){
+        var responseArray = [];
+        if (searchTerm != '' && searchTerm !== 'all-history') {
+          for (var cKey in kkort.Historik) {
+            if (kkort.Historik[cKey].typ == searchTerm) {
+              responseArray.push(kkort.Historik[cKey]);
+            }
+          }
+        } else {
+          responseArray = kkort.Historik;
+        }
+        var response = {
+          "records": responseArray,
+          "queryRecordCount": responseArray.length,
+          "totalRecordCount": responseArray.length
+        }
+        res.json(response);
+      });
+    },
     events: function(req, res) {
         var q = {};
 
