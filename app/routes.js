@@ -1,13 +1,13 @@
-var home = require('../controllers/home'),
-    contacts = require('../controllers/contacts'),
-    tickets = require('../controllers/tickets'),
-    api = require('../controllers/api'),
-    hitlist = require('../controllers/hitlist'),
-    conference = require('../controllers/conference'),
-    backstage = require('../controllers/backstage'),
-    admin = require('../controllers/admin'),
-    passport = require('passport'),
-    crypto = require('crypto');
+var   home   = require('../controllers/home'),
+  contacts   = require('../controllers/contacts'),
+  tickets    = require('../controllers/tickets'),
+  api        = require('../controllers/api'),
+  hitlist    = require('../controllers/hitlist'),
+  conference = require('../controllers/conference'),
+  backstage  = require('../controllers/backstage'),
+  admin      = require('../controllers/admin'),
+  passport   = require('passport'),
+  crypto     = require('crypto');
 
 module.exports.initialize = function(app) {
     // General pages

@@ -202,17 +202,32 @@ body(class=locals.pageClass)
               dd
                 a(href='#content4') Media
                 #content4.content.active
+                  //- For each media already saved
+                  .row
+                    #allProfileMedia.small-12.columns
+                  - for (var mKey in locals.page.media) {
+                    .row
+                      .small-12.columns
+                        input(type="hidden", name="mediaImg[]", value=locals.page.media[mKey].img)
+                        img(src=locals.page.media[mKey].img, style='width:100%;')
+                        label
+                          | Bildtext
+                          textarea(name="mediaText[]") #{locals.page.media[mKey].bildtext}
+                        a.button.deleteProfileMedia Radera
+                  - }
                   .row
                     .small-12.columns
-                      - if(locals.page.media950 == '') {
-                        img(src="http://placehold.it/950x250")
-                      - } else {
-                        img(src=locals.page.media950)
-                      - }
-                      a.button.expand(href='#') Ladda upp bild
-                      label
-                        | Bildtext
-                        textarea(name="text950") #{locals.page.text950}
+                      //- Will be name of file on S3, generate something unique
+                      - var today = new Date();
+                      input#mediaURLname(type="hidden", name="mediaImgNew", value="profilemedia#{locals.page._id}#{today.getTime()}")
+                      //- This field will be updated with the final url (should be saved)
+                      //- input#mediaURL(type="hidden", name="mediaImage")
+                      input#mediafile(type="file")
+                      //- This field will be updated with JS by id
+                      p#statusMedia Välj en fil för att ladda upp mediabild (950x250)
+                      //- #previewMedia(style="border:1px solid gray;width:100%;")
+                      //-   img(src='http://placehold.it/950x250', style='width:100%;')
+                      
                       hr
                     .small-4.columns
                       a.button.expand(href='#') Ladda upp filmklipp

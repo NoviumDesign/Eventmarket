@@ -263,8 +263,13 @@ module.exports = {
             bnr.extraTabName = req.body.extraTabName;
             bnr.extraTitle = req.body.extraTitle;
             bnr.extraText = req.body.extraText;
-            bnr.media950 = req.body.media950;
-            bnr.text950 = req.body.text950;
+            var media = [];
+            for (var mkey in req.body.mediaImg) {
+              media.push({img: req.body.mediaImg[mkey], bildtext: req.body.mediaText[mkey]});
+            }
+            bnr.media = media;
+            //bnr.media950 = req.body.media950;
+            //bnr.text950 = req.body.text950;
             bnr.mapAddress = req.body.mapAddress;
             bnr.pageType = req.body.pageType;
             bnr.ActivatedDate = req.body.ActivatedDate;

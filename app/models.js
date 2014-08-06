@@ -270,8 +270,8 @@ var PRSTPage = new Schema({
   extraTabName: String,
   extraTitle: String,
   extraText: String,
-  media950: String,
-  text950: String,
+  // @deprecated media950: String,
+  // @deprecated text950: String,
   mapAddress: String,
 
   pageType: String,
@@ -289,6 +289,8 @@ var PRSTPage = new Schema({
   // Geo
   lat: String,
   lon: String,
+  // Media
+  media: [{ img: String, bildtext: String }],
 
   // Mostly not used below :
   // 

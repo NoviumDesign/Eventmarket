@@ -92,18 +92,12 @@ div(id="profileside#{_id}").reveal-modal(data-reveal='data-reveal')
           dd Standup
       .small-9.columns
         ul.profile-orbit(data-orbit='data-orbit', data-options='bullets:false; timer: false; slide_number: false;')
-          li
-            img(src='http://placehold.it/1440x400', alt='slide 1')
-            .orbit-caption.text-right
-              | Caption One.
-          li
-            img(src='http://placehold.it/1440x400', alt='slide 2')
-            .orbit-caption.text-right
-              | Caption Two.
-          li
-            img(src='http://placehold.it/1440x400', alt='slide 3')
-            .orbit-caption.text-right
-              | Caption Three.
+          - for (var mkey in media) {
+            li
+              img(src=media[mkey].img, alt=media[mkey].bildtext)
+              .orbit-caption.text-right
+                | #{media[mkey].bildtext}
+          - }
         dl.tabs.profilenav(data-tab='data-tab')
           dd.active
             a.text-center(href='#presentation') Presentation
@@ -161,12 +155,10 @@ div(id="profileside#{_id}").reveal-modal(data-reveal='data-reveal')
       .row.main-content
         .container
           ul.hero-orbit(data-orbit='data-orbit', data-options='bullets:false; timer: false; slide_number: false;')
-            li
-              img(src='http://placehold.it/1440x400', alt='slide 1')
-            li
-              img(src='http://placehold.it/1440x400', alt='slide 2')
-            li
-              img(src='http://placehold.it/1440x400', alt='slide 3')
+            - for (var mkey in media) {
+              li
+                img(src=media[mkey].img, alt=media[mkey].bildtext)
+            - }
     section.profileside
       .row
         .small-12.columns

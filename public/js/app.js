@@ -71,6 +71,37 @@ $('#my-table').dynatable({
 });
 // Profilsida
 if ($('body').hasClass('admin-profilsida')) {
+  $('.deleteProfileMedia').on('click', function(){
+    $(this).parent('div').parent('.row').remove();
+  });
+
+  function profileMediaS3Upload(){
+    var s3upload = new S3Upload({
+        file_dom_selector: 'mediafile',
+        s3_sign_put_url: '/sign_s3',
+        s3_object_name: $('#mediaURLname').val(),
+        onProgress: function(percent, message) {
+            $('#statusMedia').html('Upload progress: ' + percent + '% ' + message);
+        },
+        onFinishS3Put: function(public_url) {
+            $('#statusMedia').html('Upload completed. Uploaded to: '+ public_url);
+            // Append to #allProfileMedia
+            var htm = '<div class="row">';
+              htm += '<div class="small-12 columns">';
+              htm += '<input type="hidden" name="mediaImg[]" value="'+public_url+'" />';
+              htm += '<img src="'+public_url+'" style="width:100%;" />';
+              htm += '<label>Bildtext';
+              htm += '<textarea name="mediaText[]"></textarea></label>';
+              htm += '</div></div>';
+            $('#allProfileMedia').append(htm);
+            // $("#LogoURL").val(public_url);
+            // $("#previewMedia").html('<img src="'+public_url+'" style="width:300px;" />');
+        },
+        onError: function(status) {
+            $('#statusMedia').html('Upload error: ' + status);
+        }
+    });
+  }
   function s3_upload(){
     var s3upload = new S3Upload({
         file_dom_selector: 'logofile',
@@ -94,6 +125,7 @@ if ($('body').hasClass('admin-profilsida')) {
   */
   $(document).ready(function() {
       $('#logofile').on("change", s3_upload);
+      $('#mediafile').on('change', profileMediaS3Upload);
   });
   
   function convertToSlug(Text)
