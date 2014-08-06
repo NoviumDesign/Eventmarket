@@ -64,12 +64,12 @@ module.exports.initialize = function(app) {
       })
     );
     // Admin login
-    app.post('/adm/local', 
+    app.post('/adm/local', function(req, res, next) {
       passport.authenticate('local', { 
-        successRedirect: '/admin',
+        successRedirect: req.session.redirect_to ? req.session.redirect_to : '/admin',
         failureRedirect: '/admlogin'
-      })
-    );
+      })(req, res, next);
+    });
 
     app.get('/logout', function(req, res){
       req.logout();
@@ -88,6 +88,9 @@ module.exports.initialize = function(app) {
     }
 
     function requireAdminLogin(req, res, next) {
+      // Save request in session to redirect back to if we fail
+      // @see Admin login
+      req.session.redirect_to = req.url;
       if (req.user && req.user.RootAdmin == '1') {
         next();
       } else {
