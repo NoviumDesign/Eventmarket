@@ -7,6 +7,7 @@
 @import index
 @import profileside
 @import conference
+@import event
 @import filteringpanels
 @import photoarchive
 @import tickets
@@ -77,10 +78,28 @@ h1
   background: linear-gradient($grey-color, $darkgrey-color) /* Standard syntax (must be last) */
   padding-bottom: 30px
 
+.orbit-container .orbit-prev, .orbit-container .orbit-next
+  width: 30px
+  height: 30px
+  border-radius: 30px
+  background-color: #FFF
+  opacity: 0.6
+
+.orbit-container .orbit-prev
+  span
+    right: 12px
+    border-right-color: #000
+
+.orbit-container .orbit-next
+  span
+    left: 16px
+    border-left-color: #000
+
 p.tagline
   font-size: 1.2em
-  font-weight: 300
+  font-weight: 400
   line-height: 1.4em
+  text-transform: uppercase
 
   a
     color: black
@@ -147,7 +166,7 @@ a.hits:hover
 
   li
     a
-      color: white !important
+      color: white
       text-transform: none
 
   .sidenav
@@ -166,9 +185,10 @@ a.hits:hover
     border-bottom: 10px solid transparent
     bottom: -20px
 
+.side-nav li a:not(.button)
+  color: #FFF
+
 dl.accordion, dl.tabs
-
-
 
   a.gradientbutton
     color: white
@@ -177,10 +197,10 @@ dl.accordion, dl.tabs
     height: 60px
     padding-left: 25px
     padding-right: 25px
-    background: -webkit-linear-gradient($grey-color, $darkgrey-color) !important /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($grey-color, $darkgrey-color) !important /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($grey-color, $darkgrey-color) !important /* For Firefox 3.6 to 15 */
-    background: linear-gradient($grey-color, $darkgrey-color) !important /* Standard syntax (must be last) */
+    background: -webkit-linear-gradient($grey-color, $darkgrey-color) /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($grey-color, $darkgrey-color) /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($grey-color, $darkgrey-color) /* For Firefox 3.6 to 15 */
+    background: linear-gradient($grey-color, $darkgrey-color) /* Standard syntax (must be last) */
 
 div.searchsettings
   padding-left: 25px !important
@@ -212,20 +232,17 @@ div.searchsettings
   padding: 0
   border: none
 
-i
+span.eventinfo
   color: black
   font-style: normal
   margin-right: 10px
 
   .icon-text
-    position: relative
-    top: -8px
+    margin-left: 5px
 
 .icon
-  display: inline-block
   width: 32px
   height: 32px
-  fill: #000000
 
 .icon-sallskap, .icon-privat, .icon-motesplatser, .icon-moteslokal, .icon-mingel, .icon-mat, .icon-logi, .icon-foretagsevent
   fill: #000000

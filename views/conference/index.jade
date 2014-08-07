@@ -98,29 +98,23 @@ block content
                 p.location Stockholm, Sweden
                 p
                   | Carola lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ipsum lorem ipsum lorem ipsum lorem ipsum.
-                i
-                  svg.icon.icon-sallskap(viewBox='0 0 32 32')
-                    use(xlink:href='#icon-sallskap')
+                span.eventinfo
+                  img.icon(src="/icons/SVG/sallskap.svg")
                   span.icon-text 450
-                i
-                  svg.icon.icon-motesplatser(viewBox='0 0 32 32')
-                    use(xlink:href='#icon-motesplatser')
+                span.eventinfo
+                  img.icon(src="/icons/SVG/motesplatser.svg")
                   span.icon-text 6
-                i
-                  svg.icon.icon-moteslokal(viewBox='0 0 32 32')
-                    use(xlink:href='#icon-moteslokal')
+                span.eventinfo
+                  img.icon(src="/icons/SVG/moteslokal.svg")
                   span.icon-text 350
-                i
-                  svg.icon.icon-mat(viewBox='0 0 32 32')
-                    use(xlink:href='#icon-mat')
+                span.eventinfo
+                  img.icon(src="/icons/SVG/mat.svg")
                   span.icon-text 450
-                i
-                  svg.icon.icon-mingel(viewBox='0 0 32 32')
-                    use(xlink:href='#icon-mingel')
+                span.eventinfo
+                  img.icon(src="/icons/SVG/mingel.svg")
                   span.icon-text 450
-                i
-                  svg.icon.icon-logi(viewBox='0 0 32 32')
-                    use(xlink:href='#icon-logi')
+                span.eventinfo
+                  img.icon(src="/icons/SVG/logi.svg")
                   span.icon-text 50
               .arrowcontainer.show-for-medium-up
                 .arrow
@@ -146,13 +140,11 @@ block content
                 p.location Stockholm, Sweden
                 p
                   | Carola lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ipsum lorem ipsum lorem ipsum lorem ipsum.
-                i
-                  svg.icon.icon-foretagsevent(viewBox='0 0 32 32')
-                    use(xlink:href='#icon-foretagsevent')
+                span.eventinfo
+                  img.icon(src="/icons/SVG/foretagsevent.svg")
                   span.icon-text JA
-                i
-                  svg.icon.icon-privat(viewBox='0 0 32 32')
-                    use(xlink:href='#icon-privat')
+                span.eventinfo
+                  img.icon(src="/icons/SVG/privat.svg")
                   span.icon-text NEJ
               .arrowcontainer.show-for-medium-up
                 .arrow
@@ -189,13 +181,11 @@ block content
                 p.location Stockholm, Sweden
                 p
                   | Carola lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ipsum lorem ipsum lorem ipsum lorem ipsum.
-                i
-                  svg.icon.icon-foretagsevent(viewBox='0 0 32 32')
-                    use(xlink:href='#icon-foretagsevent')
+                span.eventinfo
+                  img.icon(src="/icons/SVG/foretagsevent.svg")
                   span.icon-text JA
-                i
-                  svg.icon.icon-privat(viewBox='0 0 32 32')
-                    use(xlink:href='#icon-privat')
+                span.eventinfo
+                  img.icon(src="/icons/SVG/privat.svg")
                   span.icon-text NEJ
               .arrowcontainer.show-for-medium-up
                 .arrow
@@ -220,33 +210,34 @@ block content
                 dd.conferencetutorial
                   a(href='#tutorial')
                     .rightribbon.sidenav.ribbon Så här går det till
+                      .arrow
                   #tutorial.content
                     p
-                      | Från start visas alla konferens-anläggningar som finns med på eventmarket. Du filtrerar listan genom att välja enm eller flera kategorier som passar er.
+                      | Från <a href="#">» Start</a> visas alla konferens-anläggningar som finns med på eventmarket. Du filtrerar listan genom att välja enm eller flera kategorier som passar er.
                       br
-                      strong Du kan även söka fram
+                      strong Du kan även söka fram 
                       | anläggningarna geografiskt och/eller ange antal. Kontakt sker direkt med anläggningen Lycka till!
             li
               .rightribbon.ribbon.sidenav Kategori
               form.conferenceform
                 h5 Välj en eller flera kategorier
-                input#dayconference(type='checkbox')
-                label(for='dayconference') Dagkonferens
+                input(id='#dayconference')(type='checkbox')
+                label(for='#dayconference') Dagkonferens
                 br
-                input#sleepoverconference(type='checkbox')
-                label(for='sleepoverconference') Konferens m. övernattning
+                input(id='#sleepoverconference')(type='checkbox')
+                label(for='#sleepoverconference') Konferens m. övernattning
                 br
-                input#mansionconference(type='checkbox')
-                label(for='mansionconference') Slott &- Gårdsskonferens
+                input(id='#mansionconference')(type='checkbox')
+                label(for='#mansionconference') Slott &- Gårdsskonferens
                 br
-                input#congress(type='checkbox')
-                label(for='congress') Kongress
+                input(id='#congress')(type='checkbox')
+                label(for='#congress') Kongress
                 br
-                input#lecture(type='checkbox')
-                label(for='lecture') Hörsal/Föreläsning
+                input(id='#lecture')(type='checkbox')
+                label(for='3lecture') Hörsal/Föreläsning
                 br
-                input#event(type='checkbox')
-                label(for='event') Kvällsfest/Event
+                input(id='#event')(type='checkbox')
+                label(for='#event') Kvällsfest/Event
             li
               .rightribbon.ribbon.sidenav Ort
               form.conferenceform
@@ -266,6 +257,6 @@ block content
                   p.externalconference
                     | Vill du istället kontakta en extern konferensarrangör? En extern arrangör är ej knuten till en specifik anläåggning. I samråd med kunden ansvarar arrangören för helheten som programupplägg, logistik, bokning av lokal, föreläsare, genomförande & uppföljning.
                   form.conferenceform
-                    input#showexternal(type='radio')
-                    label(for='showexternal') Dölj anläggningar och visa endast externa konferens-arrangörer.
+                    input(id='#showexternal')(type='radio')
+                    label(for='#showexternal') Dölj anläggningar och visa endast externa konferens-arrangörer.
   // Main content end

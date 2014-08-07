@@ -1,6 +1,7 @@
 node_modules/*
 build/*
 bower_components/*
+dump/*
 
 newrelic_agent.log
 npm-debug.log

@@ -1,11 +1,33 @@
 extends ../layout
 
 block content
+  section.hero
+    .row
+      .container
+        ul.hero-orbit(data-orbit='', data-options='bullets:false; timer: false; slide_number: false;')
+          li
+            img(src='http://placehold.it/1440x400', alt='slide 1')
+            h1
+              | Boka
+              br
+              | Biljetter
+            p.show-for-large-up
+              | Sökportal inom event, möte,
+              br
+              | upplevelse och expo
+          li
+            img(src='http://placehold.it/1440x400', alt='slide 2')
+            h1
+              | Hej
+              br
+              | San
+          li
+            img(src='http://placehold.it/1440x400', alt='slide 3')
   .row.hide-for-large-up
-  .small-12.columns.profileinformation
-    dl.accordion
-      dd.active
-        a.gradientbutton(href='/biljett') Biljett Startsida
+    .small-12.columns.profileinformation
+      dl.accordion
+        dd.active
+          a.gradientbutton(href='/biljett') Biljett Startsida
   // Main content
   section.main-content.container
     .row
