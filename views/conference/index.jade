@@ -209,7 +209,7 @@ block content
               dl.accordion(data-accordion='')
                 dd.conferencetutorial
                   a(href='#tutorial')
-                    .rightribbon.sidenav.ribbon Så här går det till
+                    .rightribbon.sidenav.ribbon.greenribbon Så här går det till
                       .arrow
                   #tutorial.content
                     p
@@ -218,7 +218,7 @@ block content
                       strong Du kan även söka fram 
                       | anläggningarna geografiskt och/eller ange antal. Kontakt sker direkt med anläggningen Lycka till!
             li
-              .rightribbon.ribbon.sidenav Kategori
+              .rightribbon.ribbon.sidenav.greenribbon Kategori
               form.conferenceform
                 h5 Välj en eller flera kategorier
                 input(id='#dayconference')(type='checkbox')
@@ -239,19 +239,22 @@ block content
                 input(id='#event')(type='checkbox')
                 label(for='#event') Kvällsfest/Event
             li
-              .rightribbon.ribbon.sidenav Ort
+              .rightribbon.ribbon.sidenav.greenribbon Ort
               form.conferenceform
                 label
-                  | Fyll i önskad ort
-                  input#position(type='text')
+                  | Välj önskad ort
+                  select
+                    option Hela Sverige
+                    option Stockholm
+                    option Göteborg
             li
-              .rightribbon.ribbon.sidenav Antal
+              .rightribbon.ribbon.sidenav.greenribbon Antal
               form.conferenceform
                 label
                   | Fyll i antal
                   input#position(type='text')
             li
-              .rightribbon.ribbon.sidenav Eller...
+              .rightribbon.ribbon.sidenav.greenribbon Eller...
               .row
                 .large-12.columns
                   p.externalconference

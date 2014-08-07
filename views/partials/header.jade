@@ -28,11 +28,22 @@ header#header.header
               a.conferencebutton(href='/konferens') Konferens
             li.last
               a.ticketbutton(href='/biljett') Biljett
-          ul.right  
+          ul.right
+            li
+              a#offerbutton(href='/backstage/start') 
+                img(src='/images/hearts.png')
+                | Erbjudanden
+            li
+              a#sendrequestbutton(href='/backstage/start') 
+                img(src='/images/mail.png')
+                | Skicka Öppen Förfrågan
             li.last
               a.backstagebutton(href='/backstage/start') Backstage
         div.left-small
           ul
+            li
+              a.menu-icon.right.nav-icon
+                span
             li
               a.right-off-canvas-toggle.menu-icon.right.nav-icon
                 span

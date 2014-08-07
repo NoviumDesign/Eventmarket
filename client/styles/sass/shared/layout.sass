@@ -1,6 +1,7 @@
 // General
 
 @import variables
+@import fonts
 @import ribbons
 @import footer
 @import panels
@@ -186,6 +187,15 @@ a.hits:hover
     border-bottom: 10px solid transparent
     bottom: -20px
 
+  .greenribbon
+    line-height: 1.3em
+
+    &:after
+      border-top-color: $greenlight-color
+      border-left-color: $greenlight-color
+      border-right-color: transparent
+      border-bottom-color: transparent
+
 .side-nav li a:not(.button)
   color: #FFF
 
@@ -236,10 +246,11 @@ div.searchsettings
 span.eventinfo
   color: black
   font-style: normal
-  margin-right: 10px
+  margin-right: 20px
 
   .icon-text
     margin-left: 5px
+    font-size: 0.8em
 
 .icon
   width: 32px

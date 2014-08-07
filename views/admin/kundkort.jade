@@ -20,19 +20,18 @@ body(class=locals.pageClass)
           .large-2.columns.medium-6.columns
             label Kundansvarig
               select(name="CultureID")
-                option(value="", selected=locals.contactObject.ResponsibleFullText == undefined) Ingen
-                option(value="") Alla
                 option(value="538a04a0e492b29f3ef1c506", selected=locals.contactObject.ResponsibleFullText == 'Jennie Sterner') Jennie Sterner
                 option(value="538a04a0e492b29f3ef1c995", selected=locals.contactObject.ResponsibleFullText == 'Johnny Sterner') Johnny Sterner
                 option(value="538a04a0e492b29f3ef1ccbd", selected=locals.contactObject.ResponsibleFullText == 'Toni Lahtinen') Toni Lahtinen
+                option(value="", selected=locals.contactObject.ResponsibleFullText == undefined) Ingen vald
           .large-2.columns.medium-6.columns.end
             label Tilldelad grupp
               select(name="AccessGroupFullText")
-                option(value="registeredVisitor" selected=locals.contactObject.AccessGroupFullText == 'registeredVisitor') Privatkund
                 option(value="memberColleague" selected=locals.contactObject.AccessGroupFullText == 'memberColleague') Medlem
                 option(value="prospect" selected=locals.contactObject.AccessGroupFullText == 'prospect') Prospect
                 option(value="bransch" selected=locals.contactObject.AccessGroupFullText == 'bransch') Bransch
                 option(value="guldklubben" selected=locals.contactObject.AccessGroupFullText == 'guldklubben') Företagskund
+                option(value="registeredVisitor" selected=locals.contactObject.AccessGroupFullText == 'registeredVisitor') Privatkund
                 //- option(value='medlem') Medlem
                 //- option(value='prospect') Prospect
                 //- option(value='bransch') Bransch
@@ -42,7 +41,7 @@ body(class=locals.pageClass)
           .large-12.medium-12.columns
             dl.accordion(data-accordion='data-accordion')
               dd
-                a(href='#content1') Kontakt och Personal
+                a(href='#content1') Kontakt &amp; Kollegor
                 #content1.content
                   .row
                     .large-12.columns
@@ -57,17 +56,14 @@ body(class=locals.pageClass)
                               h5 Medarbetare
                             - }
                             .panel
-                              - if (item.img.length > 0) {
-                                img.profile(src=item.img)
-                              - } else {
-                                img.profile(src='http://placehold.it/64x64')
-                              - }
                               ul.personnel
                                 li #{item.fullName}
                                 li #{item.title}
                                 li
                                   a(href='mailto:#{item.email}') #{item.email}
                                 li #{item.phone}
+                              br
+                              a.button.alert.expand Radera Kontakt
                           - c++;
                     .small-12.columns
                       a.button.expand(href='#' data-reveal-id="newEmployee") Lägg till person
@@ -118,7 +114,7 @@ body(class=locals.pageClass)
                           label 
                             | * Kundkortstaggar (specifika sökord som beskriver företaget, tex. eventarrangör, ansiktsmålning..) (Nytt fält!)
                     .large-6.small-12.columns
-                      h4 Fakturauppgifter
+                      h4 Faktureringsuppgifter
                       .row
                         .small-12.columns
                           label
