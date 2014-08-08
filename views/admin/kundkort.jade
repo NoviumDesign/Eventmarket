@@ -111,8 +111,6 @@ body(class=locals.pageClass)
                               option(value="", selected=locals.contactObject.Organization.Country == '') Välj...
                               each item in locals.country
                                 option(value="#{item.TechName}", selected=locals.contactObject.Organization.Country == item.TechName) #{item.TechName}
-                          label 
-                            | * Kundkortstaggar (specifika sökord som beskriver företaget, tex. eventarrangör, ansiktsmålning..) (Nytt fält!)
                     .large-6.small-12.columns
                       h4 Faktureringsuppgifter
                       .row
@@ -120,6 +118,9 @@ body(class=locals.pageClass)
                           label
                             | Företag
                             input(type="text", name='Invoice.OrgName', value=locals.contactObject.Invoice.OrgName)
+                          label 
+                            | Ref. Namn
+                            input(type="text", name='', value=)
                           label
                             | Postadress
                             input(type="text", name='Invoice.RefName', value=locals.contactObject.Invoice.RefName)
@@ -130,15 +131,29 @@ body(class=locals.pageClass)
                             | Postort
                             input(type="text", name='Invoice.PostOrt', value=locals.contactObject.Invoice.PostOrt)
                           label 
-                            | Telefon 1
-                            input(type="text", name='Invoice.OrgNumber', value=locals.contactObject.Invoice.OrgNumber)
+                            | Faktura Mail
+                            input(type="text", name='', value=)
                           label 
-                            | Telefon 2
+                            | Faktura Telefon
                             input(type="text", name='Invoice.InvoiceEmail', value=locals.contactObject.Invoice.InvoiceEmail)
+                          label 
+                            | Org. Nummer
+                            input(type="text", name='', value=)
+              dd
+                a(href='#content2b') Kundkortstaggar
+                #content2b.content
+                  .row
+                    .large-6.small-12.columns
+                      .row
+                        .small-12.columns
+                          label
+                            | Fyll i taggar som beskriver verksamheten
+                            input(type="text", name='', value=)
               dd
                 a(href='#content3b') Profilsidor
                 #content3b.content
-                  a.button Skapa ny profilsida
+                  .small-12.columns
+                    a.button Skapa ny profilsida
                   input(type="hidden", id="OwnerCard", name="OwnerCard", value=locals.contactObject._id)
                   table#customer-table.dynamic-table
                     thead
@@ -147,6 +162,7 @@ body(class=locals.pageClass)
                         th Kontaktperson
                         th Giltig t.o.m.
                         th Storlek
+                        th Antal P
                         th(data-dynatable-column="Visible") Synlig / Släckt
                     tbody
                       //- tr
@@ -183,64 +199,80 @@ body(class=locals.pageClass)
                       .row
                         .small-12.medium-12.columns
                           h6 Profilsidor
+                          .small-4.columns
+                            label
+                              | Startperiod
+                              input#profile-period-start.datepicker
+                          .small-4.columns
+                            label
+                              | Slutperiod
+                              input#profile-period-end.datepicker
                           table#my-table.dynamic-table
                             thead
                               tr
                                 th Sidans namn
                                 th Antal visningar
                                 th Anta klick
+                                th Inkommna mail
                             tbody
                               tr
                                 td Lindaus bokningssida
                                 td 213
                                 td 111
+                                td 111
                               tr
                                 td Inlands bussbiljetter
                                 td 432
                                 td 321
+                                td 111
                               tr
                                 td Lindaus bokningssida
                                 td 5234
                                 td 3213
+                                td 111
                               tr
                                 td Inlands bussbiljetter
                                 td 532
                                 td 232
+                                td 111
                         .small-12.medium-12.columns
                           h6 Erbjudanden
+                          .small-4.columns
+                            label
+                              | Startperiod
+                              input#profile-period-start.datepicker
+                          .small-4.columns
+                            label
+                              | Slutperiod
+                              input#profile-period-end.datepicker
                           table#my-table.dynamic-table
                             thead
                               tr
                                 th Erbjudandets namn
-                                th Antal visningar från profilsida
-                                th Anta klick från profilsida
                                 th Antal visningar från erbjudandesida
                                 th Anta klick från erbjudandesida
+                                th Antal visningar från profilsida
                             tbody
                               tr
                                 td Gaffel 1kr/styck
                                 td 213
                                 td 111
                                 td 213
-                                td 111
                               tr
                                 td Bilknyckning 300kr/timme
                                 td 432
                                 td 321
                                 td 432
-                                td 321
                               tr
                                 td Banan 32kr/kg
                                 td 5234
                                 td 3213
                                 td 5234
-                                td 3213
                               tr
                                 td Gaffel 1kr/styck
                                 td 532
                                 td 232
                                 td 532
-                                td 232
                         .small-12.medium-6
           .large-12.medium-12.columns
             ul.small-block-grid-1.large-block-grid-2
@@ -349,16 +381,29 @@ body(class=locals.pageClass)
                 #content1d.content
                   .row
                     .small-12.columns
-                      p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                    .small-12.columns
-                      a.button Klar
-              dd
-                a(href='#content2d') Byt logotyp
-                  span.date datum + klockslag
-                #content2d.content
-                  .row
-                    .small-12.columns
-                      | Text
+                      table#my-table.dynamic-table
+                            thead
+                              tr
+                                th Titel/Beskrivning
+                                th Kontakttyp
+                                th Datum &amp; Tid
+                            tbody
+                              tr
+                                td Lindaus bokningssida
+                                td Profilsida
+                                td 2013-02-14 23:30
+                              tr
+                                td Inlands bussbiljetter
+                                td Profilsida
+                                td 2013-02-14 23:30
+                              tr
+                                td Lindaus bokningssida
+                                td Profilsida
+                                td 2013-02-14 23:30
+                              tr
+                                td Inlands bussbiljetter
+                                td Profilsida
+                                td 2013-02-14 23:30
             button(type='Submit') Spara
     
     #newEmployee.reveal-modal(data-reveal='data-reveal')

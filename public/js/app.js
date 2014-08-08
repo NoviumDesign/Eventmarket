@@ -282,9 +282,6 @@ if ($('body').hasClass('admin-kundkort')) {
       records: [],
       queries: { 'OwnerCard': OwnerCard }
     },
-    features: {
-      perPageSelect: false
-    },
     writers: {
       _cellWriter: function (index, rowData) {
         if (index.id == "Visible") {
