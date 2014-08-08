@@ -281,9 +281,7 @@ var PRSTPage = new Schema({
   TopEndDate: String,
   Visible : String,
   seoUrl: String,
-  seoTitle: String,
   seoDescription: String,
-  seoTags: String,
   CreatedDate : String,
   LastUpdated : String,
   // Geo
@@ -291,6 +289,13 @@ var PRSTPage = new Schema({
   lon: String,
   // Media
   media: [{ img: String, bildtext: String }],
+  TextField4 : String,
+  Url : String,
+  // Seo title
+  TextField3 : String,
+  // Seo keywords
+  InfoText2 : String,
+  
 
   // Mostly not used below :
   // 
@@ -300,13 +305,13 @@ var PRSTPage = new Schema({
   Completed : Number,
   Lang : String,
   Notes : String,
-  InfoText2 : String,
   InfoText3 : String,
   // replaced with ContactName FirstName : String,
   // replaced with ContactName LastName : String,
   // deprecated Address2 : String,
   // deprecated Fax : String,
-  Url : String,
+  seoTitle: String,
+  seoTags: String,
   FileID1 : Number,
   FileID2 : Number,
   FileID3 : Number,
@@ -317,8 +322,6 @@ var PRSTPage = new Schema({
   CounterID4 : Number,
   CounterID5 : Number,
   TextField2 : String,
-  TextField3 : String,
-  TextField4 : String,
   TextField5 : String,
   BoolField1 : Number,
   BoolField2 : Number,

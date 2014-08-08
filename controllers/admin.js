@@ -219,82 +219,98 @@ module.exports = {
   },
   saveprofilsida: function(req, res) {
     if (req.body._id !== '') {
-      // Sort cats
+      if (req.body.deletePage == 'Radera') {
       
-      var cats = [];
-      if (req.body.newCategory.length > 0) {
-        cats = JSON.parse(req.body.newCategory);
-      } 
-      var reCats = [];
-      async.each(
-        cats,
-        function (cat, callback) {
-          reCats.push({ value : cat });
-          callback();
-        },
-        function (err) {
+        models.PRSTPage.findById(req.body._id, function (err, bnr) {
           if (err) console.log(err);
-
-          models.PRSTPage.findById(req.body._id, function (err, bnr) {
-            bnr.Title = req.body.Title;
-            bnr.OrgName = req.body.OrgName;
-            bnr.TextField1 = req.body.TextField1;
-            bnr.Address1 = req.body.Address1;
-            bnr.Zipcode = req.body.Zipcode;
-            bnr.City = req.body.City;
-            bnr.RegionID = req.body.RegionID;
-            bnr.CountryID = req.body.CountryID;
-            bnr.Phone = req.body.Phone;
-            bnr.Mobile = req.body.Mobile;
-            bnr.Email = req.body.Email;
-            bnr.FacebookURL = req.body.FacebookURL;
-            bnr.TwitterURL = req.body.TwitterURL;
-            bnr.InstaURL = req.body.InstaURL;
-            bnr.LogoImg = req.body.LogoImg;
-            bnr.EventText = req.body.EventText;
-            bnr.LargestCompany = req.body.LargestCompany;
-            bnr.NoMeetingRooms = req.body.NoMeetingRooms;
-            bnr.LargestMeetingRoom = req.body.LargestMeetingRoom;
-            bnr.SittingGuests = req.body.SittingGuests;
-            bnr.MingleGuests = req.body.MingleGuests;
-            bnr.NoBeds = req.body.NoBeds;
-            bnr.price = req.body.price;
-            bnr.newCategory = reCats;
-            bnr.presTitle = req.body.presTitle;
-            bnr.InfoText1 = req.body.InfoText1;
-            bnr.extraTabName = req.body.extraTabName;
-            bnr.extraTitle = req.body.extraTitle;
-            bnr.extraText = req.body.extraText;
-            var media = [];
-            for (var mkey in req.body.mediaImg) {
-              media.push({img: req.body.mediaImg[mkey], bildtext: req.body.mediaText[mkey]});
-            }
-            bnr.media = media;
-            //bnr.media950 = req.body.media950;
-            //bnr.text950 = req.body.text950;
-            bnr.mapAddress = req.body.mapAddress;
-            bnr.pageType = req.body.pageType;
-            bnr.ActivatedDate = req.body.ActivatedDate;
-            bnr.ExpiryDate = req.body.ExpiryDate;
-            bnr.TopDate = req.body.TopDate;
-            bnr.TopEndDate = req.body.TopEndDate;
-            bnr.Visible = req.body.Visible;
-            bnr.seoUrl = req.body.seoUrl;
-            bnr.seoTitle = req.body.seoTitle;
-            bnr.seoDescription = req.body.seoDescription;
-            bnr.seoTags = req.body.seoTags;
-            bnr.CreatedDate = req.body.CreatedDate;
-            bnr.LastUpdated = req.body.LastUpdated;
-            bnr.lat = req.body.lat;
-            bnr.lon = req.body.lon;
-
-            bnr.save(function (err, bnr) {
-              console.log(err);
-              res.redirect('/admin/profilsida/id/' + req.body._id);
-            });
+          bnr.remove(function(err) {
+            if (err) console.log(err);
+            res.redirect('/admin');
           });
-        }
-      );
+        });
+        
+      } else {
+
+        // Sort cats
+        var cats = [];
+        if (req.body.newCategory.length > 0) {
+          cats = JSON.parse(req.body.newCategory);
+        } 
+        var reCats = [];
+        async.each(
+          cats,
+          function (cat, callback) {
+            reCats.push({ value : cat });
+            callback();
+          },
+          function (err) {
+            if (err) console.log(err);
+
+            models.PRSTPage.findById(req.body._id, function (err, bnr) {
+              bnr.Title = req.body.Title;
+              bnr.OrgName = req.body.OrgName;
+              bnr.TextField1 = req.body.TextField1;
+              bnr.Address1 = req.body.Address1;
+              bnr.Zipcode = req.body.Zipcode;
+              bnr.City = req.body.City;
+              bnr.RegionID = req.body.RegionID;
+              bnr.CountryID = req.body.CountryID;
+              bnr.Phone = req.body.Phone;
+              bnr.Mobile = req.body.Mobile;
+              bnr.Email = req.body.Email;
+              bnr.FacebookURL = req.body.FacebookURL;
+              bnr.TwitterURL = req.body.TwitterURL;
+              bnr.InstaURL = req.body.InstaURL;
+              bnr.LogoImg = req.body.LogoImg;
+              bnr.EventText = req.body.EventText;
+              bnr.LargestCompany = req.body.LargestCompany;
+              bnr.NoMeetingRooms = req.body.NoMeetingRooms;
+              bnr.LargestMeetingRoom = req.body.LargestMeetingRoom;
+              bnr.SittingGuests = req.body.SittingGuests;
+              bnr.MingleGuests = req.body.MingleGuests;
+              bnr.NoBeds = req.body.NoBeds;
+              bnr.price = req.body.price;
+              bnr.newCategory = reCats;
+              bnr.presTitle = req.body.presTitle;
+              bnr.InfoText1 = req.body.InfoText1;
+              bnr.extraTabName = req.body.extraTabName;
+              bnr.extraTitle = req.body.extraTitle;
+              bnr.extraText = req.body.extraText;
+              var media = [];
+              for (var mkey in req.body.mediaImg) {
+                media.push({img: req.body.mediaImg[mkey], bildtext: req.body.mediaText[mkey]});
+              }
+              bnr.media = media;
+              //bnr.media950 = req.body.media950;
+              //bnr.text950 = req.body.text950;
+              bnr.mapAddress = req.body.mapAddress;
+              bnr.pageType = req.body.pageType;
+              bnr.ActivatedDate = req.body.ActivatedDate;
+              bnr.ExpiryDate = req.body.ExpiryDate;
+              bnr.TopDate = req.body.TopDate;
+              bnr.TopEndDate = req.body.TopEndDate;
+              bnr.Visible = req.body.Visible;
+              bnr.seoUrl = req.body.seoUrl;
+              // @deprecated bnr.seoTitle = req.body.seoTitle;
+              bnr.seoDescription = req.body.seoDescription;
+              bnr.seoTags = req.body.seoTags;
+              bnr.CreatedDate = req.body.CreatedDate;
+              bnr.LastUpdated = req.body.LastUpdated;
+              bnr.lat = req.body.lat;
+              bnr.lon = req.body.lon;
+              bnr.Url = req.body.url;
+              bnr.TextField4 = req.body.TextField4;
+              bnr.TextField3 = req.body.TextField3;
+              bnr.InfoText2 = req.body.InfoText2;
+              
+              bnr.save(function (err, bnr) {
+                console.log(err);
+                res.redirect('/admin/profilsida/id/' + req.body._id);
+              });
+            });
+          }
+        ); // End async.each
+      } // Endif not delete
     } else {
       // New page
       
