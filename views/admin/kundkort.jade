@@ -319,14 +319,10 @@ body(class=locals.pageClass)
                   dd
                     a(href='#panel5b') Intresselista
                     #panel5b.content
-                      #jstree
-                        ul
-                          li
-                            | Annonser
-                            ul
-                              li#child_node_1 Julannonser
-                              li Påskannonser
-                          li Mässor
+                      input(type="hidden", id="intresse", name="intresse", value="#{locals.contactObject.intresse}")
+                      div#int-tree
+                      div#int-data(style="display:none;")
+                        | #{locals.intresse}
         .row
           .large-10.medium-8.columns
             h3 Historik

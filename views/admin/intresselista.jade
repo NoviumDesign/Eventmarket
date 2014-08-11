@@ -1,0 +1,21 @@
+//- intresselista.jade
+include includes/head
+body(class=locals.pageClass)
+  include includes/nav
+  - if (locals.messages) {
+    each item in locals.messages
+      .alert-box(data-alert='')
+        div #{item}
+        a.close(href='#') &times;
+  - }
+  .row
+    include includes/sidenav
+    .large-9.columns.medium-8.columns
+      a.button.small.right(href="/admin/editintresse/id/new") Skapa nytt intresse
+      table#list-categories
+        thead
+          th(data-dynatable-column="name") Namn
+          th(data-dynatable-column="visible") Synlig?
+          th(data-dynatable-column="lastUpdate") Senast uppdaterad
+        tbody
+  include includes/footer

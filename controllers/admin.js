@@ -22,15 +22,33 @@ module.exports = {
   },
 
   kundkortlista: function (req, res) {
-    res.render('admin/kundkortlista', {usr: req.user.toObject(), pageClass: 'admin-kundkortlista', title: 'ADMIN'});
+    models.intresse.find({},null, {sort:{sortOrder: -1}}, function (err, intresse) {
+      console.log(intresse);
+      res.render('admin/kundkortlista', {
+        usr: req.user.toObject(),
+        pageClass: 'admin-kundkortlista',
+        title: 'ADMIN',
+        intresse: intresse
+      });
+    });
   },
   kundkort: function (req, res) {
+    var massagedIntressen = [];
+    
     models.Country.find({}, function (err, country) {
       models.Region.find({}, function (err, region) {
         crmModels.CRMContactObject.findById(req.param("KundkortID")).populate('PersonObject').exec(function (err, page) {
           //console.log(page);
           if (page) {
             models.Organization.findOne({_id: page.PersonObject.OrgMembership[0]}, function (err, org) {
+                /**
+                 * All checked interests
+                 */
+                var checked = page.intresse.map(
+                  function (elem) {
+                    return elem.value;
+                  }
+                );
                 /**
                  * Parse in org details on customer card and save
                  */
@@ -50,20 +68,42 @@ module.exports = {
                   }
                 }
                 var historik = JSON.stringify(page.Historik);
-                console.log(req.user);
-                res.render('admin/kundkort', {
-                  contactObject: page.toObject(),
-                  hiddenPersonal: hiddenPersonal,
-                  currentUser: req.user,
-                  region: region,
-                  historik: historik,
-                  country: country,
-                  kundtitle: kundtitle,
-                  pageClass: 'admin-kundkort', 
-                  title: 'ADMIN',
-                  messages: req.flash('info'),
-                });
                 
+                models.intresse.find({}, function (err, cats) {
+                  async.each(
+                    cats,
+                    function (cat, callback) {
+                      cat = cat.toObject();
+                      var ncat = {};
+                      ncat.id = cat._id;
+                      ncat.text = cat.name;
+                      ncat.parent = cat.parent === '' ? '#' : cat.parent;
+                      ncat.icon = '';
+                      ncat.state = {};
+                      if (checked.indexOf(cat._id.toString()) !== -1) {
+                        ncat.state.selected = true;
+                      }
+
+                      massagedIntressen.push(ncat);
+                      callback();
+                    },
+                    function (err) {
+                      res.render('admin/kundkort', {
+                        contactObject: page.toObject(),
+                        hiddenPersonal: hiddenPersonal,
+                        currentUser: req.user,
+                        region: region,
+                        historik: historik,
+                        country: country,
+                        intresse: JSON.stringify(massagedIntressen),
+                        kundtitle: kundtitle,
+                        pageClass: 'admin-kundkort', 
+                        title: 'ADMIN',
+                        messages: req.flash('info'),
+                      });
+                    }
+                  );
+                });
             });
           }
         });
@@ -80,62 +120,78 @@ module.exports = {
   savekundkort: function(req, res) {
     crmModels.CRMContactObject.findById(req.body._id, function (err, crmObj) {
       if(crmObj) {
-        // Logo url
-        crmObj.LogoURL             = req.body.LogoURL;
-        crmObj.AccessGroupFullText = req.body.AccessGroupFullText;
-
-        crmObj.Organization.OrgName     = req.body['Organization.OrgName'];
-        crmObj.Organization.PostAddress = req.body['Organization.PostAddress'];
-        crmObj.Organization.PostNumber  = req.body['Organization.PostNumber'];
-        crmObj.Organization.PostOrt     = req.body['Organization.PostOrt'];
-        crmObj.Organization.Tel1        = req.body['Organization.Tel1'];
-        crmObj.Organization.Tel2        = req.body['Organization.Tel2'];
-        crmObj.Organization.WWW         = req.body['Organization.WWW'];
-        crmObj.Organization.OrgNumber   = req.body['Organization.OrgNumber'];
-        crmObj.Organization.Lan         = req.body['Organization.Lan'];
-        crmObj.Organization.Country     = req.body['Organization.Country'];
-        crmObj.Invoice.OrgName          = req.body['Invoice.OrgName'];
-        crmObj.Invoice.RefName          = req.body['Invoice.RefName'];
-        crmObj.Invoice.PostAddress      = req.body['Invoice.PostAddress'];
-        crmObj.Invoice.PostNumber       = req.body['Invoice.PostNumber'];
-        crmObj.Invoice.PostOrt          = req.body['Invoice.PostOrt'];
-        crmObj.Invoice.OrgNumber        = req.body['Invoice.OrgNumber'];
-        crmObj.Invoice.InvoiceEmail     = req.body['Invoice.InvoiceEmail'];
-
-        // Personal
-        crmObj.Personal = [];
-        var personal = req.body.hiddenPersonal.split(',');
-        async.eachSeries(
-          personal,
-          function (personId, callback) {
-            models.Person.findById(personId).exec(function(err, prs){
-              var pers = { 
-                img: '',
-                fullName: prs.FirstName+' '+prs.LastName,
-                title: prs.PersonalTitle,
-                email: prs.Email,
-                phone: prs.Phone,
-                rank: 1,
-                personObject: prs._id
-              }
-              crmObj.Personal.push(pers);
-              callback();
-            });
+        // Intressen
+        var cats = [];
+        if (req.body.intresse.length > 0) {
+          cats = JSON.parse(req.body.intresse);
+        }
+        var reCats = [];
+        async.each(
+          cats,
+          function (cat, callback) {
+            reCats.push({ value : cat });
+            callback();
           },
           function (err) {
-            // Setup fulltext for search
-            if (crmObj.Organization.OrgName.length > 0) {
-              crmObj.PersonFullText = crmObj.Organization.OrgName +'<br/>'+ crmObj.Personal[0].fullName;
-            } else {
-              crmObj.PersonFullText = crmObj.Personal[0].fullName;
-            }
-            crmObj.save(function(err){
-              req.flash('info', 'Kundkort uppdaterat!');
-              res.redirect('/admin/kundkort/id/' + req.body._id);
-            });
+            if (err) console.log(err);
+            crmObj.intresse = reCats;
+            // Logo url
+            crmObj.LogoURL             = req.body.LogoURL;
+            crmObj.AccessGroupFullText = req.body.AccessGroupFullText;
+
+            crmObj.Organization.OrgName     = req.body['Organization.OrgName'];
+            crmObj.Organization.PostAddress = req.body['Organization.PostAddress'];
+            crmObj.Organization.PostNumber  = req.body['Organization.PostNumber'];
+            crmObj.Organization.PostOrt     = req.body['Organization.PostOrt'];
+            crmObj.Organization.Tel1        = req.body['Organization.Tel1'];
+            crmObj.Organization.Tel2        = req.body['Organization.Tel2'];
+            crmObj.Organization.WWW         = req.body['Organization.WWW'];
+            crmObj.Organization.OrgNumber   = req.body['Organization.OrgNumber'];
+            crmObj.Organization.Lan         = req.body['Organization.Lan'];
+            crmObj.Organization.Country     = req.body['Organization.Country'];
+            crmObj.Invoice.OrgName          = req.body['Invoice.OrgName'];
+            crmObj.Invoice.RefName          = req.body['Invoice.RefName'];
+            crmObj.Invoice.PostAddress      = req.body['Invoice.PostAddress'];
+            crmObj.Invoice.PostNumber       = req.body['Invoice.PostNumber'];
+            crmObj.Invoice.PostOrt          = req.body['Invoice.PostOrt'];
+            crmObj.Invoice.OrgNumber        = req.body['Invoice.OrgNumber'];
+            crmObj.Invoice.InvoiceEmail     = req.body['Invoice.InvoiceEmail'];
+
+            // Personal
+            crmObj.Personal = [];
+            var personal = req.body.hiddenPersonal.split(',');
+            async.eachSeries(
+              personal,
+              function (personId, callback) {
+                models.Person.findById(personId).exec(function(err, prs){
+                  var pers = { 
+                    img: '',
+                    fullName: prs.FirstName+' '+prs.LastName,
+                    title: prs.PersonalTitle,
+                    email: prs.Email,
+                    phone: prs.Phone,
+                    rank: 1,
+                    personObject: prs._id
+                  }
+                  crmObj.Personal.push(pers);
+                  callback();
+                });
+              },
+              function (err) {
+                // Setup fulltext for search
+                if (crmObj.Organization.OrgName.length > 0) {
+                  crmObj.PersonFullText = crmObj.Organization.OrgName +'<br/>'+ crmObj.Personal[0].fullName;
+                } else {
+                  crmObj.PersonFullText = crmObj.Personal[0].fullName;
+                }
+                crmObj.save(function(err){
+                  req.flash('info', 'Kundkort uppdaterat!');
+                  res.redirect('/admin/kundkort/id/' + req.body._id);
+                });
+              }
+            ); // End async eachSeries
           }
-        );
-        
+        ); // End async each cats
       } else {
         res.redirect('/admin/kundkort/id/' + req.body._id);
       }
@@ -484,7 +540,9 @@ module.exports = {
   newcategory: function (req, res) {
     res.render('admin/newcategory', {pageClass: 'admin-newcategory', title: 'ADMIN'});
   },
-
+  intresselista: function(req, res) {
+    res.render('admin/intresselista', {pageClass: 'admin-intresselista', title: 'ADMIN'});
+  },
   /**
    * Edit a new category
    * 
@@ -508,6 +566,33 @@ module.exports = {
               parents: parents,
               pageClass: 'admin-editnewcategory',
               title: 'ADMIN'
+            });
+          }
+        });
+      } // End if new
+    });
+  },
+  editintresse: function(req, res) {
+    models.intresse.find({ topLevel: 1}, function (err, parents) {
+      if (req.param("intresseId") === 'new') {
+        res.render('admin/editintresse', {
+          user : req.user,
+          category: {},
+          parents: parents,
+          pageClass: 'admin-editintresse',
+          title: 'ADMIN',
+          messages: req.flash('info')
+        });
+      } else {
+        models.intresse.findOne({ _id: req.param("intresseId") }, function (err, cat) {
+          if (cat) {
+            res.render('admin/editintresse', {
+              user : req.user,
+              category: cat.toObject(),
+              parents: parents,
+              pageClass: 'admin-editintresse',
+              title: 'ADMIN',
+              messages: req.flash('info')
             });
           }
         });
@@ -545,6 +630,36 @@ module.exports = {
         console.log(err);
         console.log(events);
         res.redirect('/admin/newcategory');
+      });
+    }
+  },
+  saveintresse: function (req, res) {
+    if (req.body._id !== '') {
+      models.intresse.findById(req.body._id, function (err, cat) {
+        cat.topLevel    = req.body.topLevel;
+        cat.parent      = req.body.parent;
+        cat.name        = req.body.name;
+        cat.visible     = req.body.visible;
+        cat.sortOrder   = req.body.sortOrder;
+        cat.lastUpdate  = helpers.sqlDateFormat(new Date());
+        cat.notes       = req.body.notes;
+        cat.icon        = req.body.icon;
+        cat.createdBy   = req.user._id;
+        cat.save(function (err, cat) {
+          if (err) console.log(err);
+          req.flash('info', 'Intressekategori uppdaterad.');
+          res.redirect('/admin/editintresse/id/' + cat._id);
+        });
+      });
+    } else {
+      delete req.body._id;
+      var newCat = new models.intresse(req.body);
+      newCat.createdDate = helpers.sqlDateFormat(new Date());
+      newCat.lastUpdate  = helpers.sqlDateFormat(new Date());
+      newCat.save(function (err, events) {
+        if (err) console.log(err);
+        req.flash('info', 'Ny intressekategori sparad.');
+        res.redirect('/admin/editintresse/id/'+ events._id);
       });
     }
   }

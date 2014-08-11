@@ -52,6 +52,7 @@ module.exports.initialize = function(app) {
     app.get('/api/banner', api.banner);
     app.get('/api/category', api.category);
     app.get('/api/newcategory', api.newcategory);
+    app.get('/api/intresselista', api.intresselista);
     app.get('/api/customercards', api.customercards);
     app.get('/api/kundkorthistorik/kid/:kundkortid', api.kundkorthistorik);
     app.post('/api/kundkorthistorik/spara/kid/:kid', api.kundkorthistorikspara);
@@ -157,7 +158,9 @@ module.exports.initialize = function(app) {
     app.get('/admin/newcategory', admin.newcategory);
     app.get('/admin/editnewcategory/id/:categoryId', admin.editnewcategory);
     app.post('/admin/editnewcategory/id/:categoryId', admin.savenewcategory);
-    
+    app.get('/admin/intresselista', admin.intresselista);
+    app.get('/admin/editintresse/id/:intresseId', admin.editintresse);
+    app.post('/admin/editintresse/id/:intresseId', admin.saveintresse);
     // AWS S3
     app.get('/sign_s3', function(req, res){
       var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;

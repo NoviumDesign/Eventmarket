@@ -30,6 +30,14 @@ body(class="#{locals.pageClass}")
                 option 0-12 mån
                 option 12-36 mån
                 option 36+ mån
+          span.dynatable-custom-select Intresse
+            select#intresse(name="intresse")
+              option(value="") Alla
+              - for (var key in locals.intresse) {
+                - if (locals.intresse[key].topLevel !== '1') {
+                  option(value=locals.intresse[key]._id) #{locals.intresse[key].name}
+                - }
+              - }
           table#group-table.dynamic-table
             thead
               tr

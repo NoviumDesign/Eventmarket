@@ -6,7 +6,7 @@ $(document).foundation({
   }
 });
 // jsTree kundkort
-$(function () {
+/*$(function () {
   // 6 create an instance when the DOM is ready
   $('#jstree').jstree({
     'core': {
@@ -26,7 +26,7 @@ $(function () {
     $('#jstree').jstree('select_node', 'child_node_1');
     $.jstree.reference('#jstree').select_node('child_node_1');
   });
-});
+});*/
 // jsTree Profilsida
 $(function () {
   // 6 create an instance when the DOM is ready
@@ -155,9 +155,21 @@ if ($('body').hasClass('admin-profilsida')) {
 }
 // Söka personer under kundkort
 if ($('body').hasClass('admin-kundkort')) {
+  // Intresselista
+  $('#int-tree')
+    .on('changed.jstree', function (e, data) {
+      var i, j, r = [];
+      for(i = 0, j = data.selected.length; i < j; i++) {
+        r.push(data.instance.get_node(data.selected[i]).id);
+      }
+      $('#intresse').val(JSON.stringify(r));
+    })
+    .jstree({ 'core' : {'data' : JSON.parse($('#int-data').html()) }, "plugins" : [ "checkbox" ] });
+  // After load on tables
   var afterLoadHook = function(){
     $(document).foundation('reflow');
   };
+  // PHP-inspiration
   function nl2br (str, is_xhtml) {
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
@@ -316,7 +328,7 @@ if ($('body').hasClass('admin-kundkortlista')) {
       perPageSelect: false
     },
     inputs: {
-      queries: $('#search-group, #search-activity, #search-responsible')
+      queries: $('#search-group, #search-activity, #search-responsible, #intresse')
     },
     writers: {
       _cellWriter: function (index, rowData) {
@@ -359,6 +371,31 @@ if ($('body').hasClass('admin-kundkortlista')) {
     }
   }).bind('dynatable:afterUpdate', afterLoadHook);
 }
+if ($('body').hasClass('admin-intresselista')) {
+  $('#list-categories').dynatable({
+    dataset: {
+      ajax: true,
+      ajaxUrl: '/api/intresselista',
+      ajaxOnLoad: true,
+      records: []
+    },
+    features: {
+      paginate: true,
+      search: true,
+      recordCount: true,
+      perPageSelect: true
+    },
+    writers: {
+      _cellWriter: function (index, rowData) {
+        if (index.id == "name") {
+          return '<td><a href="/admin/editintresse/id/'+rowData['_id']+'">'+rowData[index.id]+'</a></td>';
+        } else {
+          return '<td>'+rowData[index.id]+'</td>';
+        }
+      }
+    }
+  });
+} // End if intresselista
 
 // Add class to dynatable rows
 $('tbody').each(function(){

@@ -107,6 +107,48 @@ module.exports = {
         );
       });
     },
+    intresselista: function(req, res) {
+      var q = {}, sortKey = "_id", sortDir = 1, searchTerm = '', sortObj = {};
+      var url_parts = url.parse(req.url, true);
+      
+      for( var key in url_parts.query){
+        var sp = key.split('[');
+        if(sp[0] == 'sorts'){
+            sortKey = sp[1].replace(']', '');
+            sortDir = url_parts.query[key];
+        }
+        if(sp[0] == 'queries'){
+            searchTerm = url_parts.query[key];
+        }
+      }
+      
+      if (searchTerm != '') {
+        q.$or = [];
+        var term = { name : new RegExp(searchTerm, "i") };
+        q.$or.push(term);
+      }
+      
+      sortObj[sortKey] = parseInt(sortDir, 10);
+      
+      var perPage = parseInt(url_parts.query.perPage, 10)
+        , page = parseInt(url_parts.query.page, 10);
+      models.intresse.count(q, function(err, c) {
+        models.intresse.find(
+          q, 
+          null, 
+          { sort: sortObj, skip: (perPage * page) - perPage , limit: perPage }, 
+          function (err, data) {
+            // Dynatable response
+            var response = {
+              "records": data,
+              "queryRecordCount": c,
+              "totalRecordCount": data.length
+            }
+            res.json(response);
+          }
+        );
+      });
+    },
     // Category
     category: function (req, res) {
       var q = {}, sortKey = "CategoryICID", sortDir = 1, searchTerm = '', sortObj = {};
@@ -284,6 +326,10 @@ module.exports = {
           if (searchKey == 'search') {
             and.push({PersonFullText: new RegExp(searchTerm, 'i')});
           }
+          if (searchKey == 'intresse') {
+            and.push( { intresse: { $elemMatch: { value: searchTerm } } } );
+          }
+          console.log(and);
           if (searchKey == 'Active') {
             if (searchTerm == '0-12 mån') {
               var today = new Date();

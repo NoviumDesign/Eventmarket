@@ -1,0 +1,79 @@
+//- intresselista.jade
+include includes/head
+body(class=locals.pageClass)
+  include includes/nav
+  - if (locals.messages) {
+    each item in locals.messages
+      .alert-box(data-alert='')
+        div #{item}
+        a.close(href='#') &times;
+  - }
+  .row
+    include includes/sidenav
+    .large-9.columns.medium-8.columns
+      form(method='post')
+        input(name='_id', type='hidden', readonly='readonly', value=locals.category._id)
+        input.button.small(type='submit', value='Spara')
+        a.button.secondary.small(href="/admin/editintresse/id/new") Ny
+    
+        fieldset
+          legend Intressedata
+          .row
+            .large-12.columns
+                label
+                  | Namn
+                  input(name='name', type='text', value=locals.category.name)
+            .large-6.columns
+              label
+                | Högsta nivå?
+                select(name='topLevel')
+                  option(value="1", selected=locals.category.topLevel == 1) Ja
+                  option(value="0", selected=locals.category.topLevel == 0) Nej
+            .large-6.columns
+              label
+                | Undergrupp till
+                select(name="parent")
+                  option(value="") Ingen
+                  each item in locals.parents
+                    - if (!locals.category._id || (locals.category._id && (item._id.toHexString() !== locals.category._id.toHexString())))
+                      option(value="#{item._id}", selected=locals.category.parent == item._id) #{item.name}
+                    
+            .large-6.columns
+              label
+                | Synlig
+                select(name='visible')
+                  option(value="1", selected=locals.category.visible == 1) Ja
+                  option(value="0", selected=locals.category.visible == 0) Nej
+            .large-6.columns
+              label
+                | Sorteringsordning
+                input(name='sortOrder', type='text', value=locals.category.sortOrder)
+            .large-12.columns
+              label
+                | Anteckningar
+                textarea(name='notes') #{locals.category.notes}
+            .large-12.columns
+              label
+                | Ikon
+                input(name='icon',type='text', value=locals.category.icon)
+        .large-3.columns
+          label
+            | Skapad datum
+          br
+          span #{locals.category.createdDate}
+        .large-3.columns
+          label
+            | Skapad av
+          br
+          span 
+            - if(locals.category.createdBy) { 
+              #{locals.category.createdBy} 
+            - } else {
+              #{user._id}
+            - } 
+        .large-3.columns
+          label
+            | Senast uppdaterad
+          br
+          span #{locals.category.lastUpdate}
+  include includes/footer

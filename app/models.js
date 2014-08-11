@@ -379,6 +379,19 @@ var newCategory = new Schema({
   notes: String,
   icon : String
 }, {collection:'newCategory'});
+var intresse = new Schema({
+  topLevel: String,
+  parent: String,
+  name: String,
+  visible: String,
+  sortOrder: String,
+  createdDate: String,
+  createdBy: String,
+  lastUpdate: String,
+  notes: String,
+  icon: String
+}, {collection:'intresse'});
+
 /**User.methods.validPassword = function (password, cb) {
   bcrypt.compare(password, this.password, function(err, res) {
     if (res == true) {
@@ -400,6 +413,7 @@ module.exports = {
     BANRBanner: mongoose.model('BANRBanner', BANRBanner),
     Category: mongoose.model('Category', Category),
     newCategory: mongoose.model('newCategory', newCategory),
+    intresse: mongoose.model('intresse', intresse),
     Country: mongoose.model('Country', Country),
     Culture: mongoose.model('Culture', Culture),
     Region: mongoose.model('Region', Region),
