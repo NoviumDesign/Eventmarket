@@ -304,6 +304,7 @@ module.exports = {
         , page = parseInt(url_parts.query.page, 10);
       
       var and = [];
+      var personalOr = [];
       //q.$or = [];
       for( var key in url_parts.query){
         searchTerm = '';
@@ -324,7 +325,14 @@ module.exports = {
             and.push({AccessGroupFullText: new RegExp(searchTerm, 'i')});
           }
           if (searchKey == 'search') {
-            and.push({PersonFullText: new RegExp(searchTerm, 'i')});
+            // Namn, epostadress på all personal
+            personalOr.push({ 'Personal.fullName' : new RegExp(searchTerm, 'i') });
+            personalOr.push({ 'Personal.email' : new RegExp(searchTerm, 'i') });
+            personalOr.push({ 'PersonFullText' : new RegExp(searchTerm, 'i') });
+            //q["$and"].push({ $or: coins } );
+            //and.push({ $or: { 'Personal.fullName' : new RegExp(searchTerm, 'i') } });
+            //and.push({ $or: { 'Personal.email' : new RegExp(searchTerm, 'i') } });
+            //and.push({PersonFullText: new RegExp(searchTerm, 'i')});
           }
           if (searchKey == 'intresse') {
             and.push( { intresse: { $elemMatch: { value: searchTerm } } } );
@@ -358,6 +366,11 @@ module.exports = {
           q.$or.push(term);*/
         }
       }
+      
+      if (personalOr.length > 0) {
+        and.push({ $or: personalOr });
+      }
+
       if (and.length > 0) {
         q.$and = and;
       }
