@@ -543,6 +543,10 @@ module.exports = {
   intresselista: function(req, res) {
     res.render('admin/intresselista', {pageClass: 'admin-intresselista', title: 'ADMIN'});
   },
+
+  personlista: function (req, res) {
+    res.render('admin/personlista', {pageClass: 'admin-personlista', title: 'ADMIN'});
+  },
   /**
    * Edit a new category
    * 

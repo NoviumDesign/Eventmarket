@@ -1,0 +1,37 @@
+include includes/head
+body(class="#{locals.pageClass}")
+  include includes/nav
+
+  .row
+    include includes/sidenav
+
+    .large-9.columns.medium-8.columns
+      h3 Personallista
+      .row
+        .small-12.columns
+          table#group-table.dynamic-table
+            thead
+              tr
+                th(data-dynatable-column="") Förnamn
+                th(data-dynatable-column="") Efternamn
+                th(data-dynatable-column="") Företag
+                th(data-dynatable-column="") E-post
+                th(data-dynatable-column="") Telefon
+                th(data-dynatable-column="") Koppling till kundkort
+            tbody
+              tr
+                td Samuel
+                td Samuelsson
+                td Samuel &amp; Samuel AB
+                td samuel@samuelochsamuel.com
+                td 07092823112
+                td Företag på kundkort
+              tr
+                td Johan
+                td Johansson
+                td Johan &amp; Johan AB
+                td johan@johanochjohan.com
+                td 07092841112
+                td Företag på kundkort
+
+  include includes/footer
