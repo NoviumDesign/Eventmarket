@@ -155,15 +155,40 @@ body(class=locals.pageClass)
                   .small-12.columns
                     a.button Skapa ny profilsida
                   input(type="hidden", id="OwnerCard", name="OwnerCard", value=locals.contactObject._id)
+                  span.dynatable-custom-select Kategorier
+                    select#search-group(name='')
+                      option
+                        option(value="") Alla
+                        option(value="") Huvudkategorier
+                        option(value="") Underkategorier
+                  span.dynatable-custom-select Sidtyp
+                    select#search-responsible(name='')
+                      option
+                        option Alla
+                        option Small
+                        option Medium
+                        option Large
+                  span.dynatable-custom-select Topp
+                    select#search-activity(name='')
+                      option
+                        option Alla
+                        option Topp
+                  span.dynatable-custom-select Synlig/Släckt
+                    select#search-activity(name='')
+                      option
+                        option Alla
+                        option Synlig
+                        option Släckt
                   table#customer-table.dynamic-table
                     thead
                       tr
-                        th(data-dynatable-column="Title") Sidans namn
-                        th Kontaktperson
-                        th Giltig t.o.m.
-                        th Storlek
-                        th Antal P
-                        th(data-dynatable-column="Visible") Synlig / Släckt
+                        th(data-dynatable-column="Title") Sidans Namn
+                        th(data-dynatable-column="") Företag &amp; Kontaktperson
+                        th(data-dynatable-column="") Sidtyp
+                        th(data-dynatable-column="") Giltig t.o.m.
+                        th(data-dynatable-column="") Topp
+                        th(data-dynatable-column="") Topp-period
+                        th(data-dynatable-column="Visible") Synlig/Släckt
                     tbody
                       //- tr
                       //-   td Lindaus bokningssida
@@ -283,36 +308,32 @@ body(class=locals.pageClass)
                     #panel2b.content
                       table#my-table.dynamic-table
                         thead
-                            tr
-                              th Rubrik
-                              th Aktiv fr.o.m.
-                              th Slutdatum
-                              th Publikt
-                          tbody
-                            tr
-                              td Julbord från 99:-
-                              td 2013-02-12
-                              td 2014-12-31
-                              td
-                                .red-ball
-                            tr
-                              td Bananer 98:-/styck
-                              td 2010-12-23
-                              td 2015-12-12
-                              td
-                                .green-ball
-                            tr
-                              td Gaffel 1:-/styck
-                              td 2010-11-23
-                              td 2010-12-24
-                              td 
-                                .red-ball
-                            tr
-                              td Gaffel 1:-/styck
-                              td 2010-11-23
-                              td 2010-12-24
-                              td 
-                                .red-ball
+                          tr
+                            th(data-dynatable-column="") Rubrik
+                            th(data-dynatable-column="") Ägare
+                            th(data-dynatable-column="") Startdatum
+                            th(data-dynatable-column="") Slutdatum
+                            th(data-dynatable-column="") Visas
+                            th(data-dynatable-column="") Typ
+                            th(data-dynatable-column="") Synlig/Släckt
+                          tr
+                            td Samuels erbjudande
+                            td Samuel &amp; Samuel AB
+                            td 2008-12-12
+                            td 2009-12-12
+                            td Profilsida
+                            td Jul
+                            td 
+                              .red-ball
+                          tr
+                            td Johans erbjudande
+                            td Johan &amp; Johan AB
+                            td 2008-09-12
+                            td 2009-12-12
+                            td Erbjudandesida
+                            td Event
+                            td 
+                              .red-ball
                       a.button.expand Nytt erbjudande
               li
                 dl.accordion(data-accordion='myAccordionGroup')

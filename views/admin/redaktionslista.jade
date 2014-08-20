@@ -1,0 +1,48 @@
+include includes/head
+body(class="#{locals.pageClass}")
+  include includes/nav
+
+  .row
+    include includes/sidenav
+
+    .large-9.columns.medium-8.columns
+      h3 Redaktionslista
+      .row
+        .small-12.columns
+          span.dynatable-custom-select Typ
+            select#search-responsible(name='')
+              option
+                option Alla
+                option Vitt
+                option Block
+                option Svart
+                option Papper &amp; Penna
+                option News
+                option Blänkare
+          span.dynatable-custom-select Datum
+            select#search-activity(name='')
+              option
+                option Alla
+                option 0-1 mån
+                option 1-3 mån
+                option 3-12 mån
+                option 12+ mån
+                option Framtida
+          span#dynatable-search-group-table.dynatable-search Search:
+            input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
+          table#group-table.dynamic-table
+            thead
+              tr
+                th(data-dynatable-column="") Typ
+                th(data-dynatable-column="") Rubrik
+                th(data-dynatable-column="") Startdatum
+              tr
+                td
+                td
+                td
+              tr
+                td
+                td
+                td
+
+  include includes/footer

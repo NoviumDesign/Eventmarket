@@ -1,0 +1,67 @@
+include includes/head
+body(class="#{locals.pageClass}")
+  include includes/nav
+
+  .row
+    include includes/sidenav
+
+    .large-9.columns.medium-8.columns
+      h3 Lista över profilsidor
+      .row
+        .small-12.columns
+          span.dynatable-custom-select Kategorier
+            select#search-group(name='')
+              option
+                option(value="") Alla
+                option(value="") Huvudkategorier
+                option(value="") Underkategorier
+          span.dynatable-custom-select Sidtyp
+            select#search-responsible(name='')
+              option
+                option Alla
+                option Small
+                option Medium
+                option Large
+          span.dynatable-custom-select Topp
+            select#search-activity(name='')
+              option
+                option Alla
+                option Topp
+          span.dynatable-custom-select Synlig/Släckt
+            select#search-activity(name='')
+              option
+                option Alla
+                option Synlig
+                option Släckt
+          span#dynatable-search-group-table.dynatable-search Search:
+            input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
+          table#group-table.dynamic-table
+            thead
+              tr
+                th(data-dynatable-column="") Sidans Namn
+                th(data-dynatable-column="") Företag &amp; Kontaktperson
+                th(data-dynatable-column="") Sidtyp
+                th(data-dynatable-column="") Giltig t.o.m.
+                th(data-dynatable-column="") Topp
+                th(data-dynatable-column="") Topp-period
+                th(data-dynatable-column="") Synlig/Släckt
+              tr
+                td Samuels sida
+                td Samuel &amp; Samuel AB, Samuel Samuelsson
+                td Small
+                td 2009-12-12
+                td Topp
+                td 2009-12-12-2009-12-12
+                td
+                  .red-ball
+              tr
+                td Johans sida
+                td Johan &amp; Johan AB, JohanJohansson
+                td Medium
+                td 2009-12-12
+                td Topp
+                td 2009-12-12-2009-12-12
+                td
+                  .red-ball
+
+  include includes/footer

@@ -1,0 +1,62 @@
+include includes/head
+body(class="#{locals.pageClass}")
+  include includes/nav
+
+  .row
+    include includes/sidenav
+
+    .large-9.columns.medium-8.columns
+      h3 Erbjudandelista
+      .row
+        .small-12.columns
+          span.dynatable-custom-select Visas
+            select#search-group(name='')
+              option
+                option(value="") Alla
+                option(value="") Profilsida
+                option(value="") Erbjudandesida
+          span.dynatable-custom-select Typ
+            select#search-responsible(name='')
+              option
+                option Alla
+                option Event
+                option Konferens
+                option Jul
+          span.dynatable-custom-select Synlig/Släckt
+            select#search-activity(name='')
+              option
+                option Alla
+                option Synlig
+                option Släckt
+          span#dynatable-search-group-table.dynatable-search Search:
+            input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
+          table#group-table.dynamic-table
+            thead
+              tr
+                th(data-dynatable-column="") Rubrik
+                th(data-dynatable-column="") Ägare
+                th(data-dynatable-column="") Startdatum
+                th(data-dynatable-column="") Slutdatum
+                th(data-dynatable-column="") Visas
+                th(data-dynatable-column="") Typ
+                th(data-dynatable-column="") Synlig/Släckt
+              tr
+                td Samuels erbjudande
+                td Samuel &amp; Samuel AB
+                td 2008-12-12
+                td 2009-12-12
+                td Profilsida
+                td Jul
+                td
+                  .red-ball
+              tr
+                td Johans erbjudande
+                td Johan &amp; Johan AB
+                td 2008-09-12
+                td 2009-12-12
+                td Erbjudandesida
+                td Event
+                td
+                  .red-ball
+
+  include includes/footer

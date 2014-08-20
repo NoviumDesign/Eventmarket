@@ -121,13 +121,20 @@ module.exports.initialize = function(app) {
       console.log('Protected route.');
       next();
     });
+
+    // *** Added by front-end, might want to move to desired location
+    app.get('/admin/personlista', admin.personlista);
+    app.get('/admin/profilsidlista', admin.profilsidlista);
+    app.get('/admin/erbjudandelista', admin.erbjudandelista);
+    app.get('/admin/boxlista', admin.boxlista);
+    app.get('/admin/inspirationsbildslista', admin.inspirationsbildslista);
+    app.get('/admin/redaktionslista', admin.redaktionslista);
     
     // Admin pages 
     app.get('/admin', requireAdminLogin, admin.start);
     app.get('/admin/kundkortlista', admin.kundkortlista);
     app.get('/admin/kundkort/id/:KundkortID', admin.kundkort);
     app.post('/admin/savekundkort', admin.savekundkort);
-    app.get('/admin/personlista', admin.personlista);
 
     // Profilsidor
     app.get('/admin/profilsida/id/:profilSidaId', admin.profilsida);

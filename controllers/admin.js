@@ -17,6 +17,27 @@ var models = require('../app/models'),
   indexer          = require('../app/indexer');
 
 module.exports = {
+  /* *** Added by front-end, might want to move to desired location */
+  personlista: function (req, res) {
+    res.render('admin/personlista', {pageClass: 'admin-personlista', title: 'ADMIN'});
+  },
+  profilsidlista: function (req, res) {
+    res.render('admin/profilsidlista', {pageClass: 'admin-profilsidlista', title: 'ADMIN'});
+  },
+  erbjudandelista: function (req, res) {
+    res.render('admin/erbjudandelista', {pageClass: 'admin-erbjudandelista', title: 'ADMIN'});
+  },
+  boxlista: function (req, res) {
+    res.render('admin/boxlista', {pageClass: 'admin-boxlista', title: 'ADMIN'});
+  },
+  inspirationsbildslista: function (req, res) {
+    res.render('admin/inspirationsbildslista', {pageClass: 'admin-inspirationsbildslista', title: 'ADMIN'});
+  },
+  redaktionslista: function (req, res) {
+    res.render('admin/redaktionslista', {pageClass: 'admin-redaktionslista', title: 'ADMIN'});
+  },
+  /* *** End of code added by front-end */ 
+
   start: function (req, res) {
     res.render('admin/index', {usr: req.user.toObject(), pageClass: 'admin-start', title: 'ADMIN'});
   },
@@ -542,10 +563,6 @@ module.exports = {
   },
   intresselista: function(req, res) {
     res.render('admin/intresselista', {pageClass: 'admin-intresselista', title: 'ADMIN'});
-  },
-
-  personlista: function (req, res) {
-    res.render('admin/personlista', {pageClass: 'admin-personlista', title: 'ADMIN'});
   },
   /**
    * Edit a new category
