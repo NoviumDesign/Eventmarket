@@ -9,6 +9,8 @@ body(class="#{locals.pageClass}")
       h3 Personallista
       .row
         .small-12.columns
+          span#dynatable-search-group-table.dynatable-search Search:
+            input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
           table#group-table.dynamic-table
             thead
               tr
