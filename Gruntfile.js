@@ -161,9 +161,9 @@ module.exports = function(grunt) {
                 files: ['client/templates/*.hbs', 'client/src/**/*.js'],
                 tasks: ['clean:dev', 'browserify:app', 'concat', 'copy:dev']
             },
-            less: {
-                files: ['client/styles/**/*.less'],
-                tasks: ['less:transpile', 'copy:dev']
+            sass: {
+                files: ['client/styles/**/*.scss', 'client/styles/**/*.sass'],
+                tasks: ['sass', 'copy:dev']
             },
             test: {
                 files: ['build/app.js', 'client/spec/**/*.test.js'],
@@ -220,7 +220,7 @@ module.exports = function(grunt) {
 
         concurrent: {
             dev: {
-                tasks: ['nodemon:dev', 'shell:mongo', 'watch:scripts', 'watch:less', 'watch:test', 'watch:jade'],
+                tasks: ['nodemon:dev', 'shell:mongo', 'watch:scripts', 'watch:sass', 'watch:test', 'watch:jade'],
                 options: {
                     logConcurrentOutput: true
                 }
