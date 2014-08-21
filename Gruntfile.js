@@ -78,13 +78,12 @@ module.exports = function(grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    'build/<%= pkg.name %>.css': [ 'client/styles/sass/app.css.scss']
+                    'build/<%= pkg.name %>.css': [ 'client/styles/sass/app.css.scss'],
+                    'build/app.css': [ 'client/styles/scss/app.scss']
                 }
             }
         },
-
         
-
         concat: {
             'build/<%= pkg.name %>.js': [
                 'client/requires/jquery/js/jquery.js',
@@ -118,6 +117,10 @@ module.exports = function(grunt) {
                   {
                     src: 'build/<%= pkg.name %>.css',
                     dest: 'public/css/<%= pkg.name %>.css'
+                  },
+                  {
+                    src: 'build/app.css',
+                    dest: 'public/css/app.css'
                   },
                   {
                     src: 'client/img/*',
