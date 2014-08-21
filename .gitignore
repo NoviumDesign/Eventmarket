@@ -2,6 +2,7 @@ node_modules/*
 build/*
 bower_components/*
 dump/*
+public/css/*
 
 newrelic_agent.log
 npm-debug.log
