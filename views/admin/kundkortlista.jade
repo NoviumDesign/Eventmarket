@@ -9,35 +9,50 @@ body(class="#{locals.pageClass}")
       h3 Kundkortslista
       .row
         .small-12.columns
-          span.dynatable-custom-select Grupptillhörighet
-            select#search-group(name='AccessGroupFullText')
-              option
-                option(value="") Alla
-                option(value="memberColleague") Medlem
-                option(value="prospect") Prospect
-                option(value="bransch") Bransch
-                option(value="guldklubben") Företagskund
-                option(value="registeredVisitor") Privatkund
-          span.dynatable-custom-select Kundansvarig
-            select#search-responsible(name='ResponsibleFullText')
-              option
-                option Jennie Sterner
-                option Johnny Sterner
-                option Toni Lahtinen
-          span.dynatable-custom-select Aktivitet
-            select#search-activity(name='Active')
-              option
-                option 0-12 mån
-                option 12-36 mån
-                option 36+ mån
-          span.dynatable-custom-select Intresse
-            select#intresse(name="intresse")
-              option(value="") Alla
-              - for (var key in locals.intresse) {
-                - if (locals.intresse[key].topLevel !== '1') {
-                  option(value=locals.intresse[key]._id) #{locals.intresse[key].name}
-                - }
-              - }
+          .right
+            span.dynatable-custom-select Grupptillhörighet
+              select#search-group(name='AccessGroupFullText')
+                option
+                  option(value="") Alla
+                  option(value="memberColleague") Medlem
+                  option(value="prospect") Prospect
+                  option(value="bransch") Bransch
+                  option(value="guldklubben") Företagskund
+                  option(value="registeredVisitor") Privatkund
+            span.dynatable-custom-select Aktivitet
+              select#search-activity(name='Active')
+                option
+                  option Alla
+                  option 0-12 mån
+                  option 12-36 mån
+                  option 36+ mån
+            span.dynatable-custom-select Kundansvarig
+              select#search-responsible(name='ResponsibleFullText')
+                option
+                  option Alla
+                  option Jennie Sterner
+                  option Johnny Sterner
+                  option Toni Lahtinen
+            span.dynatable-custom-select Intresse
+              select#intresse(name="intresse")
+                //- option(value="") Alla
+                //- - for (var key in locals.intresse) {
+                //-   - if (locals.intresse[key].topLevel !== '1') {
+                //-     option(value=locals.intresse[key]._id) #{locals.intresse[key].name}
+                //-   - }
+                //- - }
+
+                //- Above optionlist should be like this with optgroups
+
+                optgroup(label="Mässor")
+                  option Mässa
+                optgroup(label="Event")
+                  option Event
+            span.dynatable-custom-select Län
+              select#search-responsible(name='')
+                option
+                  option Alla
+                  option Län
           table#group-table.dynamic-table
             thead
               tr
@@ -45,13 +60,15 @@ body(class="#{locals.pageClass}")
                 th(data-dynatable-column="AccessGroupFullText") Grupptillhörighet
                 th(data-dynatable-column="LogTimeIndexed") Senaste Aktivitet
                 th(data-dynatable-column="ResponsibleFullText") Kundansvarig
-                th(data-dynatable-column="quickInfo") Snabbinfo 
+                //- To back-end: this seems to brake the table when being static, so im commenting this out before dynamic functionality is added th(data-dynatable-column="") Län
+                th(data-dynatable-column="quickInfo") Snabbinfo
             tbody
               tr
                 td
                 td
                 td
                 td
+                //- td LÄN
                 td
 
   include includes/footer

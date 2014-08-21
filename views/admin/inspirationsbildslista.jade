@@ -9,19 +9,20 @@ body(class="#{locals.pageClass}")
       h3 Lista över inspirationsbilder
       .row
         .small-12.columns
-          span.dynatable-custom-select Placering
-            select#search-responsible(name='')
-              option
-                option Alla
-                option Startsidan
-                option Biljett
-                option Backstage
-          span.dynatable-custom-select Synlig/Släckt
-            select#search-activity(name='')
-              option
-                option Alla
-                option Synlig
-                option Släckt
+          .right
+            span.dynatable-custom-select Placering
+              select#search-responsible(name='')
+                option
+                  option Alla
+                  option Startsidan
+                  option Biljett
+                  option Backstage
+            span.dynatable-custom-select Synlig/Släckt
+              select#search-activity(name='')
+                option
+                  option Alla
+                  option Synlig
+                  option Släckt
           span#dynatable-search-group-table.dynatable-search Search:
             input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
           table#group-table.dynamic-table

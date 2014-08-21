@@ -25,7 +25,7 @@ body(class=locals.pageClass)
                 option(value="538a04a0e492b29f3ef1ccbd", selected=locals.contactObject.ResponsibleFullText == 'Toni Lahtinen') Toni Lahtinen
                 option(value="", selected=locals.contactObject.ResponsibleFullText == undefined) Ingen vald
           .large-2.columns.medium-6.columns.end
-            label Tilldelad grupp
+            label Grupptillhörighet
               select(name="AccessGroupFullText")
                 option(value="memberColleague" selected=locals.contactObject.AccessGroupFullText == 'memberColleague') Medlem
                 option(value="prospect" selected=locals.contactObject.AccessGroupFullText == 'prospect') Prospect
@@ -155,30 +155,8 @@ body(class=locals.pageClass)
                   .small-12.columns
                     a.button Skapa ny profilsida
                   input(type="hidden", id="OwnerCard", name="OwnerCard", value=locals.contactObject._id)
-                  span.dynatable-custom-select Kategorier
-                    select#search-group(name='')
-                      option
-                        option(value="") Alla
-                        option(value="") Huvudkategorier
-                        option(value="") Underkategorier
-                  span.dynatable-custom-select Sidtyp
-                    select#search-responsible(name='')
-                      option
-                        option Alla
-                        option Small
-                        option Medium
-                        option Large
-                  span.dynatable-custom-select Topp
-                    select#search-activity(name='')
-                      option
-                        option Alla
-                        option Topp
-                  span.dynatable-custom-select Synlig/Släckt
-                    select#search-activity(name='')
-                      option
-                        option Alla
-                        option Synlig
-                        option Släckt
+                  span#dynatable-search-group-table.dynatable-search Search:
+                    input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
                   table#customer-table.dynamic-table
                     thead
                       tr
@@ -310,15 +288,13 @@ body(class=locals.pageClass)
                         thead
                           tr
                             th(data-dynatable-column="") Rubrik
-                            th(data-dynatable-column="") Ägare
-                            th(data-dynatable-column="") Startdatum
+                            th(data-dynatable-column="") Startdatumerbjudanden
                             th(data-dynatable-column="") Slutdatum
                             th(data-dynatable-column="") Visas
                             th(data-dynatable-column="") Typ
                             th(data-dynatable-column="") Synlig/Släckt
                           tr
                             td Samuels erbjudande
-                            td Samuel &amp; Samuel AB
                             td 2008-12-12
                             td 2009-12-12
                             td Profilsida
@@ -327,7 +303,6 @@ body(class=locals.pageClass)
                               .red-ball
                           tr
                             td Johans erbjudande
-                            td Johan &amp; Johan AB
                             td 2008-09-12
                             td 2009-12-12
                             td Erbjudandesida
