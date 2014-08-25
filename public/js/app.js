@@ -66,7 +66,7 @@ $('#my-table').dynatable({
     search: false,
     perPageSelect: false,
     recordCount: false,
-    paginate: false
+    paginate: true
   }
 });
 // Profilsida
@@ -233,7 +233,7 @@ if ($('body').hasClass('admin-kundkort')) {
       records: []
     },
     features: {
-      paginate: false,
+      paginate: true,
       search: false,
       recordCount: false,
       perPageSelect: false
@@ -319,13 +319,14 @@ if ($('body').hasClass('admin-kundkortlista')) {
       ajax: true,
       ajaxUrl: '/api/customercards',
       ajaxOnLoad: true,
-      records: []
+      records: [],
+      perPageOptions: [10,50,100]
     },
     features: {
       paginate: true,
       search: true,
       recordCount: true,
-      perPageSelect: false
+      perPageSelect: true
     },
     inputs: {
       queries: $('#search-group, #search-activity, #search-responsible, #intresse')

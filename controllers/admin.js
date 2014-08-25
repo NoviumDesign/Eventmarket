@@ -36,6 +36,9 @@ module.exports = {
   redaktionslista: function (req, res) {
     res.render('admin/redaktionslista', {pageClass: 'admin-redaktionslista', title: 'ADMIN'});
   },
+  crm: function (req, res) {
+    res.render('admin/crm', {pageClass: 'admin-crm', title: 'ADMIN'});
+  },
   /* *** End of code added by front-end */ 
 
   start: function (req, res) {
