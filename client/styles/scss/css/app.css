@@ -2090,7 +2090,6 @@ select::-ms-expand {
 
   select:hover {
     background: #f3f3f3; } }
-
 /* Attach elements to the beginning or end of an input */
 .prefix,
 .postfix {
@@ -2629,28 +2628,24 @@ kbd {
 
   to {
     -webkit-transform: rotate(360deg); } }
-
 @-moz-keyframes rotate {
   from {
     -moz-transform: rotate(0deg); }
 
   to {
     -moz-transform: rotate(360deg); } }
-
 @-o-keyframes rotate {
   from {
     -o-transform: rotate(0deg); }
 
   to {
     -o-transform: rotate(360deg); } }
-
 @keyframes rotate {
   from {
     transform: rotate(0deg); }
 
   to {
     transform: rotate(360deg); } }
-
 /* Orbit Graceful Loading */
 .slideshow-wrapper {
   position: relative; }
@@ -2734,7 +2729,7 @@ kbd {
     left: 10px;
     font-size: 12px;
     color: white;
-    background: rgba(0, 0, 0, 0);
+    background: transparent;
     z-index: 10; }
     .orbit-container .orbit-slide-number span {
       font-weight: 700;
@@ -3416,7 +3411,6 @@ div.switch {
 
   to {
     position: relative; } }
-
 table {
   background: white;
   margin-bottom: 1.25rem;
@@ -4404,7 +4398,6 @@ blockquote p {
 
   @page {
     margin: 0.5cm; }
-
   p,
   h2,
   h3 {
@@ -4730,7 +4723,7 @@ ul.off-canvas-list {
   left: 0;
   right: 0;
   z-index: 1002;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-tap-highlight-color: transparent; }
   @media only screen and (min-width: 40.063em) {
     .move-right a.exit-off-canvas:hover {
       background: rgba(255, 255, 255, 0.05); } }
@@ -4754,7 +4747,7 @@ ul.off-canvas-list {
   left: 0;
   right: 0;
   z-index: 1002;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-tap-highlight-color: transparent; }
   @media only screen and (min-width: 40.063em) {
     .move-left a.exit-off-canvas:hover {
       background: rgba(255, 255, 255, 0.05); } }
@@ -5288,13 +5281,16 @@ ul.dynatable-pagination-links {
 table.dynamic-table {
   width: 100%; }
 
+#dynatable-per-page-customer-table {
+  width: 20%; }
+
 .dynatable-search, .dynatable-per-page, .dynatable-custom-select {
   margin-left: 10px; }
   .dynatable-search input, .dynatable-search select, .dynatable-per-page input, .dynatable-per-page select, .dynatable-custom-select input, .dynatable-custom-select select {
     margin-top: 5px; }
 
 .dynatable-search, .dynatable-record-count, .dynatable-custom-select {
-  float: right; }
+  float: left; }
 
 .clickableRow {
   cursor: pointer; }

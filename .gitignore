@@ -2,7 +2,9 @@ node_modules/*
 build/*
 bower_components/*
 dump/*
-public/css/*
+client/styles/sass/.sass-cache/*
+client/styles/scss/.sass-cache/*
 
+config.codekit
 newrelic_agent.log
 npm-debug.log
