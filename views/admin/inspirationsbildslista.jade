@@ -15,8 +15,12 @@ body(class="#{locals.pageClass}")
                 option
                   option Alla
                   option Startsidan
-                  option Biljett
+                  option Event
+                  option Konferens
+                  option Erbjudande
+                  option Bildarkivet
                   option Backstage
+                  option Biljett
             span.dynatable-custom-select Synlig/Släckt
               select#search-activity(name='')
                 option
@@ -34,6 +38,7 @@ body(class="#{locals.pageClass}")
                 th(data-dynatable-column="") Slutdatum
                 th(data-dynatable-column="") Ordning
                 th(data-dynatable-column="") Synlig/Släckt
+            tbody
               tr
                 td
                 td

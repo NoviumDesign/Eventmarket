@@ -129,6 +129,7 @@ module.exports.initialize = function(app) {
     app.get('/admin/boxlista', admin.boxlista);
     app.get('/admin/inspirationsbildslista', admin.inspirationsbildslista);
     app.get('/admin/redaktionslista', admin.redaktionslista);
+    app.get('/admin/crm', admin.crm);
     
     // Admin pages 
     app.get('/admin', requireAdminLogin, admin.start);

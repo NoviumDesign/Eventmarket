@@ -5281,12 +5281,14 @@ ul.dynatable-pagination-links {
 table.dynamic-table {
   width: 100%; }
 
-#dynatable-per-page-customer-table {
-  width: 20%; }
+.dynatable-per-page {
+  display: block;
+  width: 20%;
+  float: right; }
 
-.dynatable-search, .dynatable-per-page, .dynatable-custom-select {
+.dynatable-per-page, .dynatable-custom-select {
   margin-left: 10px; }
-  .dynatable-search input, .dynatable-search select, .dynatable-per-page input, .dynatable-per-page select, .dynatable-custom-select input, .dynatable-custom-select select {
+  .dynatable-per-page input, .dynatable-per-page select, .dynatable-custom-select input, .dynatable-custom-select select {
     margin-top: 5px; }
 
 .dynatable-search, .dynatable-record-count, .dynatable-custom-select {

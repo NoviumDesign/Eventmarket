@@ -9,32 +9,35 @@ body(class="#{locals.pageClass}")
       h3 Lista över profilsidor
       .row
         .small-12.columns
-          span.dynatable-custom-select Kategorier
-            select#search-group(name='')
-              option
-                option(value="") Alla
-                option(value="") Huvudkategorier
-                option(value="") Underkategorier
-          span.dynatable-custom-select Sidtyp
-            select#search-responsible(name='')
-              option
-                option Alla
-                option Small
-                option Medium
-                option Large
-          span.dynatable-custom-select Topp
-            select#search-activity(name='')
-              option
-                option Alla
-                option Topp
-          span.dynatable-custom-select Synlig/Släckt
-            select#search-activity(name='')
-              option
-                option Alla
-                option Synlig
-                option Släckt
+          .right
+            span.dynatable-custom-select Kategorier
+              select#search-group(name='')
+                option
+                  option(value="") Alla
+                  option(value="") Huvudkategorier
+                  option(value="") Underkategorier
+            span.dynatable-custom-select Sidtyp
+              select#search-responsible(name='')
+                option
+                  option Alla
+                  option Small
+                  option Medium
+                  option Large
+            span.dynatable-custom-select Topp
+              select#search-activity(name='')
+                option
+                  option Alla
+                  option Topp
+            span.dynatable-custom-select Synlig/Släckt
+              select#search-activity(name='')
+                option
+                  option Alla
+                  option Synlig
+                  option Släckt
+        .small-12.columns
           span#dynatable-search-group-table.dynatable-search Search:
             input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
+        .small-12.columns
           table#group-table.dynamic-table
             thead
               tr
@@ -45,6 +48,7 @@ body(class="#{locals.pageClass}")
                 th(data-dynatable-column="") Topp
                 th(data-dynatable-column="") Topp-period
                 th(data-dynatable-column="") Synlig/Släckt
+            tbody
               tr
                 td Samuels sida
                 td Samuel &amp; Samuel AB, Samuel Samuelsson

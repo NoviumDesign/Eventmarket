@@ -1,0 +1,58 @@
+include includes/head
+body(class="#{locals.pageClass}")
+  include includes/nav
+
+  .row
+    include includes/sidenav
+
+    .large-9.columns.medium-8.columns
+      h3 CRM
+      .row
+        .small-12.columns
+          .right
+            span.dynatable-custom-select Kontaktansvarig
+              select#search-group(name='')
+                option
+                  option(value="") Alla
+                  option(value="") Jennie Sterner
+                  option(value="") Johnny Sterner
+                  option(value="") Toni Lahtinen
+                  option(value="") Alla administratörer
+            span.dynatable-custom-select Datum
+              select#search-responsible(name='')
+                option
+                  option Dagens
+                  option Dagens &amp; Passerade
+                  option Dagens &amp; Morgondagens
+                  option Framtida
+            span.dynatable-custom-select Kontakttyp
+              select#search-activity(name='')
+                option
+                  option Förnya profilsida
+                  option Sälj in profilsida
+                  option Demosida
+                  option Kundvårda
+                  option Släck
+                  option Erbjudande
+                  option Mailannons
+                  option Meeting
+                  option Övrigt
+          span#dynatable-search-group-table.dynatable-search Search:
+            input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
+          table#group-table.dynamic-table
+            thead
+              tr
+                th(data-dynatable-column="") Datum
+                th(data-dynatable-column="") Tid/Klockslag
+                th(data-dynatable-column="") Beskrivning
+                th(data-dynatable-column="") Kontakttyp
+                th(data-dynatable-column="") Kontaktansvarig
+            tbody
+              tr
+                td 2013-02-02
+                td 14:00
+                td Beskrivning
+                td Demosida
+                td Alla administratörer
+
+  include includes/footer

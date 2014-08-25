@@ -288,11 +288,12 @@ body(class=locals.pageClass)
                         thead
                           tr
                             th(data-dynatable-column="") Rubrik
-                            th(data-dynatable-column="") Startdatumerbjudanden
+                            th(data-dynatable-column="") Startdatum
                             th(data-dynatable-column="") Slutdatum
                             th(data-dynatable-column="") Visas
                             th(data-dynatable-column="") Typ
                             th(data-dynatable-column="") Synlig/Släckt
+                        tbody
                           tr
                             td Samuels erbjudande
                             td 2008-12-12
@@ -368,34 +369,25 @@ body(class=locals.pageClass)
           .large-12.medium-12.columns
             dl.accordion(data-accordion='data-accordion')
               dd
-                a(href='#content1d') Samtal: förnya profilsida Lindaus Bokningssida
-                  span.date datum + klockslag
+                a(href='#content1d') CRM-lista
                 #content1d.content
                   .row
                     .small-12.columns
-                      table#my-table.dynamic-table
-                            thead
-                              tr
-                                th Titel/Beskrivning
-                                th Kontakttyp
-                                th Datum &amp; Tid
-                            tbody
-                              tr
-                                td Lindaus bokningssida
-                                td Profilsida
-                                td 2013-02-14 23:30
-                              tr
-                                td Inlands bussbiljetter
-                                td Profilsida
-                                td 2013-02-14 23:30
-                              tr
-                                td Lindaus bokningssida
-                                td Profilsida
-                                td 2013-02-14 23:30
-                              tr
-                                td Inlands bussbiljetter
-                                td Profilsida
-                                td 2013-02-14 23:30
+                      table#group-table.dynamic-table
+                        thead
+                          tr
+                            th(data-dynatable-column="") Datum
+                            th(data-dynatable-column="") Tid/Klockslag
+                            th(data-dynatable-column="") Beskrivning
+                            th(data-dynatable-column="") Kontakttyp
+                            th(data-dynatable-column="") Kontaktansvarig
+                        tbody
+                          tr
+                            td 2013-02-02
+                            td 14:00
+                            td Beskrivning
+                            td Demosida
+                            td Alla administratörer
             button(type='Submit') Spara
     
     #newEmployee.reveal-modal(data-reveal='data-reveal')
