@@ -168,34 +168,36 @@ body(class=locals.pageClass)
                         th(data-dynatable-column="") Topp-period
                         th(data-dynatable-column="Visible") Synlig/Släckt
                     tbody
-                      //- tr
-                      //-   td Lindaus bokningssida
-                      //-   td Anders Lundin
-                      //-   td 2013-06-05
-                      //-   td Small
-                      //-   td 
-                      //-     .green-ball
-                      //- tr
-                      //-   td Inlands bussbiljetter
-                      //-   td Kalle Kanin
-                      //-   td 2013-06-06
-                      //-   td Medium
-                      //-   td
-                      //-     .red-ball
-                      //- tr
-                      //-   td Lindaus bokningssida
-                      //-   td Anders Lundin
-                      //-   td 2013-06-05
-                      //-   td Large
-                      //-   td
-                      //-     .green-ball
-                      //- tr
-                      //-   td Inlands bussbiljetter
-                      //-   td Kalle Kanin
-                      //-   td 2013-06-06
-                      //-   td Medium
-                      //-   td
-                      //-     .red-ball
+                      tr
+                        td Samuels sida
+                        td 
+                          ul
+                            li Samuel &amp; Samuel AB
+                            li Samuel Samuelsson
+                        td Small
+                        td 2009-12-12
+                        td Topp
+                        td 
+                          ul
+                            li 2009-12-12 t.om. 
+                            li 2009-12-12
+                        td
+                          .red-ball
+                      tr
+                        td Johans sida
+                        td 
+                          ul
+                            li Johan &amp; Johan AB
+                            li Johan Johansson
+                        td Medium
+                        td 2009-12-12
+                        td Topp
+                        td 
+                          ul
+                            li 2009-12-12 t.om. 
+                            li 2009-12-12
+                        td
+                          .red-ball
               dd
                     a(href='#panel4b') Statistik
                     #panel4b.content
@@ -331,26 +333,32 @@ body(class=locals.pageClass)
               option(value='other') Övrigt
         .row.administration-content
           .large-12.medium-12.columns
-            //- input#historikJSON(type="hidden", value=locals.historik)
-            dl#history-list.accordion(data-accordion='data-accordion')
+            dl.accordion(data-accordion='myAccordionGroup')
               dd
-              //-   a(href='#content2c') Faktura 1239 betald
-              //-     span.date datum
-              //-   #content2c.content
-              //-     .row
-              //-       .small-12.columns
-              //-         p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-              //-       .small-12.columns
-              //-         a.button.alert Radera
-              //- dd
-              //-   a(href='#content3c') Faktura 1239 skapad
-              //-     span.date datum
-              //-   #content3c.content
-              //-     .row
-              //-       .small-12.columns
-              //-         p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-              //-       .small-12.columns
-              //-         a.button.alert Radera
+                a(href='#historypanel') Historik
+                #historypanel.content
+                  //- input#historikJSON(type="hidden", value=locals.historik)
+                  dl#history-list.accordion(data-accordion='data-accordion')
+                    dd
+                    //-   a(href='#content2c') Faktura 1239 betald
+                    //-     span.date datum
+                    //-   #content2c.content
+                    //-     .row
+                    //-       .small-12.columns
+                    //-         p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    //-       .small-12.columns
+                    //-         a.button Redigera
+                    //-         a.button.alert Radera
+                    //- dd
+                    //-   a(href='#content3c') Faktura 1239 skapad
+                    //-     span.date datum
+                    //-   #content3c.content
+                    //-     .row
+                    //-       .small-12.columns
+                    //-         p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    //-       .small-12.columns
+                    //-         a.button Redigera
+                    //-         a.button.alert Radera
             a.button(data-reveal-id='newHistory') Skapa ny historik
             #newHistory.reveal-modal(data-reveal='data-reveal')
               h2 Ny historik
@@ -369,27 +377,32 @@ body(class=locals.pageClass)
           .large-12.medium-12.columns
             dl.accordion(data-accordion='data-accordion')
               dd
-                a(href='#content1d') CRM-lista
-                #content1d.content
-                  .row
-                    .small-12.columns
-                      table#group-table.dynamic-table
-                        thead
-                          tr
-                            th(data-dynatable-column="") Datum
-                            th(data-dynatable-column="") Tid/Klockslag
-                            th(data-dynatable-column="") Beskrivning
-                            th(data-dynatable-column="") Kontakttyp
-                            th(data-dynatable-column="") Kontaktansvarig
-                        tbody
-                          tr
-                            td 2013-02-02
-                            td 14:00
-                            td Beskrivning
-                            td Demosida
-                            td Alla administratörer
+                a(href='#crm') CRM-lista
+                #crm.content.active
+                  dl.accordion(data-accordion='data-accordion')
+                    dd
+                      a(href='#crm1') Ring Bengt
+                        span.date datum &amp; klockslag
+                      #crm1.content
+                        .row
+                          .small-12.columns
+                            p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                          .small-12.columns
+                            a.button Arkivera
+                            a.button.alert Radera
+                  dl.accordion(data-accordion='data-accordion')
+                    dd
+                      a(href='#crm2') Ring Karin
+                        span.date datum &amp; klockslag
+                      #crm2.content
+                        .row
+                          .small-12.columns
+                            p Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                          .small-12.columns
+                            a.button Arkivera
+                            a.button.alert Radera
+                  a.button Lägg till kommande kontakt
             button(type='Submit') Spara
-    
     #newEmployee.reveal-modal(data-reveal='data-reveal')
       .row
         .small-12.columns

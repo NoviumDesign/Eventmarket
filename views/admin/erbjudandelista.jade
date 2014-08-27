@@ -6,30 +6,27 @@ body(class="#{locals.pageClass}")
     include includes/sidenav
 
     .large-9.columns.medium-8.columns
-      h3 Erbjudandelista
+      h3 Erbjudande
       .row
         .small-12.columns
           .right
             span.dynatable-custom-select Visas
               select#search-group(name='')
-                option
-                  option(value="") Alla
-                  option(value="") Profilsida
-                  option(value="") Erbjudandesida
-                  option(value="") Båda
+                option(value="") Alla
+                option(value="") Profilsida
+                option(value="") Erbjudandesida
+                option(value="") Båda
             span.dynatable-custom-select Typ
               select#search-responsible(name='')
-                option
-                  option Alla
-                  option Event
-                  option Konferens
-                  option Jul
+                option Alla
+                option Event
+                option Konferens
+                option Jul
             span.dynatable-custom-select Synlig/Släckt
               select#search-activity(name='')
-                option
-                  option Alla
-                  option Synlig
-                  option Släckt
+                option Alla
+                option Synlig
+                option Släckt
           span#dynatable-search-group-table.dynatable-search Search:
             input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
           table#group-table.dynamic-table

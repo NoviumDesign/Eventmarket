@@ -6,27 +6,25 @@ body(class="#{locals.pageClass}")
     include includes/sidenav
 
     .large-9.columns.medium-8.columns
-      h3 Lista över inspirationsbilder
+      h3 Inspirationsbilder
       .row
         .small-12.columns
           .right
             span.dynatable-custom-select Placering
               select#search-responsible(name='')
-                option
-                  option Alla
-                  option Startsidan
-                  option Event
-                  option Konferens
-                  option Erbjudande
-                  option Bildarkivet
-                  option Backstage
-                  option Biljett
+                option Alla
+                option Startsidan
+                option Event
+                option Konferens
+                option Erbjudande
+                option Bildarkivet
+                option Backstage
+                option Biljett
             span.dynatable-custom-select Synlig/Släckt
               select#search-activity(name='')
-                option
-                  option Alla
-                  option Synlig
-                  option Släckt
+                option Alla
+                option Synlig
+                option Släckt
           span#dynatable-search-group-table.dynatable-search Search:
             input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
           table#group-table.dynamic-table

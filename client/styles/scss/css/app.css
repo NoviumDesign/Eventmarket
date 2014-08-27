@@ -5264,6 +5264,9 @@ img.profile {
   -moz-border-radius: 0 !important;
   border-color: #e8e8e8 !important; }
 
+dd > a > .date {
+  float: right; }
+
 ul.dynatable-pagination-links {
   list-style-type: none;
   margin: 20px 0 20px 0;
@@ -5308,3 +5311,13 @@ table.dynamic-table {
 
 .green-ball {
   background-color: green; }
+
+option.category {
+  font-weight: bold; }
+
+option.item {
+  padding-left: 15px; }
+
+td ul {
+  list-style-type: none;
+  margin-left: 0; }
