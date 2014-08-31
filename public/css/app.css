@@ -5238,6 +5238,12 @@ body {
   z-index: 9999;
   top: 0; }
 
+.accordion dd.active a {
+  background: white; }
+
+.accordion dd.active > a {
+  background: #e8e8e8; }
+
 .administration-content dd {
   margin-bottom: 20px !important; }
 .administration-content .content {

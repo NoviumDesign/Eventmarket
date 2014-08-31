@@ -3,33 +3,55 @@
       .sidebar
         nav
           dl.accordion(data-accordion='data-accordion')
-            dd
-                a(href='#panel1') Kunddatabas &amp; CRM
-                #panel1.content.active
+            dd.active
+                a(href='#panel1') Register &amp; CRM
+                #panel1.content
                   ul.side-nav
-                      li
-                          a(href='/admin/kundkortlista') Kundkort
-                        li
-                          a(href='/admin/crm') CRM
+                    li
+                      a(href='/admin/kundkortlista') Kundkort
+                    li
+                      a(href='/admin/crm') CRM
+                    li
+                      a(href='/admin/personlista') Personregister
+                    li
+                      a(href='#') Administratörer &amp; Personal
+                    li
+                      a(href='/admin/intresselista') Intresselistor
               dd
-                a(href='#panel2') Moduler
+                a(href='#panel2') Produkter
                 #panel2.content
                   ul.side-nav
-                      li
-                          a(href='/admin/intresselista') Intresselistor
-                        li
-                          a(href='/admin/profilsidlista') Profilsidor
-                        li
-                          a(href='/admin/erbjudandelista') Erbjudande
-                        li
-                          a(href='/admin/boxlista') Boxar
-                        li
-                          a(href='/admin/inspirationsbildslista') Inspirationsbilder
-                        li
-                          a(href='/admin/redaktionslista') Redaktionen
-                        li
-                          a(href='/admin/personlista') Personregister
+                    li
+                      a(href='/admin/profilsidlista') Profilsidor
+                    li
+                      a(href='/admin/erbjudandelista') Erbjudande
+                    li
+                      a(href='#') Produkter &amp; Prislista
+                    li
+                      a(href='/admin/fakturalista') Fakturor
+                    li
+                      a(href='#') Öppen Förfrågan
+                    li
+                      a(href='#') Biljett
               dd
-                a(href='#panel3') Accordion 3
+                a(href='#panel3') Inlägg
                 #panel3.content
-                  | Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  ul.side-nav
+                    li
+                      a(href='/admin/boxlista') Boxar
+                    li
+                      a(href='/admin/inspirationsbildslista') Inspirationsbilder
+                    li
+                      a(href='/admin/redaktionslista') Redaktionen
+                    li
+                      a(href='#') Bildarkiv
+                    li
+                      a(href='#') Listsidor
+                    li
+                      a(href='#') Infosidor &amp; Fria Sidor
+                    li
+                      a(href='#') Backstage-tips
+                    li
+                      a(href='#') Kategoriträd (inkl. Konferenskategorier)
+                    li
+                      a(href='#') Julkalendern

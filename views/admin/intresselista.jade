@@ -10,12 +10,20 @@ body(class=locals.pageClass)
   - }
   .row
     include includes/sidenav
+
     .large-9.columns.medium-8.columns
-      a.button.small.right(href="/admin/editintresse/id/new") Skapa nytt intresse
-      table#list-categories
-        thead
-          th(data-dynatable-column="name") Namn
-          th(data-dynatable-column="visible") Synlig?
-          th(data-dynatable-column="lastUpdate") Senast uppdaterad
-        tbody
+      h3 Intresselista
+      .row
+        .small-12.columns
+          a.button.small.right(href="/admin/editintresse/id/new") Skapa nytt intresse
+        .small-12.columns
+          table#list-categories.dynamic-table
+            thead
+              th(data-dynatable-column="name") Namn
+              th(data-dynatable-column="visible") Synlig / Släckt
+              th(data-dynatable-column="lastUpdate") Senast uppdaterad
+            tbody
+              td Namn
+              td Synlig / Släckt
+              td Senast Uppdaterad
   include includes/footer

@@ -1,0 +1,56 @@
+include includes/head
+body(class="#{locals.pageClass}")
+  include includes/nav
+
+  .row
+    include includes/sidenav
+
+    .large-9.columns.medium-8.columns
+      h3 Fakturor
+      .row
+        .small-12.columns
+          .right
+            span.dynatable-custom-select Status
+              select#search-responsible(name='')
+                option Alla
+                option Att fakturera
+                option Fakturerad
+                option Betald
+                option Skall ej faktureras
+            span.dynatable-custom-select Säljare
+              select#search-activity(name='')
+                option Alla
+                option Jennie Sterner
+                option Johnny Sterner
+                option Toni Lahtinen
+                option Ingen vald
+        .small-12.columns
+          span#dynatable-search-group-table.dynatable-search Search:
+            input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
+        .small-12.columns
+          table#group-table.dynamic-table
+            thead
+              tr
+                th(data-dynatable-column="") Fakturadatum
+                th(data-dynatable-column="") Beställare
+                th(data-dynatable-column="") Produkter
+                th(data-dynatable-column="") Totalsumma
+                th(data-dynatable-column="") Säljare
+                th(data-dynatable-column="") Status
+            tbody
+              tr
+                td 20013-05-23
+                td Johanna Johansson
+                td Produkt
+                td 1999
+                td Toni Lahtinen
+                td Att fakturera
+              tr
+                td 20013-05-23
+                td Johanna Johansson
+                td Produkt
+                td 1999
+                td Toni Lahtinen
+                td Att fakturera
+
+  include includes/footer

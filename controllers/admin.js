@@ -39,6 +39,9 @@ module.exports = {
   crm: function (req, res) {
     res.render('admin/crm', {pageClass: 'admin-crm', title: 'ADMIN'});
   },
+  fakturalista: function (req, res) {
+    res.render('admin/fakturalista', {pageClass: 'admin-fakturalista', title: 'ADMIN'});
+  },
   /* *** End of code added by front-end */ 
 
   start: function (req, res) {

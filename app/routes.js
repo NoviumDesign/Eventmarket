@@ -130,6 +130,7 @@ module.exports.initialize = function(app) {
     app.get('/admin/inspirationsbildslista', admin.inspirationsbildslista);
     app.get('/admin/redaktionslista', admin.redaktionslista);
     app.get('/admin/crm', admin.crm);
+    app.get('/admin/fakturalista', admin.fakturalista);
     
     // Admin pages 
     app.get('/admin', requireAdminLogin, admin.start);
