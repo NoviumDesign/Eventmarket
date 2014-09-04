@@ -9,37 +9,18 @@ body(class="#{locals.pageClass}")
       h3 Personregister
       .row
         .small-12.columns
-          span#dynatable-search-group-table.dynatable-search Search:
-            input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
+          //- span#dynatable-search-group-table.dynatable-search Search:
+          //-   input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
           table#group-table.dynamic-table
             thead
               tr
-                th(data-dynatable-column="") Förnamn
-                th(data-dynatable-column="") Efternamn
-                th(data-dynatable-column="") Företag
-                th(data-dynatable-column="") E-post
-                th(data-dynatable-column="") Telefon
-                th(data-dynatable-column="") Koppling till kundkort
+                th(data-dynatable-column="FirstName") Förnamn
+                th(data-dynatable-column="LastName") Efternamn
+                th(data-dynatable-column="Comp") Företag
+                th(data-dynatable-column="Email") E-post
+                th(data-dynatable-column="Phone") Telefon
+                th(data-dynatable-column="Cards") Koppling till kundkort
+                th(data-dynatable-column="PersonCreated") Registrerad
             tbody
-              tr
-                td Samuel
-                td Samuelsson
-                td Samuel &amp; Samuel AB
-                td samuel@samuelochsamuel.com
-                td 07092823112
-                td
-                  ul
-                    li Företag 1
-                    li Företag 2
-              tr
-                td Johan
-                td Johansson
-                td Johan &amp; Johan AB
-                td johan@johanochjohan.com
-                td 07092841112
-                td
-                  ul
-                    li Företag 1
-                    li Företag 2
 
   include includes/footer

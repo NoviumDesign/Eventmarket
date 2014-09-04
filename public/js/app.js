@@ -1,3 +1,9 @@
+/**
+ *
+ * Eventmarket ADM
+ *
+ * 
+ */
 // Foundation JavaScript
 // Documentation can be found at: http://foundation.zurb.com/docs
 $(document).foundation({
@@ -372,6 +378,58 @@ if ($('body').hasClass('admin-kundkortlista')) {
     }
   }).bind('dynatable:afterUpdate', afterLoadHook);
 }
+// Admin - personregister
+if ($('body').hasClass('admin-personlista')) {
+  $('#group-table').dynatable({
+    dataset: {
+      ajax: true,
+      ajaxUrl: '/api/person',
+      ajaxOnLoad: true,
+      records: []
+    },
+    writers: {
+      // _rowWriter: function (rowIndex, record, columns, cellWriter) {
+      //   var ret = 
+      //   return '<tr onclick="window.document.location = /admin/person/id/'+rowData['PersonID']+'">'
+      // },
+      _cellWriter: function (index, rowData) {
+        if (index.id == 'Cards') {
+          if (rowData.hasOwnProperty('cards')) {
+            var ret = '<td>';
+            for (var cKey in rowData['cards']) {
+              ret += '<a style="display:block;" href="/admin/kundkort/id/'+rowData['cards'][cKey].id+'">';
+              ret += rowData['cards'][cKey].name;
+              ret += '</a>';
+            }
+            return ret+'</td>';
+          }
+          return '<td></td>';
+        }
+        if (index.id == 'Comp') {
+          if (rowData.hasOwnProperty('OrgMembership')) {
+            var orgMem = rowData['OrgMembership'];
+            if (orgMem !== null) {
+              var ret = '<td>';
+              for (var orgKey in orgMem) {
+                if (orgMem[orgKey].OrgName != undefined) {
+                  ret += orgMem[orgKey].OrgName + '<br/>';
+                }
+              }
+              return ret+'</td>';
+            }
+          }
+          return '<td></td>';
+        }
+        if (index.id == "FirstName" || index.id == "LastName") {
+          return '<td>'+rowData[index.id]+'</td>';
+        } else {
+          return '<td>'+rowData[index.id]+'</td>';
+        }
+      }
+    }
+  });
+}
+
 if ($('body').hasClass('admin-intresselista')) {
   $('#list-categories').dynatable({
     dataset: {
