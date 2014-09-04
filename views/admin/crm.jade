@@ -12,31 +12,30 @@ body(class="#{locals.pageClass}")
           .right
             span.dynatable-custom-select Kontaktansvarig
               select#search-group(name='')
-                option
-                  option(value="") Alla
-                  option(value="") Jennie Sterner
-                  option(value="") Johnny Sterner
-                  option(value="") Toni Lahtinen
-                  option(value="") Alla administratörer
+                option(value="") Alla
+                option(value="") Jennie Sterner
+                option(value="") Johnny Sterner
+                option(value="") Toni Lahtinen
+                option(value="") Ingen vald
             span.dynatable-custom-select Datum
               select#search-responsible(name='')
-                option
-                  option Dagens
-                  option Dagens &amp; Passerade
-                  option Dagens &amp; Morgondagens
-                  option Framtida
+                option Alla
+                option Dagens
+                option Dagens &amp; Passerade
+                option Dagens &amp; Morgondagens
+                option Framtida
             span.dynatable-custom-select Kontakttyp
               select#search-activity(name='')
-                option
-                  option Förnya profilsida
-                  option Sälj in profilsida
-                  option Demosida
-                  option Kundvårda
-                  option Släck
-                  option Erbjudande
-                  option Mailannons
-                  option Meeting
-                  option Övrigt
+                option Alla
+                option Förnya profilsida
+                option Sälj in profilsida
+                option Demosida
+                option Kundvårda
+                option Släck
+                option Erbjudande
+                option Mailannons
+                option Meeting
+                option Övrigt
           span#dynatable-search-group-table.dynatable-search Search:
             input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
           table#group-table.dynamic-table

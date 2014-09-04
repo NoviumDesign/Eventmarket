@@ -5244,6 +5244,11 @@ body {
 .accordion dd.active > a {
   background: #e8e8e8; }
 
+.content .button, .small-12.columns .button {
+  background-color: #008cba; }
+.content .button.alert, .small-12.columns .button.alert {
+  background-color: #f04124; }
+
 .administration-content dd {
   margin-bottom: 20px !important; }
 .administration-content .content {
