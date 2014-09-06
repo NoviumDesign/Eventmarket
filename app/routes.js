@@ -157,6 +157,9 @@ module.exports.initialize = function(app) {
     app.get('/admin/person/id/:PersonID', admin.editperson);
     app.post('/admin/person/id/:PersonID', admin.saveperson);
 
+    // TEST
+    app.get('/admin/editor', admin.editor);
+    
 
     // Banner
     app.get('/admin/banner', admin.banner);

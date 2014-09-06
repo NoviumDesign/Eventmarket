@@ -17,6 +17,10 @@ var models = require('../app/models'),
   indexer          = require('../app/indexer');
 
 module.exports = {
+  editor: function (req, res) {
+    res.render('admin/editor', {pageClass: 'admin-editor', title: 'ADMIN'});
+  },
+
   /* *** Added by front-end, might want to move to desired location */
   personlista: function (req, res) {
     res.render('admin/personlista', {pageClass: 'admin-personlista', title: 'ADMIN'});

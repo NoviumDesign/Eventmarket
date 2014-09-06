@@ -75,6 +75,43 @@ $('#my-table').dynatable({
     paginate: true
   }
 });
+if ($('body').hasClass('admin-editor')) {
+  $(document).ready(function(){
+    console.log('Editor!');
+                 var converter1 = Markdown.getSanitizingConverter();
+                
+                 converter1.hooks.chain("preBlockGamut", function (text, rbg) {
+                     return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
+                         return "<blockquote>" + rbg(inner) + "</blockquote>\n";
+                     });
+                 });
+                
+                 var editor1 = new Markdown.Editor(converter1);
+                
+                 editor1.run();
+                
+        // -         var converter2 = new Markdown.Converter();
+
+        // -         converter2.hooks.chain("preConversion", function (text) {
+        // -             return text.replace(/\b(a\w*)/gi, "*$1*");
+        // -         });
+
+        // -         converter2.hooks.chain("plainLinkText", function (url) {
+        // -             return "This is a link to " + url.replace(/^https?:\/\//, "");
+        // -         });
+                
+        // -         var help = function () { alert("Do you need help?"); }
+        // -         var options = {
+        // -             helpButton: { handler: help },
+        // -             strings: { quoteexample: "whatever you're quoting, put it right here" }
+        // -         };
+        // -         var editor2 = new Markdown.Editor(converter2, "-second", options);
+                
+        // -         editor2.run();
+        // -     })();
+  
+  });
+}
 // Profilsida
 if ($('body').hasClass('admin-profilsida')) {
   $('.deleteProfileMedia').on('click', function(){
@@ -409,7 +446,7 @@ if ($('body').hasClass('admin-personlista')) {
           if (rowData.hasOwnProperty('OrgMembership')) {
             var orgMem = rowData['OrgMembership'];
             if (orgMem !== null) {
-              var ret = '<td>';
+              var ret = '<td onclick="">';
               for (var orgKey in orgMem) {
                 if (orgMem[orgKey].OrgName != undefined) {
                   ret += orgMem[orgKey].OrgName + '<br/>';
