@@ -440,13 +440,14 @@ if ($('body').hasClass('admin-personlista')) {
             }
             return ret+'</td>';
           }
-          return '<td></td>';
+          return '<td onclick="window.document.location = \'/admin/person/id/'+rowData['PersonID']+'\'" style="cursor:pointer;"></td>';
         }
+        
         if (index.id == 'Comp') {
           if (rowData.hasOwnProperty('OrgMembership')) {
             var orgMem = rowData['OrgMembership'];
             if (orgMem !== null) {
-              var ret = '<td onclick="">';
+              var ret = '<td onclick="window.document.location = \'/admin/person/id/'+rowData['PersonID']+'\'" style="cursor:pointer;">';
               for (var orgKey in orgMem) {
                 if (orgMem[orgKey].OrgName != undefined) {
                   ret += orgMem[orgKey].OrgName + '<br/>';
@@ -455,12 +456,16 @@ if ($('body').hasClass('admin-personlista')) {
               return ret+'</td>';
             }
           }
-          return '<td></td>';
+          return '<td onclick="window.document.location = \'/admin/person/id/'+rowData['PersonID']+'\'" style="cursor:pointer;"></td>';
+        }
+        if (index.id == "PersonCreated") {
+          var time = rowData[index.id].split(' ');
+          return '<td onclick="window.document.location = \'/admin/person/id/'+rowData['PersonID']+'\'" style="cursor:pointer;">'+time[0]+'</td>';
         }
         if (index.id == "FirstName" || index.id == "LastName") {
-          return '<td>'+rowData[index.id]+'</td>';
+          return '<td onclick="window.document.location = \'/admin/person/id/'+rowData['PersonID']+'\'" style="cursor:pointer;">'+rowData[index.id]+'</td>';
         } else {
-          return '<td>'+rowData[index.id]+'</td>';
+          return '<td onclick="window.document.location = \'/admin/person/id/'+rowData['PersonID']+'\'" style="cursor:pointer;">'+rowData[index.id]+'</td>';
         }
       }
     }

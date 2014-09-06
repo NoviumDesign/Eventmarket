@@ -130,7 +130,7 @@ module.exports = {
     if (req.body.editLogin) {
       loginObject.addPostData(req.body, function () {
         loginObject.save(function (err, login) {
-          req.flash('info', 'User was saved.');
+          req.flash('info', 'Loginuppgifter sparade');
           res.redirect('/admin/person/id/' + login.PersonID);
         });
       });
@@ -139,7 +139,7 @@ module.exports = {
       personObject.addPostData(req.body, function () {
         personObject.save(function (err, person) {
           if (!err) {
-            req.flash('info', 'Person was saved.');
+            req.flash('info', 'Personlig data sparat');
             res.redirect('/admin/person/id/' + person.PersonID);
           } else {
             console.log(err);

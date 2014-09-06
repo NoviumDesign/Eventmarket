@@ -39,9 +39,9 @@ module.exports = function (req, res) {
 
   var perPage = parseInt(url_parts.query.perPage, 10)
   , page = parseInt(url_parts.query.page, 10);
-  console.log(q);
+  
   models.Person.count(q, function(err, c) {
-    console.log(c);
+  
     models.Person.find(
       q, 
       null, 
@@ -55,7 +55,7 @@ module.exports = function (req, res) {
               var personObject = pers.toObject();
               personObject.cards = [];
               for (var resKey in ress) {
-                personObject.cards.push({'id':ress[resKey].id, 'name': ress[resKey].PersonFullText});
+                personObject.cards.push({'id':ress[resKey].id, 'name': ress[resKey].Organization.OrgName});
               }
               sendBack.push(personObject);
               callback();
