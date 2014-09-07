@@ -471,7 +471,32 @@ if ($('body').hasClass('admin-personlista')) {
     }
   });
 }
-
+if ($('body').hasClass('admin-newcategory')) {
+  $('#list-categories').dynatable({
+    dataset: {
+      ajax: true,
+      ajaxUrl: '/api/newcategory',
+      ajaxOnLoad: true,
+      records: []
+    },
+    features: {
+      paginate: true,
+      search: true,
+      recordCount: true,
+      perPageSelect: true
+    },
+    writers: {
+      _cellWriter: function (index, rowData) {
+        console.log(rowData[index.id]);
+        if (index.id == "name") {
+          return '<td><a href="/admin/editnewcategory/id/'+rowData['_id']+'">'+rowData[index.id]+'</a></td>';
+        } else {
+          return '<td>'+rowData[index.id]+'</td>';
+        }
+      }
+    }
+  });
+}
 if ($('body').hasClass('admin-intresselista')) {
   $('#list-categories').dynatable({
     dataset: {

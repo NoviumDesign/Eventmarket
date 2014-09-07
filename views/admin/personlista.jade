@@ -9,8 +9,11 @@ body(class="#{locals.pageClass}")
       h3 Personregister
       .row
         .small-12.columns
+          a.button.small.right(href="/admin/person/id/new") Skapa ny
+        
           //- span#dynatable-search-group-table.dynatable-search Search:
           //-   input#dynatable-query-search-group-table(type='search', data-dynatable-query='search')
+        .small-12.columns
           table#group-table.dynamic-table
             thead
               tr

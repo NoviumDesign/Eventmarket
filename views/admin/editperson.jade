@@ -99,7 +99,7 @@ body(class="#{locals.pageClass}")
                       option(value="", selected=locals.person.RegionID == '') Välj...
                       each item in locals.region
                         option(value="#{item.RegionID}", selected=locals.person.RegionID == item.RegionID) #{item.RegionName}
-                .large-12.columns
+                .large-12.columns(style="display:none;")
                   label
                     | Anteckningar
                     textarea(name='Notes') #{locals.person.Notes}
@@ -225,7 +225,7 @@ body(class="#{locals.pageClass}")
             fieldset
               legend Login-uppgifter
               .row  
-                .large-6.columns
+                .large-6.columns(style="display:none;")
                   label
                     | Avstängd
                     select(name="Disabled")
@@ -241,7 +241,7 @@ body(class="#{locals.pageClass}")
                     | Ange nytt lösenord (för att ändra)
                     input(type="text", name='newpwd')
               .row
-                .large-6.columns
+                .large-6.columns(style="display:none;")
                   label
                     | Superanvändare
                     select(name="SuperUser")

@@ -1,75 +1,76 @@
-extends ../layout
+include includes/head
+body(class="#{locals.pageClass}")
+  include includes/nav
 
-block content
-  section.main-content.container
-    .row
-      .small-2.columns
-        include ../partials/adminmenu
-      .small-10.columns
-        form(method='post')
-          input.button.small(type='submit', value='Save', name="newperson")
-          .row
-            .large-12.columns
+  .row
+    include includes/sidenav
+
+    .large-9.columns.medium-8.columns
+      form(method='post')
+        //- input.button.small(type='submit', value='Save', name="newperson")
+        .row
+          .large-12.columns
+            
+            fieldset
+              legend Personliga data
+              .large-12.columns
+                label
+                  | Epost
+                  input(name='Email', type="text")
+              .large-6.columns
+                label
+                  | Förnamn
+                  input(name='FirstName', type="text")
+                  input(name='CultureID', type="hidden", value="2")
+              .large-6.columns
+                label
+                  | Efternamn
+                  input(name='LastName', type="text")
+              .large-6.columns
+                label
+                  | Mobil
+                  input(name='Mobile', type="text")
+              .large-6.columns
+                label
+                  | Telefon
+                  input(name='Phone', type="text")
+              .large-12.columns(style="display:none;")
+                label
+                  | Notes
+                  textarea(name='Notes')
+        .row
+          .large-12.columns
+            fieldset
+              legend Login-uppgifter
+              .large-12.columns
+                label
+                  | Login-namn
+                  input(name='LoginName', type="text", placeholder="Email address")
+              .large-12.columns
+                label
+                  | Skriv ett lösenord eller lämna tomt för att generera
+                  input(name='newpwd', type='password')
+              .large-6.columns(style="display:none;")
+                label
+                  | Disabled
+                  select(name='Disabled')
+                    option(value="0") Nej
+                    option(value="1") Ja
+              .large-6.columns(style="display:none;")
+                label
+                  | DisabledUntil
+                  textarea(name='DisabledUntil')
+              .large-6.columns(style="display:none;")
+                label
+                  | ValidUntil
+                  textarea(name='ValidUntil')
+              .large-6.columns
+                label
+                  | RootAdmin
+                  select(name='RootAdmin')
+                    option(value="0") Nej
+                    option(value="1") Ja
+        input.button.small(type='submit', value='Spara', name="newperson")
+  include includes/footer
+ 
               
-              fieldset
-                legend Personal data
-                .large-12.columns
-                  label
-                    | Email
-                    input(name='Email', type="text")
-                .large-6.columns
-                  label
-                    | FirstName
-                    input(name='FirstName', type="text")
-                    input(name='CultureID', type="hidden", value="2")
-                .large-6.columns
-                  label
-                    | LastName
-                    input(name='LastName', type="text")
-                .large-6.columns
-                  label
-                    | Mobile
-                    input(name='Mobile', type="text")
-                .large-6.columns
-                  label
-                    | Phone
-                    input(name='Phone', type="text")
-                .large-12.columns
-                  label
-                    | Notes
-                    textarea(name='Notes')
-          .row
-            .large-12.columns
-              fieldset
-                legend Login details
-                .large-12.columns
-                  label
-                    | LoginName
-                    input(name='LoginName', type="text", placeholder="Email address")
-                .large-12.columns
-                  label
-                    | Enter new password or leave empty to autogenerate
-                    input(name='newpwd', type='password')
-                .large-6.columns
-                  label
-                    | Disabled
-                    select(name='Disabled')
-                      option(value="0") No
-                      option(value="1") Yes
-                .large-6.columns
-                  label
-                    | DisabledUntil
-                    textarea(name='DisabledUntil')
-                .large-6.columns
-                  label
-                    | ValidUntil
-                    textarea(name='ValidUntil')
-                .large-6.columns
-                  label
-                    | RootAdmin
-                    select(name='RootAdmin')
-                      option(value="0") No
-                      option(value="1") Yes
-          input.button.small(type='submit', value='Save', name="newperson")
-                
-                

@@ -55,7 +55,7 @@ module.exports = {
       );
     }); */
 
-    res.render('admin/person', {messages: req.flash(), pageClass: 'admin-person', title: 'ADMIN'});
+    res.render('admin/personlista', {messages: req.flash(), pageClass: 'admin-person', title: 'ADMIN'});
   },
 
   /**
@@ -111,7 +111,7 @@ module.exports = {
                 });
               } else {
                 req.flash('info', 'Cant load this person');
-                res.redirect('/admin/person');
+                res.redirect('/admin/personlista');
               }
             });
           }
@@ -152,7 +152,7 @@ module.exports = {
         personObject.save(function (err, person) {
 
           //req.flash('info', 'User was saved.');
-          res.redirect('/admin/person');
+          res.redirect('/admin/personlista');
         });
       }); // addPostData
     }

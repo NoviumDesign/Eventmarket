@@ -1,87 +1,88 @@
-// categoryId
-extends ../layout
+include includes/head
+body(class="#{locals.pageClass}")
+  include includes/nav
 
-block content
-  section.main-content.container
-    .row
-      .small-2.columns
-        include ../partials/adminmenu
-      .small-10.columns
-        form(method='post')
-          input.button.small(type='submit', value='Save')
-          .row
-            .large-12.columns
-              fieldset
-                legend Category data
-                .row
-                  .large-12.columns
+  .row
+    include includes/sidenav
+
+    .large-9.columns.medium-8.columns
+      h3 Kategorier
+      .row
+        .small-12.columns
+          form(method='post')
+            .row
+              .large-12.columns
+                fieldset
+                  legend Kategoridata
+                  .row
+                    .large-12.columns
+                        label
+                          | Namn
+                          input(name='name', type='text', value=locals.category.name)
+                    .large-12.columns
                       label
-                        | name
-                        input(name='name', type='text', value=locals.category.name)
-                  .large-12.columns
-                    label
-                      | displayName
-                      input(name='displayName', type='text', value=locals.category.displayName)
-                  .large-6.columns
-                    label
-                      | topLevel
-                      select(name='topLevel')
-                        option(value="1", selected=locals.category.topLevel == 1) Yes
-                        option(value="0", selected=locals.category.topLevel == 0) No
-                  .large-6.columns
-                    label
-                      | parent
-                      select(name="parent")
-                        option(value="") None
-                        each item in locals.parents
-                          - if (!locals.category._id || (locals.category._id && (item._id.toHexString() !== locals.category._id.toHexString())))
-                            option(value="#{item._id}", selected=locals.category.parent == item._id) #{item.displayName}
-                          
-                  .large-6.columns
-                    label
-                      | visible
-                      select(name='visible')
-                        option(value="1", selected=locals.category.visible == 1) Yes
-                        option(value="0", selected=locals.category.visible == 0) No
-                  .large-6.columns
-                    label
-                      | sortOrder
-                      input(name='sortOrder', type='text', value=locals.category.sortOrder)
-                  .large-12.columns
-                    label
-                      | notes
-                      textarea(name='notes') #{locals.category.notes}
-                  .large-12.columns
-                    label
-                      | icon
-                      input(name='icon',type='text', value=locals.category.icon)
-              .large-3.columns
-                label
-                  | _id
-                br
-                span #{locals.category._id}
-                input(name='_id', type='hidden', readonly='readonly', value=locals.category._id)
-              .large-3.columns
-                label
-                  | createdDate
-                br
-                span #{locals.category.createdDate}
-                  //input(name='createdDate', type='text', readonly='readonly', value=locals.category.createdDate)
-              .large-3.columns
-                label
-                  | createdBy
-                br
-                span 
-                  - if(locals.category.createdBy) { 
-                    #{locals.category.createdBy} 
-                  - } else {
-                    #{user._id}
-                  - } 
-                  //input(name='createdBy', type='text', readonly='readonly', value=locals.category.createdBy)
-              .large-3.columns
-                label
-                  | lastUpdate
-                br
-                span #{locals.category.lastUpdate}
-                  //input(name='lastUpdate', type='text', readonly='readonly', value=locals.category.lastUpdate)
-          input.button.small(type='submit', value='Save')
+                        | Visningsnamn
+                        input(name='displayName', type='text', value=locals.category.displayName)
+                    .large-6.columns
+                      label
+                        | Högsta nivå
+                        select(name='topLevel')
+                          option(value="1", selected=locals.category.topLevel == 1) Ja
+                          option(value="0", selected=locals.category.topLevel == 0) Nej
+                    .large-6.columns
+                      label
+                        | "Förälder"
+                        select(name="parent")
+                          option(value="") Ingen
+                          each item in locals.parents
+                            - if (!locals.category._id || (locals.category._id && (item._id.toHexString() !== locals.category._id.toHexString())))
+                              option(value="#{item._id}", selected=locals.category.parent == item._id) #{item.displayName}
+                            
+                    .large-6.columns
+                      label
+                        | Synlig
+                        select(name='visible')
+                          option(value="1", selected=locals.category.visible == 1) Ja
+                          option(value="0", selected=locals.category.visible == 0) Nej
+                    .large-6.columns
+                      label
+                        | Sorteringsordning
+                        input(name='sortOrder', type='text', value=locals.category.sortOrder)
+                    .large-12.columns(style="display:none;")
+                      label
+                        | notes
+                        textarea(name='notes') #{locals.category.notes}
+                    .large-12.columns(style="display:none;")
+                      label
+                        | icon
+                        input(name='icon',type='text', value=locals.category.icon)
+                .large-3.columns(style="display:none;")
+                  label
+                    | _id
+                  br
+                  span #{locals.category._id}
+                  input(name='_id', type='hidden', readonly='readonly', value=locals.category._id)
+                .large-3.columns(style="display:none;")
+                  label
+                    | createdDate
+                  br
+                  span #{locals.category.createdDate}
+                    //input(name='createdDate', type='text', readonly='readonly', value=locals.category.createdDate)
+                .large-3.columns(style="display:none;")
+                  label
+                    | createdBy
+                  br
+                  span 
+                    - if(locals.category.createdBy) { 
+                      #{locals.category.createdBy} 
+                    - } else {
+                      #{user._id}
+                    - } 
+                    //input(name='createdBy', type='text', readonly='readonly', value=locals.category.createdBy)
+                .large-3.columns(style="display:none;")
+                  label
+                    | lastUpdate
+                  br
+                  span #{locals.category.lastUpdate}
+                    //input(name='lastUpdate', type='text', readonly='readonly', value=locals.category.lastUpdate)
+            input.button.small(type='submit', value='Save')
