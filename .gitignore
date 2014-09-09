@@ -4,6 +4,7 @@ bower_components/*
 dump/*
 client/styles/sass/.sass-cache/*
 client/styles/scss/.sass-cache/*
+*.css
 
 config.codekit
 newrelic_agent.log
