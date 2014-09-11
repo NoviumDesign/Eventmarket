@@ -309,7 +309,6 @@ module.exports = {
                 // Looking for all in subgroup
                 var intresseOr = [];
                 for (var iOr in intr[searchTerm]) {
-                  console.log('Pushing '+iOr);
                   intresseOr.push({ intresse: { $elemMatch: { value: iOr } } });
                 }
                 and.push({ $or: intresseOr });
@@ -318,7 +317,12 @@ module.exports = {
                 and.push( { intresse: { $elemMatch: { value: searchTerm } } } );
               }
             }
-            console.log(and);
+            
+            if (searchKey == 'region') {
+              console.log(searchTerm);
+              and.push( { 'Organization.Lan': new RegExp(searchTerm, 'i') } );
+            }
+            
             if (searchKey == 'Active') {
               if (searchTerm == '0-12 mån') {
                 var today = new Date();
@@ -339,6 +343,8 @@ module.exports = {
                 and.push({"LogTimeIndexed" : { $lte:  helpers.sqlDateFormat(today) }});
               }
             }
+            
+
             /*var term = { searchKey : new RegExp(searchTerm, "i") };
             q.$or.push(term);
             var term = { LastName : new RegExp(searchTerm, "i") };
