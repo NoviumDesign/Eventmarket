@@ -259,99 +259,127 @@ module.exports = {
       
       var and = [];
       var personalOr = [];
-      //q.$or = [];
-      for( var key in url_parts.query){
-        searchTerm = '';
-        var sp = key.split('[');
-        if(sp[0] == 'sorts'){
-            sortKey = sp[1].replace(']', '');
-            sortDir = url_parts.query[key];
-        }
-        if(sp[0] == 'queries'){
-            searchKey = sp[1].replace(']', '');
-            searchTerm = url_parts.query[key];
-        }
-        if (searchTerm !== '') {
-          if (searchKey == 'ResponsibleFullText') {
-            and.push({ResponsibleFullText: new RegExp(searchTerm, 'i')});
-          }
-          if (searchKey == 'AccessGroupFullText') {
-            and.push({AccessGroupFullText: new RegExp(searchTerm, 'i')});
-          }
-          if (searchKey == 'search') {
-            // Namn, epostadress på all personal
-            personalOr.push({ 'Personal.fullName' : new RegExp(searchTerm, 'i') });
-            personalOr.push({ 'Personal.email' : new RegExp(searchTerm, 'i') });
-            personalOr.push({ 'PersonFullText' : new RegExp(searchTerm, 'i') });
-            //q["$and"].push({ $or: coins } );
-            //and.push({ $or: { 'Personal.fullName' : new RegExp(searchTerm, 'i') } });
-            //and.push({ $or: { 'Personal.email' : new RegExp(searchTerm, 'i') } });
-            //and.push({PersonFullText: new RegExp(searchTerm, 'i')});
-          }
-          if (searchKey == 'intresse') {
-            and.push( { intresse: { $elemMatch: { value: searchTerm } } } );
-          }
-          console.log(and);
-          if (searchKey == 'Active') {
-            if (searchTerm == '0-12 mån') {
-              var today = new Date();
-              var oneyear = new Date();
-              oneyear.setMonth(oneyear.getMonth() - 12);
-              and.push({"LogTimeIndexed" : { $gte : helpers.sqlDateFormat(oneyear), $lte:  helpers.sqlDateFormat(today) }});
-            }
-            if (searchTerm == '12-36 mån') {
-              var today = new Date();
-              today.setMonth(today.getMonth() - 12);
-              var oneyear = new Date();
-              oneyear.setMonth(oneyear.getMonth() - 36);
-              and.push({"LogTimeIndexed" : { $gte : helpers.sqlDateFormat(oneyear), $lte:  helpers.sqlDateFormat(today) }});
-            }
-            if (searchTerm == '36+ mån') {
-              var today = new Date();
-              today.setMonth(today.getMonth() - 36);
-              and.push({"LogTimeIndexed" : { $lte:  helpers.sqlDateFormat(today) }});
-            }
-          }
-          /*var term = { searchKey : new RegExp(searchTerm, "i") };
-          q.$or.push(term);
-          var term = { LastName : new RegExp(searchTerm, "i") };
-          q.$or.push(term);
-          var term = { Email : new RegExp(searchTerm, "i") };
-          q.$or.push(term);*/
-        }
-      }
       
-      if (personalOr.length > 0) {
-        and.push({ $or: personalOr });
-      }
-
-      if (and.length > 0) {
-        q.$and = and;
-      }
-
-      sortObj[sortKey] = parseInt(sortDir, 10);
-
-      crmModels.CRMContactObject.count(q, function(err, c) {
-        if (err) console.log(err);
-        if (c) {
-          console.log('Count: '+c);
-          crmModels.CRMContactObject.find(
-            q, 
-            null,
-            { sort: sortObj, skip: (perPage * page) - perPage , limit: perPage }, 
-            function (err, data) {
-              var response = {
-                "records": data,
-                "queryRecordCount": c,
-                "totalRecordCount": data.length
+      models.intresse.find({},null, {sort:{sortOrder: -1}}, function (err, intresse) {
+        // Prepare intressen
+        var intr = {};
+        for(var iKey in intresse) {
+          if (intresse[iKey].topLevel == '1') {
+            intr[intresse[iKey].id] = {};
+            for(var key in intresse) {
+              if (intresse[key].parent == intresse[iKey].id) {
+                //console.log('found match');
+                intr[intresse[iKey].id][intresse[key].id] = intresse[key];
               }
-              res.json(response);
             }
-          );
-        } else {
-          res.json({ 'records': {}, 'queryRecordCount': 0, 'totalRecordCount': 0 });
+          }
         }
-      });
+        
+        //q.$or = [];
+        for( var key in url_parts.query){
+          searchTerm = '';
+          var sp = key.split('[');
+          if(sp[0] == 'sorts'){
+              sortKey = sp[1].replace(']', '');
+              sortDir = url_parts.query[key];
+          }
+          if(sp[0] == 'queries'){
+              searchKey = sp[1].replace(']', '');
+              searchTerm = url_parts.query[key];
+          }
+          if (searchTerm !== '') {
+            if (searchKey == 'ResponsibleFullText') {
+              and.push({ResponsibleFullText: new RegExp(searchTerm, 'i')});
+            }
+            if (searchKey == 'AccessGroupFullText') {
+              and.push({AccessGroupFullText: new RegExp(searchTerm, 'i')});
+            }
+            if (searchKey == 'search') {
+              // Namn, epostadress på all personal
+              personalOr.push({ 'Personal.fullName' : new RegExp(searchTerm, 'i') });
+              personalOr.push({ 'Personal.email' : new RegExp(searchTerm, 'i') });
+              personalOr.push({ 'PersonFullText' : new RegExp(searchTerm, 'i') });
+              //q["$and"].push({ $or: coins } );
+              //and.push({ $or: { 'Personal.fullName' : new RegExp(searchTerm, 'i') } });
+              //and.push({ $or: { 'Personal.email' : new RegExp(searchTerm, 'i') } });
+              //and.push({PersonFullText: new RegExp(searchTerm, 'i')});
+            }
+            if (searchKey == 'intresse') {
+              if (intr.hasOwnProperty(searchTerm)) {
+                // Looking for all in subgroup
+                var intresseOr = [];
+                for (var iOr in intr[searchTerm]) {
+                  console.log('Pushing '+iOr);
+                  intresseOr.push({ intresse: { $elemMatch: { value: iOr } } });
+                }
+                and.push({ $or: intresseOr });
+              } else {
+                // Looking for specific subgroup
+                and.push( { intresse: { $elemMatch: { value: searchTerm } } } );
+              }
+            }
+            console.log(and);
+            if (searchKey == 'Active') {
+              if (searchTerm == '0-12 mån') {
+                var today = new Date();
+                var oneyear = new Date();
+                oneyear.setMonth(oneyear.getMonth() - 12);
+                and.push({"LogTimeIndexed" : { $gte : helpers.sqlDateFormat(oneyear), $lte:  helpers.sqlDateFormat(today) }});
+              }
+              if (searchTerm == '12-36 mån') {
+                var today = new Date();
+                today.setMonth(today.getMonth() - 12);
+                var oneyear = new Date();
+                oneyear.setMonth(oneyear.getMonth() - 36);
+                and.push({"LogTimeIndexed" : { $gte : helpers.sqlDateFormat(oneyear), $lte:  helpers.sqlDateFormat(today) }});
+              }
+              if (searchTerm == '36+ mån') {
+                var today = new Date();
+                today.setMonth(today.getMonth() - 36);
+                and.push({"LogTimeIndexed" : { $lte:  helpers.sqlDateFormat(today) }});
+              }
+            }
+            /*var term = { searchKey : new RegExp(searchTerm, "i") };
+            q.$or.push(term);
+            var term = { LastName : new RegExp(searchTerm, "i") };
+            q.$or.push(term);
+            var term = { Email : new RegExp(searchTerm, "i") };
+            q.$or.push(term);*/
+          }
+        }
+        
+        if (personalOr.length > 0) {
+          and.push({ $or: personalOr });
+        }
+
+        if (and.length > 0) {
+          q.$and = and;
+        }
+
+        sortObj[sortKey] = parseInt(sortDir, 10);
+
+        crmModels.CRMContactObject.count(q, function(err, c) {
+          if (err) console.log(err);
+          if (c) {
+            console.log('Count: '+c);
+            crmModels.CRMContactObject.find(
+              q, 
+              null,
+              { sort: sortObj, skip: (perPage * page) - perPage , limit: perPage }, 
+              function (err, data) {
+                var response = {
+                  "records": data,
+                  "queryRecordCount": c,
+                  "totalRecordCount": data.length
+                }
+                res.json(response);
+              }
+            );
+          } else {
+            res.json({ 'records': {}, 'queryRecordCount': 0, 'totalRecordCount': 0 });
+          }
+        });
+      }); // intresse find end
     },
     // Login
     login: function (req, res) {

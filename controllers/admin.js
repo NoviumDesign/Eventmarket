@@ -54,12 +54,14 @@ module.exports = {
 
   kundkortlista: function (req, res) {
     models.intresse.find({},null, {sort:{sortOrder: -1}}, function (err, intresse) {
-      console.log(intresse);
-      res.render('admin/kundkortlista', {
-        usr: req.user.toObject(),
-        pageClass: 'admin-kundkortlista',
-        title: 'ADMIN',
-        intresse: intresse
+      models.Region.find({}, function (err, region) {
+        res.render('admin/kundkortlista', {
+          usr: req.user.toObject(),
+          pageClass: 'admin-kundkortlista',
+          title: 'ADMIN',
+          intresse: intresse,
+          region: region
+        });
       });
     });
   },
