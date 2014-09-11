@@ -1,0 +1,18 @@
+- if (locals.successMsg) {
+  each item in locals.successMsg
+    .alert-box.success(data-alert='')
+      div #{item}
+      a.close(href='#') &times;
+- }
+- if (locals.infoMsg) {
+  each item in locals.infoMsg
+    .alert-box.info(data-alert='')
+      div #{item}
+      a.close(href='#') &times;
+- }
+- if (locals.errorMsg) {
+  each item in locals.errorMsg
+    .alert-box.alert(data-alert='')
+      div #{item}
+      a.close(href='#') &times;
+- }

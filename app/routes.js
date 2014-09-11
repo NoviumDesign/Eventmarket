@@ -122,6 +122,17 @@ module.exports.initialize = function(app) {
       next();
     });
 
+    /**
+     * Always send messages to views
+     * 
+     */
+    app.all("/admin/*", function (req, res, next) {
+      res.locals.successMsg = req.flash('success');
+      res.locals.infoMsg = req.flash('info');
+      res.locals.errorMsg = req.flash('error');
+      next();
+    });
+
     // *** Added by front-end, might want to move to desired location
     app.get('/admin/personlista', admin.personlista);
     app.get('/admin/profilsidlista', admin.profilsidlista);

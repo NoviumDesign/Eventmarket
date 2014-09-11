@@ -131,8 +131,7 @@ module.exports = {
                         intresse: JSON.stringify(massagedIntressen),
                         kundtitle: kundtitle,
                         pageClass: 'admin-kundkort', 
-                        title: 'ADMIN',
-                        messages: req.flash('info'),
+                        title: 'ADMIN'
                       });
                     }
                   );
@@ -218,7 +217,10 @@ module.exports = {
                   crmObj.PersonFullText = crmObj.Personal[0].fullName;
                 }
                 crmObj.save(function(err){
-                  req.flash('info', 'Kundkort uppdaterat!');
+                  if (err) {
+                    req.flash('error', err);
+                  }
+                  req.flash('success', 'Kundkort uppdaterat!');
                   res.redirect('/admin/kundkort/id/' + req.body._id);
                 });
               }
@@ -289,12 +291,9 @@ module.exports = {
                       geo: geo,
                       cats: JSON.stringify(massagedCats),
                       pageClass: 'admin-profilsida',
-                      title: 'ADMIN',
-                      messages: req.flash('info')
+                      title: 'ADMIN'
                     });
                   });
-
-                  
                 }
               );
             }); // new category find
@@ -393,7 +392,10 @@ module.exports = {
               bnr.InfoText2 = req.body.InfoText2;
               
               bnr.save(function (err, bnr) {
-                console.log(err);
+                if (err) {
+                  req.flash('error', err);
+                }
+                req.flash('success', 'Kundkort uppdaterat!');
                 res.redirect('/admin/profilsida/id/' + req.body._id);
               });
             });
@@ -532,7 +534,10 @@ module.exports = {
             bnr.OwnerEmail      = req.body.OwnerEmail;
 
             bnr.save(function (err, bnr) {
-              console.log(err);
+              if (err) {
+                req.flash('error', err);
+              }
+              req.flash('success', 'Banner uppdaterad');
               res.redirect('/admin/editbanner/id/' + bnr.BannerICID);
             });
           });
@@ -613,8 +618,7 @@ module.exports = {
           category: {},
           parents: parents,
           pageClass: 'admin-editintresse',
-          title: 'ADMIN',
-          messages: req.flash('info')
+          title: 'ADMIN'
         });
       } else {
         models.intresse.findOne({ _id: req.param("intresseId") }, function (err, cat) {
@@ -624,8 +628,7 @@ module.exports = {
               category: cat.toObject(),
               parents: parents,
               pageClass: 'admin-editintresse',
-              title: 'ADMIN',
-              messages: req.flash('info')
+              title: 'ADMIN'
             });
           }
         });
@@ -650,7 +653,10 @@ module.exports = {
         cat.icon        = req.body.icon;
         cat.createdBy   = req.user._id;
         cat.save(function (err, cat) {
-          console.log(err);
+          if (err) {
+            req.flash('error', err);
+          }
+          req.flash('success', 'Kategori sparad');
           res.redirect('/admin/editnewcategory/id/' + cat._id);
         });
       });
@@ -660,8 +666,10 @@ module.exports = {
       newCat.createdDate = helpers.sqlDateFormat(new Date());
       newCat.lastUpdate  = helpers.sqlDateFormat(new Date());
       newCat.save(function (err, events) {
-        console.log(err);
-        console.log(events);
+        if (err) {
+          req.flash('error', err);
+        }
+        req.flash('success', 'Ny kategori skapad');
         res.redirect('/admin/newcategory');
       });
     }
@@ -679,8 +687,10 @@ module.exports = {
         cat.icon        = req.body.icon;
         cat.createdBy   = req.user._id;
         cat.save(function (err, cat) {
-          if (err) console.log(err);
-          req.flash('info', 'Intressekategori uppdaterad.');
+          if (err) {
+            req.flash('error', err);
+          }
+          req.flash('success', 'Intressekategori uppdaterad');
           res.redirect('/admin/editintresse/id/' + cat._id);
         });
       });
@@ -690,8 +700,10 @@ module.exports = {
       newCat.createdDate = helpers.sqlDateFormat(new Date());
       newCat.lastUpdate  = helpers.sqlDateFormat(new Date());
       newCat.save(function (err, events) {
-        if (err) console.log(err);
-        req.flash('info', 'Ny intressekategori sparad.');
+        if (err) {
+          req.flash('error', err);
+        }
+        req.flash('success', 'Ny intressekategori sparad');
         res.redirect('/admin/editintresse/id/'+ events._id);
       });
     }

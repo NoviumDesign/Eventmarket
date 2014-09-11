@@ -55,7 +55,7 @@ module.exports = {
       );
     }); */
 
-    res.render('admin/personlista', {messages: req.flash(), pageClass: 'admin-person', title: 'ADMIN'});
+    res.render('admin/personlista', {pageClass: 'admin-person', title: 'ADMIN'});
   },
 
   /**
@@ -75,7 +75,6 @@ module.exports = {
             res.render(
               'admin/newperson',
               {
-                messages: req.flash('info'),
                 pageClass: 'admin-newperson',
                 title: 'ADMIN',
                 country: country,
@@ -98,7 +97,6 @@ module.exports = {
                   res.render(
                     'admin/editperson',
                     {
-                      messages: req.flash('info'),
                       login: login ? login.toObject() : {},
                       person: person.toObject(),
                       pageClass: 'admin-editperson',
@@ -130,7 +128,10 @@ module.exports = {
     if (req.body.editLogin) {
       loginObject.addPostData(req.body, function () {
         loginObject.save(function (err, login) {
-          req.flash('info', 'Loginuppgifter sparade');
+          if (err) {
+            req.flash('error', err);
+          }
+          req.flash('success', 'Loginuppgifter sparade');
           res.redirect('/admin/person/id/' + login.PersonID);
         });
       });
@@ -139,7 +140,10 @@ module.exports = {
       personObject.addPostData(req.body, function () {
         personObject.save(function (err, person) {
           if (!err) {
-            req.flash('info', 'Personlig data sparat');
+            if (err) {
+              req.flash('error', err);
+            }
+            req.flash('success', 'Personlig data sparat');
             res.redirect('/admin/person/id/' + person.PersonID);
           } else {
             console.log(err);
@@ -150,8 +154,10 @@ module.exports = {
     if (req.body.newperson) {
       personObject.addPostData(req.body, function () {
         personObject.save(function (err, person) {
-
-          //req.flash('info', 'User was saved.');
+          if (err) {
+            req.flash('error', err);
+          }
+          req.flash('success', 'Ny person sparad');
           res.redirect('/admin/personlista');
         });
       }); // addPostData
