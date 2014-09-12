@@ -15,11 +15,11 @@ body(class=locals.pageClass)
         .row.administration-content
           .large-2.columns.medium-6.columns
             label Kundansvarig
-              select(name="CultureID")
-                option(value="538a04a0e492b29f3ef1c506", selected=locals.contactObject.ResponsibleFullText == 'Jennie Sterner') Jennie Sterner
-                option(value="538a04a0e492b29f3ef1c995", selected=locals.contactObject.ResponsibleFullText == 'Johnny Sterner') Johnny Sterner
-                option(value="538a04a0e492b29f3ef1ccbd", selected=locals.contactObject.ResponsibleFullText == 'Toni Lahtinen') Toni Lahtinen
-                option(value="", selected=locals.contactObject.ResponsibleFullText == undefined) Ingen vald
+              select(name="ResponsibleObject")
+                option(value="538a04a0e492b29f3ef1c506", selected=locals.contactObject.ResponsibleObject == '538a04a0e492b29f3ef1c506') Jennie Sterner
+                option(value="538a04a0e492b29f3ef1c995", selected=locals.contactObject.ResponsibleObject == '538a04a0e492b29f3ef1c995') Johnny Sterner
+                option(value="538a04a0e492b29f3ef1ccbd", selected=locals.contactObject.ResponsibleObject == '538a04a0e492b29f3ef1ccbd') Toni Lahtinen
+                option(value="", selected=locals.contactObject.ResponsibleObject == undefined) Ingen vald
           .large-2.columns.medium-6.columns.end
             label Grupptillhörighet
               select(name="AccessGroupFullText")
@@ -397,8 +397,38 @@ body(class=locals.pageClass)
                           .small-12.columns
                             a.button Arkivera
                             a.button.alert Radera
-                  a.button Lägg till kommande kontakt
+                  a.button(data-reveal-id="newContactOrder") Lägg till kommande kontakt
+
             button(type='Submit') Spara
+    
+    #newContactOrder.reveal-modal(data-reveal="data-reveal")
+      h2 Lägg till kommande kontakt
+      a.close-reveal-modal ×
+      form(method="post")
+        fieldset
+          legend Kontaktorder
+          .row
+            .large-12.columns
+              label
+                | Beskrivning
+                textarea(name="beskrivning")
+          .row
+            .large-6.columns
+              label Datum för kommande kontakt
+              input(type="date", name="datum")
+            .large-6.columns
+              label Ev. tid för kommande kontakt
+              input(type="time", name="tid")
+          .row
+            .large-12.columns
+              label Noteringsfält
+              - var datum = new Date();
+              - var tid = new Date();
+              - datum = datum.getUTCFullYear() + '-' + ('0' + (datum.getMonth() + 1)).slice(-2)+'-'+('0' + (datum.getDate() + 1)).slice(-2);
+              - var tid = tid.getHours() + ':' +('0' + (tid.getMinutes() + 1)).slice(-2);
+              - var user = locals.currentUser.PersonData[0].FirstName + ' ' + locals.currentUser.PersonData[0].LastName;
+              textarea(name="noteringar")
+                | #{datum} #{tid} #{user}
     #newEmployee.reveal-modal(data-reveal='data-reveal')
       .row
         .small-12.columns
