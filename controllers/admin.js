@@ -266,6 +266,7 @@ module.exports = {
       if (err) {
         console.log(err);
         req.flash('error', err);
+        req.flash('error', 'Kontaktordern sparades inte.');
         res.redirect('/admin/kundkort/id/' + req.body.CardObjectRef);
       } else {
         req.flash('success', 'Ny kontaktorder skapad');
