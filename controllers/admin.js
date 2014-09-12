@@ -14,7 +14,8 @@ var models = require('../app/models'),
   personObject     = require('../app/objects/person'),
   personController = require('../controllers/admin/person'),
   crmModels        = require('../app/CRMModels'),
-  indexer          = require('../app/indexer');
+  indexer          = require('../app/indexer'),
+  ContactOrder = require('../app/objects/ContactOrder');
 
 module.exports = {
   editor: function (req, res) {
@@ -251,6 +252,24 @@ module.exports = {
         ); // End async each cats
       } else {
         res.redirect('/admin/kundkort/id/' + req.body._id);
+      }
+    });
+  },
+  /**
+   * Save a new contactorder
+   * @param  {[type]} req [description]
+   * @param  {[type]} res [description]
+   * @return {[type]}     [description]
+   */
+  savekundkortcontactorder: function (req, res) {
+    ContactOrder.addData(req.body).save(function(err) {
+      if (err) {
+        console.log(err);
+        req.flash('error', err);
+        res.redirect('/admin/kundkort/id/' + req.body.CardObjectRef);
+      } else {
+        req.flash('success', 'Ny kontaktorder skapad');
+        res.redirect('/admin/kundkort/id/' + req.body.CardObjectRef);
       }
     });
   },

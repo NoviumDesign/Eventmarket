@@ -404,21 +404,23 @@ body(class=locals.pageClass)
     #newContactOrder.reveal-modal(data-reveal="data-reveal")
       h2 Lägg till kommande kontakt
       a.close-reveal-modal ×
-      form(method="post")
+      form(method="post", action="/admin/savekundkortcontactorder")
+        input(type="hidden", name="CreatedBy", value=locals.currentUser._id)
+        input(type="hidden", name="CardObjectRef", value=locals.contactObject._id)
         fieldset
           legend Kontaktorder
           .row
             .large-12.columns
               label
                 | Beskrivning
-                textarea(name="beskrivning")
+                textarea(name="Description")
           .row
             .large-6.columns
               label Datum för kommande kontakt
-              input(type="date", name="datum")
+              input(type="date", name="ExecuteDate")
             .large-6.columns
               label Ev. tid för kommande kontakt
-              input(type="time", name="tid")
+              input(type="time", name="ExecuteTime")
           .row
             .large-12.columns
               label Noteringsfält
@@ -427,8 +429,31 @@ body(class=locals.pageClass)
               - datum = datum.getUTCFullYear() + '-' + ('0' + (datum.getMonth() + 1)).slice(-2)+'-'+('0' + (datum.getDate() + 1)).slice(-2);
               - var tid = tid.getHours() + ':' +('0' + (tid.getMinutes() + 1)).slice(-2);
               - var user = locals.currentUser.PersonData[0].FirstName + ' ' + locals.currentUser.PersonData[0].LastName;
-              textarea(name="noteringar")
-                | #{datum} #{tid} #{user}
+              textarea(name="Comment")
+                | #{datum} #{tid} #{user} &#013;&#010;
+
+          .row
+            .large-6.columns
+              label Orderansvarig
+              select(name="Responsible")
+                option(value="538a04a0e492b29f3ef1c506") Jennie Sterner
+                option(value="538a04a0e492b29f3ef1c995") Johnny Sterner
+                option(value="538a04a0e492b29f3ef1ccbd") Toni Lahtinen
+            .large-6.columns
+              label Kontakttyp
+              select(name="OrderType")
+                option(value="1") Förnya profilsida 
+                option(value="2") Sälj in Profilsida
+                option(value="13") Demosida
+                option(value="3") Kundvårda
+                option(value="6") Släck
+                option(value="21") Erbjudande 
+                option(value="22") Mailannons 
+                option(value="23") Meeting
+                option(value="4") Övrigt
+          .row
+            .large-12.columns
+              button(type='Submit') Spara
     #newEmployee.reveal-modal(data-reveal='data-reveal')
       .row
         .small-12.columns

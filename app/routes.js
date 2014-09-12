@@ -148,6 +148,8 @@ module.exports.initialize = function(app) {
     app.get('/admin/kundkortlista', admin.kundkortlista);
     app.get('/admin/kundkort/id/:KundkortID', admin.kundkort);
     app.post('/admin/savekundkort', admin.savekundkort);
+    app.post('/admin/savekundkortcontactorder', admin.savekundkortcontactorder);
+
 
     // Profilsidor
     app.get('/admin/profilsida/id/:profilSidaId', admin.profilsida);
