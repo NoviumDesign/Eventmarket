@@ -27,11 +27,11 @@ body(class="#{locals.pageClass}")
                       label
                         | Högsta nivå
                         select(name='topLevel')
-                          option(value="1", selected=locals.category.topLevel == 1) Ja
-                          option(value="0", selected=locals.category.topLevel == 0) Nej
+                          option(value="1", selected=locals.category.topLevel == 1) Huvudkategori
+                          option(value="0", selected=locals.category.topLevel == 0) Underkategori
                     .large-6.columns
                       label
-                        | "Förälder"
+                        | Underkategori till
                         select(name="parent")
                           option(value="") Ingen
                           each item in locals.parents

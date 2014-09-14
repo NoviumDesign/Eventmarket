@@ -48,7 +48,7 @@ body(class="#{locals.pageClass}")
                   label
                     | Address 1
                     input(type="text", name='Address1', value=locals.person.Address1)
-                .large-12.columns
+                .large-12.columns(style="display:none;")
                   label
                     | Address 2
                     input(type="text", name='Address2', value=locals.person.Address2)
@@ -76,23 +76,23 @@ body(class="#{locals.pageClass}")
                   label
                     | Telefon
                     input(type="text", name='Phone', value=locals.person.Phone)
-                .large-4.columns
+                .large-4.columns(style="display:none;")
                   label
                     | Fax
                     input(type="text", name='Fax', value=locals.person.Fax)
-                .large-6.columns
+                .large-6.columns(style="display:none;")
                   label
                     | Språk
                     select(name="CultureID")
                       each item in locals.culture
                         option(value="#{item.CultureID}", selected=locals.person.CultureID == item.CultureID) #{item.Lang}
-                .large-6.columns
+                .large-6.columns(style="display:none;")
                   label
                     | Dold
                     select(name="Hidden")
                       option(value="1", selected=locals.person.Hidden == '1') Ja
                       option(value="0", selected=locals.person.Hidden == '0') Nej
-                .large-6.columns
+                .large-6.columns(style="display:none;")
                   label
                     | Län
                     select(name="RegionID")
@@ -247,7 +247,7 @@ body(class="#{locals.pageClass}")
                     select(name="SuperUser")
                       option(value="0", selected=locals.login.SuperUser == "0") Nej
                       option(value="1", selected=locals.login.SuperUser == "1") Ja
-                .large-6.columns
+                .large-6.columns(style="display:none;")
                   label
                     | Root-administratör
                     select(name="RootAdmin")
