@@ -122,6 +122,17 @@ module.exports.initialize = function(app) {
       next();
     });
 
+    /**
+     * Always send messages to views
+     * 
+     */
+    app.all("/admin/*", function (req, res, next) {
+      res.locals.successMsg = req.flash('success');
+      res.locals.infoMsg = req.flash('info');
+      res.locals.errorMsg = req.flash('error');
+      next();
+    });
+
     // *** Added by front-end, might want to move to desired location
     app.get('/admin/personlista', admin.personlista);
     app.get('/admin/profilsidlista', admin.profilsidlista);
@@ -137,6 +148,8 @@ module.exports.initialize = function(app) {
     app.get('/admin/kundkortlista', admin.kundkortlista);
     app.get('/admin/kundkort/id/:KundkortID', admin.kundkort);
     app.post('/admin/savekundkort', admin.savekundkort);
+    app.post('/admin/savekundkortcontactorder', admin.savekundkortcontactorder);
+
 
     // Profilsidor
     app.get('/admin/profilsida/id/:profilSidaId', admin.profilsida);

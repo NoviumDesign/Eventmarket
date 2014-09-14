@@ -1,7 +1,7 @@
 include includes/head
 body(class="#{locals.pageClass}")
   include includes/nav
-
+  include includes/messages
   .row
     include includes/sidenav
 
@@ -33,49 +33,29 @@ body(class="#{locals.pageClass}")
                 option Ingen vald
             span.dynatable-custom-select Intresse
               select#intresse(name="intresse")
-                //- option(value="") Alla
-                //- - for (var key in locals.intresse) {
-                //-   - if (locals.intresse[key].topLevel !== '1') {
-                //-     option(value=locals.intresse[key]._id) #{locals.intresse[key].name}
-                //-   - }
-                //- - }
+                option(value='') Alla
+                - var optGroups = {};
+                - for (var key in locals.intresse) {
+                  - if (locals.intresse[key].topLevel == '1') {
+                    - optGroups[locals.intresse[key].id] = locals.intresse[key];
+                  - }
+                - }
+                - for (var key in optGroups) {
+                  optgroup(label=optGroups[key].name)
+                  option(value=optGroups[key]._id) Alla
+                  - for (var iKey in locals.intresse) {
+                    - if (locals.intresse[iKey].parent == optGroups[key].id) {
+                      option(value=locals.intresse[iKey]._id) #{locals.intresse[iKey].name}
+                    - }
+                  - }
+                - }
 
-                //- Above optionlist should be like this with optgroups
-
-                optgroup(label="Huvudkategori")
-                  option Alla
-                  option Val 1
-                  option Val 2
-                  option Val 3
-                optgroup(label="Huvudkategori")
-                  option Alla
-                  option Val 1
-                  option Val 2
-                  option Val 3
             span.dynatable-custom-select Län
-              select#search-responsible(name='')
-                option Alla
-                option Stockholms Län
-                option Uppsala Län
-                option Södermanlands Län
-                option Östergötlands Län
-                option Jönköpings Län
-                option Kronobergs Län
-                option Kalmar Län
-                option Gotlands Län
-                option Blekinge Län
-                option Skåne Län
-                option Hallands Län
-                option Västra Götalands Län
-                option Värmlands Län
-                option Örebro Län
-                option Västmanlands Län
-                option Dalarnas Län
-                option Gävleborgs Län
-                option Västernorrlands Län
-                option Jämtlands Län
-                option Västerbottens Län
-                option Norrbottens Län
+              select#search-responsible(name='region')
+                option(value='') Alla
+                - for (var key in locals.region) {
+                  option(value=locals.region[key].RegionID) #{locals.region[key].RegionName}
+                - }
         .small-12.columns
           table#group-table.dynamic-table
             thead

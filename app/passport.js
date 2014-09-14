@@ -22,8 +22,10 @@ module.exports.initialize = function(app) {
             models.Person.find({PersonID: parseInt(usr.PersonID, 10)}, function(err, bla){
               if (err) {
                 console.log(err);
-              } else {
+              } else if (bla[0] !== undefined) {
                 usr.PersonData = bla[0];
+              } else {
+                usr.PersonData = { FirstName: 'unknownFirstname', LastName: 'unknownLastname'};
               }
               return done(null, usr);
             });
@@ -35,23 +37,33 @@ module.exports.initialize = function(app) {
     }
   ));
 
-  passport.serializeUser(function(user, done) {
+  passport.serializeUser(function (user, done) {
     done(null, user._id);
   });
 
-  passport.deserializeUser(function(id, done) {
+  passport.deserializeUser(function (id, done) {
     models.Login.findById(id, function (err, user) {
+      if (err) {
+        console.log(err);
+      }
       user.Pwd = undefined;
       // Load person data and attach to object
-      models.Person.find({PersonID: parseInt(user.PersonID, 10)}, function(err, bla){
+      models.Person.find({PersonID: parseInt(user.PersonID, 10)}, function (err, bla) {
         if (err) {
           console.log(err);
-        } else {
+        } else if (bla[0] !== undefined) {
           user.PersonData = bla[0];
+        } else {
+          user.PersonData = { FirstName: 'unknownFirstname', LastName: 'unknownLastname'};
         }
-        done(err, user);  
+        // if (err) {
+        //   console.log(err);
+        // } else {
+        //   user.PersonData = bla[0];
+        // }
+        done(err, user);
       });
-      
+
     });
   });
-}
+};

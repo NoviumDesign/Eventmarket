@@ -1,12 +1,7 @@
 include includes/head
 body(class=locals.pageClass)
   include includes/nav
-  - if (locals.messages) {
-    each item in locals.messages
-      .alert-box(data-alert='')
-        div #{item}
-        a.close(href='#') &times;
-  - }
+  include includes/messages
   .row
     include includes/sidenav
     form(id="profilsida", method="POST", action="/admin/saveprofilsida")
