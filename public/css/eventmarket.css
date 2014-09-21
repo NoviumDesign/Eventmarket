@@ -758,7 +758,7 @@ footer {
     margin-right: auto;
     padding: 40px 20px 0px 20px; }
   footer .legalnotice {
-    color: #4A4A4A;
+    color: #777777;
     font-size: 1em;
     line-height: 1.4em;
     padding: 20px; }
@@ -778,15 +778,17 @@ footer {
 .footerlink {
   padding-top: 35px; }
   .footerlink a {
-    color: #4A4A4A;
+    color: #777777;
     font-weight: 500; }
+    .footerlink a:hover {
+      color: #aaaaaa; }
 
 .socialmedia {
   margin-top: 35px;
   width: 64px; }
 
 hr {
-  border-color: #4A4A4A; }
+  border-color: #777777; }
 
 .footerribbon {
   padding: 0;
@@ -1585,6 +1587,18 @@ img.pen {
     color: #FFFFFF;
     line-height: 1.2em; }
 
+body.tickets .hero {
+  background: #E42377; }
+
+body.conference .hero {
+  background: #0EA42C; }
+
+body.backstage .hero {
+  background: #2284CB; }
+
+body.offers .hero {
+  background: #A548B5; }
+
 h1 {
   font-size: 3em;
   font-weight: 700; }
@@ -1684,7 +1698,7 @@ a.hits:hover p {
   .sidelist .sidenav {
     text-align: left;
     padding: 5px 0px 25px 25px;
-    width: 100%;
+    width: 80%;
     margin-bottom: 5px;
     left: -40px;
     font-size: 1em;
@@ -1851,6 +1865,9 @@ a.category-icon {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px; }
 
+.right-off-canvas-menu {
+  background-color: #232323; }
+
 .rightmenu {
   padding-left: 35px !important;
   padding-top: 20px !important; }
@@ -1859,9 +1876,11 @@ a.category-icon {
     margin: 10px; }
   .rightmenu a {
     border: none !important;
-    color: #4A4A4A !important;
     padding: 0 !important;
+    color: #777777 !important;
     margin: 10px !important; }
+    .rightmenu a:hover {
+      color: #aaaaaa !important; }
   .rightmenu .newsletter {
     margin-top: 30px !important; }
   .rightmenu .socialmedia {
@@ -1890,6 +1909,24 @@ a.menu-icon span {
     height: 28px;
     margin-right: 10px;
     margin-bottom: 5px; }
+
+.offerbox h4 {
+  color: #fff; }
+
+.offer-sorting {
+  margin-bottom: 20px; }
+
+.offer-modal {
+  padding: 0;
+  background: #232321; }
+  .offer-modal .button, .offer-modal .closeribbon {
+    background: #A548B5; }
+  .offer-modal .closeribbon:after {
+    border-top-color: #73327e;
+    border-left-color: #73327e; }
+
+.offer-info-container {
+  padding: 30px 30px 5px 30px; }
 
 html {
   height: auto; }

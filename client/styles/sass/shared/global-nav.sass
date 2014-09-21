@@ -94,6 +94,9 @@ a.category-icon
     border-top-left-radius: 3px
     border-bottom-left-radius: 3px
 
+.right-off-canvas-menu
+  background-color: #232323
+
 .rightmenu
   padding-left: 35px !important
   padding-top: 20px !important
@@ -104,9 +107,12 @@ a.category-icon
 
   a
     border: none !important
-    color: $footerfont-color !important
     padding: 0 !important
+    color: $footerfont-color !important
     margin: 10px !important
+
+    &:hover
+      color: lighten($footerfont-color, 20%) !important
 
   .newsletter
     margin-top: 30px !important
