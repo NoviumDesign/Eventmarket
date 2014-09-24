@@ -1,4 +1,4 @@
-body.tickets
+body.tickets, body.theaterentertainment
   .nav-wrap .top-bar .top-bar-section ul li > a.ticketbutton
     background: $pink-color
     color: #FFF
@@ -9,6 +9,12 @@ body.tickets
       background: -o-linear-gradient(lighten($pink-color, 10%), darken($pink-color, 10%)) /* For Opera 11.1 to 12.0 */
       background: -moz-linear-gradient(lighten($pink-color, 10%), darken($pink-color, 10%)) /* For Firefox 3.6 to 15 */
       background: linear-gradient(lighten($pink-color, 10%), darken($pink-color, 10%)) /* Standard syntax (must be last) */
+
+  .ribbon
+    background-color: $pink-color
+
+    &:hover
+      background-color: darken($pink-color, 10%)
 
 @media (max-width:1024px) and (min-width:640px)
   .ticket-modal

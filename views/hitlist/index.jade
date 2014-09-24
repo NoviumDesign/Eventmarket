@@ -1,11 +1,12 @@
 extends ../layout
 
 block content
+  span.gradientbutton.hide-for-large-up Event
   section.main-content.container
     .row
       .large-3.columns.show-for-large-up
-        section.sidelist
-          h2 Branschen
+        section.sidelist.hitlistcontainer
+          img.hitlist-category-icon(src="/images/category-icon-black.svg")
           ul.side-nav.event
             li
               .ribbon.sidenav
@@ -77,6 +78,28 @@ block content
       script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false')
 
       div#allCats(style="display:none;") #{locals.allCats}
+      .small-12.medium-12.large-9.columns.hitlist-tutorial
+        h3
+            img.header-category-icon(src="/images/category-icon-black.svg")
+            | Sök i hela eventbranschen
+        p
+            br
+            | Här hittar du direktkontakter till 1000-tals artister, arrangörer, festlokaler, uthyrningsföretagoch övriga eventleverantörer. Du bestämmer själv vilka du vill kontakta och på vilket sätt. Telefon, mail eller hemsidan.
+            ol.show-for-large-up 
+                li Välj kategoriområde här till vänster
+                li Filtrera fram efter önskemål
+                li Kontakta på egen hand
+        p.show-for-large-up Eller...
+            br
+            a.orange-link(href="#") » Skicka en öppen förfrågan
+            br
+            | Så blir du istället kontaktad med förslag av lämpliga leverantörer.
+            br
+            br
+            | Lycka till!
+        p.hide-for-large-up
+            br
+            a.left-off-canvas-toggle.orange-link(href="#") » Börja sök
       .small-12.medium-12.large-9.columns#resultrows
         h1.results 
           | &nbsp;

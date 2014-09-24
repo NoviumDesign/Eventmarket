@@ -30,7 +30,7 @@ header#header.header
               a.ticketbutton(href='/biljett') Biljett
           ul.right
             li
-              a#offerbutton(href='/backstage/start') 
+              a#offerbutton(href='/erbjudanden') 
                 img(src='/images/hearts.png')
                 | Erbjudanden
             li
@@ -39,8 +39,14 @@ header#header.header
                 | Skicka Öppen Förfrågan
             li.last
               a.backstagebutton(href='/backstage/start') Backstage
-        div.left-small
-          ul
+        div.right
+          ul.mobile-menu-right
             li
               a.right-off-canvas-toggle.menu-icon.right.nav-icon
                 span
+            li.navrequestbutton.hide-for-large-up
+              a#sendrequestbutton(href='/backstage/start') 
+                img(src='/images/mail.png')
+            li.navofferbutton.hide-for-large-up
+              a#offerbutton(href='/erbjudanden') 
+                img(src='/images/hearts.png')

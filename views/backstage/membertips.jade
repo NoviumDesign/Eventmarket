@@ -1,13 +1,23 @@
 extends ../layout
 
 block content
+  section.hero
+    .row
+      .container
+        ul.hero-orbit(data-orbit='', data-options='bullets:false; timer: false; slide_number: false;')
+          li
+            img(src='http://placehold.it/1440x300', alt='slide 1')
+          li
+            img(src='http://placehold.it/1440x300', alt='slide 2')
+          li
+            img(src='http://placehold.it/1440x300', alt='slide 3')
   .row.hide-for-large-up
-  .small-12.columns.profileinformation
-    dl.accordion
-      dd
-        a.gradientbutton(href='/backstage/start') Backstage Startsida
-      dd.active
-        a.gradientbutton(href='/backstage/medlems-tips') Medlems-Tips
+    .small-12.columns.profileinformation
+      dl.accordion
+        dd
+          a.gradientbutton(href='/backstage/start') Backstage Startsida
+        dd.active
+          a.gradientbutton(href='/backstage/medlems-tips') Medlems-Tips
   // Main content
   section.main-content.container
     .row

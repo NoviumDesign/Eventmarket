@@ -2,7 +2,7 @@
   position: relative
   width: 200px
   height: 20px
-  background-color: #EB5D18
+  background-color: $orange-color
   text-align: center
   color: #FFFFFF
   margin: 20px 20px 30px 20px
@@ -25,6 +25,9 @@
 .conferenceribbon
   background-color: $green-color
 
+  &:hover
+    background-color: darken($green-color, 10%)
+
 .conferenceribbon:after
   border-top-color: #2D5014 !important
   border-right-color: #2D5014 !important
@@ -32,12 +35,18 @@
 .ticketribbon
   background-color: $pink-color
 
+  &:hover
+    background-color: darken($pink-color, 10%)
+
 .ticketribbon:after
   border-top-color: #6C0E35 !important
   border-right-color: #6C0E35 !important
 
 .backstageribbon
   background-color: $blue-color
+
+  &:hover
+    background-color: darken($blue-color, 10%)
 
 .backstageribbon:after
   border-top-color: #084554 !important

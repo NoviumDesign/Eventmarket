@@ -171,7 +171,7 @@ a.hits:hover
 .sidelist
   margin-right: 30px
   margin-left: 10px
-  background: $grey-color
+  background: $darkgrey-color
   padding: 0px
   padding-bottom: 150px
 
@@ -190,7 +190,7 @@ a.hits:hover
   .sidenav
     text-align: left
     padding: 5px 0px 25px 25px
-    width: 80%
+    width: 94%
     margin-bottom: 5px
     left: -40px
     font-size: 1em
@@ -205,6 +205,7 @@ a.hits:hover
 
   .greenribbon
     line-height: 1.3em
+    width: 100%
 
     &:after
       border-top-color: $greenlight-color
@@ -212,8 +213,23 @@ a.hits:hover
       border-right-color: transparent
       border-bottom-color: transparent
 
+.hitlistcontainer
+  .sidenav:hover
+    background-color: darken($orange-color, 10%)
+
 .side-nav li a:not(.button)
   color: #FFF
+
+.hitlist-category-icon
+  height: 48px
+  width: 48px
+  margin-top: 20px
+  margin-left: 20px
+
+.header-category-icon
+  height: 48px
+  width: 48px
+  margin-right: 20px
 
 dl.accordion, dl.tabs
 
@@ -274,3 +290,21 @@ span.eventinfo
 
 .icon-sallskap, .icon-privat, .icon-motesplatser, .icon-moteslokal, .icon-mingel, .icon-mat, .icon-logi, .icon-foretagsevent
   fill: #000000
+
+.orange-link
+  color: $orange-color
+
+.hitlist-tutorial
+  display: none
+
+body[class$="hitlist"]
+  .hitlist-tutorial
+    display: block
+
+  .gradientbutton
+    color: #FFF
+    padding: 20px
+    background: -webkit-linear-gradient(lighten($orange-color, 10%), darken($orange-color, 10%)) /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(lighten($orange-color, 10%), darken($orange-color, 10%)) /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(lighten($orange-color, 10%), darken($orange-color, 10%)) /* For Firefox 3.6 to 15 */
+    background: linear-gradient(lighten($orange-color, 10%), darken($orange-color, 10%)) /* Standard syntax (must be last) */

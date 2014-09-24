@@ -133,12 +133,32 @@ ul.leftnav
     margin: 20px 0px 20px 0px
     color: white
 
+    &:hover
+      background-color: darken($orange-color, 10%)
+
   a
     padding-left: 60px !important
 
 a.menu-icon
   span
     box-shadow: 0 10px 0 1px gray, 0 16px 0 1px gray, 0 22px 0 1px gray
+
+.mobile-menu-right
+  float: right
+  margin: 0
+
+  li
+    float: right
+
+  .navrequestbutton, .navofferbutton
+    border-left: solid 1px #4e4e4e
+    box-shadow: -1px 0 0 #1a1a1a
+    position: relative
+    display: inline-block
+    padding-top: 8px
+    padding-bottom: 4px
+    padding-left: 8px
+    padding-right: 4px
 
 #offerbutton, #sendrequestbutton
   text-transform: none

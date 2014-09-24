@@ -1,17 +1,26 @@
 extends ../layout
 
 block content
+  section.hero
+    .row
+      .container
+        ul.hero-orbit(data-orbit='', data-options='bullets:false; timer: false; slide_number: false;')
+          li
+            img(src='http://placehold.it/1440x300', alt='slide 1')
+          li
+            img(src='http://placehold.it/1440x300', alt='slide 2')
+          li
+            img(src='http://placehold.it/1440x300', alt='slide 3')
   .row.hide-for-large-up
-  .small-12.columns.profileinformation
-    dl.accordion
-      dd.active
-        a.gradientbutton(href='/backstage/start') Backstage Startsida
+    .small-12.columns.profileinformation
+      dl.accordion
+        dd.active
+          a.gradientbutton(href='/backstage/start') Backstage Startsida
   // Main content
   section.main-content.container
     .row
       #listaside.large-3.columns.show-for-large-up
         section.sidelist
-          h2 Event
           ul.side-nav.event
             li
               .ribbon.sidenav
