@@ -15,11 +15,15 @@ body(class=locals.pageClass)
         .small-12.columns
           table#list-categories.dynamic-table
             thead
+              th(data-dynatable-column="") Nivå
               th(data-dynatable-column="name") Namn
-              th(data-dynatable-column="visible") Synlig / Släckt
-              th(data-dynatable-column="lastUpdate") Senast uppdaterad
+              th(data-dynatable-column="") Sorteringsordning
+              th(data-dynatable-column="") Undergrupp till
+              th(data-dynatable-column="visible") Synlig/Släckt
             tbody
+              td Nivå
               td Namn
-              td Synlig / Släckt
-              td Senast Uppdaterad
+              td Sorteringsordning
+              td Undergrupp till
+              td Synlig/Släckt
   include includes/footer

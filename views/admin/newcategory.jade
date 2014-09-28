@@ -13,9 +13,12 @@ body(class="#{locals.pageClass}")
         .small-12.columns
           table#list-categories.dynamic-table
             thead
+              //- th(data-dynatable-column="") Nivå
               th(data-dynatable-column="name") Namn
               th(data-dynatable-column="displayName") Visningsnamn
-              th(data-dynatable-column="visible") Synlig
+              //- th(data-dynatable-column="") Sorteringsordning
+              //- th(data-dynatable-column="") Underkategori till
+              th(data-dynatable-column="visible") Synlig/Släckt
               th(data-dynatable-column="lastUpdate") Senast uppdaterad
             tbody
   
